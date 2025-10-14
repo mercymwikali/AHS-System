@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="Names">
+          <DataField>Names</DataField>
+        </Field>
+        <Field Name="AdmissionNo_HMSAdmissionDrugNurse">
+          <DataField>AdmissionNo_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="DrugNo_HMSAdmissionDrugNurse">
+          <DataField>DrugNo_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="DrugName_HMSAdmissionDrugNurse">
+          <DataField>DrugName_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="Quantity_HMSAdmissionDrugNurse">
+          <DataField>Quantity_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="UnitOfMeasure_HMSAdmissionDrugNurse">
+          <DataField>UnitOfMeasure_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="Remarks_HMSAdmissionDrugNurse">
+          <DataField>Remarks_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="PharmacyCode_HMSAdmissionDrugNurse">
+          <DataField>PharmacyCode_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="ActualQuantity_HMSAdmissionDrugNurse">
+          <DataField>ActualQuantity_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="ActualQuantity_HMSAdmissionDrugNurseFormat">
+          <DataField>ActualQuantity_HMSAdmissionDrugNurseFormat</DataField>
+        </Field>
+        <Field Name="Inventory_HMSAdmissionDrugNurse">
+          <DataField>Inventory_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="Inventory_HMSAdmissionDrugNurseFormat">
+          <DataField>Inventory_HMSAdmissionDrugNurseFormat</DataField>
+        </Field>
+        <Field Name="Issued_HMSAdmissionDrugNurse">
+          <DataField>Issued_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="Dosage_HMSAdmissionDrugNurse">
+          <DataField>Dosage_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="MarkedasIncompatible_HMSAdmissionDrugNurse">
+          <DataField>MarkedasIncompatible_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="ActualQuantityIssued_HMSAdmissionDrugNurse">
+          <DataField>ActualQuantityIssued_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="ActualQuantityIssued_HMSAdmissionDrugNurseFormat">
+          <DataField>ActualQuantityIssued_HMSAdmissionDrugNurseFormat</DataField>
+        </Field>
+        <Field Name="RemainingQuantity_HMSAdmissionDrugNurse">
+          <DataField>RemainingQuantity_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="RemainingQuantity_HMSAdmissionDrugNurseFormat">
+          <DataField>RemainingQuantity_HMSAdmissionDrugNurseFormat</DataField>
+        </Field>
+        <Field Name="IssuedDate_HMSAdmissionDrugNurse">
+          <DataField>IssuedDate_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="IssuedTime_HMSAdmissionDrugNurse">
+          <DataField>IssuedTime_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="IssuedBy_HMSAdmissionDrugNurse">
+          <DataField>IssuedBy_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="PrescriptionDose_HMSAdmissionDrugNurse">
+          <DataField>PrescriptionDose_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="PatientNo_HMSAdmissionDrugNurse">
+          <DataField>PatientNo_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="AdmDate">
+          <DataField>AdmDate</DataField>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="Prescribedby_HMSAdmissionDrugNurse">
+          <DataField>Prescribedby_HMSAdmissionDrugNurse</DataField>
+        </Field>
+        <Field Name="PrescribedByname_HMSAdmissionDrugNurse">
+          <DataField>PrescribedByname_HMSAdmissionDrugNurse</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

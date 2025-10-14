@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_5672">
+          <DataField>ReportForNavId_5672</DataField>
+        </Field>
+        <Field Name="userName">
+          <DataField>userName</DataField>
+        </Field>
+        <Field Name="dateToday">
+          <DataField>dateToday</DataField>
+        </Field>
+        <Field Name="Receipt__Student_No__">
+          <DataField>Receipt__Student_No__</DataField>
+        </Field>
+        <Field Name="Receipt__Receipt_No__">
+          <DataField>Receipt__Receipt_No__</DataField>
+        </Field>
+        <Field Name="Receipt_Date">
+          <DataField>Receipt_Date</DataField>
+        </Field>
+        <Field Name="Receipt__Payment_Mode_">
+          <DataField>Receipt__Payment_Mode_</DataField>
+        </Field>
+        <Field Name="Receipt_Amount">
+          <DataField>Receipt_Amount</DataField>
+        </Field>
+        <Field Name="Receipt_AmountFormat">
+          <DataField>Receipt_AmountFormat</DataField>
+        </Field>
+        <Field Name="Receipt__Payment_By_">
+          <DataField>Receipt__Payment_By_</DataField>
+        </Field>
+        <Field Name="Receipt__User_ID_">
+          <DataField>Receipt__User_ID_</DataField>
+        </Field>
+        <Field Name="Receipt_Amount_Control1102760017">
+          <DataField>Receipt_Amount_Control1102760017</DataField>
+        </Field>
+        <Field Name="Receipt_Amount_Control1102760017Format">
+          <DataField>Receipt_Amount_Control1102760017Format</DataField>
+        </Field>
+        <Field Name="Receipt__Student_No__Caption">
+          <DataField>Receipt__Student_No__Caption</DataField>
+        </Field>
+        <Field Name="Receipt__Receipt_No__Caption">
+          <DataField>Receipt__Receipt_No__Caption</DataField>
+        </Field>
+        <Field Name="Receipt_DateCaption">
+          <DataField>Receipt_DateCaption</DataField>
+        </Field>
+        <Field Name="Receipt__Payment_Mode_Caption">
+          <DataField>Receipt__Payment_Mode_Caption</DataField>
+        </Field>
+        <Field Name="Receipt_AmountCaption">
+          <DataField>Receipt_AmountCaption</DataField>
+        </Field>
+        <Field Name="Receipt__Payment_By_Caption">
+          <DataField>Receipt__Payment_By_Caption</DataField>
+        </Field>
+        <Field Name="Receipt__User_ID_Caption">
+          <DataField>Receipt__User_ID_Caption</DataField>
+        </Field>
+        <Field Name="Receipted_HELBCaption">
+          <DataField>Receipted_HELBCaption</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_2">
+          <DataField>ReportForNavId_2</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="cname">
+          <DataField>cname</DataField>
+        </Field>
+        <Field Name="Caddress">
+          <DataField>Caddress</DataField>
+        </Field>
+        <Field Name="ccity">
+          <DataField>ccity</DataField>
+        </Field>
+        <Field Name="cmobile">
+          <DataField>cmobile</DataField>
+        </Field>
+        <Field Name="Cpic">
+          <DataField>Cpic</DataField>
+        </Field>
+        <Field Name="Printed_On">
+          <DataField>Printed_On</DataField>
+        </Field>
+        <Field Name="Printed_Time">
+          <DataField>Printed_Time</DataField>
+        </Field>
+        <Field Name="Printed_By">
+          <DataField>Printed_By</DataField>
+        </Field>
+        <Field Name="LocationCode_ItemLedgerEntry">
+          <DataField>LocationCode_ItemLedgerEntry</DataField>
+        </Field>
+        <Field Name="Name_Customer">
+          <DataField>Name_Customer</DataField>
+        </Field>
+        <Field Name="Month">
+          <DataField>Month</DataField>
+        </Field>
+        <Field Name="ReportForNavId_35">
+          <DataField>ReportForNavId_35</DataField>
+        </Field>
+        <Field Name="D1st">
+          <DataField>D1st</DataField>
+        </Field>
+        <Field Name="D2nd">
+          <DataField>D2nd</DataField>
+        </Field>
+        <Field Name="D3rd">
+          <DataField>D3rd</DataField>
+        </Field>
+        <Field Name="D4th">
+          <DataField>D4th</DataField>
+        </Field>
+        <Field Name="D5th">
+          <DataField>D5th</DataField>
+        </Field>
+        <Field Name="D6th">
+          <DataField>D6th</DataField>
+        </Field>
+        <Field Name="D7th">
+          <DataField>D7th</DataField>
+        </Field>
+        <Field Name="D8th">
+          <DataField>D8th</DataField>
+        </Field>
+        <Field Name="D9th">
+          <DataField>D9th</DataField>
+        </Field>
+        <Field Name="D10th">
+          <DataField>D10th</DataField>
+        </Field>
+        <Field Name="D11th">
+          <DataField>D11th</DataField>
+        </Field>
+        <Field Name="D12th">
+          <DataField>D12th</DataField>
+        </Field>
+        <Field Name="D13th">
+          <DataField>D13th</DataField>
+        </Field>
+        <Field Name="D14th">
+          <DataField>D14th</DataField>
+        </Field>
+        <Field Name="D15th">
+          <DataField>D15th</DataField>
+        </Field>
+        <Field Name="D16th">
+          <DataField>D16th</DataField>
+        </Field>
+        <Field Name="D17th">
+          <DataField>D17th</DataField>
+        </Field>
+        <Field Name="D18th">
+          <DataField>D18th</DataField>
+        </Field>
+        <Field Name="D19th">
+          <DataField>D19th</DataField>
+        </Field>
+        <Field Name="D20th">
+          <DataField>D20th</DataField>
+        </Field>
+        <Field Name="D21st">
+          <DataField>D21st</DataField>
+        </Field>
+        <Field Name="D22nd">
+          <DataField>D22nd</DataField>
+        </Field>
+        <Field Name="D23rd">
+          <DataField>D23rd</DataField>
+        </Field>
+        <Field Name="D24th">
+          <DataField>D24th</DataField>
+        </Field>
+        <Field Name="D25th">
+          <DataField>D25th</DataField>
+        </Field>
+        <Field Name="D26th">
+          <DataField>D26th</DataField>
+        </Field>
+        <Field Name="D27th">
+          <DataField>D27th</DataField>
+        </Field>
+        <Field Name="D28th">
+          <DataField>D28th</DataField>
+        </Field>
+        <Field Name="D29th">
+          <DataField>D29th</DataField>
+        </Field>
+        <Field Name="D30th">
+          <DataField>D30th</DataField>
+        </Field>
+        <Field Name="D31st">
+          <DataField>D31st</DataField>
+        </Field>
+        <Field Name="SD1">
+          <DataField>SD1</DataField>
+        </Field>
+        <Field Name="SD2">
+          <DataField>SD2</DataField>
+        </Field>
+        <Field Name="SD3">
+          <DataField>SD3</DataField>
+        </Field>
+        <Field Name="SD4">
+          <DataField>SD4</DataField>
+        </Field>
+        <Field Name="SD5">
+          <DataField>SD5</DataField>
+        </Field>
+        <Field Name="SD6">
+          <DataField>SD6</DataField>
+        </Field>
+        <Field Name="SD7">
+          <DataField>SD7</DataField>
+        </Field>
+        <Field Name="SD8">
+          <DataField>SD8</DataField>
+        </Field>
+        <Field Name="SD9">
+          <DataField>SD9</DataField>
+        </Field>
+        <Field Name="SD10">
+          <DataField>SD10</DataField>
+        </Field>
+        <Field Name="SD11">
+          <DataField>SD11</DataField>
+        </Field>
+        <Field Name="SD12">
+          <DataField>SD12</DataField>
+        </Field>
+        <Field Name="SD13">
+          <DataField>SD13</DataField>
+        </Field>
+        <Field Name="SD14">
+          <DataField>SD14</DataField>
+        </Field>
+        <Field Name="SD15">
+          <DataField>SD15</DataField>
+        </Field>
+        <Field Name="SD16">
+          <DataField>SD16</DataField>
+        </Field>
+        <Field Name="SD17">
+          <DataField>SD17</DataField>
+        </Field>
+        <Field Name="SD18">
+          <DataField>SD18</DataField>
+        </Field>
+        <Field Name="SD19">
+          <DataField>SD19</DataField>
+        </Field>
+        <Field Name="SD20">
+          <DataField>SD20</DataField>
+        </Field>
+        <Field Name="SD21">
+          <DataField>SD21</DataField>
+        </Field>
+        <Field Name="SD22">
+          <DataField>SD22</DataField>
+        </Field>
+        <Field Name="SD23">
+          <DataField>SD23</DataField>
+        </Field>
+        <Field Name="SD24">
+          <DataField>SD24</DataField>
+        </Field>
+        <Field Name="SD25">
+          <DataField>SD25</DataField>
+        </Field>
+        <Field Name="SD26">
+          <DataField>SD26</DataField>
+        </Field>
+        <Field Name="SD27">
+          <DataField>SD27</DataField>
+        </Field>
+        <Field Name="SD28">
+          <DataField>SD28</DataField>
+        </Field>
+        <Field Name="SD29">
+          <DataField>SD29</DataField>
+        </Field>
+        <Field Name="SD30">
+          <DataField>SD30</DataField>
+        </Field>
+        <Field Name="SD31">
+          <DataField>SD31</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

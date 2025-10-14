@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="No_Customer">
+          <DataField>No_Customer</DataField>
+        </Field>
+        <Field Name="Name_Customer">
+          <DataField>Name_Customer</DataField>
+        </Field>
+        <Field Name="AppointmentsCount_Customer">
+          <DataField>AppointmentsCount_Customer</DataField>
+        </Field>
+        <Field Name="CompleteLabcount_Customer">
+          <DataField>CompleteLabcount_Customer</DataField>
+        </Field>
+        <Field Name="CompleteInpatientCount_Customer">
+          <DataField>CompleteInpatientCount_Customer</DataField>
+        </Field>
+        <Field Name="cName">
+          <DataField>cName</DataField>
+        </Field>
+        <Field Name="cphone">
+          <DataField>cphone</DataField>
+        </Field>
+        <Field Name="cpic">
+          <DataField>cpic</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="PharmWalkin">
+          <DataField>PharmWalkin</DataField>
+        </Field>
+        <Field Name="LabWalking">
+          <DataField>LabWalking</DataField>
+        </Field>
+        <Field Name="TriageWalking">
+          <DataField>TriageWalking</DataField>
+        </Field>
+        <Field Name="LabCorporate">
+          <DataField>LabCorporate</DataField>
+        </Field>
+        <Field Name="LabCorporateFormat">
+          <DataField>LabCorporateFormat</DataField>
+        </Field>
+        <Field Name="LAbCash">
+          <DataField>LAbCash</DataField>
+        </Field>
+        <Field Name="LAbCashFormat">
+          <DataField>LAbCashFormat</DataField>
+        </Field>
+        <Field Name="PharmCorp">
+          <DataField>PharmCorp</DataField>
+        </Field>
+        <Field Name="PharmCorpFormat">
+          <DataField>PharmCorpFormat</DataField>
+        </Field>
+        <Field Name="PHarmCash">
+          <DataField>PHarmCash</DataField>
+        </Field>
+        <Field Name="PHarmCashFormat">
+          <DataField>PHarmCashFormat</DataField>
+        </Field>
+        <Field Name="AppointmentsCount1_Customer">
+          <DataField>AppointmentsCount1_Customer</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

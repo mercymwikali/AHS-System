@@ -1,0 +1,1227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>643496a1-44f7-4e99-aafe-e86964311b96</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1.30034in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.37326in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Type_HMSDischargeSummary">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Type_HMSDischargeSummary.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Type_HMSDischargeSummary</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Description_HMSDischargeSummary.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Type_HMSDischargeSummary">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Type_HMSDischargeSummary.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Type_HMSDischargeSummary.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember>
+                      <Group Name="Description_HMSDischargeSummary">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Description_HMSDischargeSummary.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!Description_HMSDischargeSummary.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet_Result</DataSetName>
+            <Top>2.55952in</Top>
+            <Left>0.12751in</Left>
+            <Height>0.5in</Height>
+            <Width>6.6736in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="WardNo_HMSAdmissionDischargeHeader">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Ward:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!WardNo_HMSAdmissionDischargeHeader.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>WardNo_HMSAdmissionDischargeHeader</rd:DefaultName>
+            <Top>0.13985in</Top>
+            <Left>4.85417in</Left>
+            <Height>0.25in</Height>
+            <Width>1.28125in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="BedNo_HMSAdmissionDischargeHeader">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Bed:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!BedNo_HMSAdmissionDischargeHeader.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>BedNo_HMSAdmissionDischargeHeader</rd:DefaultName>
+            <Top>0.13985in</Top>
+            <Left>2.3889in</Left>
+            <Height>0.25in</Height>
+            <Width>1.90625in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="WardNo_HMSAdmissionDischargeHeader2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Room no</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!WardNo_HMSAdmissionDischargeHeader.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>WardNo_HMSAdmissionDischargeHeader</rd:DefaultName>
+            <Top>0.13985in</Top>
+            <Left>0.35417in</Left>
+            <Height>0.25in</Height>
+            <Width>1.90625in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Line Name="Line1">
+            <Top>0.48985in</Top>
+            <Left>0.08334in</Left>
+            <Height>0in</Height>
+            <Width>6.875in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="StrNames">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Surname</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!StrNames.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>StrNames</rd:DefaultName>
+            <Top>0.55929in</Top>
+            <Left>0.35417in</Left>
+            <Height>0.25in</Height>
+            <Width>2.64583in</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ageinyear">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Age:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!ageinyear.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ageinyear</rd:DefaultName>
+            <Top>0.55929in</Top>
+            <Left>3.12848in</Left>
+            <Height>0.25in</Height>
+            <Width>0.83333in</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="gender">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Gender: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!gender.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>gender</rd:DefaultName>
+            <Top>0.55929in</Top>
+            <Left>4.03126in</Left>
+            <Height>0.25in</Height>
+            <Width>1.29167in</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="DateofAdmission_HMSAdmissionDischargeHeader">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Admission date: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!DateofAdmission_HMSAdmissionDischargeHeader.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>DateofAdmission_HMSAdmissionDischargeHeader</rd:DefaultName>
+            <Top>0.55929in</Top>
+            <Left>5.40626in</Left>
+            <Height>0.25in</Height>
+            <Width>1.55208in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="DischargeDate_HMSAdmissionDischargeHeader">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Discharge Date </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!DischargeDate_HMSAdmissionDischargeHeader.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>DischargeDate_HMSAdmissionDischargeHeader</rd:DefaultName>
+            <Top>0.96554in</Top>
+            <Left>5.43626in</Left>
+            <Height>0.25in</Height>
+            <Width>1.52208in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="tel1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Tel: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!tel1.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>tel1</rd:DefaultName>
+            <Top>0.96554in</Top>
+            <Left>3.80085in</Left>
+            <Height>0.25in</Height>
+            <Width>1.52208in</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Line Name="Line2">
+            <Top>1.33034in</Top>
+            <Left>0.08334in</Left>
+            <Height>0in</Height>
+            <Width>6.875in</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.45709in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.48263in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.85417in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Diagnosis</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Remarks</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DiagnosisName_HMSTreatmentDiagnosis.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Remarks_HMSTreatmentFormDiagnosis.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember>
+                  <Group Name="DiagnosisCode_HMSTreatmentDiagnosis">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!DiagnosisCode_HMSTreatmentDiagnosis.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!DiagnosisCode_HMSTreatmentDiagnosis.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet_Result</DataSetName>
+            <Top>1.86459in</Top>
+            <Left>0.12751in</Left>
+            <Height>0.5in</Height>
+            <Width>6.79389in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Review Date : </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!ReviewDate_HMSDischargeSummary.Value, "DataSet_Result")</Value>
+                    <Style>
+                      <Format>d</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.55952in</Top>
+            <Left>0.16445in</Left>
+            <Height>0.23958in</Height>
+            <Width>4.40625in</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Venue: </Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>4.03868in</Top>
+            <Left>0.16445in</Left>
+            <Height>0.23958in</Height>
+            <Width>4.40625in</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Doctor: ............................................                                                 Sign:.................................</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>4.43751in</Top>
+            <Left>0.16445in</Left>
+            <Height>0.23958in</Height>
+            <Width>6.63666in</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>History:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!Condition_History.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.45834in</Top>
+            <Left>0.12751in</Left>
+            <Height>0.23958in</Height>
+            <Width>6.79389in</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox8">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Surgery:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!Surgery_Notes.Value, "DataSet_Result")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.1875in</Top>
+            <Left>0.12751in</Left>
+            <Height>0.23958in</Height>
+            <Width>6.79389in</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>4.67709in</Height>
+        <Style />
+      </Body>
+      <Width>7.83805in</Width>
+      <Page>
+        <PageHeader>
+          <Height>1.64015in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>DISCHARGE SUMMARY/CASE SHEET</Value>
+                      <Style>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox6</rd:DefaultName>
+              <Top>1.30209in</Top>
+              <Left>0.35417in</Left>
+              <Height>0.3207in</Height>
+              <Width>6.52082in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Image1">
+              <Source>Database</Source>
+              <Value>=First(Fields!logos.Value, "DataSet_Result")</Value>
+              <MIMEType>image/jpeg</MIMEType>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.155in</Top>
+              <Left>0.35417in</Left>
+              <Height>0.91097in</Height>
+              <Width>6.52082in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>a661e40f-c475-4299-b177-0db32f5ddb92</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="StrNames">
+          <DataField>StrNames</DataField>
+        </Field>
+        <Field Name="logos">
+          <DataField>logos</DataField>
+        </Field>
+        <Field Name="gender">
+          <DataField>gender</DataField>
+        </Field>
+        <Field Name="tel1">
+          <DataField>tel1</DataField>
+        </Field>
+        <Field Name="ageinyear">
+          <DataField>ageinyear</DataField>
+        </Field>
+        <Field Name="todaysDate">
+          <DataField>todaysDate</DataField>
+        </Field>
+        <Field Name="AdmissionNo_HMSAdmissionDischargeHeader">
+          <DataField>AdmissionNo_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="DischargeDate_HMSAdmissionDischargeHeader">
+          <DataField>DischargeDate_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="DischargeTime_HMSAdmissionDischargeHeader">
+          <DataField>DischargeTime_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="DoctorID_HMSAdmissionDischargeHeader">
+          <DataField>DoctorID_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="Remarks_HMSAdmissionDischargeHeader">
+          <DataField>Remarks_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="WardNo_HMSAdmissionDischargeHeader">
+          <DataField>WardNo_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="BedNo_HMSAdmissionDischargeHeader">
+          <DataField>BedNo_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="PatientNo_HMSAdmissionDischargeHeader">
+          <DataField>PatientNo_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="DateofAdmission_HMSAdmissionDischargeHeader">
+          <DataField>DateofAdmission_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="TimeOfAdmission_HMSAdmissionDischargeHeader">
+          <DataField>TimeOfAdmission_HMSAdmissionDischargeHeader</DataField>
+        </Field>
+        <Field Name="PastMed1">
+          <DataField>PastMed1</DataField>
+        </Field>
+        <Field Name="PastMed2">
+          <DataField>PastMed2</DataField>
+        </Field>
+        <Field Name="PastMed3">
+          <DataField>PastMed3</DataField>
+        </Field>
+        <Field Name="PastMed4">
+          <DataField>PastMed4</DataField>
+        </Field>
+        <Field Name="PastMed5">
+          <DataField>PastMed5</DataField>
+        </Field>
+        <Field Name="PastMed6">
+          <DataField>PastMed6</DataField>
+        </Field>
+        <Field Name="PastMed7">
+          <DataField>PastMed7</DataField>
+        </Field>
+        <Field Name="PastMed8">
+          <DataField>PastMed8</DataField>
+        </Field>
+        <Field Name="PastMed9">
+          <DataField>PastMed9</DataField>
+        </Field>
+        <Field Name="PastMed10">
+          <DataField>PastMed10</DataField>
+        </Field>
+        <Field Name="SurgeryName">
+          <DataField>SurgeryName</DataField>
+        </Field>
+        <Field Name="Discharge1">
+          <DataField>Discharge1</DataField>
+        </Field>
+        <Field Name="Discharge2">
+          <DataField>Discharge2</DataField>
+        </Field>
+        <Field Name="Discharge3">
+          <DataField>Discharge3</DataField>
+        </Field>
+        <Field Name="Discharge4">
+          <DataField>Discharge4</DataField>
+        </Field>
+        <Field Name="Discharge5">
+          <DataField>Discharge5</DataField>
+        </Field>
+        <Field Name="Management1">
+          <DataField>Management1</DataField>
+        </Field>
+        <Field Name="Management2">
+          <DataField>Management2</DataField>
+        </Field>
+        <Field Name="Management3">
+          <DataField>Management3</DataField>
+        </Field>
+        <Field Name="Management4">
+          <DataField>Management4</DataField>
+        </Field>
+        <Field Name="Management5">
+          <DataField>Management5</DataField>
+        </Field>
+        <Field Name="Investigation1">
+          <DataField>Investigation1</DataField>
+        </Field>
+        <Field Name="Investigation2">
+          <DataField>Investigation2</DataField>
+        </Field>
+        <Field Name="Investigation3">
+          <DataField>Investigation3</DataField>
+        </Field>
+        <Field Name="Investigation4">
+          <DataField>Investigation4</DataField>
+        </Field>
+        <Field Name="Investigation5">
+          <DataField>Investigation5</DataField>
+        </Field>
+        <Field Name="DischargeDoc">
+          <DataField>DischargeDoc</DataField>
+        </Field>
+        <Field Name="AdmitDoc">
+          <DataField>AdmitDoc</DataField>
+        </Field>
+        <Field Name="ReportForNavId_64">
+          <DataField>ReportForNavId_64</DataField>
+        </Field>
+        <Field Name="DischargeCode_HMSDischargeSummary">
+          <DataField>DischargeCode_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="LineNo_HMSDischargeSummary">
+          <DataField>LineNo_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="Type_HMSDischargeSummary">
+          <DataField>Type_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="Description_HMSDischargeSummary">
+          <DataField>Description_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="TreatmentNo_HMSDischargeSummary">
+          <DataField>TreatmentNo_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="PatientNo_HMSDischargeSummary">
+          <DataField>PatientNo_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="ReviewDate_HMSDischargeSummary">
+          <DataField>ReviewDate_HMSDischargeSummary</DataField>
+        </Field>
+        <Field Name="DifferentialDiagnosis_HMSTreatmentFormDiagnosis">
+          <DataField>DifferentialDiagnosis_HMSTreatmentFormDiagnosis</DataField>
+        </Field>
+        <Field Name="ReportForNavId_35">
+          <DataField>ReportForNavId_35</DataField>
+        </Field>
+        <Field Name="Condition_History">
+          <DataField>Condition_History</DataField>
+        </Field>
+        <Field Name="ReportForNavId_37">
+          <DataField>ReportForNavId_37</DataField>
+        </Field>
+        <Field Name="Surgery_Notes">
+          <DataField>Surgery_Notes</DataField>
+        </Field>
+        <Field Name="ReportForNavId_20">
+          <DataField>ReportForNavId_20</DataField>
+        </Field>
+        <Field Name="TreatmentNo_TreatmentFormHeader">
+          <DataField>TreatmentNo_TreatmentFormHeader</DataField>
+        </Field>
+        <Field Name="AdmNo_TreatmentFormHeader">
+          <DataField>AdmNo_TreatmentFormHeader</DataField>
+        </Field>
+        <Field Name="LinkNo_TreatmentFormHeader">
+          <DataField>LinkNo_TreatmentFormHeader</DataField>
+        </Field>
+        <Field Name="LinkType_HMSTreatmentFormHeader">
+          <DataField>LinkType_HMSTreatmentFormHeader</DataField>
+        </Field>
+        <Field Name="ReportForNavId_25">
+          <DataField>ReportForNavId_25</DataField>
+        </Field>
+        <Field Name="DiagnosisNo_HMSTreatmentDiagnosis">
+          <DataField>DiagnosisNo_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="Confirmed_HMSTreatmentDiagnosis">
+          <DataField>Confirmed_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="Remarks_HMSTreatmentDiagnosis">
+          <DataField>Remarks_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="DiagnosisCode_HMSTreatmentDiagnosis">
+          <DataField>DiagnosisCode_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="Description_HMSTreatmentDiagnosis">
+          <DataField>Description_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="DiagnosisType_HMSTreatmentDiagnosis">
+          <DataField>DiagnosisType_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="DiagnosisName_HMSTreatmentDiagnosis">
+          <DataField>DiagnosisName_HMSTreatmentDiagnosis</DataField>
+        </Field>
+        <Field Name="Remarks_HMSTreatmentFormDiagnosis">
+          <DataField>Remarks_HMSTreatmentFormDiagnosis</DataField>
+        </Field>
+        <Field Name="mcount">
+          <DataField>mcount</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

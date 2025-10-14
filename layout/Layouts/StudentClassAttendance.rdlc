@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_2992">
+          <DataField>ReportForNavId_2992</DataField>
+        </Field>
+        <Field Name="Student_Units_Programme">
+          <DataField>Student_Units_Programme</DataField>
+        </Field>
+        <Field Name="Student_Units_Stage">
+          <DataField>Student_Units_Stage</DataField>
+        </Field>
+        <Field Name="UDesc">
+          <DataField>UDesc</DataField>
+        </Field>
+        <Field Name="CreditH">
+          <DataField>CreditH</DataField>
+        </Field>
+        <Field Name="CreditHFormat">
+          <DataField>CreditHFormat</DataField>
+        </Field>
+        <Field Name="Student_Units_Remarks">
+          <DataField>Student_Units_Remarks</DataField>
+        </Field>
+        <Field Name="Student_Units__Student_No__">
+          <DataField>Student_Units__Student_No__</DataField>
+        </Field>
+        <Field Name="Cust_Name">
+          <DataField>Cust_Name</DataField>
+        </Field>
+        <Field Name="RCount">
+          <DataField>RCount</DataField>
+        </Field>
+        <Field Name="Student_Units_Attendance">
+          <DataField>Student_Units_Attendance</DataField>
+        </Field>
+        <Field Name="Student_Units_AttendanceFormat">
+          <DataField>Student_Units_AttendanceFormat</DataField>
+        </Field>
+        <Field Name="RemarkCaption">
+          <DataField>RemarkCaption</DataField>
+        </Field>
+        <Field Name="KCA_UniversityCaption">
+          <DataField>KCA_UniversityCaption</DataField>
+        </Field>
+        <Field Name="Student_Class_AttendanceCaption">
+          <DataField>Student_Class_AttendanceCaption</DataField>
+        </Field>
+        <Field Name="Student_Units__Student_No__Caption">
+          <DataField>Student_Units__Student_No__Caption</DataField>
+        </Field>
+        <Field Name="NameCaption">
+          <DataField>NameCaption</DataField>
+        </Field>
+        <Field Name="Programme_FilterCaption">
+          <DataField>Programme_FilterCaption</DataField>
+        </Field>
+        <Field Name="Stage_FilterCaption">
+          <DataField>Stage_FilterCaption</DataField>
+        </Field>
+        <Field Name="Unit_FilterCaption">
+          <DataField>Unit_FilterCaption</DataField>
+        </Field>
+        <Field Name="Student_Units_AttendanceCaption">
+          <DataField>Student_Units_AttendanceCaption</DataField>
+        </Field>
+        <Field Name="Credit_HoursCaption">
+          <DataField>Credit_HoursCaption</DataField>
+        </Field>
+        <Field Name="Student_Units_Unit">
+          <DataField>Student_Units_Unit</DataField>
+        </Field>
+        <Field Name="Student_Units_Semester">
+          <DataField>Student_Units_Semester</DataField>
+        </Field>
+        <Field Name="Student_Units_Reg__Transacton_ID">
+          <DataField>Student_Units_Reg__Transacton_ID</DataField>
+        </Field>
+        <Field Name="Student_Units_ENo">
+          <DataField>Student_Units_ENo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

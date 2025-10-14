@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1102755000">
+          <DataField>ReportForNavId_1102755000</DataField>
+        </Field>
+        <Field Name="ApplicationNo_ApplicationFormHeader">
+          <DataField>ApplicationNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SchoolName">
+          <DataField>SchoolName</DataField>
+        </Field>
+        <Field Name="CampusName">
+          <DataField>CampusName</DataField>
+        </Field>
+        <Field Name="MeanGrade">
+          <DataField>MeanGrade</DataField>
+        </Field>
+        <Field Name="ApplicationDate_ApplicationFormHeader">
+          <DataField>ApplicationDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Surname_ApplicationFormHeader">
+          <DataField>Surname_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="OtherNames_ApplicationFormHeader">
+          <DataField>OtherNames_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateOfBirth_ApplicationFormHeader">
+          <DataField>DateOfBirth_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Gender_ApplicationFormHeader">
+          <DataField>Gender_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="MaritalStatus_ApplicationFormHeader">
+          <DataField>MaritalStatus_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Nationality_ApplicationFormHeader">
+          <DataField>Nationality_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="CountryofOrigin_ApplicationFormHeader">
+          <DataField>CountryofOrigin_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AddressforCorrespondence1_ApplicationFormHeader">
+          <DataField>AddressforCorrespondence1_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AddressforCorrespondence2_ApplicationFormHeader">
+          <DataField>AddressforCorrespondence2_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AddressforCorrespondence3_ApplicationFormHeader">
+          <DataField>AddressforCorrespondence3_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="TelephoneNo1_ApplicationFormHeader">
+          <DataField>TelephoneNo1_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="TelephoneNo2_ApplicationFormHeader">
+          <DataField>TelephoneNo2_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="FirstDegreeChoice_ApplicationFormHeader">
+          <DataField>FirstDegreeChoice_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Faculty1_ApplicationFormHeader">
+          <DataField>Faculty1_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SecondDegreeChoice_ApplicationFormHeader">
+          <DataField>SecondDegreeChoice_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Faculty2_ApplicationFormHeader">
+          <DataField>Faculty2_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateofReceipt_ApplicationFormHeader">
+          <DataField>DateofReceipt_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="UserID_ApplicationFormHeader">
+          <DataField>UserID_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="County_ApplicationFormHeader">
+          <DataField>County_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="FormerSchoolCode_ApplicationFormHeader">
+          <DataField>FormerSchoolCode_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateofAdmission_ApplicationFormHeader">
+          <DataField>DateofAdmission_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateofCompletion_ApplicationFormHeader">
+          <DataField>DateofCompletion_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="YearofExamination_ApplicationFormHeader">
+          <DataField>YearofExamination_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ExaminationBody_ApplicationFormHeader">
+          <DataField>ExaminationBody_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="MeanGradeAcquired_ApplicationFormHeader">
+          <DataField>MeanGradeAcquired_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="PointsAcquired_ApplicationFormHeader">
+          <DataField>PointsAcquired_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="PrincipalPasses_ApplicationFormHeader">
+          <DataField>PrincipalPasses_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SubsidiaryPasses_ApplicationFormHeader">
+          <DataField>SubsidiaryPasses_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Examination_ApplicationFormHeader">
+          <DataField>Examination_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ApplicationFormReceiptNo_ApplicationFormHeader">
+          <DataField>ApplicationFormReceiptNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="IndexNumber_ApplicationFormHeader">
+          <DataField>IndexNumber_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="NoSeries_ApplicationFormHeader">
+          <DataField>NoSeries_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="HODUserID_ApplicationFormHeader">
+          <DataField>HODUserID_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="HODDate_ApplicationFormHeader">
+          <DataField>HODDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="HODTime_ApplicationFormHeader">
+          <DataField>HODTime_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="HODRecommendations_ApplicationFormHeader">
+          <DataField>HODRecommendations_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DeanUserID_ApplicationFormHeader">
+          <DataField>DeanUserID_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DeanDate_ApplicationFormHeader">
+          <DataField>DeanDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DeanTime_ApplicationFormHeader">
+          <DataField>DeanTime_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DeanRecommendations_ApplicationFormHeader">
+          <DataField>DeanRecommendations_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Status_ApplicationFormHeader">
+          <DataField>Status_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Select_ApplicationFormHeader">
+          <DataField>Select_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="BatchNo_ApplicationFormHeader">
+          <DataField>BatchNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="BatchDate_ApplicationFormHeader">
+          <DataField>BatchDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="BatchTime_ApplicationFormHeader">
+          <DataField>BatchTime_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissionBoardRecommendation_ApplicationFormHeader">
+          <DataField>AdmissionBoardRecommendation_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissionBoardDate_ApplicationFormHeader">
+          <DataField>AdmissionBoardDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissionBoardTime_ApplicationFormHeader">
+          <DataField>AdmissionBoardTime_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmittedDegree_ApplicationFormHeader">
+          <DataField>AdmittedDegree_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmittedDepartment_ApplicationFormHeader">
+          <DataField>AdmittedDepartment_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DeferredUntil_ApplicationFormHeader">
+          <DataField>DeferredUntil_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateOfMeeting_ApplicationFormHeader">
+          <DataField>DateOfMeeting_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateOfReceiptSlip_ApplicationFormHeader">
+          <DataField>DateOfReceiptSlip_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ReceiptSlipNo_ApplicationFormHeader">
+          <DataField>ReceiptSlipNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AcademicYear_ApplicationFormHeader">
+          <DataField>AcademicYear_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissionNo_ApplicationFormHeader">
+          <DataField>AdmissionNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmittedToStage_ApplicationFormHeader">
+          <DataField>AdmittedToStage_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmittedSemester_ApplicationFormHeader">
+          <DataField>AdmittedSemester_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="FirstChoiceStage_ApplicationFormHeader">
+          <DataField>FirstChoiceStage_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="FirstChoiceSemester_ApplicationFormHeader">
+          <DataField>FirstChoiceSemester_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SecondChoiceStage_ApplicationFormHeader">
+          <DataField>SecondChoiceStage_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SecondChoiceSemester_ApplicationFormHeader">
+          <DataField>SecondChoiceSemester_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="IntakeCode_ApplicationFormHeader">
+          <DataField>IntakeCode_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SettlementType_ApplicationFormHeader">
+          <DataField>SettlementType_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="IDNumber_ApplicationFormHeader">
+          <DataField>IDNumber_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateSentforApproval_ApplicationFormHeader">
+          <DataField>DateSentforApproval_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="IssuedDate_ApplicationFormHeader">
+          <DataField>IssuedDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="PostGraduate_ApplicationFormHeader">
+          <DataField>PostGraduate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Email_ApplicationFormHeader">
+          <DataField>Email_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Campus_ApplicationFormHeader">
+          <DataField>Campus_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissableStatus_ApplicationFormHeader">
+          <DataField>AdmissableStatus_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ModeofStudy_ApplicationFormHeader">
+          <DataField>ModeofStudy_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="EnquiryNo_ApplicationFormHeader">
+          <DataField>EnquiryNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ResponsibilityCenter_ApplicationFormHeader">
+          <DataField>ResponsibilityCenter_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmitNotAdmit">
+          <DataField>AdmitNotAdmit</DataField>
+        </Field>
+        <Field Name="FullNames">
+          <DataField>FullNames</DataField>
+        </Field>
+        <Field Name="FContacts">
+          <DataField>FContacts</DataField>
+        </Field>
+        <Field Name="Seducation">
+          <DataField>Seducation</DataField>
+        </Field>
+        <Field Name="SN">
+          <DataField>SN</DataField>
+        </Field>
+        <Field Name="ProgName">
+          <DataField>ProgName</DataField>
+        </Field>
+        <Field Name="Wexp">
+          <DataField>Wexp</DataField>
+        </Field>
+        <Field Name="OtherQ">
+          <DataField>OtherQ</DataField>
+        </Field>
+        <Field Name="R1">
+          <DataField>R1</DataField>
+        </Field>
+        <Field Name="R2">
+          <DataField>R2</DataField>
+        </Field>
+        <Field Name="R3">
+          <DataField>R3</DataField>
+        </Field>
+        <Field Name="R4">
+          <DataField>R4</DataField>
+        </Field>
+        <Field Name="R5">
+          <DataField>R5</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="CompPicture">
+          <DataField>CompPicture</DataField>
+        </Field>
+        <Field Name="SQ1">
+          <DataField>SQ1</DataField>
+        </Field>
+        <Field Name="SQ2">
+          <DataField>SQ2</DataField>
+        </Field>
+        <Field Name="SQ3">
+          <DataField>SQ3</DataField>
+        </Field>
+        <Field Name="SQ4">
+          <DataField>SQ4</DataField>
+        </Field>
+        <Field Name="SQ5">
+          <DataField>SQ5</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

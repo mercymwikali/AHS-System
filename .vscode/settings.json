@@ -1,0 +1,26 @@
+{
+    "conventionalCommits.scopes": [
+        "Appointment Managment",
+        "Access Register",
+        "Visitor Management",
+        "Inpatient Forms",
+        "Lab Management"
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#581513",
+        "titleBar.activeBackground": "#7B1E1B",
+        "titleBar.activeForeground": "#FEFBFB"
+    },
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "al.assemblyProbingPaths": [
+        "./.netpackages",
+        "C:\\Windows\\assembly",
+        "C:\\Program Files\\Microsoft Dynamics 365 Business Central\\230\\Service\\Add-ins",
+        "C:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL",
+        "C:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL\\System.Reflection\\v4.0_4.0.0.0__b03f5f7f11d50a3a",
+        "C:/Program Files/Assemblies",
+        "C:\\Program Files\\Microsoft Dynamics 365 Business Central\\140\\Service"
+    ],
+}

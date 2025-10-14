@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="No_Customer">
+          <DataField>No_Customer</DataField>
+        </Field>
+        <Field Name="Name_Customer">
+          <DataField>Name_Customer</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="CompPic">
+          <DataField>CompPic</DataField>
+        </Field>
+        <Field Name="ProgName">
+          <DataField>ProgName</DataField>
+        </Field>
+        <Field Name="CurrentAv">
+          <DataField>CurrentAv</DataField>
+        </Field>
+        <Field Name="CurrentAvFormat">
+          <DataField>CurrentAvFormat</DataField>
+        </Field>
+        <Field Name="CumAv">
+          <DataField>CumAv</DataField>
+        </Field>
+        <Field Name="CumAvFormat">
+          <DataField>CumAvFormat</DataField>
+        </Field>
+        <Field Name="Rmk">
+          <DataField>Rmk</DataField>
+        </Field>
+        <Field Name="YearFilter">
+          <DataField>YearFilter</DataField>
+        </Field>
+        <Field Name="DeptName">
+          <DataField>DeptName</DataField>
+        </Field>
+        <Field Name="SchName">
+          <DataField>SchName</DataField>
+        </Field>
+        <Field Name="ThisAward">
+          <DataField>ThisAward</DataField>
+        </Field>
+        <Field Name="Registrar">
+          <DataField>Registrar</DataField>
+        </Field>
+        <Field Name="RegistrarSign">
+          <DataField>RegistrarSign</DataField>
+        </Field>
+        <Field Name="GraduationPeriod">
+          <DataField>GraduationPeriod</DataField>
+        </Field>
+        <Field Name="TranscripType">
+          <DataField>TranscripType</DataField>
+        </Field>
+        <Field Name="ReportForNavId_4">
+          <DataField>ReportForNavId_4</DataField>
+        </Field>
+        <Field Name="RegNo_BackLogExamResults">
+          <DataField>RegNo_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="UnitCode_BackLogExamResults">
+          <DataField>UnitCode_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Grade_BackLogExamResults">
+          <DataField>Grade_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Description_BackLogExamResults">
+          <DataField>Description_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="AcYear_BackLogExamResults">
+          <DataField>AcYear_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="CF_BackLogExamResults">
+          <DataField>CF_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="CF_BackLogExamResultsFormat">
+          <DataField>CF_BackLogExamResultsFormat</DataField>
+        </Field>
+        <Field Name="Score_BackLogExamResults">
+          <DataField>Score_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Score_BackLogExamResultsFormat">
+          <DataField>Score_BackLogExamResultsFormat</DataField>
+        </Field>
+        <Field Name="Department_BackLogExamResults">
+          <DataField>Department_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="CumAVerage_BackLogExamResults">
+          <DataField>CumAVerage_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="CumAVerage_BackLogExamResultsFormat">
+          <DataField>CumAVerage_BackLogExamResultsFormat</DataField>
+        </Field>
+        <Field Name="Remark_BackLogExamResults">
+          <DataField>Remark_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Group_BackLogExamResults">
+          <DataField>Group_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Programme_BackLogExamResults">
+          <DataField>Programme_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Semester_BackLogExamResults">
+          <DataField>Semester_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="Academic_BackLogExamResults">
+          <DataField>Academic_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="GradePrefix_BackLogExamResults">
+          <DataField>GradePrefix_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="UnitScore_BackLogExamResults">
+          <DataField>UnitScore_BackLogExamResults</DataField>
+        </Field>
+        <Field Name="UnitScore_BackLogExamResultsFormat">
+          <DataField>UnitScore_BackLogExamResultsFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

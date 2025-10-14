@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="pic">
+          <DataField>pic</DataField>
+        </Field>
+        <Field Name="Title1">
+          <DataField>Title1</DataField>
+        </Field>
+        <Field Name="CountyDesc">
+          <DataField>CountyDesc</DataField>
+        </Field>
+        <Field Name="SSPMaleFull">
+          <DataField>SSPMaleFull</DataField>
+        </Field>
+        <Field Name="SSPFemaleFull">
+          <DataField>SSPFemaleFull</DataField>
+        </Field>
+        <Field Name="SSPTotalFull">
+          <DataField>SSPTotalFull</DataField>
+        </Field>
+        <Field Name="SSPMalePart">
+          <DataField>SSPMalePart</DataField>
+        </Field>
+        <Field Name="SSPFemalePart">
+          <DataField>SSPFemalePart</DataField>
+        </Field>
+        <Field Name="SSPTotalPart">
+          <DataField>SSPTotalPart</DataField>
+        </Field>
+        <Field Name="GOKMaleFull">
+          <DataField>GOKMaleFull</DataField>
+        </Field>
+        <Field Name="GOKFemaleFull">
+          <DataField>GOKFemaleFull</DataField>
+        </Field>
+        <Field Name="GOKTotalFull">
+          <DataField>GOKTotalFull</DataField>
+        </Field>
+        <Field Name="GOKMalePart">
+          <DataField>GOKMalePart</DataField>
+        </Field>
+        <Field Name="GOKFemalePart">
+          <DataField>GOKFemalePart</DataField>
+        </Field>
+        <Field Name="GOKTotalPart">
+          <DataField>GOKTotalPart</DataField>
+        </Field>
+        <Field Name="ProgMaleTotal">
+          <DataField>ProgMaleTotal</DataField>
+        </Field>
+        <Field Name="ProgFemaleTotal">
+          <DataField>ProgFemaleTotal</DataField>
+        </Field>
+        <Field Name="ProgGrandTotal">
+          <DataField>ProgGrandTotal</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="CompName1">
+          <DataField>CompName1</DataField>
+        </Field>
+        <Field Name="CompAddress">
+          <DataField>CompAddress</DataField>
+        </Field>
+        <Field Name="CompAddress1">
+          <DataField>CompAddress1</DataField>
+        </Field>
+        <Field Name="CountyCode">
+          <DataField>CountyCode</DataField>
+        </Field>
+        <Field Name="SemFilter">
+          <DataField>SemFilter</DataField>
+        </Field>
+        <Field Name="ProgFilter">
+          <DataField>ProgFilter</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

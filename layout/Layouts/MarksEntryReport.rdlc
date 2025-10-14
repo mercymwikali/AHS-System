@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="Lecturer_LecturersUnits">
+          <DataField>Lecturer_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Programme_LecturersUnits">
+          <DataField>Programme_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Stage_LecturersUnits">
+          <DataField>Stage_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Unit_LecturersUnits">
+          <DataField>Unit_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Semester_LecturersUnits">
+          <DataField>Semester_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Remarks_LecturersUnits">
+          <DataField>Remarks_LecturersUnits</DataField>
+        </Field>
+        <Field Name="NoOfHours_LecturersUnits">
+          <DataField>NoOfHours_LecturersUnits</DataField>
+        </Field>
+        <Field Name="NoOfHours_LecturersUnitsFormat">
+          <DataField>NoOfHours_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="NoOfHoursContracted_LecturersUnits">
+          <DataField>NoOfHoursContracted_LecturersUnits</DataField>
+        </Field>
+        <Field Name="NoOfHoursContracted_LecturersUnitsFormat">
+          <DataField>NoOfHoursContracted_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="AvailableFrom_LecturersUnits">
+          <DataField>AvailableFrom_LecturersUnits</DataField>
+        </Field>
+        <Field Name="AvailableTo_LecturersUnits">
+          <DataField>AvailableTo_LecturersUnits</DataField>
+        </Field>
+        <Field Name="TimeTableHours_LecturersUnits">
+          <DataField>TimeTableHours_LecturersUnits</DataField>
+        </Field>
+        <Field Name="TimeTableHours_LecturersUnitsFormat">
+          <DataField>TimeTableHours_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="MinimumContracted_LecturersUnits">
+          <DataField>MinimumContracted_LecturersUnits</DataField>
+        </Field>
+        <Field Name="MinimumContracted_LecturersUnitsFormat">
+          <DataField>MinimumContracted_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="Class_LecturersUnits">
+          <DataField>Class_LecturersUnits</DataField>
+        </Field>
+        <Field Name="UnitClass_LecturersUnits">
+          <DataField>UnitClass_LecturersUnits</DataField>
+        </Field>
+        <Field Name="StudentType_LecturersUnits">
+          <DataField>StudentType_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Allocation_LecturersUnits">
+          <DataField>Allocation_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Allocation_LecturersUnitsFormat">
+          <DataField>Allocation_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="Description_LecturersUnits">
+          <DataField>Description_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Rate_LecturersUnits">
+          <DataField>Rate_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Rate_LecturersUnitsFormat">
+          <DataField>Rate_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="Credithours_LecturersUnits">
+          <DataField>Credithours_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Credithours_LecturersUnitsFormat">
+          <DataField>Credithours_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="LectHrs_LecturersUnits">
+          <DataField>LectHrs_LecturersUnits</DataField>
+        </Field>
+        <Field Name="LectHrs_LecturersUnitsFormat">
+          <DataField>LectHrs_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="PractHrs_LecturersUnits">
+          <DataField>PractHrs_LecturersUnits</DataField>
+        </Field>
+        <Field Name="PractHrs_LecturersUnitsFormat">
+          <DataField>PractHrs_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="TutHrs_LecturersUnits">
+          <DataField>TutHrs_LecturersUnits</DataField>
+        </Field>
+        <Field Name="TutHrs_LecturersUnitsFormat">
+          <DataField>TutHrs_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="ClassType_LecturersUnits">
+          <DataField>ClassType_LecturersUnits</DataField>
+        </Field>
+        <Field Name="UnitStudentsCount_LecturersUnits">
+          <DataField>UnitStudentsCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="UnitResultsCount_LecturersUnits">
+          <DataField>UnitResultsCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Claimed_LecturersUnits">
+          <DataField>Claimed_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Amount_LecturersUnits">
+          <DataField>Amount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Amount_LecturersUnitsFormat">
+          <DataField>Amount_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="ClaimedDate_LecturersUnits">
+          <DataField>ClaimedDate_LecturersUnits</DataField>
+        </Field>
+        <Field Name="CampusCode_LecturersUnits">
+          <DataField>CampusCode_LecturersUnits</DataField>
+        </Field>
+        <Field Name="ClassSize_LecturersUnits">
+          <DataField>ClassSize_LecturersUnits</DataField>
+        </Field>
+        <Field Name="ClassSize_LecturersUnitsFormat">
+          <DataField>ClassSize_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="Category_LecturersUnits">
+          <DataField>Category_LecturersUnits</DataField>
+        </Field>
+        <Field Name="GlobalDimension1Code_LecturersUnits">
+          <DataField>GlobalDimension1Code_LecturersUnits</DataField>
+        </Field>
+        <Field Name="GlobalDimension2Code_LecturersUnits">
+          <DataField>GlobalDimension2Code_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Dim1_LecturersUnits">
+          <DataField>Dim1_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Dim2_LecturersUnits">
+          <DataField>Dim2_LecturersUnits</DataField>
+        </Field>
+        <Field Name="ModeOfStudy_LecturersUnits">
+          <DataField>ModeOfStudy_LecturersUnits</DataField>
+        </Field>
+        <Field Name="UnClaimedHours_LecturersUnits">
+          <DataField>UnClaimedHours_LecturersUnits</DataField>
+        </Field>
+        <Field Name="UnClaimedHours_LecturersUnitsFormat">
+          <DataField>UnClaimedHours_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="UnClaimedStudents_LecturersUnits">
+          <DataField>UnClaimedStudents_LecturersUnits</DataField>
+        </Field>
+        <Field Name="ClaimBatchNo_LecturersUnits">
+          <DataField>ClaimBatchNo_LecturersUnits</DataField>
+        </Field>
+        <Field Name="LineNo_LecturersUnits">
+          <DataField>LineNo_LecturersUnits</DataField>
+        </Field>
+        <Field Name="UnitName_LecturersUnits">
+          <DataField>UnitName_LecturersUnits</DataField>
+        </Field>
+        <Field Name="LectName_LecturersUnits">
+          <DataField>LectName_LecturersUnits</DataField>
+        </Field>
+        <Field Name="AcademicYear_LecturersUnits">
+          <DataField>AcademicYear_LecturersUnits</DataField>
+        </Field>
+        <Field Name="CurrentSemCount_LecturersUnits">
+          <DataField>CurrentSemCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="ClaimsSemCount_LecturersUnits">
+          <DataField>ClaimsSemCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="LecturerType_LecturersUnits">
+          <DataField>LecturerType_LecturersUnits</DataField>
+        </Field>
+        <Field Name="IsPartTimer_LecturersUnits">
+          <DataField>IsPartTimer_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Installment_LecturersUnits">
+          <DataField>Installment_LecturersUnits</DataField>
+        </Field>
+        <Field Name="ClaimedCount_LecturersUnits">
+          <DataField>ClaimedCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="AttendanceHrs_LecturersUnits">
+          <DataField>AttendanceHrs_LecturersUnits</DataField>
+        </Field>
+        <Field Name="AttendanceHrs_LecturersUnitsFormat">
+          <DataField>AttendanceHrs_LecturersUnitsFormat</DataField>
+        </Field>
+        <Field Name="DateFilter_LecturersUnits">
+          <DataField>DateFilter_LecturersUnits</DataField>
+        </Field>
+        <Field Name="StudentCount_LecturersUnits">
+          <DataField>StudentCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="CATCount_LecturersUnits">
+          <DataField>CATCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="EXAMCount_LecturersUnits">
+          <DataField>EXAMCount_LecturersUnits</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

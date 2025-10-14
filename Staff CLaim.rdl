@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="logo">
+          <DataField>logo</DataField>
+        </Field>
+        <Field Name="No_StaffClaimsHeader">
+          <DataField>No_StaffClaimsHeader</DataField>
+        </Field>
+        <Field Name="Date_StaffClaimsHeader">
+          <DataField>Date_StaffClaimsHeader</DataField>
+        </Field>
+        <Field Name="Payee_StaffClaimsHeader">
+          <DataField>Payee_StaffClaimsHeader</DataField>
+        </Field>
+        <Field Name="Status_StaffClaimsHeader">
+          <DataField>Status_StaffClaimsHeader</DataField>
+        </Field>
+        <Field Name="PrebBy">
+          <DataField>PrebBy</DataField>
+        </Field>
+        <Field Name="PrebDate">
+          <DataField>PrebDate</DataField>
+        </Field>
+        <Field Name="ApproversName1">
+          <DataField>ApproversName1</DataField>
+        </Field>
+        <Field Name="ApproversName2">
+          <DataField>ApproversName2</DataField>
+        </Field>
+        <Field Name="ApproversName3">
+          <DataField>ApproversName3</DataField>
+        </Field>
+        <Field Name="ApproversName4">
+          <DataField>ApproversName4</DataField>
+        </Field>
+        <Field Name="ApproversName5">
+          <DataField>ApproversName5</DataField>
+        </Field>
+        <Field Name="ApprovalDate1">
+          <DataField>ApprovalDate1</DataField>
+        </Field>
+        <Field Name="ApprovalDate2">
+          <DataField>ApprovalDate2</DataField>
+        </Field>
+        <Field Name="ApprovalDate3">
+          <DataField>ApprovalDate3</DataField>
+        </Field>
+        <Field Name="ApprovalDate4">
+          <DataField>ApprovalDate4</DataField>
+        </Field>
+        <Field Name="ApprovalDate5">
+          <DataField>ApprovalDate5</DataField>
+        </Field>
+        <Field Name="Sign1">
+          <DataField>Sign1</DataField>
+        </Field>
+        <Field Name="Sign2">
+          <DataField>Sign2</DataField>
+        </Field>
+        <Field Name="Sign3">
+          <DataField>Sign3</DataField>
+        </Field>
+        <Field Name="Sign4">
+          <DataField>Sign4</DataField>
+        </Field>
+        <Field Name="Sign0">
+          <DataField>Sign0</DataField>
+        </Field>
+        <Field Name="No_StaffClaimLines">
+          <DataField>No_StaffClaimLines</DataField>
+        </Field>
+        <Field Name="AccountNo_StaffClaimLines">
+          <DataField>AccountNo_StaffClaimLines</DataField>
+        </Field>
+        <Field Name="AccountName_StaffClaimLines">
+          <DataField>AccountName_StaffClaimLines</DataField>
+        </Field>
+        <Field Name="Amount_StaffClaimLines">
+          <DataField>Amount_StaffClaimLines</DataField>
+        </Field>
+        <Field Name="Amount_StaffClaimLinesFormat">
+          <DataField>Amount_StaffClaimLinesFormat</DataField>
+        </Field>
+        <Field Name="Purpose_StaffClaimLines">
+          <DataField>Purpose_StaffClaimLines</DataField>
+        </Field>
+        <Field Name="ClaimReceiptNo_StaffClaimLines">
+          <DataField>ClaimReceiptNo_StaffClaimLines</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

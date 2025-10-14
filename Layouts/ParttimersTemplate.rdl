@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_HREmployee">
+          <DataField>No_HREmployee</DataField>
+        </Field>
+        <Field Name="FirstName_HREmployee">
+          <DataField>FirstName_HREmployee</DataField>
+        </Field>
+        <Field Name="MiddleName_HREmployee">
+          <DataField>MiddleName_HREmployee</DataField>
+        </Field>
+        <Field Name="LastName_HREmployee">
+          <DataField>LastName_HREmployee</DataField>
+        </Field>
+        <Field Name="Title_HREmployee">
+          <DataField>Title_HREmployee</DataField>
+        </Field>
+        <Field Name="JobTitle_HREmployee">
+          <DataField>JobTitle_HREmployee</DataField>
+        </Field>
+        <Field Name="ContractStartDate_HREmployee">
+          <DataField>ContractStartDate_HREmployee</DataField>
+        </Field>
+        <Field Name="ContractEndDate_HREmployee">
+          <DataField>ContractEndDate_HREmployee</DataField>
+        </Field>
+        <Field Name="CampusCode_HREmployee">
+          <DataField>CampusCode_HREmployee</DataField>
+        </Field>
+        <Field Name="DepartmentName_HREmployee">
+          <DataField>DepartmentName_HREmployee</DataField>
+        </Field>
+        <Field Name="Section_HREmployee">
+          <DataField>Section_HREmployee</DataField>
+        </Field>
+        <Field Name="CampusName">
+          <DataField>CampusName</DataField>
+        </Field>
+        <Field Name="ClaimAmt">
+          <DataField>ClaimAmt</DataField>
+        </Field>
+        <Field Name="ClaimAmtFormat">
+          <DataField>ClaimAmtFormat</DataField>
+        </Field>
+        <Field Name="CompInfName">
+          <DataField>CompInfName</DataField>
+        </Field>
+        <Field Name="CompInfPic">
+          <DataField>CompInfPic</DataField>
+        </Field>
+        <Field Name="CompInfAdrr1">
+          <DataField>CompInfAdrr1</DataField>
+        </Field>
+        <Field Name="CompInfAdrr2">
+          <DataField>CompInfAdrr2</DataField>
+        </Field>
+        <Field Name="CompInfEmail">
+          <DataField>CompInfEmail</DataField>
+        </Field>
+        <Field Name="ReportForNavId_6">
+          <DataField>ReportForNavId_6</DataField>
+        </Field>
+        <Field Name="Lecturer_LecturersUnits">
+          <DataField>Lecturer_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Programme_LecturersUnits">
+          <DataField>Programme_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Unit_LecturersUnits">
+          <DataField>Unit_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Description_LecturersUnits">
+          <DataField>Description_LecturersUnits</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

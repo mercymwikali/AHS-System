@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="ApplicationNo_ApplicationFormHeader">
+          <DataField>ApplicationNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Date_ApplicationFormHeader">
+          <DataField>Date_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ApplicationDate_ApplicationFormHeader">
+          <DataField>ApplicationDate_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Surname_ApplicationFormHeader">
+          <DataField>Surname_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="OtherNames_ApplicationFormHeader">
+          <DataField>OtherNames_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="DateOfBirth_ApplicationFormHeader">
+          <DataField>DateOfBirth_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Gender_ApplicationFormHeader">
+          <DataField>Gender_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="MaritalStatus_ApplicationFormHeader">
+          <DataField>MaritalStatus_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Nationality_ApplicationFormHeader">
+          <DataField>Nationality_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="CountryofOrigin_ApplicationFormHeader">
+          <DataField>CountryofOrigin_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AddressforCorrespondence1_ApplicationFormHeader">
+          <DataField>AddressforCorrespondence1_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AddressforCorrespondence2_ApplicationFormHeader">
+          <DataField>AddressforCorrespondence2_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AddressforCorrespondence3_ApplicationFormHeader">
+          <DataField>AddressforCorrespondence3_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="TelephoneNo1_ApplicationFormHeader">
+          <DataField>TelephoneNo1_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="TelephoneNo2_ApplicationFormHeader">
+          <DataField>TelephoneNo2_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="FirstDegreeChoice_ApplicationFormHeader">
+          <DataField>FirstDegreeChoice_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AcademicYear_ApplicationFormHeader">
+          <DataField>AcademicYear_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Campus_ApplicationFormHeader">
+          <DataField>Campus_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissableStatus_ApplicationFormHeader">
+          <DataField>AdmissableStatus_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ModeofStudy_ApplicationFormHeader">
+          <DataField>ModeofStudy_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="EnquiryNo_ApplicationFormHeader">
+          <DataField>EnquiryNo_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="ResponsibilityCenter_ApplicationFormHeader">
+          <DataField>ResponsibilityCenter_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmitNotAdmit_ApplicationFormHeader">
+          <DataField>AdmitNotAdmit_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="FirstChoiceQualify_ApplicationFormHeader">
+          <DataField>FirstChoiceQualify_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="SecondChoiceQualify_ApplicationFormHeader">
+          <DataField>SecondChoiceQualify_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="RejectionReason_ApplicationFormHeader">
+          <DataField>RejectionReason_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="AdmissionComments_ApplicationFormHeader">
+          <DataField>AdmissionComments_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="KnewUniversityThru_ApplicationFormHeader">
+          <DataField>KnewUniversityThru_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="Title_ApplicationFormHeader">
+          <DataField>Title_ApplicationFormHeader</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="ProgName">
+          <DataField>ProgName</DataField>
+        </Field>
+        <Field Name="CompInfoAddress">
+          <DataField>CompInfoAddress</DataField>
+        </Field>
+        <Field Name="CompInfoAddress2">
+          <DataField>CompInfoAddress2</DataField>
+        </Field>
+        <Field Name="CompInfoPhone">
+          <DataField>CompInfoPhone</DataField>
+        </Field>
+        <Field Name="DateStr">
+          <DataField>DateStr</DataField>
+        </Field>
+        <Field Name="CompLogo">
+          <DataField>CompLogo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

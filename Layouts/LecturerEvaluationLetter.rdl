@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_25">
+          <DataField>ReportForNavId_25</DataField>
+        </Field>
+        <Field Name="Pic">
+          <DataField>Pic</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="Lecturer_LecturersUnits">
+          <DataField>Lecturer_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Programme_LecturersUnits">
+          <DataField>Programme_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Stage_LecturersUnits">
+          <DataField>Stage_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Unit_LecturersUnits">
+          <DataField>Unit_LecturersUnits</DataField>
+        </Field>
+        <Field Name="Semester_LecturersUnits">
+          <DataField>Semester_LecturersUnits</DataField>
+        </Field>
+        <Field Name="CampusCode_LecturersUnits">
+          <DataField>CampusCode_LecturersUnits</DataField>
+        </Field>
+        <Field Name="EvaluationCount_LecturersUnits">
+          <DataField>EvaluationCount_LecturersUnits</DataField>
+        </Field>
+        <Field Name="LectName_LecturersUnits">
+          <DataField>LectName_LecturersUnits</DataField>
+        </Field>
+        <Field Name="EC1">
+          <DataField>EC1</DataField>
+        </Field>
+        <Field Name="EC2">
+          <DataField>EC2</DataField>
+        </Field>
+        <Field Name="EC3">
+          <DataField>EC3</DataField>
+        </Field>
+        <Field Name="EC4">
+          <DataField>EC4</DataField>
+        </Field>
+        <Field Name="EC5">
+          <DataField>EC5</DataField>
+        </Field>
+        <Field Name="EC6">
+          <DataField>EC6</DataField>
+        </Field>
+        <Field Name="EC7">
+          <DataField>EC7</DataField>
+        </Field>
+        <Field Name="EC8">
+          <DataField>EC8</DataField>
+        </Field>
+        <Field Name="EC9">
+          <DataField>EC9</DataField>
+        </Field>
+        <Field Name="EC10">
+          <DataField>EC10</DataField>
+        </Field>
+        <Field Name="QS1">
+          <DataField>QS1</DataField>
+        </Field>
+        <Field Name="QS1Format">
+          <DataField>QS1Format</DataField>
+        </Field>
+        <Field Name="QS2">
+          <DataField>QS2</DataField>
+        </Field>
+        <Field Name="QS2Format">
+          <DataField>QS2Format</DataField>
+        </Field>
+        <Field Name="QS3">
+          <DataField>QS3</DataField>
+        </Field>
+        <Field Name="QS3Format">
+          <DataField>QS3Format</DataField>
+        </Field>
+        <Field Name="QS4">
+          <DataField>QS4</DataField>
+        </Field>
+        <Field Name="QS4Format">
+          <DataField>QS4Format</DataField>
+        </Field>
+        <Field Name="QS5">
+          <DataField>QS5</DataField>
+        </Field>
+        <Field Name="QS5Format">
+          <DataField>QS5Format</DataField>
+        </Field>
+        <Field Name="QS6">
+          <DataField>QS6</DataField>
+        </Field>
+        <Field Name="QS6Format">
+          <DataField>QS6Format</DataField>
+        </Field>
+        <Field Name="QS7">
+          <DataField>QS7</DataField>
+        </Field>
+        <Field Name="QS7Format">
+          <DataField>QS7Format</DataField>
+        </Field>
+        <Field Name="QS8">
+          <DataField>QS8</DataField>
+        </Field>
+        <Field Name="QS8Format">
+          <DataField>QS8Format</DataField>
+        </Field>
+        <Field Name="QS9">
+          <DataField>QS9</DataField>
+        </Field>
+        <Field Name="QS9Format">
+          <DataField>QS9Format</DataField>
+        </Field>
+        <Field Name="QS10">
+          <DataField>QS10</DataField>
+        </Field>
+        <Field Name="QS10Format">
+          <DataField>QS10Format</DataField>
+        </Field>
+        <Field Name="LE_Rec">
+          <DataField>LE_Rec</DataField>
+        </Field>
+        <Field Name="LE_US">
+          <DataField>LE_US</DataField>
+        </Field>
+        <Field Name="LE_USFormat">
+          <DataField>LE_USFormat</DataField>
+        </Field>
+        <Field Name="OB1">
+          <DataField>OB1</DataField>
+        </Field>
+        <Field Name="OB2">
+          <DataField>OB2</DataField>
+        </Field>
+        <Field Name="OB3">
+          <DataField>OB3</DataField>
+        </Field>
+        <Field Name="OB4">
+          <DataField>OB4</DataField>
+        </Field>
+        <Field Name="OB5">
+          <DataField>OB5</DataField>
+        </Field>
+        <Field Name="OB6">
+          <DataField>OB6</DataField>
+        </Field>
+        <Field Name="OB_QS1">
+          <DataField>OB_QS1</DataField>
+        </Field>
+        <Field Name="OB_QS1Format">
+          <DataField>OB_QS1Format</DataField>
+        </Field>
+        <Field Name="OB_QS2">
+          <DataField>OB_QS2</DataField>
+        </Field>
+        <Field Name="OB_QS2Format">
+          <DataField>OB_QS2Format</DataField>
+        </Field>
+        <Field Name="OB_QS3">
+          <DataField>OB_QS3</DataField>
+        </Field>
+        <Field Name="OB_QS3Format">
+          <DataField>OB_QS3Format</DataField>
+        </Field>
+        <Field Name="OB_QS4">
+          <DataField>OB_QS4</DataField>
+        </Field>
+        <Field Name="OB_QS4Format">
+          <DataField>OB_QS4Format</DataField>
+        </Field>
+        <Field Name="OB_QS5">
+          <DataField>OB_QS5</DataField>
+        </Field>
+        <Field Name="OB_QS5Format">
+          <DataField>OB_QS5Format</DataField>
+        </Field>
+        <Field Name="OB_QS6">
+          <DataField>OB_QS6</DataField>
+        </Field>
+        <Field Name="OB_QS6Format">
+          <DataField>OB_QS6Format</DataField>
+        </Field>
+        <Field Name="OB_US">
+          <DataField>OB_US</DataField>
+        </Field>
+        <Field Name="OB_USFormat">
+          <DataField>OB_USFormat</DataField>
+        </Field>
+        <Field Name="OB_Rec">
+          <DataField>OB_Rec</DataField>
+        </Field>
+        <Field Name="OV1">
+          <DataField>OV1</DataField>
+        </Field>
+        <Field Name="OV2">
+          <DataField>OV2</DataField>
+        </Field>
+        <Field Name="OV_QS1">
+          <DataField>OV_QS1</DataField>
+        </Field>
+        <Field Name="OV_QS1Format">
+          <DataField>OV_QS1Format</DataField>
+        </Field>
+        <Field Name="OV_QS2">
+          <DataField>OV_QS2</DataField>
+        </Field>
+        <Field Name="OV_QS2Format">
+          <DataField>OV_QS2Format</DataField>
+        </Field>
+        <Field Name="OV_QS6">
+          <DataField>OV_QS6</DataField>
+        </Field>
+        <Field Name="OV_QS6Format">
+          <DataField>OV_QS6Format</DataField>
+        </Field>
+        <Field Name="OV_US">
+          <DataField>OV_US</DataField>
+        </Field>
+        <Field Name="OV_USFormat">
+          <DataField>OV_USFormat</DataField>
+        </Field>
+        <Field Name="OV_Rec">
+          <DataField>OV_Rec</DataField>
+        </Field>
+        <Field Name="CT1">
+          <DataField>CT1</DataField>
+        </Field>
+        <Field Name="CT2">
+          <DataField>CT2</DataField>
+        </Field>
+        <Field Name="CT3">
+          <DataField>CT3</DataField>
+        </Field>
+        <Field Name="CT4">
+          <DataField>CT4</DataField>
+        </Field>
+        <Field Name="CT5">
+          <DataField>CT5</DataField>
+        </Field>
+        <Field Name="CT_QS1">
+          <DataField>CT_QS1</DataField>
+        </Field>
+        <Field Name="CT_QS1Format">
+          <DataField>CT_QS1Format</DataField>
+        </Field>
+        <Field Name="CT_QS2">
+          <DataField>CT_QS2</DataField>
+        </Field>
+        <Field Name="CT_QS2Format">
+          <DataField>CT_QS2Format</DataField>
+        </Field>
+        <Field Name="CT_QS3">
+          <DataField>CT_QS3</DataField>
+        </Field>
+        <Field Name="CT_QS3Format">
+          <DataField>CT_QS3Format</DataField>
+        </Field>
+        <Field Name="CT_QS4">
+          <DataField>CT_QS4</DataField>
+        </Field>
+        <Field Name="CT_QS4Format">
+          <DataField>CT_QS4Format</DataField>
+        </Field>
+        <Field Name="CT_QS5">
+          <DataField>CT_QS5</DataField>
+        </Field>
+        <Field Name="CT_QS5Format">
+          <DataField>CT_QS5Format</DataField>
+        </Field>
+        <Field Name="CT_US">
+          <DataField>CT_US</DataField>
+        </Field>
+        <Field Name="CT_USFormat">
+          <DataField>CT_USFormat</DataField>
+        </Field>
+        <Field Name="CT_Rec">
+          <DataField>CT_Rec</DataField>
+        </Field>
+        <Field Name="MP1">
+          <DataField>MP1</DataField>
+        </Field>
+        <Field Name="MP2">
+          <DataField>MP2</DataField>
+        </Field>
+        <Field Name="MP3">
+          <DataField>MP3</DataField>
+        </Field>
+        <Field Name="MP4">
+          <DataField>MP4</DataField>
+        </Field>
+        <Field Name="MP5">
+          <DataField>MP5</DataField>
+        </Field>
+        <Field Name="MP6">
+          <DataField>MP6</DataField>
+        </Field>
+        <Field Name="MP_QS1">
+          <DataField>MP_QS1</DataField>
+        </Field>
+        <Field Name="MP_QS1Format">
+          <DataField>MP_QS1Format</DataField>
+        </Field>
+        <Field Name="MP_QS2">
+          <DataField>MP_QS2</DataField>
+        </Field>
+        <Field Name="MP_QS2Format">
+          <DataField>MP_QS2Format</DataField>
+        </Field>
+        <Field Name="MP_QS3">
+          <DataField>MP_QS3</DataField>
+        </Field>
+        <Field Name="MP_QS3Format">
+          <DataField>MP_QS3Format</DataField>
+        </Field>
+        <Field Name="MP_QS4">
+          <DataField>MP_QS4</DataField>
+        </Field>
+        <Field Name="MP_QS4Format">
+          <DataField>MP_QS4Format</DataField>
+        </Field>
+        <Field Name="MP_QS5">
+          <DataField>MP_QS5</DataField>
+        </Field>
+        <Field Name="MP_QS5Format">
+          <DataField>MP_QS5Format</DataField>
+        </Field>
+        <Field Name="MP_QS6">
+          <DataField>MP_QS6</DataField>
+        </Field>
+        <Field Name="MP_QS6Format">
+          <DataField>MP_QS6Format</DataField>
+        </Field>
+        <Field Name="MP_US">
+          <DataField>MP_US</DataField>
+        </Field>
+        <Field Name="MP_USFormat">
+          <DataField>MP_USFormat</DataField>
+        </Field>
+        <Field Name="MP_Rec">
+          <DataField>MP_Rec</DataField>
+        </Field>
+        <Field Name="CE1">
+          <DataField>CE1</DataField>
+        </Field>
+        <Field Name="CE2">
+          <DataField>CE2</DataField>
+        </Field>
+        <Field Name="CE3">
+          <DataField>CE3</DataField>
+        </Field>
+        <Field Name="CE4">
+          <DataField>CE4</DataField>
+        </Field>
+        <Field Name="CE5">
+          <DataField>CE5</DataField>
+        </Field>
+        <Field Name="CE6">
+          <DataField>CE6</DataField>
+        </Field>
+        <Field Name="CE7">
+          <DataField>CE7</DataField>
+        </Field>
+        <Field Name="CE_QS1">
+          <DataField>CE_QS1</DataField>
+        </Field>
+        <Field Name="CE_QS1Format">
+          <DataField>CE_QS1Format</DataField>
+        </Field>
+        <Field Name="CE_QS2">
+          <DataField>CE_QS2</DataField>
+        </Field>
+        <Field Name="CE_QS2Format">
+          <DataField>CE_QS2Format</DataField>
+        </Field>
+        <Field Name="CE_QS3">
+          <DataField>CE_QS3</DataField>
+        </Field>
+        <Field Name="CE_QS3Format">
+          <DataField>CE_QS3Format</DataField>
+        </Field>
+        <Field Name="CE_QS4">
+          <DataField>CE_QS4</DataField>
+        </Field>
+        <Field Name="CE_QS4Format">
+          <DataField>CE_QS4Format</DataField>
+        </Field>
+        <Field Name="CE_QS5">
+          <DataField>CE_QS5</DataField>
+        </Field>
+        <Field Name="CE_QS5Format">
+          <DataField>CE_QS5Format</DataField>
+        </Field>
+        <Field Name="CE_QS6">
+          <DataField>CE_QS6</DataField>
+        </Field>
+        <Field Name="CE_QS6Format">
+          <DataField>CE_QS6Format</DataField>
+        </Field>
+        <Field Name="CE_QS7">
+          <DataField>CE_QS7</DataField>
+        </Field>
+        <Field Name="CE_QS7Format">
+          <DataField>CE_QS7Format</DataField>
+        </Field>
+        <Field Name="CE_US">
+          <DataField>CE_US</DataField>
+        </Field>
+        <Field Name="CE_USFormat">
+          <DataField>CE_USFormat</DataField>
+        </Field>
+        <Field Name="CE_Rec">
+          <DataField>CE_Rec</DataField>
+        </Field>
+        <Field Name="AL1">
+          <DataField>AL1</DataField>
+        </Field>
+        <Field Name="AL2">
+          <DataField>AL2</DataField>
+        </Field>
+        <Field Name="AL3">
+          <DataField>AL3</DataField>
+        </Field>
+        <Field Name="AL4">
+          <DataField>AL4</DataField>
+        </Field>
+        <Field Name="AL5">
+          <DataField>AL5</DataField>
+        </Field>
+        <Field Name="AL_QS1">
+          <DataField>AL_QS1</DataField>
+        </Field>
+        <Field Name="AL_QS1Format">
+          <DataField>AL_QS1Format</DataField>
+        </Field>
+        <Field Name="AL_QS2">
+          <DataField>AL_QS2</DataField>
+        </Field>
+        <Field Name="AL_QS2Format">
+          <DataField>AL_QS2Format</DataField>
+        </Field>
+        <Field Name="AL_QS3">
+          <DataField>AL_QS3</DataField>
+        </Field>
+        <Field Name="AL_QS3Format">
+          <DataField>AL_QS3Format</DataField>
+        </Field>
+        <Field Name="AL_QS4">
+          <DataField>AL_QS4</DataField>
+        </Field>
+        <Field Name="AL_QS4Format">
+          <DataField>AL_QS4Format</DataField>
+        </Field>
+        <Field Name="AL_QS5">
+          <DataField>AL_QS5</DataField>
+        </Field>
+        <Field Name="AL_QS5Format">
+          <DataField>AL_QS5Format</DataField>
+        </Field>
+        <Field Name="AL_US">
+          <DataField>AL_US</DataField>
+        </Field>
+        <Field Name="AL_USFormat">
+          <DataField>AL_USFormat</DataField>
+        </Field>
+        <Field Name="AL_Rec">
+          <DataField>AL_Rec</DataField>
+        </Field>
+        <Field Name="PD1">
+          <DataField>PD1</DataField>
+        </Field>
+        <Field Name="PD2">
+          <DataField>PD2</DataField>
+        </Field>
+        <Field Name="PD3">
+          <DataField>PD3</DataField>
+        </Field>
+        <Field Name="PD4">
+          <DataField>PD4</DataField>
+        </Field>
+        <Field Name="PD5">
+          <DataField>PD5</DataField>
+        </Field>
+        <Field Name="PD6">
+          <DataField>PD6</DataField>
+        </Field>
+        <Field Name="PD7">
+          <DataField>PD7</DataField>
+        </Field>
+        <Field Name="PD8">
+          <DataField>PD8</DataField>
+        </Field>
+        <Field Name="PD_QS1">
+          <DataField>PD_QS1</DataField>
+        </Field>
+        <Field Name="PD_QS1Format">
+          <DataField>PD_QS1Format</DataField>
+        </Field>
+        <Field Name="PD_QS2">
+          <DataField>PD_QS2</DataField>
+        </Field>
+        <Field Name="PD_QS2Format">
+          <DataField>PD_QS2Format</DataField>
+        </Field>
+        <Field Name="PD_QS3">
+          <DataField>PD_QS3</DataField>
+        </Field>
+        <Field Name="PD_QS3Format">
+          <DataField>PD_QS3Format</DataField>
+        </Field>
+        <Field Name="PD_QS4">
+          <DataField>PD_QS4</DataField>
+        </Field>
+        <Field Name="PD_QS4Format">
+          <DataField>PD_QS4Format</DataField>
+        </Field>
+        <Field Name="PD_QS5">
+          <DataField>PD_QS5</DataField>
+        </Field>
+        <Field Name="PD_QS5Format">
+          <DataField>PD_QS5Format</DataField>
+        </Field>
+        <Field Name="PD_QS6">
+          <DataField>PD_QS6</DataField>
+        </Field>
+        <Field Name="PD_QS6Format">
+          <DataField>PD_QS6Format</DataField>
+        </Field>
+        <Field Name="PD_QS7">
+          <DataField>PD_QS7</DataField>
+        </Field>
+        <Field Name="PD_QS7Format">
+          <DataField>PD_QS7Format</DataField>
+        </Field>
+        <Field Name="PD_QS8">
+          <DataField>PD_QS8</DataField>
+        </Field>
+        <Field Name="PD_QS8Format">
+          <DataField>PD_QS8Format</DataField>
+        </Field>
+        <Field Name="PD_US">
+          <DataField>PD_US</DataField>
+        </Field>
+        <Field Name="PD_USFormat">
+          <DataField>PD_USFormat</DataField>
+        </Field>
+        <Field Name="PD_Rec">
+          <DataField>PD_Rec</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

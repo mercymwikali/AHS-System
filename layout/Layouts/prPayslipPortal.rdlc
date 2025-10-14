@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_17">
+          <DataField>ReportForNavId_17</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="COMPANYNAME_Control1102755015">
+          <DataField>COMPANYNAME_Control1102755015</DataField>
+        </Field>
+        <Field Name="COMPANYNAME_Control1102756027">
+          <DataField>COMPANYNAME_Control1102756027</DataField>
+        </Field>
+        <Field Name="PeriodFilter">
+          <DataField>PeriodFilter</DataField>
+        </Field>
+        <Field Name="COMPANYNAME_Control1102756028">
+          <DataField>COMPANYNAME_Control1102756028</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Picture">
+          <DataField>CompanyInfo_Picture</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Picture_Control1102756014">
+          <DataField>CompanyInfo_Picture_Control1102756014</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="strJob">
+          <DataField>strJob</DataField>
+        </Field>
+        <Field Name="strGradeLevel">
+          <DataField>strGradeLevel</DataField>
+        </Field>
+        <Field Name="strCampus">
+          <DataField>strCampus</DataField>
+        </Field>
+        <Field Name="strSection">
+          <DataField>strSection</DataField>
+        </Field>
+        <Field Name="EmployeeCode_SalCard">
+          <DataField>EmployeeCode_SalCard</DataField>
+        </Field>
+        <Field Name="names">
+          <DataField>names</DataField>
+        </Field>
+        <Field Name="PaysNSSF_SalCard">
+          <DataField>PaysNSSF_SalCard</DataField>
+        </Field>
+        <Field Name="PaysNHIF_SalCard">
+          <DataField>PaysNHIF_SalCard</DataField>
+        </Field>
+        <Field Name="PaysPAYE_SalCard">
+          <DataField>PaysPAYE_SalCard</DataField>
+        </Field>
+        <Field Name="BankAccountNumber_SalCard">
+          <DataField>BankAccountNumber_SalCard</DataField>
+        </Field>
+        <Field Name="BankBranch_SalCard">
+          <DataField>BankBranch_SalCard</DataField>
+        </Field>
+        <Field Name="EmployeesBank_SalCard">
+          <DataField>EmployeesBank_SalCard</DataField>
+        </Field>
+        <Field Name="PayslipMessage_SalCard">
+          <DataField>PayslipMessage_SalCard</DataField>
+        </Field>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="TransactionCode_Income">
+          <DataField>TransactionCode_Income</DataField>
+        </Field>
+        <Field Name="TransactionName_Income">
+          <DataField>TransactionName_Income</DataField>
+        </Field>
+        <Field Name="IncomeAmount">
+          <DataField>IncomeAmount</DataField>
+        </Field>
+        <Field Name="IncomeAmountFormat">
+          <DataField>IncomeAmountFormat</DataField>
+        </Field>
+        <Field Name="BPAYAmount">
+          <DataField>BPAYAmount</DataField>
+        </Field>
+        <Field Name="BPAYAmountFormat">
+          <DataField>BPAYAmountFormat</DataField>
+        </Field>
+        <Field Name="GPAYAmount">
+          <DataField>GPAYAmount</DataField>
+        </Field>
+        <Field Name="GPAYAmountFormat">
+          <DataField>GPAYAmountFormat</DataField>
+        </Field>
+        <Field Name="PAYEAmount">
+          <DataField>PAYEAmount</DataField>
+        </Field>
+        <Field Name="PAYEAmountFormat">
+          <DataField>PAYEAmountFormat</DataField>
+        </Field>
+        <Field Name="NHIFAmount">
+          <DataField>NHIFAmount</DataField>
+        </Field>
+        <Field Name="NHIFAmountFormat">
+          <DataField>NHIFAmountFormat</DataField>
+        </Field>
+        <Field Name="NSSFAmount">
+          <DataField>NSSFAmount</DataField>
+        </Field>
+        <Field Name="NSSFAmountFormat">
+          <DataField>NSSFAmountFormat</DataField>
+        </Field>
+        <Field Name="PNSRAmount">
+          <DataField>PNSRAmount</DataField>
+        </Field>
+        <Field Name="PNSRAmountFormat">
+          <DataField>PNSRAmountFormat</DataField>
+        </Field>
+        <Field Name="INSRAmount">
+          <DataField>INSRAmount</DataField>
+        </Field>
+        <Field Name="INSRAmountFormat">
+          <DataField>INSRAmountFormat</DataField>
+        </Field>
+        <Field Name="ReportForNavId_8">
+          <DataField>ReportForNavId_8</DataField>
+        </Field>
+        <Field Name="TransactionCode_Deductions">
+          <DataField>TransactionCode_Deductions</DataField>
+        </Field>
+        <Field Name="TransactionName_Deductions">
+          <DataField>TransactionName_Deductions</DataField>
+        </Field>
+        <Field Name="DeductAmount">
+          <DataField>DeductAmount</DataField>
+        </Field>
+        <Field Name="DeductAmountFormat">
+          <DataField>DeductAmountFormat</DataField>
+        </Field>
+        <Field Name="NPAYAmount">
+          <DataField>NPAYAmount</DataField>
+        </Field>
+        <Field Name="NPAYAmountFormat">
+          <DataField>NPAYAmountFormat</DataField>
+        </Field>
+        <Field Name="ReportForNavId_21">
+          <DataField>ReportForNavId_21</DataField>
+        </Field>
+        <Field Name="TransactionCode_DeductionsBalances">
+          <DataField>TransactionCode_DeductionsBalances</DataField>
+        </Field>
+        <Field Name="TransactionName_DeductionsBalances">
+          <DataField>TransactionName_DeductionsBalances</DataField>
+        </Field>
+        <Field Name="DeductBalancesAmount">
+          <DataField>DeductBalancesAmount</DataField>
+        </Field>
+        <Field Name="DeductBalancesAmountFormat">
+          <DataField>DeductBalancesAmountFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

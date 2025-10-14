@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_HMSPharmacyLine">
+          <DataField>No_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="Date_HMSPharmacyLine">
+          <DataField>Date_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="DrugName_HMSPharmacyLine">
+          <DataField>DrugName_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="IssuedQuantity_HMSPharmacyLine">
+          <DataField>IssuedQuantity_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="IssuedQuantity_HMSPharmacyLineFormat">
+          <DataField>IssuedQuantity_HMSPharmacyLineFormat</DataField>
+        </Field>
+        <Field Name="IssuedUnits_HMSPharmacyLine">
+          <DataField>IssuedUnits_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="IssuedPrice_HMSPharmacyLine">
+          <DataField>IssuedPrice_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="IssuedPrice_HMSPharmacyLineFormat">
+          <DataField>IssuedPrice_HMSPharmacyLineFormat</DataField>
+        </Field>
+        <Field Name="decUnitCost">
+          <DataField>decUnitCost</DataField>
+        </Field>
+        <Field Name="decUnitCostFormat">
+          <DataField>decUnitCostFormat</DataField>
+        </Field>
+        <Field Name="totPrice">
+          <DataField>totPrice</DataField>
+        </Field>
+        <Field Name="totPriceFormat">
+          <DataField>totPriceFormat</DataField>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+        </Field>
+        <Field Name="tocost">
+          <DataField>tocost</DataField>
+        </Field>
+        <Field Name="tocostFormat">
+          <DataField>tocostFormat</DataField>
+        </Field>
+        <Field Name="InsuranceAmount_HMSPharmacyLine">
+          <DataField>InsuranceAmount_HMSPharmacyLine</DataField>
+        </Field>
+        <Field Name="InsuranceAmount_HMSPharmacyLineFormat">
+          <DataField>InsuranceAmount_HMSPharmacyLineFormat</DataField>
+        </Field>
+        <Field Name="tprice">
+          <DataField>tprice</DataField>
+        </Field>
+        <Field Name="tpriceFormat">
+          <DataField>tpriceFormat</DataField>
+        </Field>
+        <Field Name="IssueDate_HMSPharmacyLine">
+          <DataField>IssueDate_HMSPharmacyLine</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="Code_HMSSchemePlanServices">
+          <DataField>Code_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Description_HMSSchemePlanServices">
+          <DataField>Description_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Insurance_HMSSchemePlanServices">
+          <DataField>Insurance_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Amount_HMSSchemePlanServices">
+          <DataField>Amount_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Amount_HMSSchemePlanServicesFormat">
+          <DataField>Amount_HMSSchemePlanServicesFormat</DataField>
+        </Field>
+        <Field Name="Drugs_HMSSchemePlanServices">
+          <DataField>Drugs_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="ApplicableSection_HMSSchemePlanServices">
+          <DataField>ApplicableSection_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="ShortcutDimension1Code_HMSSchemePlanServices">
+          <DataField>ShortcutDimension1Code_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="ShortcutDimension2Code_HMSSchemePlanServices">
+          <DataField>ShortcutDimension2Code_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Accounttype_HMSSchemePlanServices">
+          <DataField>Accounttype_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="BillingType_HMSSchemePlanServices">
+          <DataField>BillingType_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="ReccuringType_HMSSchemePlanServices">
+          <DataField>ReccuringType_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="TransactionType_HMSSchemePlanServices">
+          <DataField>TransactionType_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="PercentageRate_HMSSchemePlanServices">
+          <DataField>PercentageRate_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="PercentageRate_HMSSchemePlanServicesFormat">
+          <DataField>PercentageRate_HMSSchemePlanServicesFormat</DataField>
+        </Field>
+        <Field Name="ExpenseGLAccountNo_HMSSchemePlanServices">
+          <DataField>ExpenseGLAccountNo_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="DoctorPercentage_HMSSchemePlanServices">
+          <DataField>DoctorPercentage_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="DoctorPercentage_HMSSchemePlanServicesFormat">
+          <DataField>DoctorPercentage_HMSSchemePlanServicesFormat</DataField>
+        </Field>
+        <Field Name="InsuranceAmount_HMSSchemePlanServices">
+          <DataField>InsuranceAmount_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="InsuranceAmount_HMSSchemePlanServicesFormat">
+          <DataField>InsuranceAmount_HMSSchemePlanServicesFormat</DataField>
+        </Field>
+        <Field Name="Branch2Amount_HMSSchemePlanServices">
+          <DataField>Branch2Amount_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Branch2Amount_HMSSchemePlanServicesFormat">
+          <DataField>Branch2Amount_HMSSchemePlanServicesFormat</DataField>
+        </Field>
+        <Field Name="Branch3Amount_HMSSchemePlanServices">
+          <DataField>Branch3Amount_HMSSchemePlanServices</DataField>
+        </Field>
+        <Field Name="Branch3Amount_HMSSchemePlanServicesFormat">
+          <DataField>Branch3Amount_HMSSchemePlanServicesFormat</DataField>
+        </Field>
+        <Field Name="InsuranceName_HMSSchemePlanServices">
+          <DataField>InsuranceName_HMSSchemePlanServices</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

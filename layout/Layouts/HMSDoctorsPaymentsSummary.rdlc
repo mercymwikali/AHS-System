@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_24">
+          <DataField>ReportForNavId_24</DataField>
+        </Field>
+        <Field Name="DoctorID_HMSSetupDoctor">
+          <DataField>DoctorID_HMSSetupDoctor</DataField>
+        </Field>
+        <Field Name="DoctorsName_HMSSetupDoctor">
+          <DataField>DoctorsName_HMSSetupDoctor</DataField>
+        </Field>
+        <Field Name="PendingAmount_HMSSetupDoctor">
+          <DataField>PendingAmount_HMSSetupDoctor</DataField>
+        </Field>
+        <Field Name="PendingAmount_HMSSetupDoctorFormat">
+          <DataField>PendingAmount_HMSSetupDoctorFormat</DataField>
+        </Field>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="totWHT">
+          <DataField>totWHT</DataField>
+        </Field>
+        <Field Name="totWHTFormat">
+          <DataField>totWHTFormat</DataField>
+        </Field>
+        <Field Name="totHDF">
+          <DataField>totHDF</DataField>
+        </Field>
+        <Field Name="totHDFFormat">
+          <DataField>totHDFFormat</DataField>
+        </Field>
+        <Field Name="totNet">
+          <DataField>totNet</DataField>
+        </Field>
+        <Field Name="totNetFormat">
+          <DataField>totNetFormat</DataField>
+        </Field>
+        <Field Name="PatientNo_HMSPatientVisitNos">
+          <DataField>PatientNo_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="SName">
+          <DataField>SName</DataField>
+        </Field>
+        <Field Name="VisitNo_HMSPatientVisitNos">
+          <DataField>VisitNo_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="Balance_HMSPatientVisitNos">
+          <DataField>Balance_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="Balance_HMSPatientVisitNosFormat">
+          <DataField>Balance_HMSPatientVisitNosFormat</DataField>
+        </Field>
+        <Field Name="DoctorAmount_HMSPatientVisitNos">
+          <DataField>DoctorAmount_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="DoctorAmount_HMSPatientVisitNosFormat">
+          <DataField>DoctorAmount_HMSPatientVisitNosFormat</DataField>
+        </Field>
+        <Field Name="DoctorID_HMSPatientVisitNos">
+          <DataField>DoctorID_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="DocNames">
+          <DataField>DocNames</DataField>
+        </Field>
+        <Field Name="WHT">
+          <DataField>WHT</DataField>
+        </Field>
+        <Field Name="WHTFormat">
+          <DataField>WHTFormat</DataField>
+        </Field>
+        <Field Name="InvoiceNo_HMSPatientVisitNos">
+          <DataField>InvoiceNo_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="HDF">
+          <DataField>HDF</DataField>
+        </Field>
+        <Field Name="HDFFormat">
+          <DataField>HDFFormat</DataField>
+        </Field>
+        <Field Name="Net">
+          <DataField>Net</DataField>
+        </Field>
+        <Field Name="NetFormat">
+          <DataField>NetFormat</DataField>
+        </Field>
+        <Field Name="CompLogo">
+          <DataField>CompLogo</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="VendName">
+          <DataField>VendName</DataField>
+        </Field>
+        <Field Name="InsWHT">
+          <DataField>InsWHT</DataField>
+        </Field>
+        <Field Name="InsWHTFormat">
+          <DataField>InsWHTFormat</DataField>
+        </Field>
+        <Field Name="InsHDF">
+          <DataField>InsHDF</DataField>
+        </Field>
+        <Field Name="InsHDFFormat">
+          <DataField>InsHDFFormat</DataField>
+        </Field>
+        <Field Name="TotalWHT_HMSPatientVisitNos">
+          <DataField>TotalWHT_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="TotalWHT_HMSPatientVisitNosFormat">
+          <DataField>TotalWHT_HMSPatientVisitNosFormat</DataField>
+        </Field>
+        <Field Name="TotalHDF_HMSPatientVisitNos">
+          <DataField>TotalHDF_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="TotalHDF_HMSPatientVisitNosFormat">
+          <DataField>TotalHDF_HMSPatientVisitNosFormat</DataField>
+        </Field>
+        <Field Name="TotalGross_HMSPatientVisitNos">
+          <DataField>TotalGross_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="TotalGross_HMSPatientVisitNosFormat">
+          <DataField>TotalGross_HMSPatientVisitNosFormat</DataField>
+        </Field>
+        <Field Name="TotalNET_HMSPatientVisitNos">
+          <DataField>TotalNET_HMSPatientVisitNos</DataField>
+        </Field>
+        <Field Name="TotalNET_HMSPatientVisitNosFormat">
+          <DataField>TotalNET_HMSPatientVisitNosFormat</DataField>
+        </Field>
+        <Field Name="DoctorGross">
+          <DataField>DoctorGross</DataField>
+        </Field>
+        <Field Name="DoctorGrossFormat">
+          <DataField>DoctorGrossFormat</DataField>
+        </Field>
+        <Field Name="totNett">
+          <DataField>totNett</DataField>
+        </Field>
+        <Field Name="totNettFormat">
+          <DataField>totNettFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

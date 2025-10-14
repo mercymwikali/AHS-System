@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="TransactionType_HMSTransactionscode">
+          <DataField>TransactionType_HMSTransactionscode</DataField>
+        </Field>
+        <Field Name="Description_HMSTransactionscode">
+          <DataField>Description_HMSTransactionscode</DataField>
+        </Field>
+        <Field Name="DateFilter_HMSTransactionscode">
+          <DataField>DateFilter_HMSTransactionscode</DataField>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="Adress">
+          <DataField>Adress</DataField>
+        </Field>
+        <Field Name="Adress2">
+          <DataField>Adress2</DataField>
+        </Field>
+        <Field Name="Phone">
+          <DataField>Phone</DataField>
+        </Field>
+        <Field Name="Jan">
+          <DataField>Jan</DataField>
+        </Field>
+        <Field Name="Feb">
+          <DataField>Feb</DataField>
+        </Field>
+        <Field Name="Mar">
+          <DataField>Mar</DataField>
+        </Field>
+        <Field Name="Apr">
+          <DataField>Apr</DataField>
+        </Field>
+        <Field Name="May">
+          <DataField>May</DataField>
+        </Field>
+        <Field Name="Jun">
+          <DataField>Jun</DataField>
+        </Field>
+        <Field Name="Jul">
+          <DataField>Jul</DataField>
+        </Field>
+        <Field Name="Aug">
+          <DataField>Aug</DataField>
+        </Field>
+        <Field Name="Sept">
+          <DataField>Sept</DataField>
+        </Field>
+        <Field Name="Oct">
+          <DataField>Oct</DataField>
+        </Field>
+        <Field Name="Nov">
+          <DataField>Nov</DataField>
+        </Field>
+        <Field Name="Dec">
+          <DataField>Dec</DataField>
+        </Field>
+        <Field Name="YearText">
+          <DataField>YearText</DataField>
+        </Field>
+        <Field Name="OPDJan">
+          <DataField>OPDJan</DataField>
+        </Field>
+        <Field Name="OPDFeb">
+          <DataField>OPDFeb</DataField>
+        </Field>
+        <Field Name="OPDMar">
+          <DataField>OPDMar</DataField>
+        </Field>
+        <Field Name="OPDApr">
+          <DataField>OPDApr</DataField>
+        </Field>
+        <Field Name="OPDMay">
+          <DataField>OPDMay</DataField>
+        </Field>
+        <Field Name="OPDJun">
+          <DataField>OPDJun</DataField>
+        </Field>
+        <Field Name="OPDJul">
+          <DataField>OPDJul</DataField>
+        </Field>
+        <Field Name="OPDAug">
+          <DataField>OPDAug</DataField>
+        </Field>
+        <Field Name="OPDSep">
+          <DataField>OPDSep</DataField>
+        </Field>
+        <Field Name="OPDOct">
+          <DataField>OPDOct</DataField>
+        </Field>
+        <Field Name="OPDNov">
+          <DataField>OPDNov</DataField>
+        </Field>
+        <Field Name="OPDDec">
+          <DataField>OPDDec</DataField>
+        </Field>
+        <Field Name="AdmJan">
+          <DataField>AdmJan</DataField>
+        </Field>
+        <Field Name="AdmFeb">
+          <DataField>AdmFeb</DataField>
+        </Field>
+        <Field Name="AdmMar">
+          <DataField>AdmMar</DataField>
+        </Field>
+        <Field Name="AdmApr">
+          <DataField>AdmApr</DataField>
+        </Field>
+        <Field Name="AdmMay">
+          <DataField>AdmMay</DataField>
+        </Field>
+        <Field Name="AdmJun">
+          <DataField>AdmJun</DataField>
+        </Field>
+        <Field Name="AdmJul">
+          <DataField>AdmJul</DataField>
+        </Field>
+        <Field Name="AdmAug">
+          <DataField>AdmAug</DataField>
+        </Field>
+        <Field Name="AdmSep">
+          <DataField>AdmSep</DataField>
+        </Field>
+        <Field Name="AdmOct">
+          <DataField>AdmOct</DataField>
+        </Field>
+        <Field Name="AdmNov">
+          <DataField>AdmNov</DataField>
+        </Field>
+        <Field Name="AdmDec">
+          <DataField>AdmDec</DataField>
+        </Field>
+        <Field Name="PharJan">
+          <DataField>PharJan</DataField>
+        </Field>
+        <Field Name="PharFeb">
+          <DataField>PharFeb</DataField>
+        </Field>
+        <Field Name="PharMar">
+          <DataField>PharMar</DataField>
+        </Field>
+        <Field Name="PharApr">
+          <DataField>PharApr</DataField>
+        </Field>
+        <Field Name="PharMay">
+          <DataField>PharMay</DataField>
+        </Field>
+        <Field Name="PharJun">
+          <DataField>PharJun</DataField>
+        </Field>
+        <Field Name="PharJul">
+          <DataField>PharJul</DataField>
+        </Field>
+        <Field Name="PharAug">
+          <DataField>PharAug</DataField>
+        </Field>
+        <Field Name="PharSep">
+          <DataField>PharSep</DataField>
+        </Field>
+        <Field Name="PharOct">
+          <DataField>PharOct</DataField>
+        </Field>
+        <Field Name="PharNov">
+          <DataField>PharNov</DataField>
+        </Field>
+        <Field Name="PharDec">
+          <DataField>PharDec</DataField>
+        </Field>
+        <Field Name="DialJan">
+          <DataField>DialJan</DataField>
+        </Field>
+        <Field Name="DialFeb">
+          <DataField>DialFeb</DataField>
+        </Field>
+        <Field Name="DialMar">
+          <DataField>DialMar</DataField>
+        </Field>
+        <Field Name="DialApr">
+          <DataField>DialApr</DataField>
+        </Field>
+        <Field Name="DialMay">
+          <DataField>DialMay</DataField>
+        </Field>
+        <Field Name="DialJun">
+          <DataField>DialJun</DataField>
+        </Field>
+        <Field Name="DialJul">
+          <DataField>DialJul</DataField>
+        </Field>
+        <Field Name="DialAug">
+          <DataField>DialAug</DataField>
+        </Field>
+        <Field Name="DialSep">
+          <DataField>DialSep</DataField>
+        </Field>
+        <Field Name="DialOct">
+          <DataField>DialOct</DataField>
+        </Field>
+        <Field Name="DialNov">
+          <DataField>DialNov</DataField>
+        </Field>
+        <Field Name="DialDec">
+          <DataField>DialDec</DataField>
+        </Field>
+        <Field Name="DentJan">
+          <DataField>DentJan</DataField>
+        </Field>
+        <Field Name="DentFeb">
+          <DataField>DentFeb</DataField>
+        </Field>
+        <Field Name="DentMar">
+          <DataField>DentMar</DataField>
+        </Field>
+        <Field Name="DentApr">
+          <DataField>DentApr</DataField>
+        </Field>
+        <Field Name="DentMay">
+          <DataField>DentMay</DataField>
+        </Field>
+        <Field Name="DentJun">
+          <DataField>DentJun</DataField>
+        </Field>
+        <Field Name="DentJul">
+          <DataField>DentJul</DataField>
+        </Field>
+        <Field Name="DentAug">
+          <DataField>DentAug</DataField>
+        </Field>
+        <Field Name="DentSep">
+          <DataField>DentSep</DataField>
+        </Field>
+        <Field Name="DentOct">
+          <DataField>DentOct</DataField>
+        </Field>
+        <Field Name="DentNov">
+          <DataField>DentNov</DataField>
+        </Field>
+        <Field Name="DentDec">
+          <DataField>DentDec</DataField>
+        </Field>
+        <Field Name="OptJan">
+          <DataField>OptJan</DataField>
+        </Field>
+        <Field Name="OptFeb">
+          <DataField>OptFeb</DataField>
+        </Field>
+        <Field Name="OptMar">
+          <DataField>OptMar</DataField>
+        </Field>
+        <Field Name="OptApr">
+          <DataField>OptApr</DataField>
+        </Field>
+        <Field Name="OptMay">
+          <DataField>OptMay</DataField>
+        </Field>
+        <Field Name="OptJun">
+          <DataField>OptJun</DataField>
+        </Field>
+        <Field Name="OptJul">
+          <DataField>OptJul</DataField>
+        </Field>
+        <Field Name="OptAug">
+          <DataField>OptAug</DataField>
+        </Field>
+        <Field Name="OptSep">
+          <DataField>OptSep</DataField>
+        </Field>
+        <Field Name="OptOct">
+          <DataField>OptOct</DataField>
+        </Field>
+        <Field Name="OptNov">
+          <DataField>OptNov</DataField>
+        </Field>
+        <Field Name="OptDec">
+          <DataField>OptDec</DataField>
+        </Field>
+        <Field Name="PhysioJan">
+          <DataField>PhysioJan</DataField>
+        </Field>
+        <Field Name="PhysioFeb">
+          <DataField>PhysioFeb</DataField>
+        </Field>
+        <Field Name="PhysioMar">
+          <DataField>PhysioMar</DataField>
+        </Field>
+        <Field Name="PhysioApr">
+          <DataField>PhysioApr</DataField>
+        </Field>
+        <Field Name="PhysioMay">
+          <DataField>PhysioMay</DataField>
+        </Field>
+        <Field Name="PhysioJun">
+          <DataField>PhysioJun</DataField>
+        </Field>
+        <Field Name="PhysioJul">
+          <DataField>PhysioJul</DataField>
+        </Field>
+        <Field Name="PhysioAug">
+          <DataField>PhysioAug</DataField>
+        </Field>
+        <Field Name="PhysioSep">
+          <DataField>PhysioSep</DataField>
+        </Field>
+        <Field Name="PhysioOct">
+          <DataField>PhysioOct</DataField>
+        </Field>
+        <Field Name="PhysioNov">
+          <DataField>PhysioNov</DataField>
+        </Field>
+        <Field Name="PhysioDec">
+          <DataField>PhysioDec</DataField>
+        </Field>
+        <Field Name="ICUJan">
+          <DataField>ICUJan</DataField>
+        </Field>
+        <Field Name="ICUFeb">
+          <DataField>ICUFeb</DataField>
+        </Field>
+        <Field Name="ICUMar">
+          <DataField>ICUMar</DataField>
+        </Field>
+        <Field Name="ICUApr">
+          <DataField>ICUApr</DataField>
+        </Field>
+        <Field Name="ICUMay">
+          <DataField>ICUMay</DataField>
+        </Field>
+        <Field Name="ICUJun">
+          <DataField>ICUJun</DataField>
+        </Field>
+        <Field Name="ICUJul">
+          <DataField>ICUJul</DataField>
+        </Field>
+        <Field Name="ICUAug">
+          <DataField>ICUAug</DataField>
+        </Field>
+        <Field Name="ICUSep">
+          <DataField>ICUSep</DataField>
+        </Field>
+        <Field Name="ICUOct">
+          <DataField>ICUOct</DataField>
+        </Field>
+        <Field Name="ICUNov">
+          <DataField>ICUNov</DataField>
+        </Field>
+        <Field Name="ICUDec">
+          <DataField>ICUDec</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

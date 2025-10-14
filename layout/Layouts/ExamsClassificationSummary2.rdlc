@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_2901">
+          <DataField>ReportForNavId_2901</DataField>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+        </Field>
+        <Field Name="AcademicYear">
+          <DataField>AcademicYear</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="UNIVERSITY_EXAMINATIONS">
+          <DataField>UNIVERSITY_EXAMINATIONS</DataField>
+        </Field>
+        <Field Name="FORMAT_UPPERCASE_Dimensions_Name_______DEPARTMENT_">
+          <DataField>FORMAT_UPPERCASE_Dimensions_Name_______DEPARTMENT_</DataField>
+        </Field>
+        <Field Name="Semesters_Description_____ORDINARY_EXAMS_">
+          <DataField>Semesters_Description_____ORDINARY_EXAMS_</DataField>
+        </Field>
+        <Field Name="UserId">
+          <DataField>UserId</DataField>
+        </Field>
+        <Field Name="Prog_Description">
+          <DataField>Prog_Description</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="AWARD_LIST_">
+          <DataField>AWARD_LIST_</DataField>
+        </Field>
+        <Field Name="FacDesc">
+          <DataField>FacDesc</DataField>
+        </Field>
+        <Field Name="Chairman_of_Senate_">
+          <DataField>Chairman_of_Senate_</DataField>
+        </Field>
+        <Field Name="ProgDesc">
+          <DataField>ProgDesc</DataField>
+        </Field>
+        <Field Name="EmptyStringCaption">
+          <DataField>EmptyStringCaption</DataField>
+        </Field>
+        <Field Name="EmptyStringCaption_Control1102755022">
+          <DataField>EmptyStringCaption_Control1102755022</DataField>
+        </Field>
+        <Field Name="MeetingVenue">
+          <DataField>MeetingVenue</DataField>
+        </Field>
+        <Field Name="MeetingDate">
+          <DataField>MeetingDate</DataField>
+        </Field>
+        <Field Name="S_N_">
+          <DataField>S_N_</DataField>
+        </Field>
+        <Field Name="REG__NO_">
+          <DataField>REG__NO_</DataField>
+        </Field>
+        <Field Name="NAME_">
+          <DataField>NAME_</DataField>
+        </Field>
+        <Field Name="ExamGrade">
+          <DataField>ExamGrade</DataField>
+        </Field>
+        <Field Name="Course_Registration__Student_No__">
+          <DataField>Course_Registration__Student_No__</DataField>
+        </Field>
+        <Field Name="Cust_Name">
+          <DataField>Cust_Name</DataField>
+        </Field>
+        <Field Name="N">
+          <DataField>N</DataField>
+        </Field>
+        <Field Name="Course_Registration_Reg__Transacton_ID">
+          <DataField>Course_Registration_Reg__Transacton_ID</DataField>
+        </Field>
+        <Field Name="Course_Registration_Programme">
+          <DataField>Course_Registration_Programme</DataField>
+        </Field>
+        <Field Name="Course_Registration_Semester">
+          <DataField>Course_Registration_Semester</DataField>
+        </Field>
+        <Field Name="Course_Registration_Register_for">
+          <DataField>Course_Registration_Register_for</DataField>
+        </Field>
+        <Field Name="Course_Registration_Stage">
+          <DataField>Course_Registration_Stage</DataField>
+        </Field>
+        <Field Name="Course_Registration_Unit">
+          <DataField>Course_Registration_Unit</DataField>
+        </Field>
+        <Field Name="Course_Registration_Student_Type">
+          <DataField>Course_Registration_Student_Type</DataField>
+        </Field>
+        <Field Name="Course_Registration_Entry_No_">
+          <DataField>Course_Registration_Entry_No_</DataField>
+        </Field>
+        <Field Name="Course_Registration_Exam_Status">
+          <DataField>Course_Registration_Exam_Status</DataField>
+        </Field>
+        <Field Name="Yr1Av">
+          <DataField>Yr1Av</DataField>
+        </Field>
+        <Field Name="Yr1AvFormat">
+          <DataField>Yr1AvFormat</DataField>
+        </Field>
+        <Field Name="Yr2Av">
+          <DataField>Yr2Av</DataField>
+        </Field>
+        <Field Name="Yr2AvFormat">
+          <DataField>Yr2AvFormat</DataField>
+        </Field>
+        <Field Name="Yr3Av">
+          <DataField>Yr3Av</DataField>
+        </Field>
+        <Field Name="Yr3AvFormat">
+          <DataField>Yr3AvFormat</DataField>
+        </Field>
+        <Field Name="Yr4Av">
+          <DataField>Yr4Av</DataField>
+        </Field>
+        <Field Name="Yr4AvFormat">
+          <DataField>Yr4AvFormat</DataField>
+        </Field>
+        <Field Name="Yr5Av">
+          <DataField>Yr5Av</DataField>
+        </Field>
+        <Field Name="Yr5AvFormat">
+          <DataField>Yr5AvFormat</DataField>
+        </Field>
+        <Field Name="AverageMarks">
+          <DataField>AverageMarks</DataField>
+        </Field>
+        <Field Name="AverageMarksFormat">
+          <DataField>AverageMarksFormat</DataField>
+        </Field>
+        <Field Name="Classification">
+          <DataField>Classification</DataField>
+        </Field>
+        <Field Name="Yr1U">
+          <DataField>Yr1U</DataField>
+        </Field>
+        <Field Name="Yr1UFormat">
+          <DataField>Yr1UFormat</DataField>
+        </Field>
+        <Field Name="Yr2U">
+          <DataField>Yr2U</DataField>
+        </Field>
+        <Field Name="Yr2UFormat">
+          <DataField>Yr2UFormat</DataField>
+        </Field>
+        <Field Name="Yr3U">
+          <DataField>Yr3U</DataField>
+        </Field>
+        <Field Name="Yr3UFormat">
+          <DataField>Yr3UFormat</DataField>
+        </Field>
+        <Field Name="Yr4U">
+          <DataField>Yr4U</DataField>
+        </Field>
+        <Field Name="Yr4UFormat">
+          <DataField>Yr4UFormat</DataField>
+        </Field>
+        <Field Name="Yr1W">
+          <DataField>Yr1W</DataField>
+        </Field>
+        <Field Name="Yr1WFormat">
+          <DataField>Yr1WFormat</DataField>
+        </Field>
+        <Field Name="Yr2W">
+          <DataField>Yr2W</DataField>
+        </Field>
+        <Field Name="Yr2WFormat">
+          <DataField>Yr2WFormat</DataField>
+        </Field>
+        <Field Name="Yr3W">
+          <DataField>Yr3W</DataField>
+        </Field>
+        <Field Name="Yr3WFormat">
+          <DataField>Yr3WFormat</DataField>
+        </Field>
+        <Field Name="Yr4W">
+          <DataField>Yr4W</DataField>
+        </Field>
+        <Field Name="Yr4WFormat">
+          <DataField>Yr4WFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

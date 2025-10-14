@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_4749">
+          <DataField>ReportForNavId_4749</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Picture">
+          <DataField>CompanyInfo_Picture</DataField>
+        </Field>
+        <Field Name="UserId">
+          <DataField>UserId</DataField>
+        </Field>
+        <Field Name="Today">
+          <DataField>Today</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Employee_Code_">
+          <DataField>prSalary_Arrears__Employee_Code_</DataField>
+        </Field>
+        <Field Name="Names">
+          <DataField>Names</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Employee_Code__Control1102756011">
+          <DataField>prSalary_Arrears__Employee_Code__Control1102756011</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Transaction_Code_">
+          <DataField>prSalary_Arrears__Transaction_Code_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Start_Date_">
+          <DataField>prSalary_Arrears__Start_Date_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__End_Date_">
+          <DataField>prSalary_Arrears__End_Date_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Salary_Arrears_">
+          <DataField>prSalary_Arrears__Salary_Arrears_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Salary_Arrears_Format">
+          <DataField>prSalary_Arrears__Salary_Arrears_Format</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__PAYE_Arrears_">
+          <DataField>prSalary_Arrears__PAYE_Arrears_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__PAYE_Arrears_Format">
+          <DataField>prSalary_Arrears__PAYE_Arrears_Format</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Period_Month_">
+          <DataField>prSalary_Arrears__Period_Month_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Period_Year_">
+          <DataField>prSalary_Arrears__Period_Year_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Current_Basic_">
+          <DataField>prSalary_Arrears__Current_Basic_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Current_Basic_Format">
+          <DataField>prSalary_Arrears__Current_Basic_Format</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Payroll_Period_">
+          <DataField>prSalary_Arrears__Payroll_Period_</DataField>
+        </Field>
+        <Field Name="TOTALS_">
+          <DataField>TOTALS_</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Salary_Arrears__Control1102756041">
+          <DataField>prSalary_Arrears__Salary_Arrears__Control1102756041</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Salary_Arrears__Control1102756041Format">
+          <DataField>prSalary_Arrears__Salary_Arrears__Control1102756041Format</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__PAYE_Arrears__Control1102756042">
+          <DataField>prSalary_Arrears__PAYE_Arrears__Control1102756042</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__PAYE_Arrears__Control1102756042Format">
+          <DataField>prSalary_Arrears__PAYE_Arrears__Control1102756042Format</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Current_Basic__Control1102756043">
+          <DataField>prSalary_Arrears__Current_Basic__Control1102756043</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Current_Basic__Control1102756043Format">
+          <DataField>prSalary_Arrears__Current_Basic__Control1102756043Format</DataField>
+        </Field>
+        <Field Name="User_Name_Caption">
+          <DataField>User_Name_Caption</DataField>
+        </Field>
+        <Field Name="Print_Date_Caption">
+          <DataField>Print_Date_Caption</DataField>
+        </Field>
+        <Field Name="Page_No_Caption">
+          <DataField>Page_No_Caption</DataField>
+        </Field>
+        <Field Name="Salary_ArrearsCaption">
+          <DataField>Salary_ArrearsCaption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Employee_Code__Control1102756011Caption">
+          <DataField>prSalary_Arrears__Employee_Code__Control1102756011Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Transaction_Code_Caption">
+          <DataField>prSalary_Arrears__Transaction_Code_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Start_Date_Caption">
+          <DataField>prSalary_Arrears__Start_Date_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__End_Date_Caption">
+          <DataField>prSalary_Arrears__End_Date_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Salary_Arrears_Caption">
+          <DataField>prSalary_Arrears__Salary_Arrears_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__PAYE_Arrears_Caption">
+          <DataField>prSalary_Arrears__PAYE_Arrears_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Period_Month_Caption">
+          <DataField>prSalary_Arrears__Period_Month_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Period_Year_Caption">
+          <DataField>prSalary_Arrears__Period_Year_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Current_Basic_Caption">
+          <DataField>prSalary_Arrears__Current_Basic_Caption</DataField>
+        </Field>
+        <Field Name="prSalary_Arrears__Payroll_Period_Caption">
+          <DataField>prSalary_Arrears__Payroll_Period_Caption</DataField>
+        </Field>
+        <Field Name="Prepared_by_______________________________________Date_________________Caption">
+          <DataField>Prepared_by_______________________________________Date_________________Caption</DataField>
+        </Field>
+        <Field Name="Checked_by________________________________________Date_________________Caption">
+          <DataField>Checked_by________________________________________Date_________________Caption</DataField>
+        </Field>
+        <Field Name="Authorized_by____________________________________Date_________________Caption">
+          <DataField>Authorized_by____________________________________Date_________________Caption</DataField>
+        </Field>
+        <Field Name="Approved_by______________________________________Date_________________Caption">
+          <DataField>Approved_by______________________________________Date_________________Caption</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

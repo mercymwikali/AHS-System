@@ -1,0 +1,2082 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <am:AuthoringMetadata>
+    <am:CreatedBy>
+      <am:Name>PBIRB</am:Name>
+      <am:Version>15.7.1813.16</am:Version>
+    </am:CreatedBy>
+    <am:UpdatedBy>
+      <am:Name>PBIRB</am:Name>
+      <am:Version>15.7.1813.16</am:Version>
+    </am:UpdatedBy>
+    <am:LastModifiedTimestamp>2025-09-03T14:50:46.1091284Z</am:LastModifiedTimestamp>
+  </am:AuthoringMetadata>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <rd:SecurityType>None</rd:SecurityType>
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:DataSourceID>079e6f0b-e4bb-4290-b0e2-95571397c5ce</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Table1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.70528cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.95372cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5822cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.7833cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.68143cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.29263cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.39038cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.35607cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5119cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.4985cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.37039cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.42346cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.51817cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.54cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.58175cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PIN">
+                          <rd:DefaultName>PIN</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PIN.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="strEmpName">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Names_PayrollEmployee.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Resident">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Resident</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="primarysecondary">
+                          <rd:DefaultName>primarysecondary</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!primarysecondary.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Disability">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PhysicalDisability.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>=Fields!BasicPayFormat.Value</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="HseAllow1">
+                          <rd:DefaultName>HseAllow1</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="AllBenefits">
+                          <rd:DefaultName>AllBenefits</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AllBenefits.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Bonus">
+                          <rd:DefaultName>Bonus</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>0</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Meals">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>0</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Risk">
+                          <rd:DefaultName>Risk</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>0</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox77">
+                          <rd:DefaultName>Textbox77</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Benefit not given</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox12">
+                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>0</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="afyasacco">
+                          <rd:DefaultName>afyasacco</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="shif1">
+                          <rd:DefaultName>shif1</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!shif.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NSSF21">
+                          <rd:DefaultName>NSSF21</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NSSF2.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="provident">
+                          <rd:DefaultName>provident</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!provident.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="moneycloud">
+                          <rd:DefaultName>moneycloud</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>0</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="mortgageM1">
+                          <rd:DefaultName>mortgageM1</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!mortgageM.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hleavy1">
+                          <rd:DefaultName>hleavy1</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!hleavy.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox25">
+                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Relief21">
+                          <rd:DefaultName>Relief21</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Relief2.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="InsRelief1">
+                          <rd:DefaultName>InsRelief1</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!InsRelief.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox50">
+                          <rd:DefaultName>Textbox50</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PAYEAmount1">
+                          <rd:DefaultName>PAYEAmount1</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PAYEAmount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Palatino Linotype</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Table1_Details_Group">
+                    <DataElementName>Detail</DataElementName>
+                  </Group>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                  <DataElementName>Detail_Collection</DataElementName>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet_Result</DataSetName>
+            <Top>0cm</Top>
+            <Height>0.58175cm</Height>
+            <Width>52.54743cm</Width>
+            <Style />
+          </Tablix>
+        </ReportItems>
+        <Height>0.22904in</Height>
+        <Style />
+      </Body>
+      <Width>20.68796in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="PayrollNo_PayrollEmployee">
+          <DataField>PayrollNo_PayrollEmployee</DataField>
+        </Field>
+        <Field Name="Names_PayrollEmployee">
+          <DataField>Names_PayrollEmployee</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Picture">
+          <DataField>CompanyInfo_Picture</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="PIN">
+          <DataField>PIN</DataField>
+        </Field>
+        <Field Name="PersonalRelief">
+          <DataField>PersonalRelief</DataField>
+        </Field>
+        <Field Name="PersonalReliefFormat">
+          <DataField>PersonalReliefFormat</DataField>
+        </Field>
+        <Field Name="primarysecondary">
+          <DataField>primarysecondary</DataField>
+        </Field>
+        <Field Name="TaxableAmount">
+          <DataField>TaxableAmount</DataField>
+        </Field>
+        <Field Name="TaxableAmountFormat">
+          <DataField>TaxableAmountFormat</DataField>
+        </Field>
+        <Field Name="PAYEAmount">
+          <DataField>PAYEAmount</DataField>
+        </Field>
+        <Field Name="PAYEAmountFormat">
+          <DataField>PAYEAmountFormat</DataField>
+        </Field>
+        <Field Name="TaxCharged1">
+          <DataField>TaxCharged1</DataField>
+        </Field>
+        <Field Name="TaxCharged1Format">
+          <DataField>TaxCharged1Format</DataField>
+        </Field>
+        <Field Name="InsRelief">
+          <DataField>InsRelief</DataField>
+        </Field>
+        <Field Name="InsReliefFormat">
+          <DataField>InsReliefFormat</DataField>
+        </Field>
+        <Field Name="ahlrelief">
+          <DataField>ahlrelief</DataField>
+        </Field>
+        <Field Name="ahlreliefFormat">
+          <DataField>ahlreliefFormat</DataField>
+        </Field>
+        <Field Name="AllBenefits">
+          <DataField>AllBenefits</DataField>
+        </Field>
+        <Field Name="AllBenefitsFormat">
+          <DataField>AllBenefitsFormat</DataField>
+        </Field>
+        <Field Name="sadvance">
+          <DataField>sadvance</DataField>
+        </Field>
+        <Field Name="sadvanceFormat">
+          <DataField>sadvanceFormat</DataField>
+        </Field>
+        <Field Name="ArrearsSal">
+          <DataField>ArrearsSal</DataField>
+        </Field>
+        <Field Name="ArrearsSalFormat">
+          <DataField>ArrearsSalFormat</DataField>
+        </Field>
+        <Field Name="VariablePay">
+          <DataField>VariablePay</DataField>
+        </Field>
+        <Field Name="VariablePayFormat">
+          <DataField>VariablePayFormat</DataField>
+        </Field>
+        <Field Name="TransAllow">
+          <DataField>TransAllow</DataField>
+        </Field>
+        <Field Name="TransAllowFormat">
+          <DataField>TransAllowFormat</DataField>
+        </Field>
+        <Field Name="HseAllow">
+          <DataField>HseAllow</DataField>
+        </Field>
+        <Field Name="HseAllowFormat">
+          <DataField>HseAllowFormat</DataField>
+        </Field>
+        <Field Name="incentives">
+          <DataField>incentives</DataField>
+        </Field>
+        <Field Name="incentivesFormat">
+          <DataField>incentivesFormat</DataField>
+        </Field>
+        <Field Name="Responsibility">
+          <DataField>Responsibility</DataField>
+        </Field>
+        <Field Name="ResponsibilityFormat">
+          <DataField>ResponsibilityFormat</DataField>
+        </Field>
+        <Field Name="Risk">
+          <DataField>Risk</DataField>
+        </Field>
+        <Field Name="RiskFormat">
+          <DataField>RiskFormat</DataField>
+        </Field>
+        <Field Name="Bonus">
+          <DataField>Bonus</DataField>
+        </Field>
+        <Field Name="BonusFormat">
+          <DataField>BonusFormat</DataField>
+        </Field>
+        <Field Name="Travel">
+          <DataField>Travel</DataField>
+        </Field>
+        <Field Name="TravelFormat">
+          <DataField>TravelFormat</DataField>
+        </Field>
+        <Field Name="leave">
+          <DataField>leave</DataField>
+        </Field>
+        <Field Name="leaveFormat">
+          <DataField>leaveFormat</DataField>
+        </Field>
+        <Field Name="afyasacco">
+          <DataField>afyasacco</DataField>
+        </Field>
+        <Field Name="afyasaccoFormat">
+          <DataField>afyasaccoFormat</DataField>
+        </Field>
+        <Field Name="provident">
+          <DataField>provident</DataField>
+        </Field>
+        <Field Name="providentFormat">
+          <DataField>providentFormat</DataField>
+        </Field>
+        <Field Name="voluntary">
+          <DataField>voluntary</DataField>
+        </Field>
+        <Field Name="voluntaryFormat">
+          <DataField>voluntaryFormat</DataField>
+        </Field>
+        <Field Name="sacco">
+          <DataField>sacco</DataField>
+        </Field>
+        <Field Name="saccoFormat">
+          <DataField>saccoFormat</DataField>
+        </Field>
+        <Field Name="helb">
+          <DataField>helb</DataField>
+        </Field>
+        <Field Name="helbFormat">
+          <DataField>helbFormat</DataField>
+        </Field>
+        <Field Name="moneycloud">
+          <DataField>moneycloud</DataField>
+        </Field>
+        <Field Name="moneycloudFormat">
+          <DataField>moneycloudFormat</DataField>
+        </Field>
+        <Field Name="kcbloan">
+          <DataField>kcbloan</DataField>
+        </Field>
+        <Field Name="kcbloanFormat">
+          <DataField>kcbloanFormat</DataField>
+        </Field>
+        <Field Name="amref">
+          <DataField>amref</DataField>
+        </Field>
+        <Field Name="amrefFormat">
+          <DataField>amrefFormat</DataField>
+        </Field>
+        <Field Name="staffwelfare">
+          <DataField>staffwelfare</DataField>
+        </Field>
+        <Field Name="staffwelfareFormat">
+          <DataField>staffwelfareFormat</DataField>
+        </Field>
+        <Field Name="stima">
+          <DataField>stima</DataField>
+        </Field>
+        <Field Name="stimaFormat">
+          <DataField>stimaFormat</DataField>
+        </Field>
+        <Field Name="PeriodName">
+          <DataField>PeriodName</DataField>
+        </Field>
+        <Field Name="PayrollMode">
+          <DataField>PayrollMode</DataField>
+        </Field>
+        <Field Name="strEmpName">
+          <DataField>strEmpName</DataField>
+        </Field>
+        <Field Name="Period">
+          <DataField>Period</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="BasicPay">
+          <DataField>BasicPay</DataField>
+        </Field>
+        <Field Name="BasicPayFormat">
+          <DataField>BasicPayFormat</DataField>
+        </Field>
+        <Field Name="Grosspay">
+          <DataField>Grosspay</DataField>
+        </Field>
+        <Field Name="GrosspayFormat">
+          <DataField>GrosspayFormat</DataField>
+        </Field>
+        <Field Name="nonTaxAmount">
+          <DataField>nonTaxAmount</DataField>
+        </Field>
+        <Field Name="nonTaxAmountFormat">
+          <DataField>nonTaxAmountFormat</DataField>
+        </Field>
+        <Field Name="statutoryDed">
+          <DataField>statutoryDed</DataField>
+        </Field>
+        <Field Name="statutoryDedFormat">
+          <DataField>statutoryDedFormat</DataField>
+        </Field>
+        <Field Name="NetPay">
+          <DataField>NetPay</DataField>
+        </Field>
+        <Field Name="NetPayFormat">
+          <DataField>NetPayFormat</DataField>
+        </Field>
+        <Field Name="OtherAllow">
+          <DataField>OtherAllow</DataField>
+        </Field>
+        <Field Name="OtherAllowFormat">
+          <DataField>OtherAllowFormat</DataField>
+        </Field>
+        <Field Name="TotalDeductions">
+          <DataField>TotalDeductions</DataField>
+        </Field>
+        <Field Name="TotalDeductionsFormat">
+          <DataField>TotalDeductionsFormat</DataField>
+        </Field>
+        <Field Name="nonstatutoryDed">
+          <DataField>nonstatutoryDed</DataField>
+        </Field>
+        <Field Name="nonstatutoryDedFormat">
+          <DataField>nonstatutoryDedFormat</DataField>
+        </Field>
+        <Field Name="Defincont">
+          <DataField>Defincont</DataField>
+        </Field>
+        <Field Name="DefincontFormat">
+          <DataField>DefincontFormat</DataField>
+        </Field>
+        <Field Name="negNet">
+          <DataField>negNet</DataField>
+        </Field>
+        <Field Name="negNetFormat">
+          <DataField>negNetFormat</DataField>
+        </Field>
+        <Field Name="strCodes">
+          <DataField>strCodes</DataField>
+        </Field>
+        <Field Name="TotnegNet">
+          <DataField>TotnegNet</DataField>
+        </Field>
+        <Field Name="TotnegNetFormat">
+          <DataField>TotnegNetFormat</DataField>
+        </Field>
+        <Field Name="TotNetPay">
+          <DataField>TotNetPay</DataField>
+        </Field>
+        <Field Name="TotNetPayFormat">
+          <DataField>TotNetPayFormat</DataField>
+        </Field>
+        <Field Name="totTotalDeductions">
+          <DataField>totTotalDeductions</DataField>
+        </Field>
+        <Field Name="totTotalDeductionsFormat">
+          <DataField>totTotalDeductionsFormat</DataField>
+        </Field>
+        <Field Name="TotPension">
+          <DataField>TotPension</DataField>
+        </Field>
+        <Field Name="TotPensionFormat">
+          <DataField>TotPensionFormat</DataField>
+        </Field>
+        <Field Name="TotnonstatutoryDed">
+          <DataField>TotnonstatutoryDed</DataField>
+        </Field>
+        <Field Name="TotnonstatutoryDedFormat">
+          <DataField>TotnonstatutoryDedFormat</DataField>
+        </Field>
+        <Field Name="TotstatutoryDed">
+          <DataField>TotstatutoryDed</DataField>
+        </Field>
+        <Field Name="TotstatutoryDedFormat">
+          <DataField>TotstatutoryDedFormat</DataField>
+        </Field>
+        <Field Name="TotnonTaxAmount">
+          <DataField>TotnonTaxAmount</DataField>
+        </Field>
+        <Field Name="TotnonTaxAmountFormat">
+          <DataField>TotnonTaxAmountFormat</DataField>
+        </Field>
+        <Field Name="TotGrosspay">
+          <DataField>TotGrosspay</DataField>
+        </Field>
+        <Field Name="TotGrosspayFormat">
+          <DataField>TotGrosspayFormat</DataField>
+        </Field>
+        <Field Name="TotOtherAllow">
+          <DataField>TotOtherAllow</DataField>
+        </Field>
+        <Field Name="TotOtherAllowFormat">
+          <DataField>TotOtherAllowFormat</DataField>
+        </Field>
+        <Field Name="TotBasicPay">
+          <DataField>TotBasicPay</DataField>
+        </Field>
+        <Field Name="TotBasicPayFormat">
+          <DataField>TotBasicPayFormat</DataField>
+        </Field>
+        <Field Name="DATE____________________________________________________________">
+          <DataField>DATE____________________________________________________________</DataField>
+        </Field>
+        <Field Name="NAME_________________________________________________________________________________________">
+          <DataField>NAME_________________________________________________________________________________________</DataField>
+        </Field>
+        <Field Name="DESIGNATION_____________________________________________________">
+          <DataField>DESIGNATION_____________________________________________________</DataField>
+        </Field>
+        <Field Name="SIGNATURE____________________________________________________">
+          <DataField>SIGNATURE____________________________________________________</DataField>
+        </Field>
+        <Field Name="SIGNATURE_____________________________________________________Control1102756035">
+          <DataField>SIGNATURE_____________________________________________________Control1102756035</DataField>
+        </Field>
+        <Field Name="DATE_____________________________________________________________Control1102756042">
+          <DataField>DATE_____________________________________________________________Control1102756042</DataField>
+        </Field>
+        <Field Name="NAME__________________________________________________________________________________________Control1102756031">
+          <DataField>NAME__________________________________________________________________________________________Control1102756031</DataField>
+        </Field>
+        <Field Name="DESIGNATION______________________________________________________Control1102756034">
+          <DataField>DESIGNATION______________________________________________________Control1102756034</DataField>
+        </Field>
+        <Field Name="Payroll_Summary_ListCaption">
+          <DataField>Payroll_Summary_ListCaption</DataField>
+        </Field>
+        <Field Name="Gross_Taxable_PayCaption">
+          <DataField>Gross_Taxable_PayCaption</DataField>
+        </Field>
+        <Field Name="Non_Taxable_AmountCaption">
+          <DataField>Non_Taxable_AmountCaption</DataField>
+        </Field>
+        <Field Name="Statutory_DeductionsCaption">
+          <DataField>Statutory_DeductionsCaption</DataField>
+        </Field>
+        <Field Name="Total_DeductionsCaption">
+          <DataField>Total_DeductionsCaption</DataField>
+        </Field>
+        <Field Name="Pension_Staff_Cont_Caption">
+          <DataField>Pension_Staff_Cont_Caption</DataField>
+        </Field>
+        <Field Name="Negative_Net_PayCaption">
+          <DataField>Negative_Net_PayCaption</DataField>
+        </Field>
+        <Field Name="Other_AllowancesCaption">
+          <DataField>Other_AllowancesCaption</DataField>
+        </Field>
+        <Field Name="Net_PayCaption">
+          <DataField>Net_PayCaption</DataField>
+        </Field>
+        <Field Name="Basic_PayCaption">
+          <DataField>Basic_PayCaption</DataField>
+        </Field>
+        <Field Name="Employee_Name_Caption">
+          <DataField>Employee_Name_Caption</DataField>
+        </Field>
+        <Field Name="Non_Statutory_DeductionsCaption">
+          <DataField>Non_Statutory_DeductionsCaption</DataField>
+        </Field>
+        <Field Name="Employee_Code_Caption">
+          <DataField>Employee_Code_Caption</DataField>
+        </Field>
+        <Field Name="Totals_Caption">
+          <DataField>Totals_Caption</DataField>
+        </Field>
+        <Field Name="Checked_byCaption">
+          <DataField>Checked_byCaption</DataField>
+        </Field>
+        <Field Name="HR_Employee_No_">
+          <DataField>HR_Employee_No_</DataField>
+        </Field>
+        <Field Name="Paye_Ded">
+          <DataField>Paye_Ded</DataField>
+        </Field>
+        <Field Name="Paye_DedFormat">
+          <DataField>Paye_DedFormat</DataField>
+        </Field>
+        <Field Name="Nssf_Ded">
+          <DataField>Nssf_Ded</DataField>
+        </Field>
+        <Field Name="Nssf_DedFormat">
+          <DataField>Nssf_DedFormat</DataField>
+        </Field>
+        <Field Name="Nhif_Ded">
+          <DataField>Nhif_Ded</DataField>
+        </Field>
+        <Field Name="Nhif_DedFormat">
+          <DataField>Nhif_DedFormat</DataField>
+        </Field>
+        <Field Name="shif">
+          <DataField>shif</DataField>
+        </Field>
+        <Field Name="shifFormat">
+          <DataField>shifFormat</DataField>
+        </Field>
+        <Field Name="hleavy">
+          <DataField>hleavy</DataField>
+        </Field>
+        <Field Name="hleavyFormat">
+          <DataField>hleavyFormat</DataField>
+        </Field>
+        <Field Name="mortgageM">
+          <DataField>mortgageM</DataField>
+        </Field>
+        <Field Name="NSSF2">
+          <DataField>NSSF2</DataField>
+        </Field>
+        <Field Name="Relief2">
+          <DataField>Relief2</DataField>
+        </Field>
+        <Field Name="TotPAYE">
+          <DataField>TotPAYE</DataField>
+        </Field>
+        <Field Name="TotPAYEFormat">
+          <DataField>TotPAYEFormat</DataField>
+        </Field>
+        <Field Name="TotNSSF">
+          <DataField>TotNSSF</DataField>
+        </Field>
+        <Field Name="TotNSSFFormat">
+          <DataField>TotNSSFFormat</DataField>
+        </Field>
+        <Field Name="TotNHIF">
+          <DataField>TotNHIF</DataField>
+        </Field>
+        <Field Name="TotNHIFFormat">
+          <DataField>TotNHIFFormat</DataField>
+        </Field>
+        <Field Name="HseTotAllow">
+          <DataField>HseTotAllow</DataField>
+        </Field>
+        <Field Name="HseTotAllowFormat">
+          <DataField>HseTotAllowFormat</DataField>
+        </Field>
+        <Field Name="TotalTransAllow">
+          <DataField>TotalTransAllow</DataField>
+        </Field>
+        <Field Name="TotalTransAllowFormat">
+          <DataField>TotalTransAllowFormat</DataField>
+        </Field>
+        <Field Name="overtime">
+          <DataField>overtime</DataField>
+        </Field>
+        <Field Name="overtimeFormat">
+          <DataField>overtimeFormat</DataField>
+        </Field>
+        <Field Name="OverTimeTotal">
+          <DataField>OverTimeTotal</DataField>
+        </Field>
+        <Field Name="OverTimeTotalFormat">
+          <DataField>OverTimeTotalFormat</DataField>
+        </Field>
+        <Field Name="Aggregate">
+          <DataField>Aggregate</DataField>
+        </Field>
+        <Field Name="AggregateFormat">
+          <DataField>AggregateFormat</DataField>
+        </Field>
+        <Field Name="TotalAgg">
+          <DataField>TotalAgg</DataField>
+        </Field>
+        <Field Name="TotalAggFormat">
+          <DataField>TotalAggFormat</DataField>
+        </Field>
+        <Field Name="StaffBonus">
+          <DataField>StaffBonus</DataField>
+        </Field>
+        <Field Name="StaffBonusFormat">
+          <DataField>StaffBonusFormat</DataField>
+        </Field>
+        <Field Name="TotalSArrears">
+          <DataField>TotalSArrears</DataField>
+        </Field>
+        <Field Name="TotalSArrearsFormat">
+          <DataField>TotalSArrearsFormat</DataField>
+        </Field>
+        <Field Name="ShareCont">
+          <DataField>ShareCont</DataField>
+        </Field>
+        <Field Name="ShareContFormat">
+          <DataField>ShareContFormat</DataField>
+        </Field>
+        <Field Name="TotalShareCont">
+          <DataField>TotalShareCont</DataField>
+        </Field>
+        <Field Name="TotalShareContFormat">
+          <DataField>TotalShareContFormat</DataField>
+        </Field>
+        <Field Name="LoanRepay">
+          <DataField>LoanRepay</DataField>
+        </Field>
+        <Field Name="LoanRepayFormat">
+          <DataField>LoanRepayFormat</DataField>
+        </Field>
+        <Field Name="TotalLoanRepay">
+          <DataField>TotalLoanRepay</DataField>
+        </Field>
+        <Field Name="TotalLoanRepayFormat">
+          <DataField>TotalLoanRepayFormat</DataField>
+        </Field>
+        <Field Name="ADV12">
+          <DataField>ADV12</DataField>
+        </Field>
+        <Field Name="ADV12Format">
+          <DataField>ADV12Format</DataField>
+        </Field>
+        <Field Name="TotalADV12">
+          <DataField>TotalADV12</DataField>
+        </Field>
+        <Field Name="TotalADV12Format">
+          <DataField>TotalADV12Format</DataField>
+        </Field>
+        <Field Name="IntRepay">
+          <DataField>IntRepay</DataField>
+        </Field>
+        <Field Name="IntRepayFormat">
+          <DataField>IntRepayFormat</DataField>
+        </Field>
+        <Field Name="TotInt">
+          <DataField>TotInt</DataField>
+        </Field>
+        <Field Name="TotIntFormat">
+          <DataField>TotIntFormat</DataField>
+        </Field>
+        <Field Name="HseLoan">
+          <DataField>HseLoan</DataField>
+        </Field>
+        <Field Name="HseLoanFormat">
+          <DataField>HseLoanFormat</DataField>
+        </Field>
+        <Field Name="TotalHseLoan">
+          <DataField>TotalHseLoan</DataField>
+        </Field>
+        <Field Name="TotalHseLoanFormat">
+          <DataField>TotalHseLoanFormat</DataField>
+        </Field>
+        <Field Name="allowances">
+          <DataField>allowances</DataField>
+        </Field>
+        <Field Name="allowancesFormat">
+          <DataField>allowancesFormat</DataField>
+        </Field>
+        <Field Name="Pension">
+          <DataField>Pension</DataField>
+        </Field>
+        <Field Name="PensionFormat">
+          <DataField>PensionFormat</DataField>
+        </Field>
+        <Field Name="swelfare">
+          <DataField>swelfare</DataField>
+        </Field>
+        <Field Name="swelfareFormat">
+          <DataField>swelfareFormat</DataField>
+        </Field>
+        <Field Name="counter">
+          <DataField>counter</DataField>
+        </Field>
+        <Field Name="saladvance">
+          <DataField>saladvance</DataField>
+        </Field>
+        <Field Name="saladvanceFormat">
+          <DataField>saladvanceFormat</DataField>
+        </Field>
+        <Field Name="PhysicalDisability">
+          <DataField>PhysicalDisability</DataField>
+        </Field>
+        <Field Name="TaxExemptionCertificate">
+          <DataField>TaxExemptionCertificate</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

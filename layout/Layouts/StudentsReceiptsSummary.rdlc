@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="StudentNo_Receipt">
+          <DataField>StudentNo_Receipt</DataField>
+        </Field>
+        <Field Name="ReceiptNo_Receipt">
+          <DataField>ReceiptNo_Receipt</DataField>
+        </Field>
+        <Field Name="IDNo">
+          <DataField>IDNo</DataField>
+        </Field>
+        <Field Name="Date_Receipt">
+          <DataField>Date_Receipt</DataField>
+        </Field>
+        <Field Name="PaymentMode_Receipt">
+          <DataField>PaymentMode_Receipt</DataField>
+        </Field>
+        <Field Name="Amount_Receipt">
+          <DataField>Amount_Receipt</DataField>
+        </Field>
+        <Field Name="Amount_ReceiptFormat">
+          <DataField>Amount_ReceiptFormat</DataField>
+        </Field>
+        <Field Name="NoSeries_Receipt">
+          <DataField>NoSeries_Receipt</DataField>
+        </Field>
+        <Field Name="PaymentBy_Receipt">
+          <DataField>PaymentBy_Receipt</DataField>
+        </Field>
+        <Field Name="UserID_Receipt">
+          <DataField>UserID_Receipt</DataField>
+        </Field>
+        <Field Name="TransactionDate_Receipt">
+          <DataField>TransactionDate_Receipt</DataField>
+        </Field>
+        <Field Name="TransactionTime_Receipt">
+          <DataField>TransactionTime_Receipt</DataField>
+        </Field>
+        <Field Name="StudentName_Receipt">
+          <DataField>StudentName_Receipt</DataField>
+        </Field>
+        <Field Name="SourceRcptNo_Receipt">
+          <DataField>SourceRcptNo_Receipt</DataField>
+        </Field>
+        <Field Name="AmountApplied_Receipt">
+          <DataField>AmountApplied_Receipt</DataField>
+        </Field>
+        <Field Name="AmountApplied_ReceiptFormat">
+          <DataField>AmountApplied_ReceiptFormat</DataField>
+        </Field>
+        <Field Name="UnPosted_Receipt">
+          <DataField>UnPosted_Receipt</DataField>
+        </Field>
+        <Field Name="Posted_Receipt">
+          <DataField>Posted_Receipt</DataField>
+        </Field>
+        <Field Name="Reversed_Receipt">
+          <DataField>Reversed_Receipt</DataField>
+        </Field>
+        <Field Name="AutoReceipt_Receipt">
+          <DataField>AutoReceipt_Receipt</DataField>
+        </Field>
+        <Field Name="AutoReceiptDate_Receipt">
+          <DataField>AutoReceiptDate_Receipt</DataField>
+        </Field>
+        <Field Name="AutoReceipted_Receipt">
+          <DataField>AutoReceipted_Receipt</DataField>
+        </Field>
+        <Field Name="Unallocated_Receipt">
+          <DataField>Unallocated_Receipt</DataField>
+        </Field>
+        <Field Name="BankSlipDate_Receipt">
+          <DataField>BankSlipDate_Receipt</DataField>
+        </Field>
+        <Field Name="BankCode_Receipt">
+          <DataField>BankCode_Receipt</DataField>
+        </Field>
+        <Field Name="Unreff_Receipt">
+          <DataField>Unreff_Receipt</DataField>
+        </Field>
+        <Field Name="UnreffTransactionNo_Receipt">
+          <DataField>UnreffTransactionNo_Receipt</DataField>
+        </Field>
+        <Field Name="AutoReversed_Receipt">
+          <DataField>AutoReversed_Receipt</DataField>
+        </Field>
+        <Field Name="BankSlipChequeNo_Receipt">
+          <DataField>BankSlipChequeNo_Receipt</DataField>
+        </Field>
+        <Field Name="SettlementType_Receipt">
+          <DataField>SettlementType_Receipt</DataField>
+        </Field>
+        <Field Name="RegID_Receipt">
+          <DataField>RegID_Receipt</DataField>
+        </Field>
+        <Field Name="BankAccount_Receipt">
+          <DataField>BankAccount_Receipt</DataField>
+        </Field>
+        <Field Name="RoomNo_Receipt">
+          <DataField>RoomNo_Receipt</DataField>
+        </Field>
+        <Field Name="EntryCount_Receipt">
+          <DataField>EntryCount_Receipt</DataField>
+        </Field>
+        <Field Name="Stage_Receipt">
+          <DataField>Stage_Receipt</DataField>
+        </Field>
+        <Field Name="UnreffGLAccount_Receipt">
+          <DataField>UnreffGLAccount_Receipt</DataField>
+        </Field>
+        <Field Name="UnreffEntryNo_Receipt">
+          <DataField>UnreffEntryNo_Receipt</DataField>
+        </Field>
+        <Field Name="Names_Receipt">
+          <DataField>Names_Receipt</DataField>
+        </Field>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
+        </Field>
+        <Field Name="CompPic">
+          <DataField>CompPic</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
