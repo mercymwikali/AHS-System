@@ -467,7 +467,7 @@ Table 52202643 "HMS Patient"
         field(89; "Depandant Principle Member"; Code[50])
         {
         }
-        field(90; "User ID"; Code[20])
+        field(90; "User ID"; Code[100])
         {
         }
         field(91; "Patient Current Location"; Option)
@@ -1035,7 +1035,7 @@ Table 52202643 "HMS Patient"
         }
         field(199; "Patient Status"; Option)
         {
-            OptionMembers = Alive,Dead,Transfer;
+            OptionMembers = Admitted,"Under Review", Discharged,Alive,Dead,Transfer;
         }
         field(200; "Debtor Account"; code[20])
         {

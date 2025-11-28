@@ -152,7 +152,7 @@ table 52202440 "HMS Appointment Form Header"
         field(21; "Dispatch Time"; Time)
         {
         }
-        field(22; "User ID"; Code[20])
+        field(22; "User ID"; Code[100])
         {
             TableRelation = User."User Name";
         }

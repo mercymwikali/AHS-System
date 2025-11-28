@@ -187,11 +187,11 @@ page 52202745 "Vendor List."
         }
         area(factboxes)
         {
-            part("Power BI Report FactBox"; "Power BI Report FactBox")
-            {
-                Caption = 'Power BI Reports';
-                Visible = PowerBIVisible;
-            }
+            // part("Power BI Report FactBox"; "Power BI Report FactBox")
+            // {
+            //     Caption = 'Power BI Reports';
+            //     Visible = PowerBIVisible;
+            // }
             // part(Control14; "Social Listening FactBox")
             // {
             //     ApplicationArea = All;
@@ -845,7 +845,7 @@ page 52202745 "Vendor List."
                     trigger OnAction()
                     begin
                         // save visibility value into the table
-                        CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
+                        // CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
                     end;
                 }
             }
@@ -1028,13 +1028,13 @@ page 52202745 "Vendor List."
             CRMIsCoupledToRecord := CRMCouplingManagement.IsRecordCoupledToCRM(Rec.RecordId);
 
         // Contextual Power BI FactBox: send data to filter the report in the FactBox
-        CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
     end;
 
     trigger OnInit()
     begin
         SetVendorNoVisibilityOnFactBoxes();
-        CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
     end;
 
     trigger OnOpenPage()

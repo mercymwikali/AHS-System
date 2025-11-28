@@ -26,10 +26,10 @@ page 52203103 "HMS Psychologist Role Centre"
                 {
                     ApplicationArea = RelationshipMgmt;
                 }
-                part(Control2; "Power BI Report Spinner Part")
-                {
-                    ApplicationArea = RelationshipMgmt;
-                }
+                // part(Control2; "Power BI Report Spinner Part")
+                // {
+                //     ApplicationArea = RelationshipMgmt;
+                // }
             }
             group(Control1900724708)
             {

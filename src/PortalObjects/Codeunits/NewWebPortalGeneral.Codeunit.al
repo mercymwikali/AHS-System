@@ -1472,6 +1472,9 @@ codeunit 52202453 "New HMIS WebPortal General"
                 returnValue := ErrorSthWrong;
         end;
     end;
+   
+   
+   
     /**
         DOCTORS PROCESSES
     */

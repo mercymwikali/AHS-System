@@ -24,10 +24,10 @@ Page 52202767 "HMS Triage Role Centre"
                 {
                     ApplicationArea = RelationshipMgmt;
                 }
-                part(Control2; "Power BI Report Spinner Part")
-                {
-                    ApplicationArea = RelationshipMgmt;
-                }
+                // part(Control2; "Power BI Report Spinner Part")
+                // {
+                //     ApplicationArea = RelationshipMgmt;
+                // }
             }
             group(Control1900724708)
             {

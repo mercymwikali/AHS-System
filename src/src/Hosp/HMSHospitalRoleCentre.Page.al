@@ -27,10 +27,10 @@ Page 52202833 "HMS Hospital Role Centre1"
                     ApplicationArea = RelationshipMgmt;
                 }
 
-                part(Control2; "Power BI Report Spinner Part")
-                {
-                    ApplicationArea = RelationshipMgmt;
-                }
+                // part(Control2; "Power BI Report Spinner Part")
+                // {
+                //     ApplicationArea = RelationshipMgmt;
+                // }
             }
             group(Control1900724708)
             {

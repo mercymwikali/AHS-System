@@ -371,7 +371,7 @@ Report 52202449 "Bank Acc. Recon. - Test2"
                     BankAccReconciliationLine.SetRange(BankAccReconciliationLine."Bank Account No.", "Bank Acc. Reconciliation"."Bank Account No.");
                     BankAccReconciliationLine.SetRange(BankAccReconciliationLine."Statement No.", "Bank Acc. Reconciliation"."Statement No.");
                     //BankAccReconciliationLine.SETRANGE(Imported,FALSE);
-                    BankAccReconciliationLine.SetRange(BankAccReconciliationLine.Type, BankAccReconciliationLine.Type::"Bank Account Ledger Entry");
+                    // BankAccReconciliationLine.SetRange(BankAccReconciliationLine.Type, BankAccReconciliationLine.Type::"Bank Account Ledger Entry");
                     BankAccReconciliationLine.SetFilter("Applied Amount", '=%1', 0);
                     if BankAccReconciliationLine.Difference < 0 then
                         BankDebits := BankDebits + BankAccReconciliationLine.Difference

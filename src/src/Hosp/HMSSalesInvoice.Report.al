@@ -269,7 +269,7 @@ Report 52202621 "HMS Sales Invoice"
         trigger OnOpenPage()
         begin
             //  ArchiveDocument := SalesSetup."Archive Quotes and Orders";
-            LogInteraction := SegManagement.FindInteractTmplCode(1) <> '';
+        //    LogInteraction := SegManagement.FindInteractTmplCode(1) <> '';
 
             LogInteractionEnable := LogInteraction;
         end;

@@ -24,10 +24,10 @@ Page 52202661 "HMS Billing Role Centre"
                 {
                     ApplicationArea = RelationshipMgmt;
                 }
-                part(Control2; "Power BI Report Spinner Part")
-                {
-                    ApplicationArea = RelationshipMgmt;
-                }
+                // part(Control2; "Power BI Report Spinner Part")
+                // {
+                //     ApplicationArea = RelationshipMgmt;
+                // }
             }
             group(Control1900724708)
             {

@@ -183,6 +183,12 @@ page 52202709 "HMS Appointment Form Header"
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the value of the Dispatch To field.';
                 }
+                  field("SystemId"; Rec.SystemId)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Visible = false;
+                    ToolTip = 'Specifies the value of the SystemId field.';
+                }
                 group("Appointment Statistics")
                 {
                     Caption = 'Appointment Statistics';

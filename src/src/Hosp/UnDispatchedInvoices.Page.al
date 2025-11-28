@@ -278,12 +278,12 @@ Page 52202734 "UnDispatched Invoices"
                     ToolTip = 'Specifies the status of the document if you are using a document exchange service to send it as an electronic document. The status values are reported by the document exchange service.';
                     Visible = DocExchStatusVisible;
                 }
-                field("<Document Exchange Status>"; Rec."Coupled to CRM")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Microsoft CRM.';
-                    Visible = CRMIntegrationEnabled;
-                }
+                // field("<Document Exchange Status>"; Rec."Coupled to CRM")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Microsoft CRM.';
+                //     Visible = CRMIntegrationEnabled;
+                // }
             }
         }
         area(factboxes)

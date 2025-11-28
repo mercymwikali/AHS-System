@@ -57,21 +57,21 @@ page 52202454 "CEO Role Center"
             {
                 ApplicationArea = Suite;
             }
-            part(Control98; "Power BI Report Spinner Part")
-            {
-                AccessByPermission = TableData "Power BI User Configuration" = I;
-                ApplicationArea = Basic, Suite;
-            }
+            // part(Control98; "Power BI Report Spinner Part")
+            // {
+            //     AccessByPermission = TableData "Power BI User Configuration" = I;
+            //     ApplicationArea = Basic, Suite;
+            // }
             part(Control96; "Report Inbox Part")
             {
                 AccessByPermission = TableData "Report Inbox" = IMD;
                 ApplicationArea = Suite;
             }
-            part(" "; "O365 Link to Financials")
-            {
-                ApplicationArea = Invoicing;
-                Caption = ' ';
-            }
+            // part(" "; "O365 Link to Financials")
+            // {
+            //     ApplicationArea = Invoicing;
+            //     Caption = ' ';
+            // }
         }
     }
 
@@ -1002,7 +1002,7 @@ page 52202454 "CEO Role Center"
                     Caption = 'Intrastat Journals';
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page "Intrastat Jnl. Batches";
+               //     RunObject = Page "Intrastat Jnl. Batches";
                     ToolTip = 'Summarize the value of your purchases and sales with business partners in the EU for statistical purposes and prepare to send it to the relevant authority.';
                 }
                 action("Sales Budgets")

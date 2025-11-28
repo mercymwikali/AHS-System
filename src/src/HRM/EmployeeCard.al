@@ -258,6 +258,10 @@ page 52203078 Employee
                     // ExtendedDatatype = None;
                     ToolTip = 'Specifies the value of the Portal Password field.';
                 }
+                field("Changed Password"; Rec."Changed Password")
+                {
+                    Visible = false;
+                }
                 field(HMIS; Rec.HMIS)
                 {
                     ApplicationArea = Basic, Suite;

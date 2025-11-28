@@ -1560,11 +1560,11 @@ Codeunit 52202439 prPayrollProcessing
     var
         AccSchedLine: Record "Acc. Schedule Line";
         ColumnLayout: Record "Column Layout";
-        AccSchedMgt: Codeunit AccSchedManagement_CU;
+       // AccSchedMgt: Codeunit AccSchedManagement_CU;
         //New Changes        
         CalcAddCurr: Boolean;
     begin
-        Results := AccSchedMgt.EvaluateExpression(true, strFormula, AccSchedLine, ColumnLayout, CalcAddCurr);
+        // Results := AccSchedMgt.EvaluateExpression(true, strFormula, AccSchedLine, ColumnLayout, CalcAddCurr);
     end;
 
     procedure fnClosePayrollPeriod(dtOpenPeriod: Date; PayrollCode: Code[20]) Closed: Boolean

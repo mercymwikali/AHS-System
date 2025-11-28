@@ -1163,7 +1163,7 @@ Report 52202428 "Order 2"
         trigger OnOpenPage()
         begin
             // ArchiveDocument := PurchSetup."Archive Quotes and Orders";
-            LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
+          //  LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
 
             LogInteractionEnable := LogInteraction;
         end;

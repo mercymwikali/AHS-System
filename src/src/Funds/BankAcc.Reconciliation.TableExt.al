@@ -75,10 +75,10 @@ TableExtension 52202425 "Bank Account Recon Ext" extends "Bank Acc. Reconciliati
         {
             Caption = 'Total Outstd Payments';
         }
-        modify("Total Applied Amount Payments")
-        {
-            Caption = 'Total Applied Amount Payments';
-        }
+        // modify("Total Applied Amount Payments")
+        // {
+        //     Caption = 'Total Applied Amount Payments';
+        // }
         modify("Bank Account Balance (LCY)")
         {
             Caption = 'Bank Account Balance ($)';
@@ -91,14 +91,14 @@ TableExtension 52202425 "Bank Account Recon Ext" extends "Bank Acc. Reconciliati
         {
             Caption = 'Total Negative Adjustments';
         }
-        modify("Total Positive Difference")
-        {
-            Caption = 'Total Positive Difference';
-        }
-        modify("Total Negative Difference")
-        {
-            Caption = 'Total Negative Difference';
-        }
+        // modify("Total Positive Difference")
+        // {
+        //     Caption = 'Total Positive Difference';
+        // }
+        // modify("Total Negative Difference")
+        // {
+        //     Caption = 'Total Negative Difference';
+        // }
         modify("Copy VAT Setup to Jnl. Line")
         {
             Caption = 'Copy Tax Setup to Jnl. Line';

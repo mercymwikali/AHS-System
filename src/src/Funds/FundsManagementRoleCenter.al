@@ -291,14 +291,14 @@ page 52202999 "Funds Management Role Center"
                 {
                     Caption = '&Intrastat - Checklist';
                     Image = "Report";
-                    RunObject = Report "Intrastat - Checklist";
+                  //  RunObject = Report "Intrastat - Checklist";
                     ToolTip = 'Executes the &Intrastat - Checklist action.';
                 }
                 action("Intrastat - For&m")
                 {
                     Caption = 'Intrastat - For&m';
                     Image = "Report";
-                    RunObject = Report "Intrastat - Form";
+                   // RunObject = Report "Intrastat - Form";
                     ToolTip = 'Executes the Intrastat - For&m action.';
                 }
                 separator(Separator4)
@@ -1489,7 +1489,7 @@ page 52202999 "Funds Management Role Center"
                     Caption = 'Adjust E&xchange Rates';
                     Ellipsis = true;
                     Image = AdjustExchangeRates;
-                    RunObject = Report "Adjust Exchange Rates";
+                   // RunObject = Report "Adjust Exchange Rates";
                     ToolTip = 'Executes the Adjust E&xchange Rates action.';
                 }
             }

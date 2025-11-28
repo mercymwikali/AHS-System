@@ -41,11 +41,11 @@ TableExtension 52202426 "Bank Acc. Recon Line Ext" extends "Bank Acc. Reconcilia
         {
             Caption = 'Applied Amount';
         }
-        modify(Type)
-        {
-            Caption = 'Type';
-            OptionCaption = 'Bank Account Ledger Entry,Check Ledger Entry,Difference';
-        }
+        // modify(Type)
+        // {
+        //     Caption = 'Type';
+        //     OptionCaption = 'Bank Account Ledger Entry,Check Ledger Entry,Difference';
+        // }
         modify("Applied Entries")
         {
             Caption = 'Applied Entries';
@@ -156,15 +156,15 @@ TableExtension 52202426 "Bank Acc. Recon Line Ext" extends "Bank Acc. Reconcilia
         field(72; "Notes Line 4"; Text[250])
         {
         }
-        field(50000; Reconciled; Boolean)
-        {
-            trigger OnValidate()
-            begin
-                //check if the type of entry that the user has selected is difference
-                if Type = Type::Difference then
-                    Error('Differences cannot be reconciled');
-            end;
-        }
+        // field(50000; Reconciled; Boolean)
+        // {
+        //     trigger OnValidate()
+        //     begin
+        //         //check if the type of entry that the user has selected is difference
+        //         if Type = Type::Difference then
+        //             Error('Differences cannot be reconciled');
+        //     end;
+        // }
         field(50002; "Notes Line 2"; Text[250])
         {
         }

@@ -221,7 +221,7 @@ Report 52202622 "HMS Patient Prescription"
         trigger OnOpenPage()
         begin
             // ArchiveDocument := SalesSetup."Archive Quotes and Orders";
-            LogInteraction := SegManagement.FindInteractTmplCode(1) <> '';
+          //  LogInteraction := SegManagement.FindInteractTmplCode(1) <> '';
 
             LogInteractionEnable := LogInteraction;
         end;

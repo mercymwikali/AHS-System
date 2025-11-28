@@ -280,13 +280,13 @@ page 52202746 "Item List."
             }
         }
         area(factboxes)
-        {
-            part("Power BI Report FactBox"; "Power BI Report FactBox")
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Power BI Reports';
-                Visible = PowerBIVisible;
-            }
+         {
+        //     part("Power BI Report FactBox"; "Power BI Report FactBox")
+        //     {
+        //         ApplicationArea = Basic, Suite;
+        //         Caption = 'Power BI Reports';
+        //         Visible = PowerBIVisible;
+        //     }
             // part(Control3; "Social Listening FactBox")
             // {
             //     ApplicationArea = All;
@@ -996,7 +996,7 @@ page 52202746 "Item List."
                     trigger OnAction()
                     begin
                         // save visibility value into the table
-                        CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
+                        // CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
                     end;
                 }
             }
@@ -1930,16 +1930,16 @@ page 52202746 "Item List."
             {
                 Caption = 'Warehouse';
                 Image = Warehouse;
-                action("&Bin Contents")
-                {
-                    ApplicationArea = Warehouse;
-                    Caption = '&Bin Contents';
-                    Image = BinContent;
-                    RunObject = Page "Item Bin Contents";
-                    RunPageLink = "Item No." = FIELD("No.");
-                    RunPageView = SORTING("Item No.");
-                    ToolTip = 'View the quantities of the item in each bin where it exists. You can see all the important parameters relating to bin content, and you can modify certain bin content parameters in this window.';
-                }
+                // action("&Bin Contents")
+                // {
+                //     ApplicationArea = Warehouse;
+                //     Caption = '&Bin Contents';
+                //     Image = BinContent;
+                //     RunObject = Page "Item Bin Contents";
+                //     RunPageLink = "Item No." = FIELD("No.");
+                //     RunPageView = SORTING("Item No.");
+                //     ToolTip = 'View the quantities of the item in each bin where it exists. You can see all the important parameters relating to bin content, and you can modify certain bin content parameters in this window.';
+                // }
                 action("Stockkeepin&g Units")
                 {
                     ApplicationArea = Warehouse;
@@ -2048,7 +2048,7 @@ page 52202746 "Item List."
         SetWorkflowManagementEnabledState();
 
         // Contextual Power BI FactBox: send data to filter the report in the FactBox
-        CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
     end;
 
     trigger OnAfterGetRecord()
@@ -2074,7 +2074,7 @@ page 52202746 "Item List."
 
     trigger OnInit()
     begin
-        CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
     end;
 
     trigger OnNextRecord(Steps: Integer): Integer

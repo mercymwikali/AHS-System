@@ -5,7 +5,7 @@ table 52202660 "HMS Pharmacy Header"
 
     fields
     {
-        field(1; "Pharmacy No."; Code[20])
+        field(1; "Pharmacy No."; Code[100])
         {
         }
         field(2; "Pharmacy Date"; Date)
@@ -202,7 +202,7 @@ table 52202660 "HMS Pharmacy Header"
             CalcFormula = sum("HMS Pharmacy Line"."Insurance Total Amount" where("Pharmacy No." = field("Pharmacy No.")));
             FieldClass = FlowField;
         }
-        field(48; "User Id"; Code[20])
+        field(48; "User Id"; Code[100])
         {
         }
         field(49; "Doctor Name"; Text[50])

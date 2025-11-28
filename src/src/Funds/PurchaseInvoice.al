@@ -226,11 +226,11 @@ page 52202575 "Purchase Invoices."
         }
         area(factboxes)
         {
-            part("Power BI Report FactBox"; "Power BI Report FactBox")
-            {
-                Caption = 'Power BI Reports';
-                Visible = PowerBIVisible;
-            }
+            // part("Power BI Report FactBox"; "Power BI Report FactBox")
+            // {
+            //     Caption = 'Power BI Reports';
+            //     Visible = PowerBIVisible;
+            // }
             part(IncomingDocAttachFactBox; "Incoming Doc. Attach. FactBox")
             {
                 ShowFilter = false;
@@ -539,7 +539,7 @@ page 52202575 "Purchase Invoices."
                     trigger OnAction()
                     begin
                         // save visibility value into the table
-                        CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
+                        // CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
                     end;
                 }
             }
@@ -552,12 +552,12 @@ page 52202575 "Purchase Invoices."
         CurrPage.IncomingDocAttachFactBox.PAGE.LoadDataFromRecord(Rec);
 
         // Contextual Power BI FactBox: send data to filter the report in the FactBox: (SourceTableFildToCompare,QueryName/FieldName)
-        CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
     end;
 
     trigger OnInit()
     begin
-        CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
     end;
 
     trigger OnOpenPage()

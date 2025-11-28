@@ -32,11 +32,8 @@ enum 52202436 "Dispatch Areas"
     {
         Caption = 'Procedures';
     }
-    value(7; "Lab Results")
-    {
-        Caption = 'Lab Results';
-    }
-    value(8; Billing)
+  
+    value(7; Billing)
     {
         Caption = 'Billing';
     }

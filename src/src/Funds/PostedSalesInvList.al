@@ -262,12 +262,12 @@ page 52202751 "Posted Sales Invoices."
                         DocExchServDocStatus.DocExchStatusDrillDown(Rec);
                     end;
                 }
-                field("<Document Exchange Status>"; Rec."Coupled to CRM")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Dynamics 365 Sales.';
-                    Visible = CRMIntegrationEnabled;
-                }
+                // field("<Document Exchange Status>"; Rec."Coupled to CRM")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Dynamics 365 Sales.';
+                //     Visible = CRMIntegrationEnabled;
+                // }
             }
         }
         area(factboxes)

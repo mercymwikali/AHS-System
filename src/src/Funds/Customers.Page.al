@@ -244,12 +244,12 @@ page 52202568 "Customer List2"
         }
         area(factboxes)
         {
-            part("Power BI Report FactBox"; "Power BI Report FactBox")
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Power BI Reports';
-                Visible = PowerBIVisible;
-            }
+            // part("Power BI Report FactBox"; "Power BI Report FactBox")
+            // {
+            //     ApplicationArea = Basic, Suite;
+            //     Caption = 'Power BI Reports';
+            //     Visible = PowerBIVisible;
+            // }
             part(Control99; "CRM Statistics FactBox")
             {
                 ApplicationArea = All;
@@ -1223,18 +1223,18 @@ page 52202568 "Customer List2"
             group(Display)
             {
                 Caption = 'Display';
-                action(ReportFactBoxVisibility)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Show/Hide Power BI Reports';
-                    Image = "Report";
-                    ToolTip = 'Select if the Power BI FactBox is visible or not.';
+                // action(ReportFactBoxVisibility)
+                // {
+                //     ApplicationArea = Basic, Suite;
+                //     Caption = 'Show/Hide Power BI Reports';
+                //     Image = "Report";
+                //     ToolTip = 'Select if the Power BI FactBox is visible or not.';
 
-                    trigger OnAction()
-                    begin
-                        CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
-                    end;
-                }
+                //     trigger OnAction()
+                //     begin
+                //         CurrPage."Power BI Report FactBox".PAGE.SetFactBoxVisibility(PowerBIVisible);
+                //     end;
+                // }
             }
         }
         area(reporting)
@@ -1462,7 +1462,7 @@ page 52202568 "Customer List2"
         WorkflowWebhookManagement.GetCanRequestAndCanCancel(Rec.RecordId, CanRequestApprovalForFlow, CanCancelApprovalForFlow);
 
         // Contextual Power BI FactBox: send data to filter the report in the FactBox
-        CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.SetCurrentListSelection(Rec."No.", false, PowerBIVisible);
 
         SetWorkflowManagementEnabledState();
     end;
@@ -1475,7 +1475,7 @@ page 52202568 "Customer List2"
         SetCaption(CaptionTxt);
         CurrPage.Caption(CaptionTxt);
         PowerBIVisible := false;
-        CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
+        // CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
     end;
 
     trigger OnOpenPage()

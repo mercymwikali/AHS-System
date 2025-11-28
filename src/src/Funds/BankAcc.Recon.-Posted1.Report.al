@@ -323,7 +323,7 @@ Report 52202448 "Bank Acc. Recon. -Posted1"
                     BankStatementLine.Reset();
                     BankStatementLine.SetRange(BankStatementLine."Bank Account No.", Bank."No.");
                     BankStatementLine.SetRange(BankStatementLine."Statement No.", "Statement No.");
-                    BankStatementLine.SetRange(BankStatementLine.Reconciled, false);
+                    // BankStatementLine.SetRange(BankStatementLine.Reconciled, false);
                     BankStatementLine.SetFilter(BankStatementLine."Applied Amount", '=%1', 0);
                     if BankStatementLine.Find('-') then
                         repeat
