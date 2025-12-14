@@ -292,8 +292,8 @@ codeunit 52202454 "HMS Processes"
         // send message to patient
         smsMsg := 'Dear ' + Recc."Patient Name" + ', Your appointment has been dispatched to Doctor ' + Recc."Doctor Name" + '. Please proceed to the ' + Recc."Special Clinics" + ' room for your consultation.';
 
-        if HMSPatient."Telephone No. 1" <> '' then
-            SMSSenderCodeunit.SendSMS(HMSPatient."Telephone No. 1", smsMsg);
+        // if HMSPatient."Telephone No. 1" <> '' then
+        //     SMSSenderCodeunit.SendSMS(HMSPatient."Telephone No. 1", smsMsg);
 
         /*
         if Appointment.GET("Link No.") then begin
@@ -321,7 +321,7 @@ codeunit 52202454 "HMS Processes"
         Recc.MODIFY();
 
         if GuiAllowed then
-            MESSAGE('Selected Appointment has been dispatched to the Doctor.');
+            MESSAGE('Success.', smsMsg);
         returnValue := true;
         // end;
         exit(returnValue);

@@ -5,7 +5,7 @@ table 52202660 "HMS Pharmacy Header"
 
     fields
     {
-        field(1; "Pharmacy No."; Code[100])
+        field(1; "Pharmacy No."; Code[20])
         {
         }
         field(2; "Pharmacy Date"; Date)
@@ -210,7 +210,7 @@ table 52202660 "HMS Pharmacy Header"
             CalcFormula = lookup("HMS Setup Doctor"."Doctors Name" where("Doctor ID" = field("Doctor ID")));
             FieldClass = FlowField;
         }
-        field(50; "Doctor ID"; Code[20])
+        field(50; "Doctor ID"; Code[50])
         {
             /* CalcFormula = lookup("HMS Treatment Form Header"."Doctor ID" where("Treatment No." = field("Treatment No.")));
             FieldClass = FlowField; */

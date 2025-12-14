@@ -587,7 +587,7 @@ codeunit 52202424 NewHMISPortal
             TbObsFoHea.Modify();
             Commit();
             if CuHMSProcesses.FnDispatchToDoctor(TbObsFoHea) then
-                returnValue := '{"status":"success","treatmentNo":"' + DocNo + '"}'
+                returnValue := '{"status":"success","DocNo":"' + DocNo + '"}'
             else
                 returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
         end;
@@ -732,12 +732,14 @@ codeunit 52202424 NewHMISPortal
                     TbAllMed."Drug Allergy" := jToken.AsValue().AsText();
                     jObject.Get('allergen', jToken);
                     TbAllMed.Allergen := jToken.AsValue().AsText();
-                    jObject.Get('assessedBy', jToken);
+                    jObject.Get('chronicIlness', jToken);
+                    TbAllMed."Chronic Illness" := jToken.AsValue().AsText();
+                    jObject.Get('staffNo', jToken);
                     TbAllMed."Assessed By" := jToken.AsValue().AsText();
                     if jObject.Get('type', jToken) then
                         TbAllMed.Type := jToken.AsValue().AsInteger();
                     if TbAllMed.Insert(true) then
-                        returnValue := '{"status":"success"}'
+                        returnValue := '{"status":"success", Message:"Allergy & chronics data saved successfully."}'
                 end;
             'edit', 'edit#save':
                 begin
@@ -757,7 +759,7 @@ codeunit 52202424 NewHMISPortal
                         if jObject.Get('type', jToken) then
                             TbAllMed.Type := jToken.AsValue().AsInteger();
                         if TbAllMed.Modify(true) then
-                            returnValue := '{"status":"success"}'
+                            returnValue := '{"status":"success", Message:"Allergy & chronics data saved successfully."}'
                     end;
                 end;
             'delete':
@@ -942,6 +944,443 @@ codeunit 52202424 NewHMISPortal
         end;
     end;
 
+    [ServiceEnabled]
+    procedure FnDoctorTreatmentNotes(jString: Text) returnValue: Text
+    var
+        TbHMSNotes: record "HMS Notes";
+        jObject: JsonObject;
+        jToken: JsonToken;
+        staffNo: Code[30];
+        branchCode: Code[30];
+        myAction: Text;
+        recId: Text;
+        treatmentNo: Text;
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('branchCode', jToken);
+        branchCode := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        //
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbHMSNotes.Init();
+                    TbHMSNotes.TreatmentNo := treatmentNo;
+                    TbHMSNotes."User ID" := FnGetStaffUserID(staffNo);
+                    TbHMSNotes."Created Date" := Today;
+                    TbHMSNotes."Creation DateTime" := CurrentDateTime;
+                    jObject.Get('patientNo', jToken);
+                    TbHMSNotes."Patient No" := jToken.AsValue().AsText();
+                    TbHMSNotes.Validate("Patient No");
+                    jObject.Get('notes', jToken);
+                    TbHMSNotes.Notes := jToken.AsValue().AsText();
+                    // jObject.Get('SectionId', jToken);
+                    // TbHMSNotes."Notes Section ID" := jToken.AsValue().AsCode();
+                    jObject.Get('notesType', jToken);
+                    TbHMSNotes."Notes Type" := jToken.AsValue().AsInteger();
+                    if TbHMSNotes.Insert(true) then
+                        returnValue := '{"status":"success"}'
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbHMSNotes.Reset();
+                    TbHMSNotes.SetRange(TbHMSNotes.SystemId, recId);
+                    if TbHMSNotes.FindFirst() then begin
+                        TbHMSNotes.TreatmentNo := treatmentNo;
+                        TbHMSNotes."User ID" := FnGetStaffUserID(staffNo);
+                        TbHMSNotes."Created Date" := Today;
+                        TbHMSNotes."Creation DateTime" := CurrentDateTime;
+                        jObject.Get('patientNo', jToken);
+                        TbHMSNotes."Patient No" := jToken.AsValue().AsText();
+                        TbHMSNotes.Validate("Patient No");
+                        jObject.Get('notes', jToken);
+                        TbHMSNotes.Notes := jToken.AsValue().AsText();
+                        jObject.Get('notesType', jToken);
+                        TbHMSNotes."Notes Type" := jToken.AsValue().AsInteger();
+                        // jObject.Get('SectionId', jToken);
+                        // TbHMSNotes."Notes Section ID" := jToken.AsValue().AsCode();
+                        if TbHMSNotes.Modify(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbHMSNotes.Reset();
+                    TbHMSNotes.SetRange(TbHMSNotes.SystemId, recId);
+                    if TbHMSNotes.FindFirst() then begin
+                        if TbHMSNotes.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorPatientDiagnosis(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        myAction: Text;
+        TbDiag: record "HMS Treatment Form Diagnosis";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbDiag.Init();
+                    TbDiag."Treatment No." := treatmentNo;
+                    jObject.Get('diagnosisType', jToken);
+                    TbDiag."Diagnosis Type" := jToken.AsValue().AsInteger();
+                    jObject.Get('diagnosisNo', jToken);
+                    TbDiag."Diagnosis No." := jToken.AsValue().AsText();
+                    TbDiag.Validate("Diagnosis No.");
+                    jObject.Get('confirmed', jToken);
+                    TbDiag.Confirmed := jToken.AsValue().AsBoolean();
+                    if jObject.Get('remarks', jToken) then
+                        TbDiag.Remarks := jToken.AsValue().AsText();
+                    if TbDiag.Insert(true) then
+                        returnValue := '{"status":"success"}'
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbDiag.Reset();
+                    TbDiag.SetRange(TbDiag."Treatment No.", treatmentNo);
+                    jObject.Get('diagnosisNo', jToken);
+                    TbDiag.SetRange(TbDiag."Diagnosis No.", jToken.AsValue().AsText());
+                    if TbDiag.FindFirst() then begin
+                        jObject.Get('diagnosisType', jToken);
+                        TbDiag."Diagnosis Type" := jToken.AsValue().AsInteger();
+                        jObject.Get('diagnosisNo', jToken);
+                        TbDiag."Diagnosis No." := jToken.AsValue().AsText();
+                        TbDiag.Validate("Diagnosis No.");
+                        jObject.Get('confirmed', jToken);
+                        TbDiag.Confirmed := jToken.AsValue().AsBoolean();
+                        if jObject.Get('remarks', jToken) then
+                            TbDiag.Remarks := jToken.AsValue().AsText();
+                        if TbDiag.Modify(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbDiag.Reset();
+                    TbDiag.SetRange(TbDiag."Treatment No.", treatmentNo);
+                    jObject.Get('diagnosisNo', jToken);
+                    TbDiag.SetRange(TbDiag."Diagnosis No.", jToken.AsValue().AsText());
+                    if TbDiag.FindFirst() then begin
+                        if TbDiag.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorPatientPrescriptions(jString: Text) returnValue: Text
+    var
+        TbDrug: record "HMS Treatment Form Drug";
+        HMSTreatmentFormDrug: Record "HMS Treatment Form Drug";
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        myAction: Text;
+        DrugNo: Code[30];
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        jObject.Get('drugNo', jToken);
+        DrugNo := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    HMSTreatmentFormDrug.Reset();
+                    HMSTreatmentFormDrug.SetRange("Treatment No.", treatmentNo);
+                    HMSTreatmentFormDrug.SetRange("Drug No.", DrugNo);
+                    HMSTreatmentFormDrug.SetRange(Status, HMSTreatmentFormDrug.Status::Forwarded);
+                    if HMSTreatmentFormDrug.IsEmpty() then begin
+                        TbDrug.Init();
+                        TbDrug."Treatment No." := treatmentNo;
+                        TbDrug."Drug No." := DrugNo;
+                        DrugNo := TbDrug."Drug No.";
+                        TbDrug.Validate("Drug No.");
+                        jObject.Get('quantity', jToken);
+                        TbDrug.Quantity := jToken.AsValue().AsInteger();
+                        jObject.Get('remarks', jToken);
+                        TbDrug.Remarks := jToken.AsValue().AsText();
+                        jObject.Get('prescriptionDose', jToken);
+                        TbDrug."Prescription Dose" := jToken.AsValue().AsInteger();
+                        jObject.Get('duration', jToken);
+                        TbDrug."Number of Days" := jToken.AsValue().AsInteger();
+                        if TbDrug.Insert(true) then
+                            returnValue := '{"status":"success"}'
+                    end else
+                        returnValue := '{"status":"Already Exists"}';
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbDrug.Reset();
+                    TbDrug.SetRange(TbDrug."Treatment No.", treatmentNo);
+                    jObject.Get('lineNo', jToken);
+                    TbDrug.SetRange(TbDrug."Lline No", jToken.AsValue().AsInteger());
+                    if TbDrug.FindFirst() then begin
+                        jObject.Get('drugNo', jToken);
+                        TbDrug."Drug No." := jToken.AsValue().AsText();
+                        TbDrug.Validate("Drug No.");
+                        jObject.Get('quantity', jToken);
+                        TbDrug.Quantity := jToken.AsValue().AsInteger();
+                        jObject.Get('remarks', jToken);
+                        TbDrug.Remarks := jToken.AsValue().AsText();
+                        jObject.Get('prescriptionDose', jToken);
+                        TbDrug."Prescription Dose" := jToken.AsValue().AsInteger();
+                        jObject.Get('duration', jToken);
+                        TbDrug."Number of Days" := jToken.AsValue().AsInteger();
+                        if TbDrug.Modify(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbDrug.Reset();
+                    TbDrug.SetRange(TbDrug."Treatment No.", treatmentNo);
+                    jObject.Get('lineNo', jToken);
+                    TbDrug.SetRange(TbDrug."Lline No", jToken.AsValue().AsInteger());
+                    if TbDrug.FindFirst() then begin
+                        if TbDrug.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorPrescribeDrugs(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        TbDrug: record "HMS Treatment Form Drug";
+    begin
+        returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}';
+
+        jObject.ReadFrom(jString);
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbDrug.Reset();
+        TbDrug.SetRange(TbDrug."Treatment No.", treatmentNo);
+        TbDrug.SetRange(TbDrug.Status, TbDrug.Status::New);
+        if TbDrug.FindFirst() then begin
+            DocNo := CuHMSProcesses.FnPrescribeDrugs(TbDrug);
+            if DocNo <> '' then
+                returnValue := '{"status":"success","pharmacyNo":"' + DocNo + '"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorPatientRadiology(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        myAction: Text;
+        TbRadi: record "HMS Treatment Form Radiology";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbRadi.Init();
+                    TbRadi."Treatment No." := treatmentNo;
+                    jObject.Get('radiologyCode', jToken);
+                    TbRadi."Radiology Type Code" := jToken.AsValue().AsText();
+                    // TbRadi."Radiology Type Code" := 'RAD265';
+                    TbRadi.Validate("Radiology Type Code");
+                    jObject.Get('dueDate', jToken);
+                    TbRadi."Date Due" := jToken.AsValue().AsDate();
+                    if jObject.Get('requiredInvestigation', jToken) then
+                        TbRadi."Required Investigation" := jToken.AsValue().AsText();
+                    if TbRadi.Insert(true) then
+                        returnValue := '{"status":"success"}'
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbRadi.Reset();
+                    TbRadi.SetRange(TbRadi."Treatment No.", treatmentNo);
+                    jObject.Get('radiologyCode', jToken);
+                    TbRadi.SetRange(TbRadi."Radiology Type Code", jToken.AsValue().AsText());
+                    if TbRadi.FindFirst() then begin
+                        jObject.Get('dueDate', jToken);
+                        TbRadi."Date Due" := jToken.AsValue().AsDate();
+                        if jObject.Get('requiredInvestigation', jToken) then
+                            TbRadi."Required Investigation" := jToken.AsValue().AsText();
+                        if TbRadi.Modify(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbRadi.Reset();
+                    TbRadi.SetRange(TbRadi."Treatment No.", treatmentNo);
+                    jObject.Get('radiologyCode', jToken);
+                    TbRadi.SetRange(TbRadi."Radiology Type Code", jToken.AsValue().AsText());
+                    if TbRadi.FindFirst() then begin
+                        if TbRadi.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorRequestPatientRadiologyTests(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        TbRad: record "HMS Treatment Form Radiology";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbRad.Reset();
+        TbRad.SetRange(TbRad."Treatment No.", treatmentNo);
+        if TbRad.FindFirst() then begin
+            DocNo := CuHMSProcesses.FnRequestRadiologyTests(TbRad);
+            if DocNo <> '' then
+                returnValue := '{"status":"success","radiologyNo":"' + DocNo + '"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorPatientLaboratory(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        myAction: Text;
+        TbLab: record "HMS Treatment Form Laboratory";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbLab.Init();
+                    TbLab."Treatment No." := treatmentNo;
+                    jObject.Get('testPackageCode', jToken);
+                    TbLab."Laboratory Test Package Code" := jToken.AsValue().AsText();
+                    TbLab.Validate("Laboratory Test Package Code");
+                    TbLab."Date Due" := Today;
+                    TbLab.Time := Time;
+                    jObject.Get('results', jToken);
+                    TbLab.Results := jToken.AsValue().AsText();
+                    if jObject.Get('description', jToken) then
+                        TbLab."Brief History" := jToken.AsValue().AsText();
+                    if TbLab.Insert(true) then
+                        returnValue := '{"status":"success"}'
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbLab.Reset();
+                    TbLab.SetRange(TbLab."Treatment No.", treatmentNo);
+                    jObject.Get('lineNo', jToken);
+                    TbLab.SetRange(TbLab."Line No", jToken.AsValue().AsInteger());
+                    if TbLab.FindFirst() then begin
+                        jObject.Get('testPackageCode', jToken);
+                        TbLab."Laboratory Test Package Code" := jToken.AsValue().AsText();
+                        TbLab.Validate("Laboratory Test Package Code");
+                        jObject.Get('dueDate', jToken);
+                        TbLab."Date Due" := Today;
+                        jObject.Get('results', jToken);
+                        TbLab.Results := jToken.AsValue().AsText();
+                        if jObject.Get('description', jToken) then
+                            TbLab."Brief History" := jToken.AsValue().AsText();
+                        if TbLab.Modify(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbLab.Reset();
+                    TbLab.SetRange(TbLab."Treatment No.", treatmentNo);
+                    jObject.Get('lineNo', jToken);
+                    TbLab.SetRange(TbLab."Line No", jToken.AsValue().AsInteger());
+                    if TbLab.FindFirst() then begin
+                        if TbLab.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnDoctorRequestPatientLaboratoryTests(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        TbTreForm: record "HMS Treatment Form Laboratory";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbTreForm.Reset();
+        TbTreForm.SetRange(TbTreForm."Treatment No.", treatmentNo);
+        if TbTreForm.FindFirst() then begin
+            DocNo := CuHMSProcesses.RequestLaboratoryTests(TbTreForm);
+            if DocNo <> '' then
+                returnValue := '{"status":"success","laboratoryNo":"' + DocNo + '"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
 
     procedure FnSendEmail(subject: Text[150]; recipients: Text[200]; emailMessage: Text[1000]; ccRecipients: Text[100]) returnValue: Boolean
     var

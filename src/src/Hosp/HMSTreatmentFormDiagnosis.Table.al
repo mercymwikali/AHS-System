@@ -67,6 +67,7 @@ Table 52202650 "HMS Treatment Form Diagnosis"
         field(8; "Patient No"; Code[20])
         {
             DataClassification = ToBeClassified;
+            
         }
         field(9; Gender; Option)
         {

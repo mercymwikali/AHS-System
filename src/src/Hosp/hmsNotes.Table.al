@@ -9,7 +9,7 @@ table 52202936 "HMS Notes"
         }
         field(2; TreatmentNo; Code[20])
         {
-            // TableRelation = "HMS Treatment Form Header"."Treatment No.";
+            TableRelation = "HMS Treatment Form Header"."Treatment No.";
         }
         field(3; "Patient No"; Code[20])
         {

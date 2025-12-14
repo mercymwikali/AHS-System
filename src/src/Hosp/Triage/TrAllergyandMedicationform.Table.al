@@ -27,9 +27,11 @@ table 52202948 "Tr Allergy and Medication form"
         {
             Caption = 'Drug Allergy';
         }
+
         field(6; "Assessed By"; Code[30])
         {
             Caption = 'Assessed By';
+
         }
         field(7; "Line No"; Integer)
         {
@@ -42,12 +44,16 @@ table 52202948 "Tr Allergy and Medication form"
         }
         field(9; Type; Option)
         {
-            OptionCaption = 'Food,Drug';
-            OptionMembers = Food,Drug;
+            OptionCaption = 'Food,Drug, Chronic Illness';
+            OptionMembers = Food,Drug,"Chronic Illness";
         }
         field(10; Allergen; Text[100])
         {
-            
+
+        }
+        field(11; "Chronic Illness"; Text[300])
+        {
+            Caption = 'Chronic Illness';
         }
     }
     keys

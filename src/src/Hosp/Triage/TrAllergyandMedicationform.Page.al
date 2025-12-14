@@ -6,7 +6,7 @@ page 52203163 "Tr Allergy and Medication form"
     Caption = 'Tr Allergy and Medication form';
     PageType = ListPart;
     SourceTable = "Tr Allergy and Medication form";
-    
+
     layout
     {
         area(Content)
@@ -17,6 +17,7 @@ page 52203163 "Tr Allergy and Medication form"
                 {
                     ToolTip = 'Specifies the value of the Observation No. field.', Comment = '%';
                 }
+
                 field(Complaints; Rec.Complaints)
                 {
                     ToolTip = 'Specifies the value of the Complaints field.', Comment = '%';
@@ -32,6 +33,10 @@ page 52203163 "Tr Allergy and Medication form"
                 field("Drug Allergy"; Rec."Drug Allergy")
                 {
                     ToolTip = 'Specifies the value of the Drug Allergy field.', Comment = '%';
+                }
+                 field("Chronic Illness"; Rec."Chronic Illness")
+                {
+                    ToolTip = 'Specifies the value of the Chronic illness field.', Comment = '%';
                 }
                 field("Assessed By"; Rec."Assessed By")
                 {
