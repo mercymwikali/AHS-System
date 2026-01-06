@@ -43,7 +43,9 @@ table 52202646 "HMS Treatment Form Header"
             var
                 Patient: Record "HMS Patient";
             begin
-                if Patient.Get("Patient No.") then
+                Patient.Reset();
+                Patient.SetRange("Patient No.", "Patient No.");
+            if Patient.FindFirst() then
                     "Patient Name" := Patient."Search Name";
 
             end;
@@ -294,13 +296,13 @@ table 52202646 "HMS Treatment Form Header"
             // CalcFormula = lookup("HMS Setup Doctor".Resident where("Doctor ID" = field("Doctor ID")));
         }
         field(62; "Created By"; Code[50])
-        {            
+        {
         }
         field(63; "Modified By"; Code[50])
         {
         }
         field(64; isTranscription; Boolean)
-        {            
+        {
         }
         field(65; "Transcribed File No"; Text[50])
         {
@@ -308,7 +310,7 @@ table 52202646 "HMS Treatment Form Header"
         }
         field(66; "Clinic Visited"; Code[50])
         {
-            
+
         }
     }
 

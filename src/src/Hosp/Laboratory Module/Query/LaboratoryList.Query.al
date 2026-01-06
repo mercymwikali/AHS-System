@@ -123,6 +123,9 @@ Query 52202517 "Laboratory List"
             column(Inpatient; Inpatient)
             {
             }
+             column(SystemId; SystemId)
+            {
+            }
             dataitem(HMS_Patient; "HMS Patient")
             {
                 DataItemLink = "Patient No." = HMS_Laboratory_Form_Header."Patient No.";

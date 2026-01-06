@@ -64,6 +64,9 @@ Query 52202453 "HMS Sample"
             column(Lab_Unique_ID; "Lab Unique ID")
             {
             }
+             column(SystemId; SystemId)
+            {
+            }
         }
     }
 }

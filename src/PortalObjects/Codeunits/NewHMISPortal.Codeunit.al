@@ -1,6 +1,11 @@
 namespace HMISBC.HMISBC;
 using System.Email;
 using System.Security.User;
+using System.IO;
+using System.Environment;
+using Microsoft.Foundation.Attachment;
+using System.Security.AccessControl;
+using System;
 using Microsoft.Sales.Customer;
 using Microsoft.Foundation.NoSeries;
 
@@ -588,6 +593,57 @@ codeunit 52202424 NewHMISPortal
             Commit();
             if CuHMSProcesses.FnDispatchToDoctor(TbObsFoHea) then
                 returnValue := '{"status":"success","DocNo":"' + DocNo + '"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+
+    [ServiceEnabled]
+    procedure FnConsultationRoomCheckin(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        documentNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbRec: Record "HMS Treatment Form Header";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('treatmentNo', jToken);
+        documentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbRec.Reset();
+        TbRec.SetRange(TbRec."Treatment No.", documentNo);
+        if TbRec.FindFirst() then begin
+            if CuHMSProcesses.FnConsultationRoomCheckin(TbRec) then
+                returnValue := '{"status":"success"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+
+[ServiceEnabled]
+     procedure FnConsultationMarkAsCompleted(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        TbTreat: record "HMS Treatment Form Header";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('treatmentNo', jToken);
+        treatmentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbTreat.Reset();
+        TbTreat.SetRange(TbTreat."Treatment No.", treatmentNo);
+        if TbTreat.FindFirst() then begin
+            if CuHMSProcesses.FnConsultationMarkAsCompleted(TbTreat) then
+                returnValue := '{"status":"success"}'
             else
                 returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
         end;
@@ -1382,6 +1438,461 @@ codeunit 52202424 NewHMISPortal
         end;
     end;
 
+    [ServiceEnabled]
+    procedure FnLaboratoryTestSample(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        visitorNo: Code[30];
+        laboratoryNo: Code[30];
+        laboratoryTestCode: Code[50];
+        remarks: Text[250];
+        staffNo: Code[30];
+        myAction: Text;
+        // specimenCode: Text;
+        recId: Text;
+        TbLHMSSample: record "HMS Sample";
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('laboratoryNo', jToken);
+        laboratoryNo := jToken.AsValue().AsText();
+        jObject.Get('labTestCode', jToken);
+        laboratoryTestCode := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbLHMSSample.Init();
+                    // TbLHMSSample.No:= ;
+                    TbLHMSSample."Laboratory No" := laboratoryNo;
+                    TbLHMSSample."Lab Test Code" := laboratoryTestCode;
+                    jObject.Get('remarks', jToken);
+                    TbLHMSSample.Remarks := jToken.AsValue().AsText();
+                    TbLHMSSample."Collected By" := staffNo;
+                    TbLHMSSample."Collection Date" := Today;
+                    TbLHMSSample."Collection Time" := Time;
+                    if TbLHMSSample.Insert(true) then begin
+                        CuHMSProcesses.FnLaboratorySubmitSamples(laboratoryNo, laboratoryTestCode);
+                        returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbLHMSSample.Reset();
+                    TbLHMSSample.SetRange(TbLHMSSample.SystemId, recId);
+                    if TbLHMSSample.FindFirst() then begin
+                        jObject.Get('remarks', jToken);
+                        TbLHMSSample.Remarks := jToken.AsValue().AsText();
+                        TbLHMSSample."Collected By" := staffNo;
+                        TbLHMSSample."Collection Date" := Today;
+                        TbLHMSSample."Collection Time" := Time;
+                        if TbLHMSSample.Rename(laboratoryNo, TbLHMSSample."Lab Test Code", TbLHMSSample."Collection Time") then // REFACTOR: HOW TO RENAME KEYS
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbLHMSSample.Reset();
+                    TbLHMSSample.SetRange(TbLHMSSample.SystemId, recId);
+                    if TbLHMSSample.FindFirst() then begin
+                        if TbLHMSSample.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnLaboratoryTestResultsEntry(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jResultsArray: JsonArray;
+        jToken: JsonToken;
+        jResultsToken: JsonToken;
+        jResultToken: JsonToken;
+        visitorNo: Code[30];
+        laboratoryNo: Code[30];
+        laboratoryTestCode: Code[50];
+        remarks: Text[2000];
+        staffNo: Code[30];
+        myAction: Text;
+        specimenCode: Text;
+        recId: Text;
+        TbResultsEntry: Record "HMS Laboratory Results Entry";
+        LabResultsEntry: Record "HMS Laboratory Results Entry";
+        TbLabLine: Record "HMS Laboratory Test Line";
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('laboratoryNo', jToken);
+        laboratoryNo := jToken.AsValue().AsText();
+        jObject.Get('labTestCode', jToken);
+        laboratoryTestCode := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbResultsEntry.Init();
+                    TbResultsEntry."Laboratory No." := laboratoryNo;
+                    TbResultsEntry."Laboratory Test Code" := laboratoryTestCode;
+                    jObject.Get('specimenCode', jToken);
+                    TbResultsEntry."Specimen Code" := jToken.AsValue().AsText();
+                    TbResultsEntry."Collection Date" := Today;
+                    TbResultsEntry."Collection Time" := Time;
+                    jObject.Get('results', jToken);
+                    TbResultsEntry.Results := jToken.AsValue().AsDecimal();
+                    if jObject.Get('remarks', jToken) then
+                        TbResultsEntry.Remarks := jToken.AsValue().AsText();
+                    // if jObject.Get('narration', jToken) then
+                    //     TbResultsEntry."Narration Results" := jToken.AsValue().AsText();
+
+                    if jObject.Get('TestNormalRanges', jToken) then
+                        TbResultsEntry."Test Normal Ranges" := jToken.AsValue().AsText();
+                    if TbResultsEntry.Remarks <> '' then
+                        TbResultsEntry.Completed := true;
+                    TbResultsEntry."Reviewed By" := FnGetStaffUserID(staffNo);
+                    if TbResultsEntry.Insert(true) then begin
+                        returnValue := '{"status":"success"}';
+                        // Check if all results have complete status
+                        LabResultsEntry.Reset();
+                        LabResultsEntry.SetRange("Laboratory No.", laboratoryNo);
+                        LabResultsEntry.SetRange("Laboratory Test Code", laboratoryTestCode);
+                        LabResultsEntry.SetRange(Completed, false);
+                        if LabResultsEntry.IsEmpty() then begin
+                            TbLabLine.Reset();
+                            TbLabLine.SetRange(TbLabLine."Laboratory No.", laboratoryNo);
+                            TbLabLine.SetRange(TbLabLine."Laboratory Test Code", laboratoryTestCode);
+                            if TbLabLine.FindFirst() then begin
+                                TbLabLine."Results Added" := true;
+                                TbLabLine.Modify();
+                            end;
+                        end;
+                    end;
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbResultsEntry.Reset();
+                    TbResultsEntry.SetRange(TbResultsEntry.SystemId, recId);
+                    if TbResultsEntry.FindFirst() then begin
+                        TbResultsEntry."Laboratory No." := laboratoryNo;
+                        TbResultsEntry."Laboratory Test Code" := laboratoryTestCode;
+                        jObject.Get('specimenCode', jToken);
+                        TbResultsEntry."Specimen Code" := jToken.AsValue().AsText();
+                        TbResultsEntry."Collection Date" := Today;
+                        TbResultsEntry."Collection Time" := Time;
+                        jObject.Get('results', jToken);
+                        TbResultsEntry.Results := jToken.AsValue().AsDecimal();
+                        if jObject.Get('remarks', jToken) then
+                            TbResultsEntry.Remarks := jToken.AsValue().AsText();
+                        if jObject.Get('TestNormalRanges', jToken) then
+                            TbResultsEntry."Test Normal Ranges" := jToken.AsValue().AsText();
+                        // if TbResultsEntry.Remarks <> '' then //TODO: What does it mean by Completed result entry
+                        //     TbResultsEntry.Completed := true;
+                        // if TbResultsEntry.Results <> '' then
+                        TbResultsEntry.Completed := true;
+                        TbResultsEntry."Reviewed By" := FnGetStaffUserID(staffNo);
+                        if TbResultsEntry.Rename(TbResultsEntry."Laboratory No.", TbResultsEntry."Laboratory Test Code", TbResultsEntry."Specimen Code") then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbResultsEntry.Reset();
+                    TbResultsEntry.SetRange(TbResultsEntry.SystemId, recId);
+                    if TbResultsEntry.FindFirst() then begin
+                        if TbResultsEntry.Delete(true) then
+                            returnValue := '{"status":"success"}';
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnLaboratoryTestHeader(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        staffNo: Code[30];
+        branchCode: Code[30];
+        myAction: Text;
+        recId: Text;
+        //
+        TbRec: record "HMS Laboratory Form Header";
+        documentNo: Text;
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('branchCode', jToken);
+        branchCode := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbHMSSetup.Get();
+                    TbHMSSetup.TestField("Lab Test Request Nos");
+                    NextNo := CuNoSeries.GetNextNo(TbHMSSetup."Lab Test Request Nos", 0D, true);
+                    TbRec.Init();
+                    TbRec."Laboratory Date" := Today;
+                    TbRec."Laboratory Time" := Time;
+                    TbRec."Laboratory No." := NextNo;
+                    // if jObject.Get('status', jToken) then
+                    //     TbRec.Status := jToken.AsValue().AsInteger();
+                    jObject.Get('cashSale', jToken);
+                    TbRec."Cash Sale" := jToken.AsValue().AsBoolean();
+                    jObject.Get('visitNo', jToken);
+                    TbRec."Link No." := jToken.AsValue().AsText();
+                    jObject.Get('patientNo', jToken);
+                    TbRec."Patient No." := jToken.AsValue().AsText();
+                    TbRec."Doctor ID" := staffNo;
+                    if TbRec.Insert(true) then
+                        returnValue := '{"status":"success","laboratoryNo":"' + NextNo + '"}';
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbRec.Reset();
+                    TbRec.SetRange(TbRec.SystemId, recId);
+                    if TbRec.FindFirst() then begin
+                        TbRec."Laboratory Date" := Today;
+                        TbRec."Laboratory Time" := Time;
+                        if jObject.Get('status', jToken) then begin
+                            TbRec.Status := jToken.AsValue().AsInteger();
+                            // TbRec.Validate(Status);
+                        end;
+                        jObject.Get('cashSale', jToken);
+                        TbRec."Cash Sale" := jToken.AsValue().AsBoolean();
+                        jObject.Get('visitNo', jToken);
+                        TbRec."Link No." := jToken.AsValue().AsText();
+                        jObject.Get('patientNo', jToken);
+                        TbRec."Patient No." := jToken.AsValue().AsText();
+                        TbRec."Doctor ID" := staffNo;
+                        if TbRec.Modify() then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbRec.Reset();
+                    TbRec.SetRange(TbRec.SystemId, recId);
+                    if TbRec.FindFirst() then begin
+                        if TbRec.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnLaboratoryTestLine(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        visitorNo: Code[30];
+        laboratoryNo: Code[30];
+        staffNo: Code[30];
+        myAction: Text;
+        specimenCode: Text;
+        recId: Text;
+        TbLabLine: record "HMS Laboratory Test Line";
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('laboratoryNo', jToken);
+        laboratoryNo := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbLabLine.Init();
+                    TbLabLine."Laboratory No." := laboratoryNo;
+                    if jObject.Get('labTestCode', jToken) then begin
+                        TbLabLine."Laboratory Test Code" := jToken.AsValue().AsText();
+                        TbLabLine.Validate("Laboratory Test Code");
+                    end;
+                    if jObject.Get('specimenCode', jToken) then
+                        TbLabLine."Specimen Code" := jToken.AsValue().AsText();
+                    if jObject.Get('unitOfMeasure', jToken) then
+                        TbLabLine."Measuring Unit Code" := jToken.AsValue().AsText();
+                    if jObject.Get('countValue', jToken) then
+                        TbLabLine."Count Value" := jToken.AsValue().AsInteger();
+                    jObject.Get('remarks', jToken);
+                    // TbLabLine."Assigned User ID" := FnGetStaffUserID(staffNo);
+                    TbLabLine.Remarks := jToken.AsValue().AsText();
+                    TbLabLine."Lab Request Date" := Today;
+                    TbLabLine."Lab Request Time" := Time;
+                    TbLabLine."Staff No" := staffNo;
+                    TbLabLine.Validate("Staff No");
+                    if TbLabLine.Insert(true) then
+                        returnValue := '{"status":"success"}'
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbLabLine.Reset();
+                    TbLabLine.SetRange(TbLabLine.SystemId, recId);
+                    if TbLabLine.FindFirst() then begin
+                        if jObject.Get('labTestCode', jToken) then
+                            TbLabLine."Laboratory Test Code" := jToken.AsValue().AsText();
+                        if jObject.Get('specimenCode', jToken) then
+                            TbLabLine."Specimen Code" := jToken.AsValue().AsText();
+                        if jObject.Get('unitOfMeasure', jToken) then
+                            TbLabLine."Measuring Unit Code" := jToken.AsValue().AsText();
+                        if jObject.Get('countValue', jToken) then
+                            TbLabLine."Count Value" := jToken.AsValue().AsInteger();
+                        jObject.Get('remarks', jToken);
+                        TbLabLine.Remarks := jToken.AsValue().AsText();
+                        TbLabLine.Completed := true;
+                        TbLabLine."Completion Date" := Today;
+                        TbLabLine."Completion Time" := Time;
+                        TbLabLine."Assigned User ID" := FnGetStaffUserID(staffNo);
+                        TbLabLine."Staff No" := staffNo;
+                        TbLabLine.Validate("Staff No");
+                        if TbLabLine.Rename(laboratoryNo, TbLabLine."Laboratory Test Code", TbLabLine."Specimen Code", TbLabLine."Duplicate test") then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbLabLine.Reset();
+                    TbLabLine.SetRange(TbLabLine.SystemId, recId);
+                    if TbLabLine.FindFirst() then begin
+                        if TbLabLine.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnLaboratoryDispatchToDoctor(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        documentNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbRec: Record "HMS Laboratory Form Header";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('laboratoryNo', jToken);
+        documentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbRec.Reset();
+        TbRec.SetRange(TbRec."Laboratory No.", documentNo);
+        if TbRec.FindFirst() then begin
+            if CuHMSProcesses.FnLaboratoryDispatchToDoctor(TbRec) then
+                returnValue := '{"status":"success"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+
+[ServiceEnabled]
+ procedure FnRadiologyRequestLine(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        staffNo: Code[30];
+        branchCode: Code[30];
+        myAction: Text;
+        recId: Text;
+        //
+        TbRec: record "HMS Radiology Form Line";
+        documentNo: Text;
+        fileJson: Text;
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('branchCode', jToken);
+        branchCode := jToken.AsValue().AsText();
+        jObject.Get('recId', jToken);
+        recId := jToken.AsValue().AsText();
+        //
+        jObject.Get('radiologyNo', jToken);
+        documentNo := jToken.AsValue().AsText();
+        case myAction of
+            'edit', 'edit#save':
+                begin
+                    // jObject.Get('radiologyTypeCode', jToken);
+                    // documentNo := jToken.AsValue().AsText();
+                    TbRec.Reset();
+                    TbRec.SetRange(TbRec.SystemId, recId);
+                    TbRec.SetRange(TbRec.Completed, false);
+                    if TbRec.FindFirst() then begin
+                        TbRec."Performed Date" := Today;
+                        TbRec."Performed Time" := Time;
+                        jObject.Get('remarks', jToken);
+                        TbRec.Remarks := jToken.AsValue().AsText();
+                        TbRec.Completed := true;
+                        if TbRec.Modify() then begin
+                            fileJson := '{';
+                            fileJson := fileJson + '"tableId":"' + format(Database::"HMS Radiology Form Line") + '",';
+                            fileJson := fileJson + '"docNo":"' + TbRec."Radiology no." + '",';
+                            fileJson := fileJson + '"docNo2":"' + TbRec."Radiology Type Code" + '",';
+                            fileJson := fileJson + '"fileName":"Radiology-Image-' + TbRec."Radiology no." + '-' + TbRec."Radiology Type Code" + '",';
+                            jObject.Get('fileBase64', jToken);
+                            fileJson := fileJson + '"fileBase64":"' + jToken.AsValue().AsText() + '",';
+                            fileJson := fileJson + '"myUserId":"' + FnGetStaffUserID(staffNo) + '"';
+                            fileJson := fileJson + '}';
+                            FnUploadAttachedFile(fileJson);
+                            returnValue := '{"status":"success"}';
+                        end;
+                    end;
+                end;
+        end;
+    end;
+
+    [ServiceEnabled]
+    procedure FnRadiologyForwardRequest(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        documentNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbRec: Record "HMS Radiology Form Header";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('radiologyNo', jToken);
+        documentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbRec.Reset();
+        TbRec.SetRange(TbRec."Radiology No.", documentNo);
+        if TbRec.FindFirst() then begin
+            if CuHMSProcesses.FnRadiologyForwardRequest(TbRec) then
+                returnValue := '{"status":"success"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+
     procedure FnSendEmail(subject: Text[150]; recipients: Text[200]; emailMessage: Text[1000]; ccRecipients: Text[100]) returnValue: Boolean
     var
         CuEmailMessage: Codeunit "Email Message";
@@ -1465,6 +1976,182 @@ codeunit 52202424 NewHMISPortal
         else
             returnValue := UserId;
     end;
+    procedure FnLaboratoryResultsReport(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        treatmentNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbLabFo: Record "HMS Laboratory Form Header";
+        TbLabRes: Record "HMS Laboratory Results Entry";
+        laboratoryNo: Code[50];
+        LabTestCode: Code[30];
+        RpLabResults: report "HMS Lab Results2";
+        filename: Text;
+        Convert: DotNet Convert;
+        IOFile: DotNet File;
+    begin
+        returnValue := '';
+        filename := FILESPATH + '\' + 'Lab Results - ' + laboratoryNo + '.pdf';
+        if EXISTS(filename) then
+            ERASE(filename);
+
+        jObject.ReadFrom(jString);
+        jObject.Get('laboratoryNo', jToken);
+        laboratoryNo := jToken.AsValue().AsCode();
+        jObject.Get('laboratoryTestCode', jToken);
+        LabTestCode := jToken.AsValue().AsCode();
+
+        TbLabRes.reset();
+        TbLabRes.SetRange("Laboratory No.", laboratoryNo);
+        if LabTestCode <> '' then
+            TbLabRes.SetRange("Laboratory Test Code", LabTestCode);
+        if TbLabRes.FindFirst() then begin
+            RpLabResults.SetTableView(TbLabRes);
+        end else
+            Error('No results found');
+
+        RpLabResults.SaveAsPdf(filename);
+        returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+        if EXISTS(filename) then
+            ERASE(filename);
+    end;
+
+    [ServiceEnabled]
+   procedure FnUploadAttachedFile(jString: Text) return_value: Boolean
+    var
+        TableFound: Boolean;
+        FromRecRef: RecordRef;
+        Bytes: DotNet Array;
+        Convert: DotNet Convert;
+        MemoryStream: DotNet MemoryStream;
+        Ostream: OutStream;
+        CuFileManagement: Codeunit "File Management";
+        DocNo1: Code[50];
+        DocNo2: Code[50];
+        DocNos: array[20] of Code[50];
+        myPos: Integer;
+        myText: Dotnet String;
+        mySeparator: Dotnet String;
+        myArray: DotNet Array;
+        lineNo: Integer;
+        ObjUsers: Record User;
+        TbDocumentAttachment: Record "Document Attachment";
+        jObject: JsonObject;
+        jToken: JsonToken;
+        tableId: Integer;
+        fileName: Text;
+        attachment: Text;
+        myUserId: Code[30];
+        TbRadiologyLine: Record "HMS Radiology Form Line";
+    begin
+        TableFound := FALSE;
+        return_value := FALSE;
+        //
+        jObject.ReadFrom(jString);
+        jObject.Get('tableId', jToken);
+        tableId := jToken.AsValue().AsInteger();
+        jObject.Get('docNo', jToken);
+        DocNo := jToken.AsValue().AsText();
+        jObject.Get('fileName', jToken);
+        fileName := jToken.AsValue().AsText();
+        jObject.Get('fileBase64', jToken);
+        attachment := jToken.AsValue().AsText();
+        jObject.Get('myUserId', jToken);
+        myUserId := jToken.AsValue().AsText();
+        case TableID of
+            Database::"HMS Radiology Form Line":
+                begin
+                    jObject.Get('docNo2', jToken);
+                    DocNo2 := jToken.AsValue().AsText();
+                    TbRadiologyLine.RESET;
+                    TbRadiologyLine.SetRange(TbRadiologyLine."Radiology no.", DocNo);
+                    TbRadiologyLine.SetRange(TbRadiologyLine."Radiology Type Code", DocNo2);
+                    if TbRadiologyLine.FIND('-') then begin
+                        FromRecRef.GETTABLE(TbRadiologyLine);
+                    end;
+                    TableFound := true;
+                end;
+        end;
+        //save the file
+        if tableFound = true then begin
+            if fileName <> '' then begin
+                CLEAR(TbDocumentAttachment);
+                TbDocumentAttachment.INIT();
+                TbDocumentAttachment.VALIDATE("File Extension", CuFileManagement.GetExtension(fileName));
+                TbDocumentAttachment.VALIDATE("File Name", COPYSTR(CuFileManagement.GetFileNameWithoutExtension(fileName), 1, MAXSTRLEN(fileName)));
+                // TbDocumentAttachment.VALIDATE("Table ID", FromRecRef.NUMBER);
+                TbDocumentAttachment.VALIDATE("No.", docNo);
+                TbDocumentAttachment."Table ID" := TableID;
+                if lineNo <> 0 then
+                    TbDocumentAttachment.VALIDATE(TbDocumentAttachment."Line No.", lineNo);
+                if DocNos[2] <> '' then
+                    TbDocumentAttachment.VALIDATE(TbDocumentAttachment."No. 2", DocNos[2]);
+                Bytes := Convert.FromBase64String(Attachment);
+                MemoryStream := MemoryStream.MemoryStream(Bytes);
+                TbDocumentAttachment."Document Reference ID".IMPORTSTREAM(MemoryStream, '', fileName);
+                ObjUsers.Reset();
+                ObjUsers.SetRange("User Name", myUserId);
+                if ObjUsers.Find('-') then
+                    TbDocumentAttachment."Attached By" := ObjUsers."User Security ID";
+                TbDocumentAttachment.VALIDATE("Attached Date", CURRENTDATETIME);
+                TbDocumentAttachment.INSERT();
+                return_value := true;
+                if CuFileManagement.DeleteServerFile(fileName) then;
+            end else
+                ERROR('File name cannot be blank');
+        end else begin
+            ERROR('Related table or record for attached file was not found');
+        end;
+    end;
+
+    //procedure FnGetDocumentAttachmentBase64(docNo: Code[100]; attachmentID: Integer; tableID: Integer) BaseImage: Text;
+    procedure FnGetDocumentAttachmentBase64(jString: Text) BaseImage: Text;
+    var
+        FromRecRef: RecordRef;
+        CuFileManagement: Codeunit "File Management";
+        Bytes: DotNet Array;
+        Convert: DotNet Convert;
+        MemoryStream: DotNet MemoryStream;
+        Ostream: OutStream;
+        isTableFound: Boolean;
+        tableFound: Boolean;
+        imageID: GUID;
+        Istream: InStream;
+        TbDocumentAttachment: record "Document Attachment";
+        TbTenantMedia: Record "Tenant Media";
+        jObject: JsonObject;
+        jToken: JsonToken;
+        tableID: Integer;
+        attachmentID: Integer;
+        docNo: Code[30];
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('tableId', jToken);
+        tableId := jToken.AsValue().AsInteger();
+        jObject.Get('attachmentID', jToken);
+        attachmentID := jToken.AsValue().AsInteger();
+        jObject.Get('docNo', jToken);
+        docNo := jToken.AsValue().AsCode();
+        TbDocumentAttachment.RESET();
+        TbDocumentAttachment.SETRANGE("Table ID", tableID);
+        TbDocumentAttachment.SETRANGE("No.", docNo);
+        TbDocumentAttachment.SETRANGE(ID, attachmentID);
+        if TbDocumentAttachment.FINDFIRST() then begin
+            if TbDocumentAttachment."Document Reference ID".HASVALUE then begin
+                imageID := TbDocumentAttachment."Document Reference ID".MEDIAID;
+                if TbTenantMedia.GET(imageID) then begin
+                    TbTenantMedia.CALCFIELDS(Content);
+                    TbTenantMedia.Content.CREATEINSTREAM(Istream);
+                    MemoryStream := MemoryStream.MemoryStream();
+                    COPYSTREAM(MemoryStream, Istream);
+                    Bytes := MemoryStream.GetBuffer();
+                    BaseImage := Convert.ToBase64String(Bytes);
+                end;
+            end;
+        end;
+    end;
 
     var
         JsObject: JsonObject;
@@ -1480,5 +2167,6 @@ codeunit 52202424 NewHMISPortal
         TbAppointment: Record "HMS Appointment Form Header";
         CuNoSeries: Codeunit NoSeriesManagement;
         CuHMSProcesses: Codeunit "HMS Processes";
+        FILESPATH: Label 'C:\inetpub\wwwroot\PortalFiles';
 
 }

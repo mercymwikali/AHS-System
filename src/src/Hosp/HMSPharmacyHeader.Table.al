@@ -35,7 +35,7 @@ table 52202660 "HMS Pharmacy Header"
         field(9; "Bill To Customer No."; Code[20])
         {
         }
-        field(10; "Issued By"; Code[20])
+        field(10; "Issued By"; Code[50])
         {
             trigger OnValidate()
             begin

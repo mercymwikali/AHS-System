@@ -75,6 +75,9 @@ query 52202599 "HMS Treatment Form Header"
             column(PatientNo; "Patient No.")
             {
             }
+            column(PatientName; "Patient Name")
+            {
+            }
             column(PharmacyStatus; "Pharmacy Status")
             {
             }
