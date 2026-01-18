@@ -1035,7 +1035,7 @@ Table 52202643 "HMS Patient"
         }
         field(199; "Patient Status"; Option)
         {
-            OptionMembers = Admitted,"Under Review", Discharged,Alive,Dead,Transfer;
+            OptionMembers = ,Admitted,"Under Review", Discharged,Alive,Dead,Transfer;
         }
         field(200; "Debtor Account"; code[20])
         {

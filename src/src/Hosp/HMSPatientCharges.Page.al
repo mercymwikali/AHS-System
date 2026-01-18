@@ -253,6 +253,18 @@ Page 52202657 "HMS Patient Charges List"
                     Editable = false;
                     ToolTip = 'Specifies the value of the System Created field.';
                 }
+                field("Patient Names"; Rec.patientNames)
+                {
+
+                }
+                field("Settlement Type"; Rec."Patient Type Lk")
+                {
+
+                }
+                field("System Id"; Rec.SystemId)
+                {
+
+                }
             }
         }
     }

@@ -3,9 +3,12 @@ Page 52202550 "HMS Patient List2"
     CardPageID = "HMS Patients";
     PageType = List;
     SourceTable = "HMS Patient";
-    SourceTableView = where(Blocked = filter(false));
+    //  SourceTableView = where(Blocked = filter(false));
     ApplicationArea = Basic, Suite;
+    Editable = true;
 
+   
+    
     layout
     {
         area(content)

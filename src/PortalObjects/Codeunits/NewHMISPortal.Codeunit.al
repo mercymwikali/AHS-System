@@ -2,7 +2,12 @@ namespace HMISBC.HMISBC;
 using System.Email;
 using System.Security.User;
 using System.IO;
+using Microsoft.Finance.Dimension;
+using PTL.HMIS;
 using System.Environment;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.Posting;
 using Microsoft.Foundation.Attachment;
 using System.Security.AccessControl;
 using System;
@@ -201,6 +206,7 @@ codeunit 52202424 NewHMISPortal
                         if HMSPatientTbl."Patient Type" = HMSPatientTbl."Patient Type"::Corporate then begin
                             if jObject.Get('insuranceNo', jToken) then
                                 HMSPatientTbl."Insurance No." := jToken.AsValue().AsText();
+                            HMSPatientTbl.Validate("Insurance No.");
                             if jObject.Get('insuranceName', jToken) then
                                 HMSPatientTbl."Insurance Name" := jToken.AsValue().AsText();
                             if jObject.Get('insurancePrinicipalMemberName', jToken) then
@@ -625,8 +631,8 @@ codeunit 52202424 NewHMISPortal
     end;
 
 
-[ServiceEnabled]
-     procedure FnConsultationMarkAsCompleted(jString: Text) returnValue: Text
+    [ServiceEnabled]
+    procedure FnConsultationMarkAsCompleted(jString: Text) returnValue: Text
     var
         jObject: JsonObject;
         jToken: JsonToken;
@@ -1808,8 +1814,8 @@ codeunit 52202424 NewHMISPortal
     end;
 
 
-[ServiceEnabled]
- procedure FnRadiologyRequestLine(jString: Text) returnValue: Text
+    [ServiceEnabled]
+    procedure FnRadiologyRequestLine(jString: Text) returnValue: Text
     var
         jObject: JsonObject;
         jToken: JsonToken;
@@ -1892,6 +1898,630 @@ codeunit 52202424 NewHMISPortal
         end;
     end;
 
+    procedure FnPatientCharges(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        staffNo: Code[30];
+        branchCode: Code[30];
+        myAction: Text;
+        recId: Text;
+        TbCharges: record "HMS Patient Charges";
+        documentNo: Text;
+        HMSAppointmentFormHeader: Record "HMS Appointment Form Header";
+        HMSAdmissionFormHeader: Record "HMS Admission Form Header";
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('branchCode', jToken);
+        branchCode := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        //
+        jObject.Get('visitNo', jToken);
+        documentNo := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbCharges.Init();
+                    HMSAppointmentFormHeader.Reset();
+                    HMSAppointmentFormHeader.Setrange("Appointment No.", documentNo);
+                    if HMSAppointmentFormHeader.FindFirst() then
+                        TbCharges."Patient No." := HMSAppointmentFormHeader."Patient No."
+                    else begin
+                        HMSAdmissionFormHeader.Reset();
+                        HMSAdmissionFormHeader.SetRange("Admission No.", documentNo);
+                        if HMSAdmissionFormHeader.FindFirst() then begin
+                            TbCharges."Patient No." := HMSAdmissionFormHeader."Patient No.";
+                        end
+                    end;
+                    TbCharges."Visit No" := documentNo;
+                    jObject.Get('creationDate', jToken);
+                    TbCharges.Date := jToken.AsValue().AsDate();
+                    // jObject.Get('patientNo', jToken);
+                    // TbCharges."Patient No." := jToken.AsValue().AsText();
+                    jObject.Get('transactionType', jToken);
+                    TbCharges."Transaction Type" := jToken.AsValue().AsText();
+                    TbCharges.Validate("Transaction Type");
+                    jObject.Get('charge', jToken);
+                    TbCharges.Code := jToken.AsValue().AsText();
+                    TbCharges.Validate(Code);
+                    jObject.Get('quantity', jToken);
+                    TbCharges.Quantity := jToken.AsValue().AsInteger();
+                    TbCharges.Validate(Quantity);
+                    jObject.Get('remarks', jToken);
+                    TbCharges.Remarks := jToken.AsValue().AsText();
+                    TbCharges."User ID" := FnGetStaffUserID(staffNo);
+                    if jObject.Get('doctorId', jToken) then begin
+                        TbCharges."Doctor ID" := jToken.AsValue().AsCode();
+                        TbCharges.Validate("Doctor ID");
+                    end;
+                    if TbCharges.Insert(true) then
+                        returnValue := '{"status":"success"}'
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbCharges.Reset();
+                    TbCharges.SetRange(TbCharges.SystemId, recId);
+                    TbCharges.SetRange(TbCharges.Posted, false);
+                    if TbCharges.FindFirst() then begin
+                        jObject.Get('creationDate', jToken);
+                        TbCharges.Date := jToken.AsValue().AsDate();
+                        jObject.Get('transactionType', jToken);
+                        TbCharges."Transaction Type" := jToken.AsValue().AsText();
+                        TbCharges.Validate("Transaction Type");
+                        jObject.Get('charge', jToken);
+                        TbCharges.Code := jToken.AsValue().AsText();
+                        TbCharges.Validate(Code);
+                        jObject.Get('quantity', jToken);
+                        TbCharges.Quantity := jToken.AsValue().AsInteger();
+                        TbCharges.Validate(Quantity);
+                        jObject.Get('remarks', jToken);
+                        TbCharges.Remarks := jToken.AsValue().AsText();
+                        TbCharges."User ID" := FnGetStaffUserID(staffNo);
+                        if jObject.Get('doctorId', jToken) then begin
+                            TbCharges."Doctor ID" := jToken.AsValue().AsCode();
+                            TbCharges.Validate("Doctor ID");
+                        end;
+                        if TbCharges.Rename(TbCharges."Transaction Type", TbCharges."Line No", TbCharges."Patient No.", TbCharges."Link No", TbCharges."Treatment No.", TbCharges.Code) then
+                            returnValue := '{"status":"success"}'
+                    end else
+                        Error('You cannot edit a posted charge.');
+                end;
+            'delete':
+                begin
+                    TbCharges.Reset();
+                    TbCharges.SetRange(TbCharges.SystemId, recId);
+                    TbCharges.SetRange(TbCharges.Posted, false);
+                    if TbCharges.FindFirst() then begin
+                        if TbCharges.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+    procedure FnReceiptHeader(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        staffNo: Code[30];
+        branchCode: Code[30];
+        myAction: Text;
+        recId: Text;
+        CoPayTempFix: text;
+        //
+        TbRec: record "Receipts Header";
+        documentNo: Text;
+        oStream: OutStream;
+        TbDimVal: record "Dimension Value";
+        TbCashOff: Record "Cash Office Setup";
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('branchCode', jToken);
+        branchCode := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        //
+        jObject.Get('patientNo', jToken);
+        documentNo := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+
+                    if TbUserSetup."Branch Code" <> '' then begin
+                        TbDimVal.reset();
+                        TbDimVal.setrange(Code, TbUserSetup."Branch Code");
+                        if TbDimVal.find('-') then begin
+                            TbDimVal.testfield("Receipt No. Series");
+                            NextNo := CuNoSeries.GetNextNo(TbDimVal."Receipt No. Series", 0D, true);
+                        end;
+                    end else begin
+                        TbCashOff.Get();
+                        TbCashOff.TestField(TbCashOff."Receipts No");
+                        NextNo := CuNoSeries.GetNextNo(TbCashOff."Receipts No", 0D, true);
+                    end;
+                    TbRec.Init();
+                    TbRec."No." := NextNo;
+                    TbRec."Patient No." := documentNo;
+                    jObject.Get('receiptDate', jToken);
+                    TbRec.Date := jToken.AsValue().AsDate();
+                    jObject.Get('depositDate', jToken);
+                    TbRec."Document Date" := jToken.AsValue().AsDate();
+                    if jObject.Get('payMode', jToken) then
+                        TbRec."Pay Mode" := jToken.AsValue().AsInteger();
+                    if jObject.Get('amountReceived', jToken) then
+                        TbRec."Amount Recieved" := jToken.AsValue().AsDecimal();
+                    if jObject.Get('coPay', jToken) then begin
+                        TbRec."Co-Pay" := jToken.AsValue().AsBoolean();
+                    end;
+                    if jObject.Get('remarks', jToken) then
+                        TbRec.Remarks := jToken.AsValue().AsText();
+                    TbRec."Global Dimension 1 Code" := branchCode;
+                    if jObject.Get('transactionCode', jToken) then
+                        TbRec."Transaction Code" := jToken.AsValue().AsText();
+                    if jObject.Get('splitAmount', jToken) then begin
+                        TbRec."Split Amount" := jToken.AsValue().AsBoolean();
+                        TbRec.Validate("Split Amount");
+                    end;
+                    TbRec.Cashier := staffNo;
+                    if jObject.Get('isPartialPayment', jToken) then begin
+                        TbRec.isPartialPayment := jToken.AsValue().AsBoolean();
+                        TbRec.Validate(isPartialPayment);
+                    end;
+                    if TbRec.Insert(true) then begin
+                        TbRec.Reset();
+                        TbRec.SetRange("No.", NextNo);
+                        if TbRec.FindFirst() then begin
+                            TbRec.Validate("Patient No.");
+                            TbRec.Validate("Pay Mode");
+                            TbRec.Validate("Co-Pay");
+                            TbRec.Validate(isPartialPayment);
+                            TbRec.Modify();
+                        end;
+                        returnValue := '{"status":"success","ReceiptNo":"' + NextNo + '"}'
+                    end;
+
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbRec.Reset();
+                    TbRec.SetRange(TbRec.SystemId, recId);
+                    if TbRec.FindFirst() then begin
+                        jObject.Get('receiptDate', jToken);
+                        TbRec.Date := jToken.AsValue().AsDate();
+                        jObject.Get('depositDate', jToken);
+                        TbRec."Document Date" := jToken.AsValue().AsDate();
+                        jObject.Get('payMode', jToken);
+                        TbRec."Pay Mode" := jToken.AsValue().AsInteger();
+                        jObject.Get('amountReceived', jToken);
+                        TbRec."Amount Recieved" := jToken.AsValue().AsDecimal();
+                        if jObject.Get('coPay', jToken) then
+                            TbRec."Co-Pay" := jToken.AsValue().AsBoolean();
+                        if jObject.Get('transactionCode', jToken) then
+                            TbRec."Transaction Code" := jToken.AsValue().AsText();
+                        if jObject.Get('splitAmount', jToken) then begin
+                            TbRec."Split Amount" := jToken.AsValue().AsBoolean();
+                            TbRec.Validate("Split Amount");
+                        end;
+                        if jObject.Get('remarks', jToken) then
+                            TbRec.Remarks := jToken.AsValue().AsText();
+                        if TbRec.Cashier <> staffNo then
+                            TbRec.Cashier := staffNo;
+                        if jObject.Get('isPartialPayment', jToken) then begin
+                            TbRec.isPartialPayment := jToken.AsValue().AsBoolean();
+                            TbRec.Validate(isPartialPayment);
+                        end;
+                        if TbRec.Modify() then begin
+                            returnValue := '{"status":"success"}'
+                        end;
+                    end;
+                end;
+            'delete':
+                begin
+                    TbRec.Reset();
+                    TbRec.SetRange(TbRec.SystemId, recId);
+                    if TbRec.FindFirst() then begin
+                        if TbRec.Delete(true) then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+        end;
+    end;
+
+
+    procedure FnPostReceipt(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        patientNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbRec: Record "Receipts Header";
+        receiptNo: Code[30];
+        PostReceiptCodeunit: Codeunit "Post Receipt";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        patientNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('receiptNo', jToken);
+        receiptNo := jToken.AsValue().AsCode();
+        TbRec.Reset();
+        TbRec.SetRange("No.", receiptNo);
+        TbRec.SetRange("Patient No.", patientNo);
+        if TbRec.FindFirst() then
+            if PostReceiptCodeunit.FnPostReceiptHeader(TbRec) then
+                returnValue := '{"status":"success"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+    end;
+
+    procedure FnReceiptSplitLine(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jResultsArray: JsonArray;
+        jToken: JsonToken;
+        jResultsToken: JsonToken;
+        jResultToken: JsonToken;
+        visitorNo: Code[30];
+        receiptNo: Code[30];
+        laboratoryTestCode: Code[50];
+        remarks: Text[250];
+        staffNo: Code[30];
+        myAction: Text;
+        specimenCode: Text;
+        recId: Text;
+        TbReceiptSplit: Record "Receipt Split";
+    begin
+        returnValue := ErrorSthWrong;
+        jObject.ReadFrom(jString);
+        jObject.Get('myAction', jToken);
+        myAction := jToken.AsValue().AsText();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsText();
+        jObject.Get('receiptNo', jToken);
+        receiptNo := jToken.AsValue().AsText();
+        if jObject.Get('recId', jToken) then
+            recId := jToken.AsValue().AsText();
+        case myAction of
+            'create', 'create#save':
+                begin
+                    TbReceiptSplit.Init();
+                    TbReceiptSplit."Receipt No" := receiptNo;
+                    jObject.Get('payMode', jToken);
+                    TbReceiptSplit."Pay Mode" := jToken.AsValue().AsInteger();
+                    jObject.Get('bankAccountNo', jToken);
+                    TbReceiptSplit."Bank Account No" := jToken.AsValue().AsText();
+                    jObject.Get('transactionNo', jToken);
+                    TbReceiptSplit."Transaction No" := jToken.AsValue().AsText();
+                    jObject.Get('amount', jToken);
+                    TbReceiptSplit.Amount := jToken.AsValue().AsDecimal();
+                    if (TbReceiptSplit."Pay Mode" = TbReceiptSplit."Pay Mode"::MPESA) or (TbReceiptSplit."Pay Mode" = TbReceiptSplit."Pay Mode"::PDQ) then
+                        TbReceiptSplit.Validate("Pay Mode");
+                    if TbReceiptSplit.Insert(true) then begin
+                        returnValue := '{"status":"success"}';
+
+                    end;
+                end;
+            'edit', 'edit#save':
+                begin
+                    TbReceiptSplit.Reset();
+                    TbReceiptSplit.SetRange(TbReceiptSplit.SystemId, recId);
+                    if TbReceiptSplit.FindFirst() then begin
+                        jObject.Get('payMode', jToken);
+                        TbReceiptSplit."Pay Mode" := jToken.AsValue().AsInteger();
+                        jObject.Get('bankAccountNo', jToken);
+                        TbReceiptSplit."Bank Account No" := jToken.AsValue().AsText();
+                        jObject.Get('transactionNo', jToken);
+                        TbReceiptSplit."Transaction No" := jToken.AsValue().AsText();
+                        jObject.Get('amount', jToken);
+                        TbReceiptSplit.Amount := jToken.AsValue().AsDecimal();
+                        if (TbReceiptSplit."Pay Mode" = TbReceiptSplit."Pay Mode"::MPESA) or (TbReceiptSplit."Pay Mode" = TbReceiptSplit."Pay Mode"::Cash) then
+                            TbReceiptSplit.Validate("Pay Mode");
+                        if TbReceiptSplit.Rename(TbReceiptSplit."Receipt No", TbReceiptSplit."Pay Mode") then
+                            returnValue := '{"status":"success"}'
+                    end;
+                end;
+            'delete':
+                begin
+                    TbReceiptSplit.Reset();
+                    TbReceiptSplit.SetRange(TbReceiptSplit.SystemId, recId);
+                    if TbReceiptSplit.FindFirst() then begin
+                        if TbReceiptSplit.Delete(true) then
+                            returnValue := '{"status":"success"}';
+                    end;
+                end;
+        end;
+    end;
+
+  procedure FnReceiptReport(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        documentNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbReceiptH: Record "Receipts Header";
+        laboratoryNo: Code[50];
+        RpReceipt: report "HMS Receipts Report";
+        filename: Text;
+        Convert: DotNet Convert;
+        IOFile: DotNet File;
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('receiptNo', jToken);
+        documentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbReceiptH.Reset();
+        TbReceiptH.SetRange(TbReceiptH."No.", documentNo);
+        if TbReceiptH.FindFirst() then begin
+            returnValue := '';
+            filename := FILESPATH + '\' + 'Receipt - ' + documentNo + '.pdf';
+            IF EXISTS(filename) THEN
+                ERASE(filename);
+            RpReceipt.SetTableView(TbReceiptH);
+            RpReceipt.SaveAsPdf(filename);
+            returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+            IF EXISTS(filename) THEN
+                ERASE(filename);
+        end else
+            error('Receipt no % does not exist', documentNo);
+    end;
+
+    procedure FnGenerateInsuranceInvoice(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        patientNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        HMSCharges: Record "HMS Patient Charges";
+
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        patientNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := FnGetStaffUserID(jToken.AsValue().AsCode());
+        if CuHMSProcesses.FnGenerateInsuranceInvoice(patientNo, staffNo) then begin
+            HMSCharges.Reset();
+            HMSCharges.SetRange("Patient No.", patientNo);
+
+            if HMSCharges.FindFirst() then begin
+                DocNo := HMSCharges."Invoice Number";
+                returnValue :=
+                    '{"status":"success","DocNo":"' + DocNo + '"}';
+                exit(returnValue);
+            end;
+        end;
+
+        returnValue :=
+            '{"status":"failed","msg":"Something went wrong. Please try again."}';
+    end;
+
+     procedure FnPostSalesInvoice(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        patientNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        SalesHeader: Record "Sales Header";
+        HMSPatient: Record "HMS Patient";
+        HMSPatientCharges: Record "HMS Patient Charges";
+        SalesInvoiceHeader: Record "Sales Invoice Header";
+        SalesInvoicePerUserBuffer: Record "Invoice Per User Buffer";
+        receiptNo: Code[30];
+        documentNo: Code[30];
+    begin
+        returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}';
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        patientNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('invoiceNo', jToken);
+        documentNo := jToken.AsValue().AsText();
+
+
+        SalesHeader.Reset();
+        SalesHeader.SetRange(SalesHeader."Document Type", SalesHeader."Document Type"::Invoice);
+        SalesHeader.SetRange(SalesHeader."No.", documentNo);
+        if SalesHeader.FindFirst() then begin
+            if SalesHeader.SendToPosting(CODEUNIT::"Sales-Post (Yes/No)") then begin
+                SalesInvoicePerUserBuffer.Reset();
+                SalesInvoicePerUserBuffer.SetRange("Sales Invoice No", documentNo);
+                if SalesInvoicePerUserBuffer.FindFirst() then begin
+                    SalesInvoicePerUserBuffer."Posted By" := FnGetStaffUserID(StaffNo);
+                    // SalesInvoicePerUserBuffer.Posted := true;
+                    SalesInvoicePerUserBuffer.Modify();
+                end else begin
+                    SalesInvoicePerUserBuffer.Init();
+                    SalesInvoicePerUserBuffer."Sales Invoice No" := documentNo;
+                    SalesInvoicePerUserBuffer."Generated By" := FnGetStaffUserID(StaffNo);
+                    SalesInvoicePerUserBuffer."Posted By" := FnGetStaffUserID(StaffNo);
+                    // SalesInvoicePerUserBuffer.Posted := true;
+                    SalesInvoicePerUserBuffer.Insert(true);
+                end;
+
+
+                SalesInvoiceHeader.Reset();
+                SalesInvoiceHeader.SetRange("No.", documentNo);
+                if SalesInvoiceHeader.FindFirst() then begin
+                    SalesInvoiceHeader."User ID" := FnGetStaffUserID(StaffNo);
+                    SalesInvoiceHeader.Modify();
+                end;
+
+            end;
+
+            returnValue := '{"status":"success"}';
+        end else
+            Error('Sales invoice no %1 not found', documentNo);
+    end;
+
+    procedure FnInsuranceInvoiceReport(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        documentNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        RpPatientInvoice: report "Final Patient Invoice";
+        filename: Text;
+        Convert: DotNet Convert;
+        IOFile: DotNet File;
+        TbCharges: record "HMS Patient Charges";
+        HMSPatient: Record "HMS Patient";
+        VisitNo: Code[30];
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        documentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('EncounterNO', jToken);
+        VisitNo := jToken.AsValue().AsCode();
+        TbCharges.Reset();
+        TbCharges.SetRange(TbCharges."Patient No.", documentNo);
+        TbCharges.SetRange("Visit No", VisitNo);
+        TbCharges.SetRange(TbCharges.Posted, true);
+        if TbCharges.FindSet() then begin
+            returnValue := '';
+            filename := FILESPATH + '\' + 'Final invoice - ' + documentNo + '.pdf';
+            IF EXISTS(filename) THEN
+                ERASE(filename);
+            RpPatientInvoice.SetTableView(TbCharges);
+        end else
+            Error('No charges found');
+        RpPatientInvoice.SaveAsPdf(filename);
+        returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+        IF EXISTS(filename) THEN
+            ERASE(filename);
+    end;
+    
+
+     procedure FnPatientInterimInvoice(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        documentNo: Code[30];
+        visitNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbPatieChar: Record "HMS Patient Charges";
+        HmsPatient: Record "HMS Patient";
+        filename: Text;
+        Convert: DotNet Convert;
+        IOFile: DotNet File;
+        RpInterimInv: Report "HMS Patient Invoice";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        documentNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('visitNo', jToken);
+        visitNo := jToken.AsValue().AsCode();
+        TbPatieChar.Reset();
+        TbPatieChar.SetRange(TbPatieChar."Patient No.", documentNo);
+        TbPatieChar.SetRange(TbPatieChar."Visit No", visitNo);
+        if TbPatieChar.FindSet() then begin
+            returnValue := '';
+            filename := FILESPATH + '\' + 'Interim Invoice - ' + documentNo + '.pdf';
+            IF EXISTS(filename) THEN
+                ERASE(filename);
+            RpInterimInv.SetTableView(TbPatieChar);
+            RpInterimInv.SaveAsPdf(filename);
+            returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+            IF EXISTS(filename) THEN
+                ERASE(filename);
+        end else
+            error('No patient charges found for patient %1 visit %2', documentNo, visitNo);
+    end;
+
+    procedure FnReversePatientCharge(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        patientNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbRec: Record "HMS Patient Charges";
+        receiptNo: Code[30];
+        TbUserSetup: record "User Setup";
+    begin
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        patientNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        TbRec.Reset();
+        TbRec.SetRange("Patient No.", patientNo);
+        jObject.Get('recId', jToken);
+        TbRec.SetRange(TbRec.SystemId, jToken.AsValue().AsText());
+        if TbRec.FindFirst() then begin
+            TbUserSetup.Reset();
+            TbUserSetup.SetRange("Employee No.", staffNo);
+            if TbUserSetup.FindFirst() then begin
+                TbRec."User ID" := TbUserSetup."User ID";
+                TbRec.Modify();
+                Commit();
+            end;
+            if CuHMSProcesses.FnPatientChargeReversal(TbRec) then
+                returnValue := '{"status":"success"}'
+            else
+                returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
+        end;
+    end;
+
+
+    procedure FnChargesReopenPostedCharges(jString: Text) returnValue: Text
+    var
+        jObject: JsonObject;
+        jToken: JsonToken;
+        patientNo: Code[30];
+        staffNo: Code[30];
+        branchCode: Code[30];
+        TbRec: Record "HMS Patient Charges";
+        receiptNo: Code[30];
+        TbUserSetup: record "User Setup";
+        appointmentNo: Code[30];
+    begin
+        returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}';
+        jObject.ReadFrom(jString);
+        jObject.Get('patientNo', jToken);
+        patientNo := jToken.AsValue().AsCode();
+        jObject.Get('staffNo', jToken);
+        staffNo := jToken.AsValue().AsCode();
+        jObject.Get('appointmentNo', jToken);
+        appointmentNo := jToken.AsValue().AsText();
+        TbRec.Reset();
+        TbRec.SetRange(TbRec."Patient No.", patientNo);
+        TbRec.SetRange(TbRec."Visit No", appointmentNo);
+        TbRec.SetRange(TbRec.Posted, true);
+        if TbRec.FindSet() then begin
+            repeat
+                // TODO: Implement Correct reopening of charges to check for exists in GL charges.
+                TbRec.Posted := false;
+                TbRec.Closed := false;
+                TbRec.Modify();
+            until TbRec.Next() = 0;
+            returnValue := '{"status":"success"}';
+        end else
+            Error('No posted charges found for patient no %1, appointment no %2', patientNo, appointmentNo);
+    end;
 
     procedure FnSendEmail(subject: Text[150]; recipients: Text[200]; emailMessage: Text[1000]; ccRecipients: Text[100]) returnValue: Boolean
     var
@@ -1976,6 +2606,7 @@ codeunit 52202424 NewHMISPortal
         else
             returnValue := UserId;
     end;
+
     procedure FnLaboratoryResultsReport(jString: Text) returnValue: Text
     var
         jObject: JsonObject;
@@ -2019,7 +2650,7 @@ codeunit 52202424 NewHMISPortal
     end;
 
     [ServiceEnabled]
-   procedure FnUploadAttachedFile(jString: Text) return_value: Boolean
+    procedure FnUploadAttachedFile(jString: Text) return_value: Boolean
     var
         TableFound: Boolean;
         FromRecRef: RecordRef;

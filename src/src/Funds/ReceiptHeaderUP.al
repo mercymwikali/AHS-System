@@ -508,8 +508,8 @@ page 52202996 "Receipt Header UP"
             JTemplate := UserSetup."Receipt Journal Template";
             JBatch := UserSetup."Receipt Journal Batch";
         end;
-        if (JTemplate = '') or (JBatch = '') then
-            Error('Please contact the system administrator to be setup as a receipting user');
+        // if (JTemplate = '') or (JBatch = '') then
+        //     Error('Please contact the system administrator to be setup as a receipting user');
         if UserSetup."Default Receipts Bank" = '' then;
         Rec.SetFilter(Status, ' ');
 

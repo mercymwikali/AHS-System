@@ -45,7 +45,7 @@ table 52202646 "HMS Treatment Form Header"
             begin
                 Patient.Reset();
                 Patient.SetRange("Patient No.", "Patient No.");
-            if Patient.FindFirst() then
+                if Patient.FindFirst() then
                     "Patient Name" := Patient."Search Name";
 
             end;
@@ -199,10 +199,17 @@ table 52202646 "HMS Treatment Form Header"
         }
         field(40; "Lk No"; Code[20])
         {
-            CalcFormula = lookup("HMS Appointment Form Header"."Appointment No." where("Patient No." = field("Patient No."),
-                                                                                        "Appointment Date" = field("Treatment Date")));
+            CalcFormula = lookup(
+        "HMS Appointment Form Header"."Appointment No."
+        where(
+            "Patient No." = field("Patient No."),
+            "Settlement Type" = field("Patient Type"),
+            "Appointment Date" = field("Treatment Date")
+        )
+    );
             FieldClass = FlowField;
         }
+
         field(41; "Triage Notes"; Text[200])
         {
         }

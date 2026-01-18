@@ -10,6 +10,8 @@ Table 52202698 "HMS Patient Charges"
             TableRelation = "HMS Patient"."Patient No.";
 
             trigger OnValidate()
+              var
+                hmsPatInt: Codeunit "HMS Patient-integration";
             begin
                 HMSPatient.SetRange(HMSPatient."Patient No.", "Patient No.");
                 if HMSPatient.Find('-') then begin
@@ -17,10 +19,13 @@ Table 52202698 "HMS Patient Charges"
                         "Visit No" := HMSPatient."Active Visit No"
                     else
                         "Visit No" := HMSPatient."Current Adm No";
+                        Names:= HMSPatient."Search Name";
+                        patientNames:= HMSPatient."Search Name";
 
                     "Shortcut Dimension 1 Code" := HMSPatient."Global Dimension 1 Code";
                     "Insurance No" := HMSPatient."Insurance No.";
                 end;
+               
             end;
         }
         field(2; "Shortcut Dimension 1 Code"; Code[20])
@@ -689,7 +694,7 @@ Table 52202698 "HMS Patient Charges"
             OptionCaption = 'New,Pending Approval,Approved,Rejected';
             OptionMembers = New,"Pending Approval",Approved,Rejected;
         }
-        field(486; "User ID"; Code[20])
+        field(486; "User ID"; Code[70])
         {
         }
         field(487; "Creation Time"; Time)
@@ -729,7 +734,7 @@ Table 52202698 "HMS Patient Charges"
         }
         field(496; "Posted Invoice No."; Code[20])
         {
-            CalcFormula = lookup("Sales Invoice Header"."No." where("Pre-Assigned No." = field("Invoice Number")));
+            CalcFormula = lookup("Sales Invoice Header"."No." where("No." = field("Invoice Number")));
             FieldClass = FlowField;
         }
         field(497; "Total Receipts"; Decimal)

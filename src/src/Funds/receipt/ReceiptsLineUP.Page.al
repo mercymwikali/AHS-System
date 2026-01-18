@@ -198,8 +198,8 @@ Page 52203022 "Receipts Line UP"
                     if Rec.Amount < 0 then
                         Error('Amount cannot be less than zero.');
 
-                    if Rec."Global Dimension 1 Code" = '' then
-                        Error('Please enter the Function code');
+                    // if Rec."Global Dimension 1 Code" = '' then
+                    //     Error('Please enter the Function code');
 
                     if Rec."Shortcut Dimension 2 Code" = '' then
                         Error('Please enter the source of funds.');

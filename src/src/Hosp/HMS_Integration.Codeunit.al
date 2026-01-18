@@ -609,12 +609,12 @@ Codeunit 52202445 "HMS Patient-integration"
                             SaleH."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                             SaleH.Insert();
                             if SaleH.Get(SaleH."document type"::Invoice, NewNo) then begin
-                                SaleH.Validate("Sell-to Customer No.");
+                              //  SaleH.Validate("Sell-to Customer No.");
                                 SaleH."Shortcut Dimension 1 Code" := UserBranch;
                                 SaleH."Shortcut Dimension 2 Code" := UserDept;
 
-                                SaleH.Validate("Shortcut Dimension 1 Code");
-                                SaleH.Validate("Shortcut Dimension 2 Code");
+                               // SaleH.Validate("Shortcut Dimension 1 Code");
+                             //   SaleH.Validate("Shortcut Dimension 2 Code");
                                 //SaleH.Status := SaleH.Status::Released;
                                 SaleH.modify();
                                 SLine.Reset();
@@ -736,9 +736,9 @@ Codeunit 52202445 "HMS Patient-integration"
                             GenJnlLine.VALIDATE(GenJnlLine."Bal. Account No.");
                             GenJnlLine.Description := CopyStr(PatientCharges."Patient No." + ' -  ' + Patients.Surname + ' ' + Patients."Last Name", 1, MaxStrLen(GenJnlLine.Description));
                             GenJnlLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
-                            GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 1 Code");
-                            GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                            GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 2 Code");
+                           // GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 1 Code");
+                           // GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
+                          //  GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 2 Code");
                             // GenJnlLine.ValidateShortcutDimCode(3,"Shortcut Dimension 3 Code");
                             //  GenJnlLine.ValidateShortcutDimCode(4,"Shortcut Dimension 4 Code");
                             DimSetID.RESET();
@@ -2027,16 +2027,16 @@ Codeunit 52202445 "HMS Patient-integration"
 
                     GenJnlLine.Validate(GenJnlLine."Bal. Account No.");
                     GenJnlLine.Description := copystr(PatientCharges."Patient No." + ' -  ' + Patients.Surname + ' ' + Patients."Last Name", 1, 100);
-                    GenJnlLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
-                    GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
-                    GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                    GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
+                  //  GenJnlLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
+                    //GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
+                    //GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
+                   // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
                     GenJnlLine."Source Code" := PatientNo;
                     GenJnlLine."Source No." := PatientCharges."Insurance No";
                     // PatientCharges."Posting Document No" := PatientCharges."Visit No" + '-' + format(PatientCharges."Line No");
                     PatientCharges."Posting Document No" := DocNo;
-                    GenJnlLine.ValidateShortcutDimCode(3, PatientCharges."Shortcut Dimension 3 Code");
-                    GenJnlLine.ValidateShortcutDimCode(4, PatientCharges."Shortcut Dimension 4 Code");
+                //    GenJnlLine.ValidateShortcutDimCode(3, PatientCharges."Shortcut Dimension 3 Code");
+                  //  GenJnlLine.ValidateShortcutDimCode(4, PatientCharges."Shortcut Dimension 4 Code");
                     if GenJnlLine.Amount <> 0 then
                         GenJnlLine.Insert();
 
