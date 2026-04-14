@@ -1,4 +1,4 @@
-page 52202744 "Chart of Accounts."
+page 85042 "Chart of Accounts."
 {
     ApplicationArea = Basic, Suite;
     Caption = 'Chart of Accounts';

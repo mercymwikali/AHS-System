@@ -1,0 +1,47 @@
+table 85472 "Mpesa Integration Setup"
+{
+    Caption = 'Mpesa Integration Setup';
+    DataClassification = ToBeClassified;
+    
+    fields
+    {
+        field(50000; "Entry No"; Integer)
+        {
+            Caption = 'Entry No';
+            AutoIncrement = true;
+        }
+        field(50001; "Global Dimension 1 Code"; Code[20])
+        {
+            CaptionClass = '1,1,1';
+            TableRelation = "Dimension Value".Code where("Global Dimension No." = const(1));
+        }
+        field(50002; "Short Code"; Integer)
+        {
+            Caption = 'Short Code';
+        }
+        field(50003; "Consumer Key"; Text[50])
+        {
+            Caption = 'Consumer Key';
+        }
+        field(50004; "Consumer Secret"; Text[50])
+        {
+            Caption = 'Consumer Secret';
+        }
+        field(50005; "API Integration Type"; Option)
+        {
+            Caption = 'API Integration Type';
+            OptionMembers = "C2B","STK PUSH";
+        }
+        field(50006; "CallBack URL"; Text[2048])
+        {
+            Caption = 'CallBack URL';
+        }
+    }
+    keys
+    {
+        key(PK; "Entry No", "Global Dimension 1 Code")
+        {
+            Clustered = true;
+        }
+    }
+}

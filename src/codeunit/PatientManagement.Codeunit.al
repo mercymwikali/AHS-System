@@ -3,7 +3,7 @@ using Microsoft.Sales.Customer;
 using Microsoft.Sales.History;
 using PTL.HMISBC;
 
-codeunit 52202463 "Patient Management"
+codeunit 85002 "Patient Management"
 {
     var
         HMSAdmissionFormHeader: Record "HMS Admission Form Header";

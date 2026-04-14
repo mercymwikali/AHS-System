@@ -3,7 +3,7 @@ using Microsoft.Finance.GeneralLedger.Journal;
 using Microsoft.Purchases.Payables;
 using Microsoft.Sales.History;
 
-codeunit 52202462 "Patient Billing"
+codeunit 85001 "Patient Billing"
 {
     procedure PostWieverRequest(WeiverRequest: record "HMS Patient Charges Weiver"; PostingUser: Code[20])
     var

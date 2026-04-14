@@ -1,0 +1,145 @@
+Page 85028 "Staff Advanc Surrender Details"
+{
+    PageType = ListPart;
+    SourceTable = "Staff Advanc Surrender Details";
+    ApplicationArea = Basic, Suite;
+
+    layout
+    {
+        area(content)
+        {
+            repeater(Control1102758000)
+            {
+                field(ImprestType; Rec."Imprest Type")
+                {
+                    ToolTip = 'Specifies the value of the Advance Type field.';
+                }
+                field(AccountNo; Rec."Account No:")
+                {
+                    ToolTip = 'Specifies the value of the Account No: field.';
+                }
+                field(AccountName; Rec."Account Name")
+                {
+                    ToolTip = 'Specifies the value of the Account Name field.';
+                }
+                field(Amount; Rec.Amount)
+                {
+                    Editable = false;
+                    ToolTip = 'Specifies the value of the Amount field.';
+                }
+                field(ActualSpent; Rec."Actual Spent")
+                {
+                    ToolTip = 'Specifies the value of the Actual Spent field.';
+                }
+                field(CashReceiptNo; Rec."Cash Receipt No")
+                {
+                    ToolTip = 'Specifies the value of the Cash Receipt No field.';
+                }
+                field(CashReceiptAmount; Rec."Cash Receipt Amount")
+                {
+                    ToolTip = 'Specifies the value of the Cash Receipt Amount field.';
+                }
+                field(Applyto; Rec."Apply to")
+                {
+                    ToolTip = 'Specifies the value of the Apply to field.';
+
+                    trigger OnLookup(var Text: Text): Boolean
+                    begin
+                        Rec."Apply to" := '';
+                        Rec."Apply to ID" := '';
+
+                        //Amt:=0;
+
+                        Custledger.Reset();
+                        Custledger.SetCurrentkey(Custledger."Customer No.", Open, "Document No.");
+                        Custledger.SetRange(Custledger."Customer No.", Rec."Advance Holder");
+                        Custledger.SetRange(Open, true);
+                        //CustLedger.SETRANGE(CustLedger."Transaction Type",CustLedger."Transaction Type"::"Down Payment");
+                        Custledger.CalcFields(Custledger.Amount);
+                        if Page.RunModal(25, Custledger) = Action::LookupOK then
+                            if Custledger."Applies-to ID" <> '' then begin
+                                Custledger1.Reset();
+                                Custledger1.SetCurrentkey(Custledger1."Customer No.", Open, "Applies-to ID");
+                                Custledger1.SetRange(Custledger1."Customer No.", Rec."Advance Holder");
+                                Custledger1.SetRange(Open, true);
+                                //CustLedger1.SETRANGE("Transaction Type",CustLedger1."Transaction Type"::"Down Payment");
+                                Custledger1.SetRange("Applies-to ID", Custledger."Applies-to ID");
+                                if Custledger1.Find('-') then
+                                    repeat
+                                        Custledger1.CalcFields(Custledger1.Amount);
+                                        Amt := Amt + Abs(Custledger1.Amount);
+                                    until Custledger1.Next() = 0;
+
+                                if Amt <> Amt then
+                                    //ERROR('Amount is not equal to the amount applied on the application form');
+                                    /*Amount:=Amt;
+                                    VALIDATE(Amount);*/
+                           Rec."Apply to" := Custledger."Document No.";
+                                Rec."Apply to ID" := Custledger."Applies-to ID";
+                            end else begin
+                                if Rec.Amount <> Abs(Custledger.Amount) then
+                                    Custledger.CalcFields(Custledger."Remaining Amount");
+
+                                /*Amount:=ABS(CustLedger."Remaining Amount");
+                                 VALIDATE(Amount);*/
+                                //ERROR('Amount is not equal to the amount applied on the application form');
+
+                                Rec."Apply to" := Custledger."Document No.";
+                                Rec."Apply to ID" := Custledger."Applies-to ID";
+                            end;
+
+                        if Rec."Apply to ID" <> '' then
+                            Rec."Apply to" := '';
+
+                        Rec.Validate(Amount);
+                    end;
+                }
+                field(ShortcutDimension1Code; Rec."Shortcut Dimension 1 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 1 Code field.';
+                }
+                field(ShortcutDimension2Code; Rec."Shortcut Dimension 2 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 2 Code field.';
+                }
+                field(ShortcutDimension3Code; Rec."Shortcut Dimension 3 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 3 Code field.';
+                }
+                field(ShortcutDimension4Code; Rec."Shortcut Dimension 4 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 4 Code field.';
+                }
+                field(ShortcutDimension5Code; Rec."Shortcut Dimension 5 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 5 Code field.';
+                }
+                field(ShortcutDimension6Code; Rec."Shortcut Dimension 6 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 6 Code field.';
+                }
+                field(ShortcutDimension7Code; Rec."Shortcut Dimension 7 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 7 Code field.';
+                }
+                field(ShortcutDimension8Code; Rec."Shortcut Dimension 8 Code")
+                {
+                    ToolTip = 'Specifies the value of the Shortcut Dimension 8 Code field.';
+                }
+                field(DifferenceOwed; Rec."Difference Owed")
+                {
+                    ToolTip = 'Specifies the value of the Difference Owed field.';
+                }
+            }
+        }
+    }
+
+    actions
+    {
+    }
+
+    var
+        Custledger: Record "Cust. Ledger Entry";
+        Custledger1: Record "Cust. Ledger Entry";
+        Amt: Decimal;
+}

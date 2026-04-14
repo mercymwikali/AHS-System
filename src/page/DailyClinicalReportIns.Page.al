@@ -2,7 +2,7 @@ namespace PTL.HMISBC;
 
 using Microsoft.Sales.Customer;
 
-page 52203217 "Daily Clinical Report Ins."
+page 85043 "Daily Clinical Report Ins."
 {
     ApplicationArea = All;
     Caption = 'Customer Daily Report';
