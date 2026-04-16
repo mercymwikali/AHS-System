@@ -114,7 +114,7 @@ Table 85427 "Hr Pension Payments"
         if "No." = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Pension Nos.");
-            NoseriesMgt.InitSeries(HRSetup."Pension Nos.", xRec."No.", 0D, "No.", HRSetup."Pension Nos.");
+            NoseriesMgt.GetNextNo(HRSetup."Pension Nos.");
         end;
 
         "Date Prepared" := Today;
@@ -123,5 +123,5 @@ Table 85427 "Hr Pension Payments"
     var
         Hremp: Record "HR-Employee";
         HRSetup: Record "HR Setup";
-        NoseriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

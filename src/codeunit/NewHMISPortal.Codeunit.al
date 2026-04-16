@@ -361,7 +361,7 @@ codeunit 85014 NewHMISPortal
         msg: Text;
         NextNo: Code[30];
         NextNo2: Code[30];
-        CuNoSeries: Codeunit NoSeriesManagement;
+        CuNoSeries: Codeunit "No. Series";
         TbHMSSetup: record "HMS Setup";
         patientNo: Code[30];
         staffNo: Code[30];
@@ -1865,7 +1865,7 @@ codeunit 85014 NewHMISPortal
                             fileJson := fileJson + '"fileBase64":"' + jToken.AsValue().AsText() + '",';
                             fileJson := fileJson + '"myUserId":"' + FnGetStaffUserID(staffNo) + '"';
                             fileJson := fileJson + '}';
-                            FnUploadAttachedFile(fileJson);
+                            //FnUploadAttachedFile(fileJson);
                             returnValue := '{"status":"success"}';
                         end;
                     end;
@@ -2245,40 +2245,40 @@ codeunit 85014 NewHMISPortal
         end;
     end;
 
-    procedure FnReceiptReport(jString: Text) returnValue: Text
-    var
-        jObject: JsonObject;
-        jToken: JsonToken;
-        documentNo: Code[30];
-        staffNo: Code[30];
-        branchCode: Code[30];
-        TbReceiptH: Record "Receipts Header";
-        laboratoryNo: Code[50];
-        RpReceipt: report "HMS Receipts Report";
-        filename: Text;
-        Convert: DotNet Convert;
-        IOFile: DotNet File;
-    begin
-        jObject.ReadFrom(jString);
-        jObject.Get('receiptNo', jToken);
-        documentNo := jToken.AsValue().AsCode();
-        jObject.Get('staffNo', jToken);
-        staffNo := jToken.AsValue().AsCode();
-        TbReceiptH.Reset();
-        TbReceiptH.SetRange(TbReceiptH."No.", documentNo);
-        if TbReceiptH.FindFirst() then begin
-            returnValue := '';
-            filename := FILESPATH + '\' + 'Receipt - ' + documentNo + '.pdf';
-            IF EXISTS(filename) THEN
-                ERASE(filename);
-            RpReceipt.SetTableView(TbReceiptH);
-            RpReceipt.SaveAsPdf(filename);
-            returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
-            IF EXISTS(filename) THEN
-                ERASE(filename);
-        end else
-            error('Receipt no % does not exist', documentNo);
-    end;
+    // procedure FnReceiptReport(jString: Text) returnValue: Text
+    // var
+    //     jObject: JsonObject;
+    //     jToken: JsonToken;
+    //     documentNo: Code[30];
+    //     staffNo: Code[30];
+    //     branchCode: Code[30];
+    //     TbReceiptH: Record "Receipts Header";
+    //     laboratoryNo: Code[50];
+    //     RpReceipt: report "HMS Receipts Report";
+    //     filename: Text;
+    //     Convert: DotNet Convert;
+    //     IOFile: DotNet File;
+    // begin
+    //     jObject.ReadFrom(jString);
+    //     jObject.Get('receiptNo', jToken);
+    //     documentNo := jToken.AsValue().AsCode();
+    //     jObject.Get('staffNo', jToken);
+    //     staffNo := jToken.AsValue().AsCode();
+    //     TbReceiptH.Reset();
+    //     TbReceiptH.SetRange(TbReceiptH."No.", documentNo);
+    //     if TbReceiptH.FindFirst() then begin
+    //         returnValue := '';
+    //         filename := FILESPATH + '\' + 'Receipt - ' + documentNo + '.pdf';
+    //         IF EXISTS(filename) THEN
+    //             ERASE(filename);
+    //         RpReceipt.SetTableView(TbReceiptH);
+    //         RpReceipt.SaveAsPdf(filename);
+    //         returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+    //         IF EXISTS(filename) THEN
+    //             ERASE(filename);
+    //     end else
+    //         error('Receipt no % does not exist', documentNo);
+    // end;
 
     procedure FnGenerateInsuranceInvoice(jString: Text) returnValue: Text
     var
@@ -2371,85 +2371,85 @@ codeunit 85014 NewHMISPortal
             Error('Sales invoice no %1 not found', documentNo);
     end;
 
-    procedure FnInsuranceInvoiceReport(jString: Text) returnValue: Text
-    var
-        jObject: JsonObject;
-        jToken: JsonToken;
-        documentNo: Code[30];
-        staffNo: Code[30];
-        branchCode: Code[30];
-        RpPatientInvoice: report "Final Patient Invoice";
-        filename: Text;
-        Convert: DotNet Convert;
-        IOFile: DotNet File;
-        TbCharges: record "HMS Patient Charges";
-        HMSPatient: Record "HMS Patient";
-        VisitNo: Code[30];
-    begin
-        jObject.ReadFrom(jString);
-        jObject.Get('patientNo', jToken);
-        documentNo := jToken.AsValue().AsCode();
-        jObject.Get('staffNo', jToken);
-        staffNo := jToken.AsValue().AsCode();
-        jObject.Get('EncounterNO', jToken);
-        VisitNo := jToken.AsValue().AsCode();
-        TbCharges.Reset();
-        TbCharges.SetRange(TbCharges."Patient No.", documentNo);
-        TbCharges.SetRange("Visit No", VisitNo);
-        TbCharges.SetRange(TbCharges.Posted, true);
-        if TbCharges.FindSet() then begin
-            returnValue := '';
-            filename := FILESPATH + '\' + 'Final invoice - ' + documentNo + '.pdf';
-            IF EXISTS(filename) THEN
-                ERASE(filename);
-            RpPatientInvoice.SetTableView(TbCharges);
-        end else
-            Error('No charges found');
-        RpPatientInvoice.SaveAsPdf(filename);
-        returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
-        IF EXISTS(filename) THEN
-            ERASE(filename);
-    end;
+    // procedure FnInsuranceInvoiceReport(jString: Text) returnValue: Text
+    // var
+    //     jObject: JsonObject;
+    //     jToken: JsonToken;
+    //     documentNo: Code[30];
+    //     staffNo: Code[30];
+    //     branchCode: Code[30];
+    //     RpPatientInvoice: report "Final Patient Invoice";
+    //     filename: Text;
+    //     Convert: DotNet Convert;
+    //     IOFile: DotNet File;
+    //     TbCharges: record "HMS Patient Charges";
+    //     HMSPatient: Record "HMS Patient";
+    //     VisitNo: Code[30];
+    // begin
+    //     jObject.ReadFrom(jString);
+    //     jObject.Get('patientNo', jToken);
+    //     documentNo := jToken.AsValue().AsCode();
+    //     jObject.Get('staffNo', jToken);
+    //     staffNo := jToken.AsValue().AsCode();
+    //     jObject.Get('EncounterNO', jToken);
+    //     VisitNo := jToken.AsValue().AsCode();
+    //     TbCharges.Reset();
+    //     TbCharges.SetRange(TbCharges."Patient No.", documentNo);
+    //     TbCharges.SetRange("Visit No", VisitNo);
+    //     TbCharges.SetRange(TbCharges.Posted, true);
+    //     if TbCharges.FindSet() then begin
+    //         returnValue := '';
+    //         filename := FILESPATH + '\' + 'Final invoice - ' + documentNo + '.pdf';
+    //         IF EXISTS(filename) THEN
+    //             ERASE(filename);
+    //         RpPatientInvoice.SetTableView(TbCharges);
+    //     end else
+    //         Error('No charges found');
+    //     RpPatientInvoice.SaveAsPdf(filename);
+    //     returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+    //     IF EXISTS(filename) THEN
+    //         ERASE(filename);
+    // end;
 
 
-    procedure FnPatientInterimInvoice(jString: Text) returnValue: Text
-    var
-        jObject: JsonObject;
-        jToken: JsonToken;
-        documentNo: Code[30];
-        visitNo: Code[30];
-        staffNo: Code[30];
-        branchCode: Code[30];
-        TbPatieChar: Record "HMS Patient Charges";
-        HmsPatient: Record "HMS Patient";
-        filename: Text;
-        Convert: DotNet Convert;
-        IOFile: DotNet File;
-        RpInterimInv: Report "HMS Patient Invoice";
-    begin
-        jObject.ReadFrom(jString);
-        jObject.Get('patientNo', jToken);
-        documentNo := jToken.AsValue().AsCode();
-        jObject.Get('staffNo', jToken);
-        staffNo := jToken.AsValue().AsCode();
-        jObject.Get('visitNo', jToken);
-        visitNo := jToken.AsValue().AsCode();
-        TbPatieChar.Reset();
-        TbPatieChar.SetRange(TbPatieChar."Patient No.", documentNo);
-        TbPatieChar.SetRange(TbPatieChar."Visit No", visitNo);
-        if TbPatieChar.FindSet() then begin
-            returnValue := '';
-            filename := FILESPATH + '\' + 'Interim Invoice - ' + documentNo + '.pdf';
-            IF EXISTS(filename) THEN
-                ERASE(filename);
-            RpInterimInv.SetTableView(TbPatieChar);
-            RpInterimInv.SaveAsPdf(filename);
-            returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
-            IF EXISTS(filename) THEN
-                ERASE(filename);
-        end else
-            error('No patient charges found for patient %1 visit %2', documentNo, visitNo);
-    end;
+    // procedure FnPatientInterimInvoice(jString: Text) returnValue: Text
+    // var
+    //     jObject: JsonObject;
+    //     jToken: JsonToken;
+    //     documentNo: Code[30];
+    //     visitNo: Code[30];
+    //     staffNo: Code[30];
+    //     branchCode: Code[30];
+    //     TbPatieChar: Record "HMS Patient Charges";
+    //     HmsPatient: Record "HMS Patient";
+    //     filename: Text;
+    //     Convert: DotNet Convert;
+    //     IOFile: DotNet File;
+    //     RpInterimInv: Report "HMS Patient Invoice";
+    // begin
+    //     jObject.ReadFrom(jString);
+    //     jObject.Get('patientNo', jToken);
+    //     documentNo := jToken.AsValue().AsCode();
+    //     jObject.Get('staffNo', jToken);
+    //     staffNo := jToken.AsValue().AsCode();
+    //     jObject.Get('visitNo', jToken);
+    //     visitNo := jToken.AsValue().AsCode();
+    //     TbPatieChar.Reset();
+    //     TbPatieChar.SetRange(TbPatieChar."Patient No.", documentNo);
+    //     TbPatieChar.SetRange(TbPatieChar."Visit No", visitNo);
+    //     if TbPatieChar.FindSet() then begin
+    //         returnValue := '';
+    //         filename := FILESPATH + '\' + 'Interim Invoice - ' + documentNo + '.pdf';
+    //         IF EXISTS(filename) THEN
+    //             ERASE(filename);
+    //         RpInterimInv.SetTableView(TbPatieChar);
+    //         RpInterimInv.SaveAsPdf(filename);
+    //         returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+    //         IF EXISTS(filename) THEN
+    //             ERASE(filename);
+    //     end else
+    //         error('No patient charges found for patient %1 visit %2', documentNo, visitNo);
+    // end;
 
     procedure FnReversePatientCharge(jString: Text) returnValue: Text
     var
@@ -2694,182 +2694,184 @@ codeunit 85014 NewHMISPortal
             returnValue := UserId;
     end;
 
-    procedure FnLaboratoryResultsReport(jString: Text) returnValue: Text
-    var
-        jObject: JsonObject;
-        jToken: JsonToken;
-        treatmentNo: Code[30];
-        staffNo: Code[30];
-        branchCode: Code[30];
-        TbLabFo: Record "HMS Laboratory Form Header";
-        TbLabRes: Record "HMS Laboratory Results Entry";
-        laboratoryNo: Code[50];
-        LabTestCode: Code[30];
-        RpLabResults: report "HMS Lab Results2";
-        filename: Text;
-        Convert: DotNet Convert;
-        IOFile: DotNet File;
-    begin
-        returnValue := '';
-        filename := FILESPATH + '\' + 'Lab Results - ' + laboratoryNo + '.pdf';
-        if EXISTS(filename) then
-            ERASE(filename);
+    // procedure FnLaboratoryResultsReport(jString: Text) returnValue: Text
+    // var
+    //     jObject: JsonObject;
+    //     jToken: JsonToken;
+    //     treatmentNo: Code[30];
+    //     staffNo: Code[30];
+    //     branchCode: Code[30];
+    //     TbLabFo: Record "HMS Laboratory Form Header";
+    //     TbLabRes: Record "HMS Laboratory Results Entry";
+    //     laboratoryNo: Code[50];
+    //     LabTestCode: Code[30];
+    //     RpLabResults: report "HMS Lab Results2";
+    //     filename: Text;
+    //     Convert: DotNet Convert;
+    //     IOFile: DotNet File;
+    // begin
+    //     returnValue := '';
+    //     filename := FILESPATH + '\' + 'Lab Results - ' + laboratoryNo + '.pdf';
+    //     if EXISTS(filename) then
+    //         ERASE(filename);
 
-        jObject.ReadFrom(jString);
-        jObject.Get('laboratoryNo', jToken);
-        laboratoryNo := jToken.AsValue().AsCode();
-        jObject.Get('laboratoryTestCode', jToken);
-        LabTestCode := jToken.AsValue().AsCode();
+    //     jObject.ReadFrom(jString);
+    //     jObject.Get('laboratoryNo', jToken);
+    //     laboratoryNo := jToken.AsValue().AsCode();
+    //     jObject.Get('laboratoryTestCode', jToken);
+    //     LabTestCode := jToken.AsValue().AsCode();
 
-        TbLabRes.reset();
-        TbLabRes.SetRange("Laboratory No.", laboratoryNo);
-        if LabTestCode <> '' then
-            TbLabRes.SetRange("Laboratory Test Code", LabTestCode);
-        if TbLabRes.FindFirst() then begin
-            RpLabResults.SetTableView(TbLabRes);
-        end else
-            Error('No results found');
+    //     TbLabRes.reset();
+    //     TbLabRes.SetRange("Laboratory No.", laboratoryNo);
+    //     if LabTestCode <> '' then
+    //         TbLabRes.SetRange("Laboratory Test Code", LabTestCode);
+    //     if TbLabRes.FindFirst() then begin
+    //         RpLabResults.SetTableView(TbLabRes);
+    //     end else
+    //         Error('No results found');
 
-        RpLabResults.SaveAsPdf(filename);
-        returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
-        if EXISTS(filename) then
-            ERASE(filename);
-    end;
+    //     RpLabResults.SaveAsPdf(filename);
+    //     returnValue := '{"base64":"' + Convert.ToBase64String(IOFile.ReadAllBytes(filename)) + '"}';
+    //     if EXISTS(filename) then
+    //         ERASE(filename);
+    // end;
 
-    [ServiceEnabled]
-    procedure FnUploadAttachedFile(jString: Text) return_value: Boolean
-    var
-        TableFound: Boolean;
-        FromRecRef: RecordRef;
-        Bytes: DotNet Array;
-        Convert: DotNet Convert;
-        MemoryStream: DotNet MemoryStream;
-        Ostream: OutStream;
-        CuFileManagement: Codeunit "File Management";
-        DocNo1: Code[50];
-        DocNo2: Code[50];
-        DocNos: array[20] of Code[50];
-        myPos: Integer;
-        myText: Dotnet String;
-        mySeparator: Dotnet String;
-        myArray: DotNet Array;
-        lineNo: Integer;
-        ObjUsers: Record User;
-        TbDocumentAttachment: Record "Document Attachment";
-        jObject: JsonObject;
-        jToken: JsonToken;
-        tableId: Integer;
-        fileName: Text;
-        attachment: Text;
-        myUserId: Code[30];
-        TbRadiologyLine: Record "HMS Radiology Form Line";
-    begin
-        TableFound := FALSE;
-        return_value := FALSE;
-        //
-        jObject.ReadFrom(jString);
-        jObject.Get('tableId', jToken);
-        tableId := jToken.AsValue().AsInteger();
-        jObject.Get('docNo', jToken);
-        DocNo := jToken.AsValue().AsText();
-        jObject.Get('fileName', jToken);
-        fileName := jToken.AsValue().AsText();
-        jObject.Get('fileBase64', jToken);
-        attachment := jToken.AsValue().AsText();
-        jObject.Get('myUserId', jToken);
-        myUserId := jToken.AsValue().AsText();
-        case TableID of
-            Database::"HMS Radiology Form Line":
-                begin
-                    jObject.Get('docNo2', jToken);
-                    DocNo2 := jToken.AsValue().AsText();
-                    TbRadiologyLine.RESET;
-                    TbRadiologyLine.SetRange(TbRadiologyLine."Radiology no.", DocNo);
-                    TbRadiologyLine.SetRange(TbRadiologyLine."Radiology Type Code", DocNo2);
-                    if TbRadiologyLine.FIND('-') then begin
-                        FromRecRef.GETTABLE(TbRadiologyLine);
-                    end;
-                    TableFound := true;
-                end;
-        end;
-        //save the file
-        if tableFound = true then begin
-            if fileName <> '' then begin
-                CLEAR(TbDocumentAttachment);
-                TbDocumentAttachment.INIT();
-                TbDocumentAttachment.VALIDATE("File Extension", CuFileManagement.GetExtension(fileName));
-                TbDocumentAttachment.VALIDATE("File Name", COPYSTR(CuFileManagement.GetFileNameWithoutExtension(fileName), 1, MAXSTRLEN(fileName)));
-                // TbDocumentAttachment.VALIDATE("Table ID", FromRecRef.NUMBER);
-                TbDocumentAttachment.VALIDATE("No.", docNo);
-                TbDocumentAttachment."Table ID" := TableID;
-                if lineNo <> 0 then
-                    TbDocumentAttachment.VALIDATE(TbDocumentAttachment."Line No.", lineNo);
-                if DocNos[2] <> '' then
-                    TbDocumentAttachment.VALIDATE(TbDocumentAttachment."No. 2", DocNos[2]);
-                Bytes := Convert.FromBase64String(Attachment);
-                MemoryStream := MemoryStream.MemoryStream(Bytes);
-                TbDocumentAttachment."Document Reference ID".IMPORTSTREAM(MemoryStream, '', fileName);
-                ObjUsers.Reset();
-                ObjUsers.SetRange("User Name", myUserId);
-                if ObjUsers.Find('-') then
-                    TbDocumentAttachment."Attached By" := ObjUsers."User Security ID";
-                TbDocumentAttachment.VALIDATE("Attached Date", CURRENTDATETIME);
-                TbDocumentAttachment.INSERT();
-                return_value := true;
-                if CuFileManagement.DeleteServerFile(fileName) then;
-            end else
-                ERROR('File name cannot be blank');
-        end else begin
-            ERROR('Related table or record for attached file was not found');
-        end;
-    end;
+    // [ServiceEnabled]
+    // procedure FnUploadAttachedFile(jString: Text) return_value: Boolean
+    // var
+    //     TableFound: Boolean;
+    //     FromRecRef: RecordRef;
+    //     Bytes: DotNet Array;
+    //     Convert: DotNet Convert;
+    //     MemoryStream: DotNet MemoryStream;
+    //     Ostream: OutStream;
+    //     CuFileManagement: Codeunit "File Management";
+    //     DocNo1: Code[50];
+    //     DocNo2: Code[50];
+    //     DocNos: array[20] of Code[50];
+    //     myPos: Integer;
+    //     myText: Dotnet String;
+    //     mySeparator: Dotnet String;
+    //     myArray: DotNet Array;
+    //     lineNo: Integer;
+    //     ObjUsers: Record User;
+    //     TbDocumentAttachment: Record "Document Attachment";
+    //     jObject: JsonObject;
+    //     jToken: JsonToken;
+    //     tableId: Integer;
+    //     fileName: Text;
+    //     attachment: Text;
+    //     myUserId: Code[30];
+    //     TbRadiologyLine: Record "HMS Radiology Form Line";
+    // begin
+    //     TableFound := FALSE;
+    //     return_value := FALSE;
+    //     //
+    //     jObject.ReadFrom(jString);
+    //     jObject.Get('tableId', jToken);
+    //     tableId := jToken.AsValue().AsInteger();
+    //     jObject.Get('docNo', jToken);
+    //     DocNo := jToken.AsValue().AsText();
+    //     jObject.Get('fileName', jToken);
+    //     fileName := jToken.AsValue().AsText();
+    //     jObject.Get('fileBase64', jToken);
+    //     attachment := jToken.AsValue().AsText();
+    //     jObject.Get('myUserId', jToken);
+    //     myUserId := jToken.AsValue().AsText();
+    //     case TableID of
+    //         Database::"HMS Radiology Form Line":
+    //             begin
+    //                 jObject.Get('docNo2', jToken);
+    //                 DocNo2 := jToken.AsValue().AsText();
+    //                 TbRadiologyLine.RESET;
+    //                 TbRadiologyLine.SetRange(TbRadiologyLine."Radiology no.", DocNo);
+    //                 TbRadiologyLine.SetRange(TbRadiologyLine."Radiology Type Code", DocNo2);
+    //                 if TbRadiologyLine.FIND('-') then begin
+    //                     FromRecRef.GETTABLE(TbRadiologyLine);
+    //                 end;
+    //                 TableFound := true;
+    //             end;
+    //     end;
+    //     //save the file
+    //     if tableFound = true then begin
+    //         if fileName <> '' then begin
+    //             CLEAR(TbDocumentAttachment);
+    //             TbDocumentAttachment.INIT();
+    //             TbDocumentAttachment.VALIDATE("File Extension", CuFileManagement.GetExtension(fileName));
+    //             TbDocumentAttachment.VALIDATE("File Name", COPYSTR(CuFileManagement.GetFileNameWithoutExtension(fileName), 1, MAXSTRLEN(fileName)));
+    //             // TbDocumentAttachment.VALIDATE("Table ID", FromRecRef.NUMBER);
+    //             TbDocumentAttachment.VALIDATE("No.", docNo);
+    //             TbDocumentAttachment."Table ID" := TableID;
+    //             if lineNo <> 0 then
+    //                 TbDocumentAttachment.VALIDATE(TbDocumentAttachment."Line No.", lineNo);
+    //             if DocNos[2] <> '' then
+    //                 TbDocumentAttachment.VALIDATE(TbDocumentAttachment."No. 2", DocNos[2]);
+    //             Bytes := Convert.FromBase64String(Attachment);
+    //             MemoryStream := MemoryStream.MemoryStream(Bytes);
+    //             TbDocumentAttachment."Document Reference ID".IMPORTSTREAM(MemoryStream, '', fileName);
+    //             ObjUsers.Reset();
+    //             ObjUsers.SetRange("User Name", myUserId);
+    //             if ObjUsers.Find('-') then
+    //                 TbDocumentAttachment."Attached By" := ObjUsers."User Security ID";
+    //             TbDocumentAttachment.VALIDATE("Attached Date", CURRENTDATETIME);
+    //             TbDocumentAttachment.INSERT();
+    //             return_value := true;
+    //             if CuFileManagement.DeleteServerFile(fileName) then;
+    //         end else
+    //             ERROR('File name cannot be blank');
+    //     end else begin
+    //         ERROR('Related table or record for attached file was not found');
+    //     end;
+    // end;
 
     //procedure FnGetDocumentAttachmentBase64(docNo: Code[100]; attachmentID: Integer; tableID: Integer) BaseImage: Text;
-    procedure FnGetDocumentAttachmentBase64(jString: Text) BaseImage: Text;
-    var
-        FromRecRef: RecordRef;
-        CuFileManagement: Codeunit "File Management";
-        Bytes: DotNet Array;
-        Convert: DotNet Convert;
-        MemoryStream: DotNet MemoryStream;
-        Ostream: OutStream;
-        isTableFound: Boolean;
-        tableFound: Boolean;
-        imageID: GUID;
-        Istream: InStream;
-        TbDocumentAttachment: record "Document Attachment";
-        TbTenantMedia: Record "Tenant Media";
-        jObject: JsonObject;
-        jToken: JsonToken;
-        tableID: Integer;
-        attachmentID: Integer;
-        docNo: Code[30];
-    begin
-        jObject.ReadFrom(jString);
-        jObject.Get('tableId', jToken);
-        tableId := jToken.AsValue().AsInteger();
-        jObject.Get('attachmentID', jToken);
-        attachmentID := jToken.AsValue().AsInteger();
-        jObject.Get('docNo', jToken);
-        docNo := jToken.AsValue().AsCode();
-        TbDocumentAttachment.RESET();
-        TbDocumentAttachment.SETRANGE("Table ID", tableID);
-        TbDocumentAttachment.SETRANGE("No.", docNo);
-        TbDocumentAttachment.SETRANGE(ID, attachmentID);
-        if TbDocumentAttachment.FINDFIRST() then begin
-            if TbDocumentAttachment."Document Reference ID".HASVALUE then begin
-                imageID := TbDocumentAttachment."Document Reference ID".MEDIAID;
-                if TbTenantMedia.GET(imageID) then begin
-                    TbTenantMedia.CALCFIELDS(Content);
-                    TbTenantMedia.Content.CREATEINSTREAM(Istream);
-                    MemoryStream := MemoryStream.MemoryStream();
-                    COPYSTREAM(MemoryStream, Istream);
-                    Bytes := MemoryStream.GetBuffer();
-                    BaseImage := Convert.ToBase64String(Bytes);
-                end;
-            end;
-        end;
-    end;
+
+
+    // procedure FnGetDocumentAttachmentBase64(jString: Text) BaseImage: Text;
+    // var
+    //     FromRecRef: RecordRef;
+    //     CuFileManagement: Codeunit "File Management";
+    //     Bytes: DotNet Array;
+    //     Convert: DotNet Convert;
+    //     MemoryStream: DotNet MemoryStream;
+    //     Ostream: OutStream;
+    //     isTableFound: Boolean;
+    //     tableFound: Boolean;
+    //     imageID: GUID;
+    //     Istream: InStream;
+    //     TbDocumentAttachment: record "Document Attachment";
+    //     TbTenantMedia: Record "Tenant Media";
+    //     jObject: JsonObject;
+    //     jToken: JsonToken;
+    //     tableID: Integer;
+    //     attachmentID: Integer;
+    //     docNo: Code[30];
+    // begin
+    //     jObject.ReadFrom(jString);
+    //     jObject.Get('tableId', jToken);
+    //     tableId := jToken.AsValue().AsInteger();
+    //     jObject.Get('attachmentID', jToken);
+    //     attachmentID := jToken.AsValue().AsInteger();
+    //     jObject.Get('docNo', jToken);
+    //     docNo := jToken.AsValue().AsCode();
+    //     TbDocumentAttachment.RESET();
+    //     TbDocumentAttachment.SETRANGE("Table ID", tableID);
+    //     TbDocumentAttachment.SETRANGE("No.", docNo);
+    //     TbDocumentAttachment.SETRANGE(ID, attachmentID);
+    //     if TbDocumentAttachment.FINDFIRST() then begin
+    //         if TbDocumentAttachment."Document Reference ID".HASVALUE then begin
+    //             imageID := TbDocumentAttachment."Document Reference ID".MEDIAID;
+    //             if TbTenantMedia.GET(imageID) then begin
+    //                 TbTenantMedia.CALCFIELDS(Content);
+    //                 TbTenantMedia.Content.CREATEINSTREAM(Istream);
+    //                 MemoryStream := MemoryStream.MemoryStream();
+    //                 COPYSTREAM(MemoryStream, Istream);
+    //                 Bytes := MemoryStream.GetBuffer();
+    //                 BaseImage := Convert.ToBase64String(Bytes);
+    //             end;
+    //         end;
+    //     end;
+    // end;
 
     var
         JsObject: JsonObject;
@@ -2883,7 +2885,7 @@ codeunit 85014 NewHMISPortal
         TbUserSetup: record "User Setup";
         TbHMSSetup: record "HMS Setup";
         TbAppointment: Record "HMS Appointment Form Header";
-        CuNoSeries: Codeunit NoSeriesManagement;
+        CuNoSeries: Codeunit "No. Series";
         CuHMSProcesses: Codeunit "HMS Processes";
         FILESPATH: Label 'C:\inetpub\wwwroot\PortalFiles';
 

@@ -1248,4 +1248,12 @@ page 85415 "HMS Psychiatrist Role Centre"
         Dialysismode: Boolean;
 }
 
+profile "HMS Psychiatrist Role Center"
+{
+    ProfileDescription = 'Psychiatrist Role Center';
+    Caption = 'New Psychiatrist  Role Center';
+    RoleCenter = "HMS Psychiatrist Role Centre";
+}
+ 
+
 

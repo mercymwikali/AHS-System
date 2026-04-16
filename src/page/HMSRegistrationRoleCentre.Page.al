@@ -19,9 +19,9 @@ Page 85430 "HMS Registration Role Centre"
                 systempart(Control106; MyNotes)
                 {
                 }
-                chartpart("T38-08"; "T38-08")
-                {
-                }
+                // chartpart("T38-08"; "T38-08")
+                // {
+                // }
             }
         }
     }
@@ -1375,3 +1375,10 @@ Page 85430 "HMS Registration Role Centre"
         }
     }
 }
+profile "HMS Registration Role Center"
+{
+    ProfileDescription = 'HMSRegistration Role Center';
+    Caption = 'New Hms Registration Role Center';
+    RoleCenter = "HMS Registration Role Centre";
+}
+ 

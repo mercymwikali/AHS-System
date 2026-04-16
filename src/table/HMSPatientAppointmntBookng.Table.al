@@ -246,5 +246,5 @@ table 85150 "HMS Patient Appointmnt Bookng"
         hmspat: Record "HMS Patient";
         HmsSetup: Record "HMS Setup";
         Doc: Record "HMS Setup Doctor";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

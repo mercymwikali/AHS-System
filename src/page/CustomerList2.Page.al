@@ -1470,12 +1470,8 @@ page 85112 "Customer List2"
     trigger OnInit()
     begin
         SetCustomerNoVisibilityOnFactBoxes();
-
         CaptionTxt := CurrPage.Caption;
-        SetCaption(CaptionTxt);
-        CurrPage.Caption(CaptionTxt);
         PowerBIVisible := false;
-        // CurrPage."Power BI Report FactBox".PAGE.InitFactBox(CurrPage.ObjectId(false), CurrPage.Caption, PowerBIVisible);
     end;
 
     trigger OnOpenPage()

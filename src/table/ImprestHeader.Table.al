@@ -479,7 +479,7 @@ Table 85019 "Imprest Header"
             GenLedgerSetup.Get();
             if "Payment Type" = "payment type"::Imprest then begin
                 GenLedgerSetup.TestField(GenLedgerSetup."Imprest Req No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Imprest Req No", xRec."No. Series", 0D, "No.", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Imprest Req No");
             end
         end;
 
@@ -540,7 +540,7 @@ Table 85019 "Imprest Header"
         ImpLines: Record "Payment Line";
         RespCenter: Record "Responsibility Center BR";
         UserSetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UserMgt: Codeunit "User Setup Management BR";
         Text001: label 'Your identification is set up to process from %1 %2 only.';
 

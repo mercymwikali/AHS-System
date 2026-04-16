@@ -76,3 +76,10 @@ page 85254 "Billing RoleCenter"
         }
     }
 }
+profile "Billing Role Center"
+{
+    ProfileDescription = 'Billing Role Center';
+    Caption = 'New Hospital Billing Role Center';
+    RoleCenter = "Billing RoleCenter";
+}
+ 

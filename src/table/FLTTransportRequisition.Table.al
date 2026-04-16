@@ -335,7 +335,7 @@ Table 85100 "FLT-Transport Requisition"
         if "Transport Requisition No" = '' then begin
             FltMgtSetup.Get();
             FltMgtSetup.TestField("Transport Req No");
-            NoSeriesMgt.InitSeries(FltMgtSetup."Transport Req No", xRec."No. Series", 0D, "Transport Requisition No", "No. Series");
+            NoSeriesMgt.GetNextNo(FltMgtSetup."Transport Req No");
         end;
 
         userset.Reset();
@@ -387,7 +387,7 @@ Table 85100 "FLT-Transport Requisition"
         RespCenter: Record "Responsibility Center";
         userset: Record "User Setup";
         userset5: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UserMgt: Codeunit "User Setup Management";
         Text001: label 'Your identification is set up to process from %1 %2 only.';
         Text0001: label 'You cannot modify an Approved or Closed Record';

@@ -224,7 +224,7 @@ page 85093 "Purchase Requisition"
                 {
                     ToolTip = 'Specifies the value of the Last Receiving No. field.';
                 }
-                field("Employee No."; Rec."Employee No.")
+                field("Employee No."; Rec."Employee No1.")
                 {
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the value of the Employee No. field.';

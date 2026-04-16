@@ -169,7 +169,7 @@ Table 85223 "HMS Physiotheraphy Form Header"
         if "No." = '' then begin
             HMSSetup.Get();
             HMSSetup.TestField("Observation Nos");
-            NoSeriesMgt.InitSeries(HMSSetup."Observation Nos", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HMSSetup."Observation Nos");
         end;
 
         "Physio User ID" := UserId;
@@ -178,5 +178,5 @@ Table 85223 "HMS Physiotheraphy Form Header"
     var
         Patient: Record "HMS Patient";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

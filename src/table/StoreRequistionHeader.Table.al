@@ -312,7 +312,7 @@ Table 85139 "Store Requistion Header"
         if "No." = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Stores Requisition No");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Stores Requisition No", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Stores Requisition No");
         end;
 
         // "HR-EMP".Reset();
@@ -342,5 +342,5 @@ Table 85139 "Store Requistion Header"
         Dimval: Record "Dimension Value";
         "HR-EMP": Record "HR-Employee";
         ReqLines: Record "Store Requistion Lines";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

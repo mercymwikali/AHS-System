@@ -11,7 +11,7 @@ Table 85118 "Payment Line"
 
             trigger OnValidate()
             var
-            PaymentsHeader: Record "Payments Header";
+                PaymentsHeader: Record "Payments Header";
             begin
                 /*
                 IF No <> xRec.No THEN BEGIN
@@ -45,8 +45,8 @@ Table 85118 "Payment Line"
                                 if "Account Type" = "account type"::"G/L Account" then
                                     "G/L Account" := No;
 
-                
-                
+
+
                 //End Budget
             end;
         }
@@ -1023,7 +1023,7 @@ Table 85118 "Payment Line"
         }
         field(50098; Reversed; Boolean)
         {
-            
+
         }
         field(50099; "PAYE Amount"; Decimal)
         {
@@ -1148,7 +1148,7 @@ Table 85118 "Payment Line"
         }
         field(50119; "Student No"; Code[20])
         {
-            TableRelation = Customer."No." where("Customer Type" = const(Student));
+            TableRelation = Customer."No." where("Customer Type1" = const(Student));
         }
         field(50120; Posteds; Boolean)
         {
@@ -1216,7 +1216,7 @@ Table 85118 "Payment Line"
         if No = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Normal Payments No");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Normal Payments No", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Normal Payments No");
         end;
         PaymentHeader.Reset();
         PaymentHeader.SetRange(PaymentHeader."No.", No);
@@ -1284,7 +1284,7 @@ Table 85118 "Payment Line"
         VBank: Record "Vendor Bank Account";
         VendLedgEntry: Record "Vendor Ledger Entry";
         VendPostSetup: Record "Vendor Posting Group";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         curReliefPersonal: Decimal;
 
     procedure SetAmountToApply(AppliesToDocNo: Code[20]; VendorNo: Code[20])
@@ -1321,7 +1321,7 @@ Table 85118 "Payment Line"
             if "VAT Rate" <> 0 then
                 //  "VAT Amount":=TaxCalc.CalculateTax(Rec,CalculationType::VAT);
                 "VAT Amount" := ("VAT Rate" / 116) * Amount;
-                // TotalTax:=TotalTax+"VAT Amount"
+            // TotalTax:=TotalTax+"VAT Amount"
 
             /* IF "W/Tax Rate"<>0 THEN BEGIN
               "Withholding Tax Amount":=TaxCalc.CalculateTax(Rec,CalculationType::"W/Tax");

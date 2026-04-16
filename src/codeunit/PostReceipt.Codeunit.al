@@ -583,7 +583,7 @@ codeunit 85027 "Post Receipt"
         HMSSetup: Record "HMS Setup";
         HMSClinicsSetup: Record "HMS Clinics Setup";
         NewNo: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
     begin
 
         // TODO: What is this code doing

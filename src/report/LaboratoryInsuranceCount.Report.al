@@ -7,7 +7,7 @@ Report 85144 "Laboratory Insurance Count"
     {
         dataitem(Customer; Customer)
         {
-            DataItemTableView = where("No." = filter(<> 'C-00078'), "Customer Type" = filter(Customer));
+            DataItemTableView = where("No." = filter(<> 'C-00078'), "Customer Type1" = filter(Customer));
             RequestFilterFields = "Date Filter";
             column(ReportForNavId_5; 5)
             {

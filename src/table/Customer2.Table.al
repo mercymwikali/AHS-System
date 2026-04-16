@@ -23,7 +23,7 @@ Table 85050 Customer2
                     "Invoice Disc. Code" := "No.";
                 /*
                 IF "Current Programme"='' THEN BEGIN
-                  IF "Customer Type"="Customer Type"::Student THEN BEGIN
+                  IF "Customer Type1"="Customer Type1"::Student THEN BEGIN
                      "Current Programme":=COPYSTR(FORMAT("No."),1,3);
                      MODIFY;
                   END;
@@ -1227,11 +1227,11 @@ Table 85050 Customer2
         field(50153; "Membership No"; Text[100])
         {
         }
-        field(50154; "Customer Type"; Option)
-        {
-            OptionCaption = 'Customer,Student,Hotel,Staff';
-            OptionMembers = Customer,Student,Hotel,Staff;
-        }
+        // field(50154; "Customer Type1"; Option)
+        // {
+        //     OptionCaption = 'Customer,Student,Hotel,Staff';
+        //     OptionMembers = Customer,Student,Hotel,Staff;
+        // }
         field(50155; "Birth Cert"; Code[30])
         {
             trigger OnValidate()
@@ -1267,13 +1267,13 @@ Table 85050 Customer2
                     // if "Graduating Year" = '' then Error('Please specify the Year of Graduation for the student.');
                     if "Graduating Semester" = '' then
                         Error('Please specify the Semester of Graduation for the student.');
-                        /*IF "University Reference Number" = '' THEN BEGIN
-                          AppSetup.GET;
-                          AppSetup.TESTFIELD(AppSetup."University Reference Number");
-                          NoSeriesMgt.InitSeries(AppSetup."University Reference Number",xRec."No. Series",0D,"University Reference Number","No. Series");
-                          "University Reference Number":='PUEA/'+progs."Programme Abreviation"+
-                            '-'+progs."Award Abbreviation"+'/'+"University Reference Number"+'-'+FORMAT("Graduating Year");
-                        END;*/
+                /*IF "University Reference Number" = '' THEN BEGIN
+                  AppSetup.GET;
+                  AppSetup.TESTFIELD(AppSetup."University Reference Number");
+                  NoSeriesMgt.GetNextNo(AppSetup."University Reference Number",xRec."No. Series",0D,"University Reference Number","No. Series");
+                  "University Reference Number":='PUEA/'+progs."Programme Abreviation"+
+                    '-'+progs."Award Abbreviation"+'/'+"University Reference Number"+'-'+FORMAT("Graduating Year");
+                END;*/
             end;
         }
         field(50161; "Library Code"; Code[20])
@@ -1894,7 +1894,7 @@ Table 85050 Customer2
         if "No." = '' then begin
             SalesSetup.Get();
             SalesSetup.TestField("Customer Nos.");
-            NoSeriesMgt.InitSeries(SalesSetup."Customer Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(SalesSetup."Customer Nos.");
         end;
         if "Invoice Disc. Code" = '' then
             "Invoice Disc. Code" := "No.";
@@ -1933,10 +1933,10 @@ Table 85050 Customer2
            (Contact <> xRec.Contact)
         then
             Modify();
-            //   UpdateContFromCust.OnModify(Rec);
+        //   UpdateContFromCust.OnModify(Rec);
 
         /*IF "Current Programme"='' THEN BEGIN
-          IF "Customer Type"="Customer Type"::Student THEN BEGIN
+          IF "Customer Type1"="Customer Type1"::Student THEN BEGIN
              "Current Programme":=COPYSTR(FORMAT("No."),1,3);
              MODIFY;
           END;
@@ -1946,7 +1946,7 @@ Table 85050 Customer2
     trigger OnRename()
     begin
         "Last Date Modified" := Today;
-        // if "Customer Type"="customer type"::Student then
+        // if "Customer Type1"="Customer Type1"::Student then
         //accesscont.Check_Access(UserId,Areaoption::Students,'Modify');
     end;
 
@@ -1969,7 +1969,7 @@ Table 85050 Customer2
         ShipToAddr: Record "Ship-to Address";
         ShippingAgentService: Record "Shipping Agent Services";
         DimMgt: Codeunit DimensionManagement;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
         InsertFromContact: Boolean;
         Text000: label 'You cannot delete %1 %2 because there is at least one outstanding Sales %3 for this customer.';

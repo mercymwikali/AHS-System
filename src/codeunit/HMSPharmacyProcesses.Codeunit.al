@@ -12,7 +12,7 @@ codeunit 85033 "HMS Pharmacy Processes"
         HMSPatientCharges: Record "HMS Patient Charges";
         HMSAdmissionFormHeader: Record "HMS Admission Form Header";
         TbHMSSetup: Record "HMS Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     procedure PostPharmacyReturns(var PharmacyLine: Record "HMS Pharmacy Line") ReturnValue: Boolean
     begin
@@ -145,7 +145,7 @@ codeunit 85033 "HMS Pharmacy Processes"
                     ItemJournalLine."Item No." := PharmLine."No.";
                     ItemJournalLine.Validate(ItemJournalLine."Item No.");
                     ItemJournalLine."Location Code" := CopyStr(PharmLine.Location, 1, MaxStrLen(ItemJournalLine."Location Code"));
-                   // ItemJournalLine.Validate(ItemJournalLine."Location Code");
+                    // ItemJournalLine.Validate(ItemJournalLine."Location Code");
                     ItemJournalLine."Gen. Prod. Posting Group" := 'DRUGS';
                     if PharmLine."Returns Quantity" <= 0 then
                         Error('Please enter returns quantity');
@@ -157,8 +157,8 @@ codeunit 85033 "HMS Pharmacy Processes"
                     ItemJournalLine."Shortcut Dimension 1 Code" := HMSPatient."Global Dimension 1 Code";
                     ItemJournalLine."Shortcut Dimension 2 Code" := HMSSetup."Pharmacy Department";
                     // ItemJournalLine.VALIDATE(ItemJournalLine."Unit Amount");
-                //    ItemJournalLine.Validate("Shortcut Dimension 1 Code");
-                 //   ItemJournalLine.Validate("Shortcut Dimension 2 Code");
+                    //    ItemJournalLine.Validate("Shortcut Dimension 1 Code");
+                    //   ItemJournalLine.Validate("Shortcut Dimension 2 Code");
                     ItemJournalLine."Source Code" := 'Return';
                     ItemJournalLine.Insert();
 

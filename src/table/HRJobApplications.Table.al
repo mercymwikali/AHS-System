@@ -14,7 +14,7 @@ Table 85293 "HR Job Applications"
                 if "Application No" = '' then begin
                     HRSetup.Get();
                     HRSetup.TestField(HRSetup."Job Application Nos");
-                    NoSeriesMgt.InitSeries(HRSetup."Job Application Nos", xRec."No. Series", 0D, "Application No", "No. Series");
+                    NoSeriesMgt.GetNextNo(HRSetup."Job Application Nos");
                 end;
 
                 "Date Applied" := Today;
@@ -525,7 +525,7 @@ Table 85293 "HR Job Applications"
         if "Application No" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Job Application Nos");
-            NoSeriesMgt.InitSeries(HRSetup."Job Application Nos", xRec."No. Series", 0D, "Application No", "No. Series");
+            NoSeriesMgt.GetNextNo(HRSetup."Job Application Nos");
         end;
 
         "Date Applied" := Today;
@@ -540,7 +540,7 @@ Table 85293 "HR Job Applications"
         HRJobApp: Record "HR Job Applicants";
         Jobs: Record "HR Jobs";
         HRSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure FullName(): Text[100]
     begin

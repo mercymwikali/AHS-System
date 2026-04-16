@@ -307,7 +307,7 @@ TableExtension 85004 "Purchase Header Ext" extends "Purchase Header"
         field(50162; "Manual LPO No."; Code[20])
         {
         }
-        field(50163; "Requisition No."; Code[20])
+        field(50163; "Requisition No1."; Code[20])
         {
             CalcFormula = lookup("Purchase Line"."Requisition No" where("Document No." = field("No.")));
             FieldClass = FlowField;
@@ -325,7 +325,7 @@ TableExtension 85004 "Purchase Header Ext" extends "Purchase Header"
                 Status := Status::Released;
             end;
         }
-        field(50166; "Employee No."; Code[20])
+        field(50166; "Employee No1."; Code[20])
         {
             TableRelation = "HR-Employee";
         }

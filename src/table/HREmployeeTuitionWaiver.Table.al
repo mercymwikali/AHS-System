@@ -121,12 +121,12 @@ Table 85282 "HR Employee Tuition Waiver"
         if "No." = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Tuition Waiver Nos.");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Tuition Waiver Nos.", xRec."No.", 0D, "No.", Rec."No.");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Tuition Waiver Nos.");
         end;
     end;
 
     var
         Cust: Record Customer;
         GenLedgerSetup: Record "General Set-Up";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

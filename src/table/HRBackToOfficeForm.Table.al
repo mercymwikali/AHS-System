@@ -254,7 +254,7 @@ Table 85401 "HRBack To Office Form"
         if "Document No" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Back To Office Nos.");
-            NoSeriesMgt.InitSeries(HRSetup."Back To Office Nos.", xRec."No. Series", 0D, "Document No", "No. Series");
+            NoSeriesMgt.GetNextNo(HRSetup."Back To Office Nos.");
         end;
 
         "User ID" := UserId;
@@ -302,7 +302,7 @@ Table 85401 "HRBack To Office Form"
         HRTrainingNeeds: Record "HR Training Courses";
         TranPart: Record "HR Training Participants";
         Vend: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         mcontent: label 'Status must be new on Training Application No.';
         mcontent4: label 'You cannot evaluate a training which is not successfully completed.';
         mcontent5: label 'You cannot change training status if the status is not approved';

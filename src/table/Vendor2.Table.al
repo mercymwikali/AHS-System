@@ -1099,7 +1099,7 @@ Table 85063 Vendor2
         GenBusPostingGrp: Record "Gen. Business Posting Group";
         PurchSetup: Record "Purchases & Payables Setup";
         DimMgt: Codeunit DimensionManagement;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         InsertFromContact: Boolean;
         Text002: label 'You have set %1 to %2. Do you want to update the %3 price list accordingly?';
         Text003: label 'Do you wish to create a contact for %1 %2?';

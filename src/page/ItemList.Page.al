@@ -75,7 +75,7 @@ page 85182 "Item List."
                     ApplicationArea = Assembly;
                     ToolTip = 'Specifies if the item is an assembly BOM.';
                 }
-                field("Production BOM No."; Rec."Item G/L Budget Account")
+                field("Production BOM No."; Rec."Item G/L Budget Account1")
                 {
                     ApplicationArea = Manufacturing;
                     ToolTip = 'Specifies the number of the production BOM that the item represents.';
@@ -259,7 +259,7 @@ page 85182 "Item List."
                     ToolTip = 'Specifies which default order flow is used to supply this assembly item.';
                     Visible = false;
                 }
-                field("Item Tracking Code"; Rec."Item G/L Budget Account")
+                field("Item Tracking Code"; Rec."Item G/L Budget Account1")
                 {
                     ApplicationArea = ItemTracking;
                     ToolTip = 'Specifies how items are tracked in the supply chain.';
@@ -280,13 +280,13 @@ page 85182 "Item List."
             }
         }
         area(factboxes)
-         {
-        //     part("Power BI Report FactBox"; "Power BI Report FactBox")
-        //     {
-        //         ApplicationArea = Basic, Suite;
-        //         Caption = 'Power BI Reports';
-        //         Visible = PowerBIVisible;
-        //     }
+        {
+            //     part("Power BI Report FactBox"; "Power BI Report FactBox")
+            //     {
+            //         ApplicationArea = Basic, Suite;
+            //         Caption = 'Power BI Reports';
+            //         Visible = PowerBIVisible;
+            //     }
             // part(Control3; "Social Listening FactBox")
             // {
             //     ApplicationArea = All;
@@ -1400,7 +1400,7 @@ page 85182 "Item List."
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItem(Rec, ItemAvailFormsMgt.ByEvent());
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItem(Rec,  Enum::"Item Availability Type"::"Event");
                         end;
                     }
                     action(Period)
@@ -1454,9 +1454,10 @@ page 85182 "Item List."
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItem(Rec, ItemAvailFormsMgt.ByBOM());
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItem(Rec,  Enum::"Item Availability Type"::"Event");
                         end;
                     }
+                    
                     action("Unit of Measure")
                     {
                         ApplicationArea = Basic, Suite;

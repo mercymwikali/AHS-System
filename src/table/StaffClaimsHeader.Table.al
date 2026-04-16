@@ -434,7 +434,7 @@ Table 85018 "Staff Claims Header"
             GenLedgerSetup.Get();
             if "Payment Type" = "payment type"::Imprest then begin
                 GenLedgerSetup.TestField(GenLedgerSetup."Staff Claim No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Staff Claim No", xRec."No. Series", 0D, "No.", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Staff Claim No");
             end
         end;
 
@@ -481,7 +481,7 @@ Table 85018 "Staff Claims Header"
         DimVal: Record "Dimension Value";
         ImpLines: Record "Imprest Lines";
         RespCenter: Record "Responsibility Center";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UserMgt: Codeunit "User Setup Management";
         Text001: label 'Your identification is set up to process from %1 %2 only.';
 

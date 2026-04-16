@@ -219,7 +219,7 @@ Table 85005 "FLT-Fuel & Maintenance Req."
         // IF "Requisition No" = '' THEN BEGIN
         FltMgtSetup.Get();
         FltMgtSetup.TestField(FltMgtSetup."Fuel Register");
-        NoSeriesMgt.InitSeries(FltMgtSetup."Fuel Register", xRec."No. Series", 0D, "Requisition No", "No. Series");
+        NoSeriesMgt.GetNextNo(FltMgtSetup."Fuel Register");
 
         // END;
         //END ELSE BEGIN
@@ -227,7 +227,7 @@ Table 85005 "FLT-Fuel & Maintenance Req."
             if "Requisition No" = '' then begin
                 FltMgtSetup.Get();
                 FltMgtSetup.TestField(FltMgtSetup."Maintenance Request");
-                NoSeriesMgt.InitSeries(FltMgtSetup."Maintenance Request", xRec."No. Series", 0D, "Requisition No", "No. Series");
+                NoSeriesMgt.GetNextNo(FltMgtSetup."Maintenance Request");
             end;
         //END;
     end;
@@ -237,5 +237,5 @@ Table 85005 "FLT-Fuel & Maintenance Req."
         WshpFA: Record "FLT-Vehicle Header";
         Drivers: Record "Flt Driver";
         Vendor: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

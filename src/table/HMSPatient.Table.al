@@ -337,7 +337,7 @@ Table 85209 "HMS Patient"
         }
         field(50075; "Insurance No."; Code[100])
         {
-            TableRelation = Customer."No." where("Customer Type" = filter(Customer), Blocked = const(" "));
+            TableRelation = Customer."No." where("Customer Type1" = filter(Customer), Blocked = const(" "));
 
             trigger OnValidate()
             begin
@@ -1035,7 +1035,7 @@ Table 85209 "HMS Patient"
         }
         field(50187; "Patient Status"; Option)
         {
-            OptionMembers = ,Admitted,"Under Review", Discharged,Alive,Dead,Transfer;
+            OptionMembers = ,Admitted,"Under Review",Discharged,Alive,Dead,Transfer;
         }
         field(50188; "Debtor Account"; code[20])
         {
@@ -1134,10 +1134,10 @@ Table 85209 "HMS Patient"
 
             if "Patient No." = '' then begin
                 NoSeriesMgt.TestManual(HMSSetup."Patient Nos");
-                "Patient No." := NoSeriesMgt.DoGetNextNo(HMSSetup."Patient Nos", today, true, true);
+                "Patient No." := NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
             end;
             // HMSSetup.TestField();
-            "File No" := NoSeriesMgt.DoGetNextNo(HMSSetup."File No", today, true, true);
+            "File No" := NoSeriesMgt.GetNextNo(HMSSetup."File No");
             "Date Registered" := Today;
             if "User ID" = '' then
                 "User ID" := Format(UserId);
@@ -1151,7 +1151,7 @@ Table 85209 "HMS Patient"
         Emp: Record "HR-Employee";
         HMSPatCharges: Record "HMS Patient Charges";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         SubCountySetUP: Record "Sub-County Setup";
         countyWards: Record "County Wards";
 

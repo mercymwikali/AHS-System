@@ -64,6 +64,6 @@ Page 85473 "HMS Treatment Form Laboratory"
         LabSpecimenSetup: Record "HMS Setup Test Specimen";
         TreatmentHeader: Record "HMS Treatment Form Header";
         DocLabRequestLines: Record "HMS Treatment Form Laboratory";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 }

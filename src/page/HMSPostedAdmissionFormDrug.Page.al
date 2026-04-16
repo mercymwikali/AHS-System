@@ -238,7 +238,7 @@ page 85412 "HMS Posted Admission Form Drug"
         PharmLine: Record "HMS Pharmacy Line";
         PhysioHeader: Record "HMS Physiotheraphy Form Header";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         LineNo: Integer;
 

@@ -287,7 +287,7 @@ page 85511 "HMS Laboratory Form Completed"
         Patient: Record "HMS Patient";
         HMSSetup: Record "HMS Setup";
         docHeader: Record "HMS Treatment Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         blnCompleted: Boolean;
         NewNo: Code[20];
         PatientName: Text[100];

@@ -348,7 +348,7 @@ page 85408 "HMS Physio Form Header"
         Patient: Record "HMS Patient";
         HMSSetup: Record "HMS Setup";
         docHeader: Record "HMS Treatment Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         PatientName: Text[100];
 

@@ -6,7 +6,7 @@ codeunit 85016 "Transcription Actions"
         HMSAdmissionFormHeader: Record "HMS Admission Form Header";
         HMSTreatmentFormHeader: Record "HMS Treatment Form Header";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         jObject: JsonObject;
         jToken: JsonToken;
         Action: Text;

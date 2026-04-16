@@ -10,7 +10,7 @@ Table 85210 "HMS Patient Charges"
             TableRelation = "HMS Patient"."Patient No.";
 
             trigger OnValidate()
-              var
+            var
                 hmsPatInt: Codeunit "HMS Patient-integration";
             begin
                 HMSPatient.SetRange(HMSPatient."Patient No.", "Patient No.");
@@ -19,13 +19,13 @@ Table 85210 "HMS Patient Charges"
                         "Visit No" := HMSPatient."Active Visit No"
                     else
                         "Visit No" := HMSPatient."Current Adm No";
-                        Names:= HMSPatient."Search Name";
-                        patientNames:= HMSPatient."Search Name";
+                    Names := HMSPatient."Search Name";
+                    patientNames := HMSPatient."Search Name";
 
                     "Shortcut Dimension 1 Code" := HMSPatient."Global Dimension 1 Code";
                     "Insurance No" := HMSPatient."Insurance No.";
                 end;
-               
+
             end;
         }
         field(50001; "Shortcut Dimension 1 Code"; Code[20])
@@ -452,7 +452,7 @@ Table 85210 "HMS Patient Charges"
                 if "Invoice ID" = '' then begin
                     GenSetup.Get;
                     GenSetup.TestField(GenSetup."Transaction Nos.");
-                    NoSeriesMgt.InitSeries(GenSetup."Transaction Nos.", xRec."No. Series", 0D, "Invoice ID", "No. Series");
+                    NoSeriesMgt.GetNextNo(GenSetup."Transaction Nos.", xRec."No. Series", 0D, "Invoice ID", "No. Series");
                 end;
                 */
             end;
@@ -1087,7 +1087,7 @@ Table 85210 "HMS Patient Charges"
             if HMSPatient.Activated = false then
                 Error('This patient is not active. Activate the patient to continue billing');
 
-        
+
         if "User ID" = '' then
             "User ID" := UserId;
         "Creation Time" := Time;

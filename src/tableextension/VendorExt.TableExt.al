@@ -227,13 +227,13 @@ TableExtension 85018 "Vendor Ext" extends Vendor
         field(50108; "Vendor Bank Account"; Code[20])
         {
         }
-        field(50109; "Vendor Bank Branch Code"; Code[20])
+        field(50109; "Vendor Bank Branch Code1"; Code[20])
         {
         }
         field(50110; "AGPO No"; Code[50])
         {
         }
-        field(50111; "Vendor Type"; Option)
+        field(50111; "Vendor Type1"; Option)
         {
             OptionCaption = ' ,Implementing Partner,Goods,Services,Contract,Goods & Services';
             OptionMembers = " ","Implementing Partner",Goods,Services,Contract,"Goods & Services";
@@ -242,7 +242,7 @@ TableExtension 85018 "Vendor Ext" extends Vendor
             begin
 
                 //Prevent Changing once entries exist
-                TestNoEntriesExist(FieldCaption("Vendor Type"));
+                TestNoEntriesExist(FieldCaption("Vendor Type1"));
             end;
         }
         field(50112; "Property Code"; Code[30])

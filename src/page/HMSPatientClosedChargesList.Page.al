@@ -381,7 +381,7 @@ Page 85376 "HMS Patient ClosedCharges List"
         HMSChargeWeiver: Record "HMS Patient Charges Weiver";
         HMSSetup: Record "HMS Setup";
         Itm: Record Item;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 
     procedure PostDrugsReturn()

@@ -77,7 +77,7 @@ TableExtension 85027 "Customer Ext" extends Customer
         field(50137; "Membership No"; text[50])
         {
         }
-        field(50138; "Customer Type"; Option)
+        field(50138; "Customer Type1"; Option)
         {
             OptionCaption = 'Customer,Student,Hotel';
             OptionMembers = Customer,Student,Hotel;

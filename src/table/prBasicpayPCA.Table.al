@@ -185,7 +185,7 @@ Table 85507 "prBasic pay PCA"
         if "Change Advice Serial No." = '' then begin
             HrSetup.Get();
             // HrSetup.TestField("Pay-change No.");
-            NoSeriesMgt.InitSeries(HrSetup."Pay-change No.", xRec."No. Series", 0D, "Change Advice Serial No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HrSetup."Pay-change No.");
         end;
         "User ID" := UserId;
 
@@ -204,7 +204,7 @@ Table 85507 "prBasic pay PCA"
         HrSetup: Record "HR Setup";
         objSalCard: Record "prSalary Card";
         Usetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure fnCheckEmployeeStatus()
     var

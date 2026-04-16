@@ -263,7 +263,7 @@ page 85470 "HMS Treatment Form Header"
                     SubPageLink = "Treatment No." = FIELD("Treatment No.");
                 }
             }
-            
+
             group(Prescription)
             {
                 Caption = 'Prescription';
@@ -581,7 +581,7 @@ page 85470 "HMS Treatment Form Header"
                 trigger OnAction()
                 var
                     PharmHeader: Record "HMS Pharmacy Header";
-                    
+
                 begin
                     if ((Today - Rec."Treatment Date") > 2) then
                         Error('This is already an old appointment. Kindly queue the patient for today');
@@ -663,7 +663,7 @@ page 85470 "HMS Treatment Form Header"
         HMSSetup: Record "HMS Setup";
         Doctor: Record "HMS Setup Doctor";
         TreatmentHeader: Record "HMS Treatment Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         [InDataSet]
         "Light Duty DaysEnable": Boolean;
         [InDataSet]

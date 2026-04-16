@@ -196,7 +196,7 @@ Table 85422 "HR Medical Claims"
         if "Claim No" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Medical Claims Nos");
-            NoSeriesMgt.InitSeries(HRSetup."Medical Claims Nos", xRec."No. Series", 0D, "Claim No", "No. Series");
+            NoSeriesMgt.GetNextNo(HRSetup."Medical Claims Nos");
         end;
         "Member ID" := UserId;
         "Member No" := HREmp."No.";
@@ -234,7 +234,7 @@ Table 85422 "HR Medical Claims"
         HRClaimTypes: Record "HR Medical Schemes";
         MedicalSchemes: Record "HR Medical Schemes";
         HRSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     local procedure UpdateCurrencyFactor()
     var

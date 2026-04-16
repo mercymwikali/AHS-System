@@ -223,7 +223,7 @@ Table 85410 "HR Employee Exit Interviews"
         if "Exit Clearance No" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Exit Interview Nos");
-            NoSeriesMgt.InitSeries(HRSetup."Exit Interview Nos", xRec."Exit Clearance No", 0D, "Exit Clearance No", HRSetup."Exit Interview Nos");
+            NoSeriesMgt.GetNextNo(HRSetup."Exit Interview Nos");
         end;
 
         "Clearance Requester" := UserId;
@@ -232,7 +232,7 @@ Table 85410 "HR Employee Exit Interviews"
     var
         HREmp: Record "HR-Employee";
         HRSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         //  CareerEvent: Page UnknownPage70135475;
         OK: Boolean;
         EmpFullName: Text;

@@ -70,7 +70,7 @@ Table 85140 "Store Requistion Lines"
                 /*
                 {Modified}
                          //Validate Item
-                      GLAccount.GET(QtyStore."Item G/L Budget Account");
+                      GLAccount.GET(QtyStore."Item G/L Budget Account1");
                       GLAccount.CheckGLAcc;
 
                 */

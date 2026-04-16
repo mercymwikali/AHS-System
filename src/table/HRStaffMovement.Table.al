@@ -211,7 +211,7 @@ Table 85295 "HR Staff Movement"
         if "No." = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Staff Application Nos.");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Staff Application Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Staff Application Nos.");
         end;
         "User ID" := UserId;
         Date := Today;
@@ -241,7 +241,7 @@ Table 85295 "HR Staff Movement"
         LeaveTypes: Record "Leave Types";
         objPeriod: Record "prPayroll Periods";
         usersetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         ReturnDateLoop: Boolean;
         PayPeriod: Date;
         varDaysApplied: Integer;

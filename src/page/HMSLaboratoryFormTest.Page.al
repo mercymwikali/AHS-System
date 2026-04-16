@@ -232,7 +232,7 @@ page 85514 "HMS Laboratory Form Test"
         Patient: Record "HMS Patient";
         HMSSetup: Record "HMS Setup";
         docHeader: Record "HMS Treatment Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         HMSProcess: Codeunit "HMS Processes";
         blnCompleted: Boolean;
         NewNo: Code[20];

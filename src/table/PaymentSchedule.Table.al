@@ -10,7 +10,7 @@ Table 85121 "Payment Schedule"
             begin
                 GenLedgerSetup.Get();
                 GenLedgerSetup.TestField(GenLedgerSetup."Payment Schedule No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Payment Schedule No", xRec."No. Series", 0D, No, "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Payment Schedule No");
             end;
         }
         field(50001; Date; Date)
@@ -100,12 +100,12 @@ Table 85121 "Payment Schedule"
         //IF No = '' THEN BEGIN
         GenLedgerSetup.Get();
         GenLedgerSetup.TestField(GenLedgerSetup."Payment Schedule No");
-        NoSeriesMgt.InitSeries(GenLedgerSetup."Payment Schedule No", xRec."No. Series", 0D, No, "No. Series");
+        NoSeriesMgt.GetNextNo(GenLedgerSetup."Payment Schedule No");
         //END
     end;
 
     var
         BankRec: Record "Bank Account";
         GenLedgerSetup: Record "Cash Office Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

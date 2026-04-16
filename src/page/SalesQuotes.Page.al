@@ -197,7 +197,7 @@ page 85256 "Sales Quotes."
         }
         area(factboxes)
         {
-            part("Attached Documents"; "Document Attachment Factbox")
+            part("Attached Documents"; "Doc. Attachment List Factbox")
             {
                 ApplicationArea = All;
                 SubPageLink = "Table ID" = CONST(36),

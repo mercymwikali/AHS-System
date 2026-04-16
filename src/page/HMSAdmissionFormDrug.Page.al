@@ -131,7 +131,7 @@ Page 85297 "HMS Admission Form Drug"
         PharmHeader: Record "HMS Pharmacy Header";
         PharmLine: Record "HMS Pharmacy Line";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 
     local procedure PharmacyCodeOnFormat()

@@ -77,6 +77,6 @@ Page 85472 "HMS Treatment Form Injection"
         HMSSetup: Record "HMS Setup";
         TreatmentHeader: Record "HMS Treatment Form Header";
         TreatmentLine: Record "HMS Treatment Form Injection";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 }

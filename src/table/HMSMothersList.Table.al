@@ -59,19 +59,19 @@ Table 85199 "HMS Mothers List"
                                     until HMSPatCharges.Next() = 0;
                         end;
                     end;
-                    /*
-                    // Validate changes
-                      HMSPatCharges.RESET;
-                      HMSPatCharges.SETRANGE(HMSPatCharges."Patient No.","Patient No.");
-                      HMSPatCharges.SETRANGE(HMSPatCharges.Posted,FALSE);
-                      IF HMSPatCharges.FIND('-') THEN BEGIN
-                        REPEAT
-                            HMSPatCharges.VALIDATE(HMSPatCharges."Transaction Type");
-                            HMSPatCharges.VALIDATE(HMSPatCharges.Amount);
-                            HMSPatCharges.MODIFY;
-                        UNTIL HMSPatCharges.NEXT=0;
-                      END;
-                      */
+                /*
+                // Validate changes
+                  HMSPatCharges.RESET;
+                  HMSPatCharges.SETRANGE(HMSPatCharges."Patient No.","Patient No.");
+                  HMSPatCharges.SETRANGE(HMSPatCharges.Posted,FALSE);
+                  IF HMSPatCharges.FIND('-') THEN BEGIN
+                    REPEAT
+                        HMSPatCharges.VALIDATE(HMSPatCharges."Transaction Type");
+                        HMSPatCharges.VALIDATE(HMSPatCharges.Amount);
+                        HMSPatCharges.MODIFY;
+                    UNTIL HMSPatCharges.NEXT=0;
+                  END;
+                  */
             end;
         }
         field(50003; Test; Code[10])
@@ -362,7 +362,7 @@ Table 85199 "HMS Mothers List"
         }
         field(50075; "Insurance No."; Code[20])
         {
-            TableRelation = Customer."No." where("Customer Type" = filter(Customer));
+            TableRelation = Customer."No." where("Customer Type1" = filter(Customer));
 
             trigger OnValidate()
             begin

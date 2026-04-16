@@ -303,6 +303,6 @@ page 85392 "HMS Patient Visits"
         HMSSetup: Record "HMS Setup";
         DocRec: Record "HMS Setup Doctor";
         VendL: Record "Vendor Ledger Entry";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 }

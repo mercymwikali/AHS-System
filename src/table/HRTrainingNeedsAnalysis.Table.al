@@ -295,7 +295,7 @@ Table 85441 "HR Training Needs Analysis"
         if Code = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."TNA Nos.");
-            NoSeriesMgt.InitSeries(HRSetup."TNA Nos.", xRec.Code, 0D, Code, HRSetup."TNA Nos.");
+            NoSeriesMgt.GetNextNo(HRSetup."TNA Nos.");
         end;
 
         "Application Date" := Today;
@@ -348,5 +348,5 @@ Table 85441 "HR Training Needs Analysis"
         HRSetup: Record "HR Setup";
         HRTrainingNeeds: Record "HR Training Courses";
         UserSetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

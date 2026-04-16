@@ -787,39 +787,39 @@ page 85284 "CEO Role Center"
                     RunObject = Codeunit "Run Template Retained Earn.";
                     ToolTip = 'Open a spreadsheet that shows your company''s changes in retained earnings based on net income from the other financial statements.';
                 }
-                action(ExcelTemplateTrialBalance)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Trial Balance';
-                    Image = "Report";
-                    Promoted = true;
-                    PromotedCategory = "Report";
-                    PromotedIsBig = true;
-                    RunObject = Codeunit "Run Template Trial Balance";
-                    ToolTip = 'Open a spreadsheet that shows a summary trial balance by account.';
-                }
-                action(ExcelTemplateAgedAccPay)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Aged Accounts Payable';
-                    Image = "Report";
-                    Promoted = true;
-                    PromotedCategory = "Report";
-                    PromotedIsBig = true;
-                    RunObject = Codeunit "Run Template Aged Acc. Pay.";
-                    ToolTip = 'Open a spreadsheet that shows a list of aged remaining balances for each vendor by period.';
-                }
-                action(ExcelTemplateAgedAccRec)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Aged Accounts Receivable';
-                    Image = "Report";
-                    Promoted = true;
-                    PromotedCategory = "Report";
-                    PromotedIsBig = true;
-                    RunObject = Codeunit "Run Template Aged Acc. Rec.";
-                    ToolTip = 'Open a spreadsheet that shows when customer payments are due or overdue by period.';
-                }
+                // action(ExcelTemplateTrialBalance)
+                // {
+                //     ApplicationArea = Basic, Suite;
+                //     Caption = 'Trial Balance';
+                //     Image = "Report";
+                //     Promoted = true;
+                //     PromotedCategory = "Report";
+                //     PromotedIsBig = true;
+                //     RunObject = Codeunit "Run Template Trial Balance";
+                //     ToolTip = 'Open a spreadsheet that shows a summary trial balance by account.';
+                // }
+                // action(ExcelTemplateAgedAccPay)
+                // {
+                //     ApplicationArea = Basic, Suite;
+                //     Caption = 'Aged Accounts Payable';
+                //     Image = "Report";
+                //     Promoted = true;
+                //     PromotedCategory = "Report";
+                //     PromotedIsBig = true;
+                //     RunObject = Codeunit "Run Template Aged Acc. Pay.";
+                //     ToolTip = 'Open a spreadsheet that shows a list of aged remaining balances for each vendor by period.';
+                // }
+                // action(ExcelTemplateAgedAccRec)
+                // {
+                //     ApplicationArea = Basic, Suite;
+                //     Caption = 'Aged Accounts Receivable';
+                //     Image = "Report";
+                //     Promoted = true;
+                //     PromotedCategory = "Report";
+                //     PromotedIsBig = true;
+                //     RunObject = Codeunit "Run Template Aged Acc. Rec.";
+                //     ToolTip = 'Open a spreadsheet that shows when customer payments are due or overdue by period.';
+                // }
             }
         }
         area(embedding)
@@ -2351,3 +2351,11 @@ page 85284 "CEO Role Center"
         }
     }
 }
+
+profile "CEO Role Center"
+{
+    ProfileDescription = 'CEO Role Center';
+    Caption = 'New CEO Role Center';
+    RoleCenter = "CEO Role Center";
+}
+

@@ -116,7 +116,7 @@ Report 85111 "HMS Post Doctor invoice"
         PatVisits: Record "HMS Patient Visit Nos";
         PatVisits2: Record "HMS Patient Visit Nos";
         HMSSetup: Record "HMS Setup";
-        Noseries: Codeunit NoSeriesManagement;
+        Noseries: Codeunit "No. Series";
         NewNo: code[20];
     begin
         HMSSetup.get();

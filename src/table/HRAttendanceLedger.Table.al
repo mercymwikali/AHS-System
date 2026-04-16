@@ -132,7 +132,7 @@ table 85012 "HR Attendance Ledger"
         }
     }
     var
-        NoseriesMgmt: Codeunit NoSeriesManagement;
+        NoseriesMgmt: Codeunit "No. Series";
         HRSetup: Record "HR Setup";
 
     trigger OnInsert()

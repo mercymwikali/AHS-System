@@ -209,7 +209,7 @@ pageextension 85018 "Posted Sales Invoice Ext" extends "Posted Sales Invoice"
                                 InsertSmartInvoices(Rec."Patient No.", Rec."No.");
                             until SalesLine.Next() = 0;
                         Window.Close();
-                        PostSmartInvoice(Rec."Patient No.", Rec."No.")
+                        // PostSmartInvoice(Rec."Patient No.", Rec."No.")
                     end;
                 }
             }
@@ -224,6 +224,8 @@ pageextension 85018 "Posted Sales Invoice Ext" extends "Posted Sales Invoice"
         UserRec: Record "User Setup";
         PostSales: Codeunit "HMS Patient-integration";
         PostSales2: Codeunit "HMS Patient-integration";
+        JsonObject: JsonObject;
+        HttpHeaders: HttpHeaders;
 
     local procedure InsertSmartInvoices(PatientNo: Code[20]; InvoiceNo: Code[20])
     var
@@ -266,35 +268,65 @@ pageextension 85018 "Posted Sales Invoice Ext" extends "Posted Sales Invoice"
             UNTIL HMSPatCharges.NEXT() = 0;
     end;
 
-    local procedure PostSmartInvoice(PatientNo: Code[20]; InvoiceNo: Code[20]) Ret: Boolean
-    var
-        HmsSetup: Record "HMS Setup";
-        RESTWSManagement: Codeunit "REST WS Management";
-        ReturnValue: Boolean;
-        Window: Dialog;
-        encoding: DotNet Encoding;
-        HttpResponseMessage: DotNet HttpResponseMessage;
-        httpUtility: DotNet HttpUtility;
-        stringContent: DotNet StringContent;
-        data: Text;
-
+    procedure ClearObjects()
     begin
-        Ret := false;
-        Window.OPEN('Posting to Smart...');
-        data += 'patient=' + httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
-        data += 'invoiceno=' + httpUtility.UrlEncode(InvoiceNo, encoding.GetEncoding('ISO-8859-1'));
-
-        stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
-        HmsSetup.Get();
-
-        ReturnValue := RESTWSManagement.CallRESTWebService('http://192.168.88.62:881/smart/invoice.php',
-                                                           '',
-                                                           'POST',
-                                                           stringContent,
-                                                           HttpResponseMessage);
-
-        Window.Close();
-        Ret := true;
-        Message('Success');
+        Clear(JsonObject);
+        Clear(HttpHeaders);
     end;
+
+    // local procedure PostSmartInvoice(PatientNo: Code[20]; InvoiceNo: Code[20]) Ret: Boolean
+    // var
+    //     HmsSetup: Record "HMS Setup";
+    //     RESTWSManagement: Codeunit "REST WS Management";
+    //     ReturnValue: Boolean;
+    //     Window: Dialog;
+    //     encoding: DotNet Encoding;
+    //     HttpResponseMessage: HttpResponseMessage;
+    //     httpUtility: DotNet HttpUtility;
+    //     stringContent: DotNet StringContent;
+    //     data: Text;
+    //     HttpContent: HttpContent;
+    //     HttpClient: HttpClient;
+    //     Resp: Text;
+
+
+
+    // begin
+    //     ClearObjects();
+    //     Ret := false;
+    //     Window.OPEN('Posting to Smart...');
+    //     JsonObject.add('patient', PatientNo);
+    //     JsonObject.add('invoiceno', InvoiceNo);
+
+    //     // data += 'patient=' + httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
+    //     // data += 'invoiceno=' + httpUtility.UrlEncode(InvoiceNo, encoding.GetEncoding('ISO-8859-1'));
+
+    //     // stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
+    //     HmsSetup.Get();
+
+    //     JsonObject.WriteTo(data);
+
+    //     HttpContent.WriteFrom(Data);
+
+    //     HttpHeaders.Remove('Content-Headers');
+    //     HttpHeaders.Add('Content-Headers', 'application/x-www-form-urlencoded');
+
+
+    //     HttpClient.Post('http://192.168.88.62:881/smart/invoice.php', HttpContent, HttpResponseMessage);
+    //     if not HttpResponseMessage.IsSuccessStatusCode then
+    //         Error('Error occured %1', HttpResponseMessage.Content.ReadAs(Resp))
+    //     else
+    //         ReturnValue := true;
+
+    //     // ReturnValue := RESTWSManagement.CallRESTWebService('http://192.168.88.62:881/smart/invoice.php',
+    //     //                                                    '',
+    //     //                                                    'POST',
+    //     //                                                    stringContent,
+    //     //                                                    HttpResponseMessage);
+
+    //     Window.Close();
+    //     Ret := true;
+    //     Message('Success');
+    // end;
+
 }

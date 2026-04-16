@@ -451,3 +451,12 @@ Page 85404 "HMS Pharmacy Role Centre"
         }
     }
 }
+
+profile "HMS Pharmacy Role Center"
+{
+    ProfileDescription = 'Pharmacy Role Center';
+    Caption = 'New Pharmacy  Role Center';
+    RoleCenter = "HMS Pharmacy Role Centre";
+}
+ 
+

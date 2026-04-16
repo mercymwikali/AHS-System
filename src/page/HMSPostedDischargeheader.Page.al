@@ -184,7 +184,7 @@ Page 85413 "HMS Posted Discharge header"
                 trigger OnAction()
                 var
                     HMSAPP: Record "HMS Appointment Form Header";
-                    NoSeriesMgt: Codeunit NoSeriesManagement;
+                    NoSeriesMgt: Codeunit "No. Series";
                     NewNo: code[20];
                 begin
                     if Patients.Get(Rec."Patient No.") then begin
@@ -460,7 +460,7 @@ Page 85413 "HMS Posted Discharge header"
         Doctor: Record "HMS Setup Doctor";
         User: Record "User Setup";
         HMS: Codeunit "HMS Patient-integration";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         blnMand: Boolean;
         SecurityCode: Code[20];
         mBillBal: Decimal;
@@ -480,7 +480,7 @@ Page 85413 "HMS Posted Discharge header"
         User.Reset();
         NurseName := '';
         if User.Get(Rec."Nurse ID") then;
-            // NurseName:=User.Name;
+        // NurseName:=User.Name;
         Patient.Reset();
         PatientName := '';
         if Patient.Get(Rec."Patient No.") then
@@ -494,7 +494,7 @@ Page 85413 "HMS Posted Discharge header"
         SalesSetup: Record "Sales & Receivables Setup";
         SaleH: Record "Sales Header";
         SLine: Record "Sales Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         LineNo: Integer;
     begin

@@ -12,7 +12,7 @@ Table 85477 "Casual Payment Header.dsl"
                     CashMgtSetup.Get();
                     CashMgtSetup.TestField("Casual Payment Nos");
                     "No. Series" := '';
-                    NoSeriesMgt.InitSeries(CashMgtSetup."Casual Payment Nos", xRec."No. Series", 0D, "No.", "No. Series");
+                    NoSeriesMgt.GetNextNo(CashMgtSetup."Casual Payment Nos");
                     Validate("Salary Account");
                 end;
             end;
@@ -305,7 +305,7 @@ Table 85477 "Casual Payment Header.dsl"
         CashMgtSetup.Get();
 
         if "No." = '' then
-            NoSeriesMgt.InitSeries(CashMgtSetup."Casual Payment Nos", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(CashMgtSetup."Casual Payment Nos");
         "Document Type" := "document type"::PayVoucher;
         Posted := false;
         "Posting Date" := Today;
@@ -326,7 +326,7 @@ Table 85477 "Casual Payment Header.dsl"
         PayrollPosting: Record "prEmployee Posting Group";
         Vendor: Record Vendor;
         DimMgt: Codeunit DimensionManagement;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         Text064: label 'You may have changed a dimension.\\Do you want to update the lines?';
 
     procedure PaymentLinesExist(): Boolean

@@ -182,7 +182,7 @@ Table 85202 "HMS Observation Form Header"
         IF "Observation No." = '' THEN BEGIN
           HMSSetup.GET;
           HMSSetup.TESTFIELD("Observation Nos");
-          NoSeriesMgt.InitSeries(HMSSetup."Observation Nos",xRec."No. Series",0D,"Observation No.","No. Series");
+          NoSeriesMgt.GetNextNo(HMSSetup."Observation Nos",xRec."No. Series",0D,"Observation No.","No. Series");
         END;
         */
         //"Observation User ID":=USERID;

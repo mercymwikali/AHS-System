@@ -470,7 +470,7 @@ page 85312 "HMS Appointment Form Header"
         "Relative No.Enable": Boolean;
         HMSSetup: Record "HMS Setup";
         NewNo: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         TreatmentHeader: Record "HMS Appointment Form Header";
         PharmHeader: Record "HMS Pharmacy Header";
         LabHeader: Record "HMS Laboratory Form Header";

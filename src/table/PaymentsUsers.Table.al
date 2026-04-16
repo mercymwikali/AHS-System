@@ -334,7 +334,7 @@ Table 85119 "Payments-Users"
         if No = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Normal Payments No");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Normal Payments No", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Normal Payments No");
         end;
     end;
 
@@ -345,5 +345,5 @@ Table 85119 "Payments-Users"
         GLAcc: Record "G/L Account";
         RecPayTypes: Record "Receipts and Payment Types";
         Vend: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

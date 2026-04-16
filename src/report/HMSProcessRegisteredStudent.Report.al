@@ -7,7 +7,7 @@ Report 85115 "HMS Process Registered Student"
     {
         dataitem(Customer; Customer)
         {
-            DataItemTableView = sorting("No.") where("Customer Type" = const(Student));
+            DataItemTableView = sorting("No.") where("Customer Type1" = const(Student));
             RequestFilterFields = "No.";
             column(ReportForNavId_6836; 6836)
             {

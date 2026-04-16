@@ -279,7 +279,7 @@ Page 85414 "HMS Posted Discharge List"
         SalesSetup: Record "Sales & Receivables Setup";
         SaleH: Record "Sales Header";
         SLine: Record "Sales Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         LineNo: Integer;
     begin

@@ -195,7 +195,7 @@
 //                                 GLNew."ID No" := GLOld."ID No";
 //                                 GLNew."Date Registered" := GLOld."Date Registered";
 //                                 GLNew."Membership No" := GLOld."Membership No";
-//                                 GLNew."Customer Type" := GLOld."Customer Type";
+//                                 GLNew."Customer Type1" := GLOld."Customer Type1";
 //                                 GLNew."Birth Cert" := GLOld."Birth Cert";
 //                                 // GLNew.Dioceses := GLOld."Diocese";
 //                                 //  GLNew."Old Student Code" := GLOld."Old Student Code";
@@ -418,9 +418,9 @@
 //                                 GLNew."Retention" := GLOld."Retention";
 //                                 GLNew."PIN No." := GLOld."PIN No.";
 //                                 GLNew."Vendor Bank Account" := GLOld."Vendor Bank Account";
-//                                 GLNew."Vendor Bank Branch Code" := GLOld."Vendor Bank Branch Code";
+//                                 GLNew."Vendor Bank Branch Code1" := GLOld."Vendor Bank Branch Code1";
 //                                 // GLNew."Test1" := GLOld."Test1";
-//                                 GLNew."Vendor Type" := GLOld."Vendor Type";
+//                                 GLNew."Vendor Type1" := GLOld."Vendor Type1";
 //                                 GLNew."Property Code" := GLOld."Property Code";
 //                                 GLNew."Transaction Code" := GLOld."Transaction Code";
 //                                 GLNew."Employee Responsible" := GLOld."Employee Responsible";
@@ -860,7 +860,7 @@
 //                                 GLNew."Use Cross-Docking" := GLOld."Use Cross-Docking";
 //                                 GLNew."Next Counting Start Date" := GLOld."Next Counting Start Date";
 //                                 GLNew."Next Counting End Date" := GLOld."Next Counting End Date";
-//                                 GLNew."Item G/L Budget Account" := GLOld."Item G/L Budget Account";
+//                                 GLNew."Item G/L Budget Account1" := GLOld."Item G/L Budget Account1";
 //                                 GLNew."Routing No." := GLOld."Routing No.";
 //                                 GLNew."Production BOM No." := GLOld."Production BOM No.";
 //                                 GLNew."Single-Level Material Cost" := GLOld."Single-Level Material Cost";
@@ -1046,7 +1046,7 @@
 //                                 GLNew."ID No" := GLOld."ID No";
 //                                 GLNew."Date Registered" := GLOld."Date Registered";
 //                                 GLNew."Membership No" := GLOld."Membership No";
-//                                 GLNew."Customer Type" := GLOld."Customer Type";
+//                                 GLNew."Customer Type1" := GLOld."Customer Type1";
 //                                 GLNew."Birth Cert" := GLOld."Birth Cert";
 //                                 // GLNew.Dioceses := GLOld."Diocese";
 //                                 //  GLNew."Old Student Code" := GLOld."Old Student Code";

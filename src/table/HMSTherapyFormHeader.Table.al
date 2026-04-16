@@ -239,7 +239,7 @@ table 85337 "HMS Therapy Form Header"
         if "No." = '' then begin
             HMSSetup.Get();
             HMSSetup.TestField("Therapy Nos");
-            NoSeriesMgt.InitSeries(HMSSetup."Therapy Nos", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HMSSetup."Therapy Nos");
         end;
 
         "Therapy User ID" := Format(UserId);
@@ -248,5 +248,5 @@ table 85337 "HMS Therapy Form Header"
     var
         Patient: Record "HMS Patient";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

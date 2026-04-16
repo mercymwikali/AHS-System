@@ -9,7 +9,7 @@ page 85559 "Laboratory Requests"
     PageType = List;
     SourceTable = "HMS Treatment Form Laboratory";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(content)
@@ -70,6 +70,6 @@ page 85559 "Laboratory Requests"
         LabSpecimenSetup: Record "HMS Setup Test Specimen";
         TreatmentHeader: Record "HMS Treatment Form Header";
         DocLabRequestLines: Record "HMS Treatment Form Laboratory";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 }

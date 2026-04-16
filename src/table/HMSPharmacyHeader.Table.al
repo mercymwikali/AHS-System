@@ -370,7 +370,7 @@ table 85219 "HMS Pharmacy Header"
         Pharmline: Record "HMS Pharmacy Line";
         HMSSetup: Record "HMS Setup";
         UserRec: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     var
         PatientName: Text[100];

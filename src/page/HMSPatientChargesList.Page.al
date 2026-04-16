@@ -529,7 +529,7 @@ Page 85373 "HMS Patient Charges List"
 
         UserSetUp: Record "User Setup";
         HMSPatCU: Codeunit "HMS Patient-integration";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 
     procedure PostDrugsReturn()

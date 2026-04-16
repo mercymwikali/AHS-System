@@ -58,6 +58,6 @@ Page 85467 "HMS Treatment Form Admission"
         HMSSetup: Record "HMS Setup";
         TreatmentHeader: Record "HMS Treatment Form Header";
         PatientCU: Codeunit "HMS Patient-integration";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 }

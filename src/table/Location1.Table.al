@@ -409,10 +409,10 @@ Table 85061 Location1
             var
                 WhseIntegrationMgt: Codeunit "Whse. Integration Management";
             begin
-                WhseIntegrationMgt.CheckBinCode(Code,
+                WhseIntegrationMgt.CheckBinCodeForLocation(Code,
                   "Open Shop Floor Bin Code",
                   FieldCaption("Open Shop Floor Bin Code"),
-                  Database::Location, Code);
+                 Code);
             end;
         }
         field(50035; "To-Production Bin Code"; Code[20])
@@ -424,10 +424,10 @@ Table 85061 Location1
             var
                 WhseIntegrationMgt: Codeunit "Whse. Integration Management";
             begin
-                WhseIntegrationMgt.CheckBinCode(Code,
+                WhseIntegrationMgt.CheckBinCodeForLocation(Code,
                   "To-Production Bin Code",
                   FieldCaption("To-Production Bin Code"),
-                  Database::Location, Code);
+                  Code);
             end;
         }
         field(50036; "From-Production Bin Code"; Code[20])
@@ -439,10 +439,10 @@ Table 85061 Location1
             var
                 WhseIntegrationMgt: Codeunit "Whse. Integration Management";
             begin
-                WhseIntegrationMgt.CheckBinCode(Code,
+                WhseIntegrationMgt.CheckBinCodeForLocation(Code,
                   "From-Production Bin Code",
                   FieldCaption("From-Production Bin Code"),
-                  Database::Location, Code);
+                   Code);
             end;
         }
         field(50037; "Adjustment Bin Code"; Code[20])
@@ -505,10 +505,10 @@ Table 85061 Location1
             var
                 WhseIntegrationMgt: Codeunit "Whse. Integration Management";
             begin
-                WhseIntegrationMgt.CheckBinCode(Code,
+                WhseIntegrationMgt.CheckBinCodeForLocation(Code,
                   "To-Assembly Bin Code",
                   FieldCaption("To-Assembly Bin Code"),
-                  Database::Location, Code);
+                 Code);
             end;
         }
         field(50045; "From-Assembly Bin Code"; Code[20])
@@ -519,26 +519,27 @@ Table 85061 Location1
             trigger OnValidate()
             var
                 WhseIntegrationMgt: Codeunit "Whse. Integration Management";
+                  
             begin
-                WhseIntegrationMgt.CheckBinCode(Code,
+                WhseIntegrationMgt.CheckBinCodeForLocation(Code,
                   "From-Assembly Bin Code",
                   FieldCaption("From-Assembly Bin Code"),
-                  Database::Location, Code);
+                   Code);
             end;
         }
         field(50046; "Asm.-to-Order Shpt. Bin Code"; Code[20])
         {
             Caption = 'Asm.-to-Order Shpt. Bin Code';
-            TableRelation = Bin.Code where("Location Code" = field(Code));
+            TableRelation = Bin.Code where("Location Code" = FIELD(Code));
 
             trigger OnValidate()
             var
                 WhseIntegrationMgt: Codeunit "Whse. Integration Management";
             begin
-                WhseIntegrationMgt.CheckBinCode(Code,
+                WhseIntegrationMgt.CheckBinCodeForLocation(Code,
                   "Asm.-to-Order Shpt. Bin Code",
                   FieldCaption("Asm.-to-Order Shpt. Bin Code"),
-                  Database::Location, Code);
+                  Code);
             end;
         }
         field(50047; "Base Calendar Code"; Code[10])

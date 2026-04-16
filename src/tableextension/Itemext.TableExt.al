@@ -9,7 +9,7 @@ tableextension 85014 "Item_ext" extends Item
         {
             Width = 100;
         }
-        field(50102; "Item G/L Budget Account"; Code[20])
+        field(50102; "Item G/L Budget Account1"; Code[20])
         {
             TableRelation = "G/L Account"."No." where("Budget Controlled" = const(true));
         }
@@ -58,7 +58,7 @@ tableextension 85014 "Item_ext" extends Item
             FieldClass = FlowField;
             CalcFormula = lookup("Drug Generic Names"."Generic Name" where("Generic Code" = field("Generic Name Code")));
         }
-        
+
     }
     trigger OnBeforeInsert()
     var

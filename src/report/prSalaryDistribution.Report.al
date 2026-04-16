@@ -501,13 +501,34 @@ Report 85297 "prSalary Distribution"
     end;
 
     procedure CreateExcelbook()
+    var
+        TempBlob: Codeunit "Temp Blob";
+        WorksheetNameLbl: Label 'SalaryDist';
+        FileName: Text;
+
+        OutStr: OutStream;
+        InStr: InStream;
     begin
+        // Create Excel file in memory
+        ExcelBuf.CreateNewBook(WorksheetNameLbl);
 
-        //   ExcelBuf.CreateBook('C:\ERP\NAV.xlsx','SalaryDist');
+        // Write to stream (SaaS-safe approach replaces CreateBookAndOpenExcel)
+        TempBlob.CreateOutStream(OutStr);
+        ExcelBuf.SaveToStream(OutStr, true);
+        ExcelBuf.CloseBook();
 
-        ExcelBuf.CreateBookAndOpenExcel('', 'SalaryDist', '', '', UserId);
-        //ExcelBuf.CreateSheet(Text002,Text001,COMPANYNAME,USERID);
-        //ExcelBuf.GiveUserControl;
+        TempBlob.CreateInStream(InStr);
+        FileName := 'SalaryDist.xlsx';
+
+        // Download to client
+        DownloadFromStream(
+            InStr,
+            '',
+            '',
+            '',
+           FileName
+        );
+
         Message('DONE');
     end;
 }

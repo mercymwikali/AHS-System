@@ -88,7 +88,7 @@ Page 85469 "HMS Treatment Form Drug"
         HMSSetup: Record "HMS Setup";
         TreatmentLine: Record "HMS Treatment Form Drug";
         TreatmentHeader: Record "HMS Treatment Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 
     local procedure DrugNoOnFormat()

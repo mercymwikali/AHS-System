@@ -1546,7 +1546,7 @@ page 85316 "HMS Appointment History Card"
         recInsurance: Record Customer;
         TreatH: Record "HMS Treatment Form Header";
         TreatmentHeader: Record "HMS Appointment Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         PatientCU: Codeunit "HMS Patient-integration";
         [InDataSet]
         "Employee No.Enable": Boolean;

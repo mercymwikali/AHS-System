@@ -25,7 +25,7 @@ Table 85013 "Staff Advance Header"
 
                 if "Currency Code" <> xRec."Currency Code" then
                     UpdateCurrencyFactor()
-                    //RecreatePurchLines(FIELDCAPTION("Currency Code"));
+                //RecreatePurchLines(FIELDCAPTION("Currency Code"));
                 else
                     if "Currency Code" <> '' then
                         UpdateCurrencyFactor();
@@ -58,7 +58,7 @@ Table 85013 "Staff Advance Header"
 
                 if "Currency Code" <> xRec."Currency Code" then
                     UpdateCurrencyFactor()
-                    //RecreatePurchLines(FIELDCAPTION("Currency Code"));
+                //RecreatePurchLines(FIELDCAPTION("Currency Code"));
                 else
                     if "Currency Code" <> '' then
                         UpdateCurrencyFactor();
@@ -112,8 +112,8 @@ Table 85013 "Staff Advance Header"
                 "Bank Name" := '';
                 if BankAcc.Get("Paying Bank Account") then
                     "Bank Name" := BankAcc.Name;
-                    // "Currency Code":=BankAcc."Currency Code";   //Currency Being determined first before document is released for approval
-                    // VALIDATE("Currency Code");
+                // "Currency Code":=BankAcc."Currency Code";   //Currency Being determined first before document is released for approval
+                // VALIDATE("Currency Code");
             end;
         }
         field(50013; "Global Dimension 1 Code"; Code[20])
@@ -413,7 +413,7 @@ Table 85013 "Staff Advance Header"
             GenLedgerSetup.Get();
             if "Payment Type" = "payment type"::Imprest then begin
                 GenLedgerSetup.TestField(GenLedgerSetup."Other Staff Advance No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Other Staff Advance No", xRec."No. Series", 0D, "No.", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Other Staff Advance No");
             end
         end;
 
@@ -458,7 +458,7 @@ Table 85013 "Staff Advance Header"
         Cust: Record Customer;
         DimVal: Record "Dimension Value";
         ImpLines: Record "Imprest Lines";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure UpdateHeaderToLine()
     var

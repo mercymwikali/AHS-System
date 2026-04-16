@@ -132,7 +132,7 @@ page 85729 "Petty Cash Replenishement Card"
                 var
                     InterBankTransfers: Record "InterBank Transfers";
                     CashOfficeSetup: Record "Cash Office Setup";
-                    NoSeriesMgt: Codeunit NoSeriesManagement;
+                    NoSeriesMgt: Codeunit "No. Series";
                     BankCashTransferRequesUP: Page "Bank & Cash Transfer Reques UP";
                     PostSuccessLbl: Label 'Inter Bank Transfer %1 has been creatd Successfully. Do you wish to open the record now?', Comment = '%1 = Interbank Transfer No';
                     PostingNo: Code[20];

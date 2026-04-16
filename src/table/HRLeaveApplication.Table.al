@@ -205,7 +205,7 @@ table 85025 "HR Leave Application"
         if "No." = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Leave Application Nos.");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Leave Application Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Leave Application Nos.");
         end;
         "User ID" := UserId;
         "Application Date" := Today;
@@ -236,7 +236,7 @@ table 85025 "HR Leave Application"
         LeaveTypes: Record "Leave Types";
         objPeriod: Record "prPayroll Periods";
         usersetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         ReturnDateLoop: Boolean;
         PayPeriod: Date;
         varDaysApplied: Integer;

@@ -1450,7 +1450,7 @@ Table 85388 "HR-Employee"
         if "No." = '' then begin
             HumanResSetup.Get();
             HumanResSetup.TestField("Employee Nos.");
-            NoSeriesMgt.InitSeries(HumanResSetup."Employee Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HumanResSetup."Employee Nos.");
         end;
 
         if "No." <> xRec."No." then begin
@@ -1480,7 +1480,7 @@ Table 85388 "HR-Employee"
         hrjobs: Record "HR Jobs";
         Lookup: Record "HR Lookup Values";
         HumanResSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure AssistEdit(OldEmployee: Record "HR-Employee"): Boolean
     begin

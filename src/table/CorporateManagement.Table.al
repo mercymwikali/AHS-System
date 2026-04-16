@@ -322,7 +322,7 @@ Table 85084 "Corporate Management"
         if No = '' then begin
             SecuritySetups.Get();
             SecuritySetups.TestField(SecuritySetups."Corporate No.");
-            NoSeriesMgt.InitSeries(SecuritySetups."Corporate No.", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(SecuritySetups."Corporate No.");
         end;
 
         Status := Status::Open;
@@ -336,5 +336,5 @@ Table 85084 "Corporate Management"
         Dimval: Record "Dimension Value";
         Emp: Record "HR-Employee";
         SecuritySetups: Record "Security Setups";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

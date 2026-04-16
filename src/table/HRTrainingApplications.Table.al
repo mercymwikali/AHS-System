@@ -41,10 +41,10 @@ Table 85029 "HR Training Applications"
                 Duration := HRTrainingNeeds.Duration;
                 "Cost Of Training" := HRTrainingNeeds."Cost Of Training";
                 "No of Participants" := HRTrainingNeeds."No of Required Participants";
-               // Location := HRTrainingNeeds.Location;
-               // Trainer := HRTrainingNeeds.Provider;
+                // Location := HRTrainingNeeds.Location;
+                // Trainer := HRTrainingNeeds.Provider;
                 //"Training Institution" := HRTrainingNeeds."Provider Name";
-               // "Training Status" := HRTrainingNeeds."Closing Status";
+                // "Training Status" := HRTrainingNeeds."Closing Status";
 
                 //"No of Required Participants":=HRTrainingNeeds."No of Participants Required";
 
@@ -358,7 +358,7 @@ Table 85029 "HR Training Applications"
         if "Application No" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Training Application Nos.");
-            NoSeriesMgt.InitSeries(HRSetup."Training Application Nos.", xRec."No. Series", 0D, "Application No", "No. Series");
+            NoSeriesMgt.GetNextNo(HRSetup."Training Application Nos.");
         end;
 
         "User ID" := UserId;
@@ -418,7 +418,7 @@ Table 85029 "HR Training Applications"
         UserSetup: Record "User Setup";
         userseups: Record "User Setup";
         Vend: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         mcontent: label 'Status must be new on Training Application No.';
         // HRTrainApp: Record UnknownRecord70135114;
         // TranPart: Record UnknownRecord70135172;

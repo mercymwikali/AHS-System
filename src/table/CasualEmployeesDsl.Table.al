@@ -227,7 +227,7 @@ Table 85475 "Casual Employees.Dsl"
         if "Casual No" = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Casual Nos");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Casual Nos", xRec."No. Series", 0D, "Casual No", "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Casual Nos");
         end;
     end;
 
@@ -238,6 +238,6 @@ Table 85475 "Casual Employees.Dsl"
         DimensionValue: Record "Dimension Value";
         Employee: Record "HR-Employee";
         prBankStructure: Record "Pr Bank Branches";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         age: Integer;
 }

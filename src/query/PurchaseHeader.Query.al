@@ -454,7 +454,7 @@ Query 85196 "Purchase Header"
             column(Invoice_Basis; "Invoice Basis")
             {
             }
-            column(Requisition_No; "Requisition No.")
+            column(Requisition_No; "Requisition No1.")
             {
             }
         }

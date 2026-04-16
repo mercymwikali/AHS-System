@@ -186,7 +186,7 @@ Table 85098 "FLT-Safari Notice"
         if "Safari No." = '' then begin
             NoSeries.Get();
             NoSeries.TestField(NoSeries."Safari Notice No.");
-            NoSeriesMgt.InitSeries(NoSeries."Safari Notice No.", xRec."No. Series", 0D, "Safari No.", "No. Series");
+            NoSeriesMgt.GetNextNo(NoSeries."Safari Notice No.");
         end;
         "User Id" := UserId;
     end;
@@ -196,5 +196,5 @@ Table 85098 "FLT-Safari Notice"
         hrman: Record "HR-Employee";
         hrman2: Record "HR-Employee";
         usersetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

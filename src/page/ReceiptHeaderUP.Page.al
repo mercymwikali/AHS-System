@@ -1044,7 +1044,7 @@ page 85247 "Receipt Header UP"
         HMSTreatmentFormHeader: Record "HMS Treatment Form Header";
         LabHeader: Record "HMS Laboratory Form Header";
         ObservHeader: Record "HMS Observation Form Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
     begin
         if HmsApp.Get(VisitNo) then begin

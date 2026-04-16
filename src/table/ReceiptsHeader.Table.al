@@ -589,7 +589,7 @@ Table 85133 "Receipts Header"
                     if "Pay Mode" = "Pay Mode"::EFT then
                         "Bank Code" := UserTemplate."Default PDQ Bank";
                     if "Pay Mode" = "Pay Mode"::RTGS then
-                        "Bank Code" := UserTemplate."Default PDQ Bank";                        
+                        "Bank Code" := UserTemplate."Default PDQ Bank";
                     if "Pay Mode" = "Pay Mode"::"Deposit Slip" then
                         "Bank Code" := UserTemplate."Default PDQ Bank";
                     if "Pay Mode" = "Pay Mode"::Cheque then
@@ -726,12 +726,12 @@ Table 85133 "Receipts Header"
                 dimrec.setrange(Code, UserRec."Branch Code");
                 if dimrec.find('-') then begin
                     DimRec.testfield("Receipt No. Series");
-                    NoSeriesMgt.InitSeries(DimRec."Receipt No. Series", xRec."No. Series", 0D, "No.", "No. Series");
+                    NoSeriesMgt.GetNextNo(DimRec."Receipt No. Series");
                 end;
             end else begin
                 GenLedgerSetup.Get();
                 GenLedgerSetup.TestField(GenLedgerSetup."Receipts No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Receipts No", xRec."No. Series", 0D, "No.", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Receipts No");
             end;
 
 
@@ -775,7 +775,7 @@ Table 85133 "Receipts Header"
         PharmLine: Record "HMS Pharmacy Line";
         HMSSetup: Record "HMS Setup";
         RLine: Record "Receipt Line q";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         InPatient: Boolean;
         Amt: Decimal;
         TotalBalance: Decimal;
@@ -797,9 +797,8 @@ Table 85133 "Receipts Header"
 
         GenLedgerSetup.Get();
         GenLedgerSetup.TestField(GenLedgerSetup."Receipts No");
-
-        if NoSeriesMgt.SelectSeries(GenLedgerSetup."Receipts No", OldCust."No. Series", Cust."No. Series") then begin
-            NoSeriesMgt.SetSeries(Cust."No.");
+        if NoSeriesMgt.LookupRelatedNoSeries(GenLedgerSetup."Receipts No", Cust."No. Series", Cust."No. Series") then begin
+            NoSeriesMgt.GetNextNo(Cust."No.");
             Rec := Cust;
             exit(true);
         end;

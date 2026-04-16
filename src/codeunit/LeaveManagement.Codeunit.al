@@ -71,7 +71,7 @@ codeunit 85010 "Leave Management"
 
     procedure FnCreateNewCalendar(OldCalendarCode: Record "HR Leave Calendar") NewCalendarCode: Code[20]
     var
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         NewCalendarStartDate: Date;
         NewCalendarEndDate: Date;
     begin

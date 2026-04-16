@@ -63,7 +63,7 @@ Table 85141 "Store Requistion Lines Temp"
                 /*
                 {Modified}
                          //Validate Item
-                      GLAccount.GET(QtyStore."Item G/L Budget Account");
+                      GLAccount.GET(QtyStore."Item G/L Budget Account1");
                       GLAccount.CheckGLAcc;
 
                 */

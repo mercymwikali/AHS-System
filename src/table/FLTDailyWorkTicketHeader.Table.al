@@ -106,7 +106,7 @@ Table 85093 "FLT-Daily Work Ticket Header"
         if "Ticket No." = '' then begin
             NoSeries.Get();
             NoSeries.TestField(NoSeries."Work Ticket No.");
-            NoSeriesMgt.InitSeries(NoSeries."Work Ticket No.", xRec."No. Series", 0D, "Ticket No.", "No. Series");
+            NoSeriesMgt.GetNextNo(NoSeries."Work Ticket No.");
             "Previous W.T. No." := LastNoUsed;
         end;
 
@@ -117,6 +117,6 @@ Table 85093 "FLT-Daily Work Ticket Header"
     var
         NoSeries: Record "FLT-Fleet Mgt Setup";
         Nosetup: Record "No. Series Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         LastNoUsed: Code[10];
 }

@@ -507,21 +507,22 @@ page 85387 "HMS Patients"
                     end;
                 end;
             }
-            action(SmartLink)
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'SmartLink Balance Verification';
-                Image = Balance;
-                Promoted = true;
-                PromotedCategory = Category5;
-                ToolTip = 'Executes the SmartLink Balance Verification action.';
+            // action(SmartLink)
+            // {
+            //     ApplicationArea = Basic, Suite;
+            //     Caption = 'SmartLink Balance Verification';
+            //     Image = Balance;
+            //     Promoted = true;
+            //     PromotedCategory = Category5;
+            //     ToolTip = 'Executes the SmartLink Balance Verification action.';
 
-                trigger OnAction()
-                begin
-                    DSLInt.GetSmartData(Rec."Patient No.");
-                    //Message(Format(hmsIntegration.PatientBalance()));
-                end;
-            }
+            //     trigger OnAction()
+            //     begin
+            //         DSLInt.GetSmartData(Rec."Patient No.");
+            //         //Message(Format(hmsIntegration.PatientBalance()));
+            //     end;
+            // }
+
             action("Patient Charges")
             {
                 Image = "report";
@@ -639,7 +640,7 @@ page 85387 "HMS Patients"
 
                 trigger OnAction()
                 var
-                HMSProcesses: Codeunit "HMS Processes";
+                    HMSProcesses: Codeunit "HMS Processes";
                 begin
                     // CuHMSProcesses.FnSHIFRebatesCalculation(TbRec, RebateAmount, ChargeDate, InsuaranceCode)
                     Report.Run(Report::"HMS NHIF Rebates Calculations", true, true, Rec);
@@ -722,46 +723,46 @@ page 85387 "HMS Patients"
                     //ERROR('Your account is not setup to register patients');
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.InitSeries(HMSSetup."Patient Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end;
 
                 if RegUser."Global Dimension 1 Code" = 'KISUMU' then begin
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.InitSeries(HMSSetup."Patient Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end ELSE
                     if RegUser."Global Dimension 1 Code" = 'ELDORET' then begin
                         if Rec."Walk-in" = FALSE then begin
                             HMSSetup.TESTFIELD("Patient Nos");
-                            NoSeriesMgt.InitSeries('PAT RH', xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                            NoSeriesMgt.GetNextNo('PAT RH');
                         end
                         ELSE
                             if Rec."Walk-in" = TRUE then begin
                                 HMSSetup.TESTFIELD("In Patient No");
-                                NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                                NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                             end;
                     end ELSE
                         if RegUser."Global Dimension 1 Code" = 'ELD TOWN' then begin
                             if Rec."Walk-in" = FALSE then begin
                                 HMSSetup.TESTFIELD("Patient Nos");
-                                NoSeriesMgt.InitSeries('PAT RH', xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                                NoSeriesMgt.GetNextNo('PAT RH');
                             end
                             ELSE
                                 if Rec."Walk-in" = TRUE then begin
                                     HMSSetup.TESTFIELD("In Patient No");
-                                    NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                                    NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                                 end ELSE begin
                                     ERROR('Your account has not been linked to a branch');
                                 end;
@@ -784,46 +785,46 @@ page 85387 "HMS Patients"
                     //ERROR('Your account is not setup to register patients');
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.InitSeries(HMSSetup."Patient Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end;
 
                 if RegUser."Global Dimension 1 Code" <> '' then begin
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.InitSeries(HMSSetup."Patient Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end; /* ELSE
                     if RegUser."Global Dimension 1 Code" = 'ELDORET' then begin
                         if "Walk-in" = FALSE then begin
                             HMSSetup.TESTFIELD("Patient Nos");
-                            NoSeriesMgt.InitSeries('PAT RH', xRec."No. Series", 0D, "Patient No.", "No. Series");
+                            NoSeriesMgt.GetNextNo('PAT RH', xRec."No. Series", 0D, "Patient No.", "No. Series");
                         end
                         ELSE
                             if "Walk-in" = TRUE then begin
                                 HMSSetup.TESTFIELD("In Patient No");
-                                NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, "Patient No.", "No. Series");
+                                NoSeriesMgt.GetNextNo(HMSSetup."In Patient No", xRec."No. Series", 0D, "Patient No.", "No. Series");
                             end;
                     end ELSE
                         if RegUser."Global Dimension 1 Code" = 'ELD TOWN' then begin
                             if "Walk-in" = FALSE then begin
                                 HMSSetup.TESTFIELD("Patient Nos");
-                                NoSeriesMgt.InitSeries('PAT RH', xRec."No. Series", 0D, "Patient No.", "No. Series");
+                                NoSeriesMgt.GetNextNo('PAT RH', xRec."No. Series", 0D, "Patient No.", "No. Series");
                             end
                             ELSE
                                 if "Walk-in" = TRUE then begin
                                     HMSSetup.TESTFIELD("In Patient No");
-                                    NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, "Patient No.", "No. Series");
+                                    NoSeriesMgt.GetNextNo(HMSSetup."In Patient No", xRec."No. Series", 0D, "Patient No.", "No. Series");
                                 end ELSE begin
                                     ERROR('Your account has not been linked to a branch');
                                 end;
@@ -847,7 +848,7 @@ page 85387 "HMS Patients"
         "Relative No.Enable": Boolean;
         Apponitment: Record "HMS Appointment Form Header";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         myNoSeries: Code[20];
         DaysBtwnTodayAndLastVisit: Integer;
         TreatmentHeader: Record "HMS Treatment Form Header";

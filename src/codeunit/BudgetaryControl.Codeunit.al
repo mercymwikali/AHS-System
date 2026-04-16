@@ -74,7 +74,7 @@ Codeunit 85023 "Budgetary Control"
                             if not Item.Get(PurchLine."No.") then
                                 Error('Item Does not Exist');
 
-                            //Item.TESTFIELD("Item G/L Budget Account");
+                            //Item.TESTFIELD("Item G/L Budget Account1");
 
                             PurchLine.TestField("G/L Account");
 

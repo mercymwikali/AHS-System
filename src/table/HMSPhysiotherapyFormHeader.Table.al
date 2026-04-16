@@ -109,7 +109,7 @@ Table 85225 "HMS Physiotherapy Form Header"
         IF "Observation No." = '' THEN BEGIN
           HMSSetup.GET;
           HMSSetup.TESTFIELD("Observation Nos");
-          NoSeriesMgt.InitSeries(HMSSetup."Observation Nos",xRec."No. Series",0D,"Observation No.","No. Series");
+          NoSeriesMgt.GetNextNo(HMSSetup."Observation Nos",xRec."No. Series",0D,"Observation No.","No. Series");
         END;
         */
         //"Observation User ID":=USERID;

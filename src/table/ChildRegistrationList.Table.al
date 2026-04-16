@@ -366,7 +366,7 @@ Table 85158 "Child Registration List"
         }
         field(50075; "Insurance No."; Code[20])
         {
-            TableRelation = Customer."No." where("Customer Type" = filter(Customer));
+            TableRelation = Customer."No." where("Customer Type1" = filter(Customer));
 
             trigger OnValidate()
             begin

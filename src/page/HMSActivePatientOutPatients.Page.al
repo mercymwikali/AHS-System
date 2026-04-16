@@ -679,7 +679,7 @@ page 85291 "HMS Active Patient OutPatients"
         PatientCharges: Record "HMS Patient Charges";
         Patients: Record "HMS Patient";
         HMS: Codeunit "GLBudget-Open";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         PatientCU: Codeunit "HMS Patient-integration";
         NewNo: Code[20];
         LastBillDate: Date;
@@ -696,7 +696,7 @@ page 85291 "HMS Active Patient OutPatients"
         SaleH: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
         SLine: Record "Sales Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         LineNo: Integer;
     begin

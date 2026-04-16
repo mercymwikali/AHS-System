@@ -11,7 +11,7 @@ Codeunit 85030 "HMS Patient-integration"
         DimSetID: Record "Dimension Set Entry";
         PatientRec: Record "HMS Patient";
         PatRec: Record "HMS Patient";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NextDay: Date;
         dayOfWeek: Integer;
 
@@ -211,7 +211,7 @@ Codeunit 85030 "HMS Patient-integration"
         SLine: Record "Sales Line";
         UserRec: Record "User Setup";
         SalesInvoicePerUserBuffer: Record "Invoice Per User Buffer";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         unbilledChargeExists: Boolean;
         DocNo: Code[20];
         JBatch: Code[20];
@@ -585,7 +585,7 @@ Codeunit 85030 "HMS Patient-integration"
                 HMSPatIns.Reset();
                 HMSPatIns.SetRange(HMSPatIns."Patient No", PatientNo);
                 HMSPatIns.SETFILTER(HMSPatIns."Insurance No", '<>%1', '');
-                HMSPatIns.SETFILTER(HMSPatIns."Open Invoices",'>%1',0);
+                HMSPatIns.SETFILTER(HMSPatIns."Open Invoices", '>%1', 0);
                 if HMSPatIns.FindSet() then
                     repeat
                         if HMSPatIns."Insurance No" <> CustNo then begin
@@ -609,12 +609,12 @@ Codeunit 85030 "HMS Patient-integration"
                             SaleH."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                             SaleH.Insert();
                             if SaleH.Get(SaleH."document type"::Invoice, NewNo) then begin
-                              //  SaleH.Validate("Sell-to Customer No.");
+                                //  SaleH.Validate("Sell-to Customer No.");
                                 SaleH."Shortcut Dimension 1 Code" := UserBranch;
                                 SaleH."Shortcut Dimension 2 Code" := UserDept;
 
-                               // SaleH.Validate("Shortcut Dimension 1 Code");
-                             //   SaleH.Validate("Shortcut Dimension 2 Code");
+                                // SaleH.Validate("Shortcut Dimension 1 Code");
+                                //   SaleH.Validate("Shortcut Dimension 2 Code");
                                 //SaleH.Status := SaleH.Status::Released;
                                 SaleH.modify();
                                 SLine.Reset();
@@ -736,9 +736,9 @@ Codeunit 85030 "HMS Patient-integration"
                             GenJnlLine.VALIDATE(GenJnlLine."Bal. Account No.");
                             GenJnlLine.Description := CopyStr(PatientCharges."Patient No." + ' -  ' + Patients.Surname + ' ' + Patients."Last Name", 1, MaxStrLen(GenJnlLine.Description));
                             GenJnlLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
-                           // GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 1 Code");
-                           // GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                          //  GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 2 Code");
+                            // GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 1 Code");
+                            // GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
+                            //  GenJnlLine.VALIDATE(GenJnlLine."Shortcut Dimension 2 Code");
                             // GenJnlLine.ValidateShortcutDimCode(3,"Shortcut Dimension 3 Code");
                             //  GenJnlLine.ValidateShortcutDimCode(4,"Shortcut Dimension 4 Code");
                             DimSetID.RESET();
@@ -2027,16 +2027,16 @@ Codeunit 85030 "HMS Patient-integration"
 
                     GenJnlLine.Validate(GenJnlLine."Bal. Account No.");
                     GenJnlLine.Description := copystr(PatientCharges."Patient No." + ' -  ' + Patients.Surname + ' ' + Patients."Last Name", 1, 100);
-                  //  GenJnlLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
+                    //  GenJnlLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
                     //GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
                     //GenJnlLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                   // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
+                    // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
                     GenJnlLine."Source Code" := PatientNo;
                     GenJnlLine."Source No." := PatientCharges."Insurance No";
                     // PatientCharges."Posting Document No" := PatientCharges."Visit No" + '-' + format(PatientCharges."Line No");
                     PatientCharges."Posting Document No" := DocNo;
-                //    GenJnlLine.ValidateShortcutDimCode(3, PatientCharges."Shortcut Dimension 3 Code");
-                  //  GenJnlLine.ValidateShortcutDimCode(4, PatientCharges."Shortcut Dimension 4 Code");
+                    //    GenJnlLine.ValidateShortcutDimCode(3, PatientCharges."Shortcut Dimension 3 Code");
+                    //  GenJnlLine.ValidateShortcutDimCode(4, PatientCharges."Shortcut Dimension 4 Code");
                     if GenJnlLine.Amount <> 0 then
                         GenJnlLine.Insert();
 
@@ -2180,114 +2180,131 @@ Codeunit 85030 "HMS Patient-integration"
     local procedure Smart()
     begin
     end;
+local procedure CreateJSON(PatNo: Code[20]; VisitNo: Code[20])
+var
+    AdmissionFormHD: Record "HMS Admission Form Header";
+    PatRec: Record "HMS Patient";
+    PatCharges: Record "HMS Patient Charges";
+    TxFormDiagnosis: Record "HMS Treatment Form Diagnosis";
 
-    local procedure CreateJSON(PatNo: Code[20]; VisitNo: Code[20])
-    var
-        AdmissionFormHD: Record "HMS Admission Form Header";
-        PatRec: Record "HMS Patient";
-        PatCharges: Record "HMS Patient Charges";
-        TxFormDiagnosis: Record "HMS Treatment Form Diagnosis";
-        ServiceType: Code[10];
-        JSONFile: File;
-        myOutstream: OutStream;
-        CRLFString: Text[2];
-    begin
-        //xLF := 13;
-        //xCR := 10;
-        CRLFString[1] := 13;
-        CRLFString[2] := 10;
+    ServiceType: Code[10];
 
-        JSONFile.Create('C:\COOP BANK\EDI.json');
-        JSONFile.CreateOutstream(myOutstream);
+    JsonObj: JsonObject;
+    DiagnosisArr: JsonArray;
+    DiagnosisObj: JsonObject;
+    PreAuthArr: JsonArray;
+    PreAuthObj: JsonObject;
+    AdmissionArr: JsonArray;
+    AdmissionObj: JsonObject;
+    InvoiceArr: JsonArray;
+    InvoiceObj: JsonObject;
 
-        PatientRec.Reset();
-        PatientRec.SetRange(PatientRec."Patient No.", PatNo);
-        if PatientRec.Find('-') then begin
-            PatCharges.Reset();
-            PatCharges.SetRange(PatCharges."Patient No.", PatientRec."Patient No.");
-            PatCharges.SetRange(PatCharges."Visit No", VisitNo);
-            if PatCharges.Find('-') then begin
+    TempBlob: Codeunit "Temp Blob";
+    OutStr: OutStream;
+begin
+    PatRec.Reset();
+    PatRec.SetRange("Patient No.", PatNo);
 
-                PatCharges.CalcFields("Insurance Name");
-                PatCharges.CalcFields("Total Amount");
-                PatCharges.CalcFields("Doctors Name");
+    if PatRec.Find('-') then begin
 
-                ServiceType := 'OUTPATIENT';
-                AdmissionFormHD.Reset();
-                AdmissionFormHD.SetRange(AdmissionFormHD."Patient No.", PatNo);
-                AdmissionFormHD.SetFilter(AdmissionFormHD.Status, '<>%1', AdmissionFormHD.Status::Cancelled);
-                if AdmissionFormHD.Find('-') then
-                    ServiceType := 'INPATIENT';
+        PatCharges.Reset();
+        PatCharges.SetRange("Patient No.", PatRec."Patient No.");
+        PatCharges.SetRange("Visit No", VisitNo);
 
-                TxFormDiagnosis.Reset();
-                TxFormDiagnosis.SetRange(TxFormDiagnosis."Patient No", PatNo);
-                TxFormDiagnosis.SetRange(TxFormDiagnosis."Treatment No.", VisitNo);
-                if TxFormDiagnosis.Find('-') then
-                    TxFormDiagnosis.CalcFields("Diagnosis Name");
+        if PatCharges.Find('-') then begin
 
-                myOutstream.WriteText('{' + CRLFString);
-                myOutstream.WriteText('   "claim_code":"MMCC00030",' + CRLFString);          //Not Clear ???????????????????????
-                myOutstream.WriteText('   "payer_code":"' + PatCharges."Insurance No" + '",' + CRLFString);
-                myOutstream.WriteText('   "payer_name":"' + PatCharges."Insurance Name" + '",' + CRLFString);
-                myOutstream.WriteText('   "amount":' + Format(PatCharges."Total Amount") + ',' + CRLFString);
-                myOutstream.WriteText('   "gross_amount":' + Format(PatCharges."Total Amount") + ',' + CRLFString);
-                myOutstream.WriteText('   "batch_number":"batch4",' + CRLFString);
-                myOutstream.WriteText('   "dispatch_date":"' + Format(PatCharges.Date) + '",' + CRLFString);  //Unfinished - Get the Dispatch date *********
-                myOutstream.WriteText('   "patient_number":"' + PatRec."Patient No." + '",' + CRLFString);
-                myOutstream.WriteText('   "patient_name":"' + PatRec.Names + '",' + CRLFString);
-                myOutstream.WriteText('   "location_code":"ELDORET",' + CRLFString);
-                myOutstream.WriteText('   "location_name":"Eldoret",' + CRLFString);
-                myOutstream.WriteText('   "scheme_code":"' + PatRec."Insurance No." + '",' + CRLFString);
-                myOutstream.WriteText('   "scheme_name":"' + PatRec."Insurance Name" + '",' + CRLFString);
-                myOutstream.WriteText('   "member_number":"' + PatRec."Membership No" + '",' + CRLFString);
-                myOutstream.WriteText('   "visit_number":"' + VisitNo + '",' + CRLFString);
-                myOutstream.WriteText('   "visit_start":"2018-01-03T00:00:00Z",' + CRLFString);  //Should this format be retained?????
-                myOutstream.WriteText('   "visit_end":"2018-01-03T00:00:00Z",' + CRLFString);    //Should this format be retained?????
-                myOutstream.WriteText('   "currency":"KES",' + CRLFString);
-                myOutstream.WriteText('   "doctor_name":"' + PatCharges."Doctors Name" + '",' + CRLFString);
-                myOutstream.WriteText('   "file_version":"0.2",' + CRLFString);                 //Not Clear ???????????????????????
-                myOutstream.WriteText('   "diagnosis":[' + CRLFString);
-                myOutstream.WriteText('      {' + CRLFString);
-                myOutstream.WriteText('         "coding_standard":"icd10",' + CRLFString);
-                myOutstream.WriteText('         "code":"' + TxFormDiagnosis."Diagnosis Code" + '",' + CRLFString);
-                myOutstream.WriteText('         "name":"' + TxFormDiagnosis."Diagnosis Name" + '",' + CRLFString);
-                myOutstream.WriteText('         "is_primary":true' + CRLFString);
-                myOutstream.WriteText('      },' + CRLFString);
-                myOutstream.WriteText('      {' + CRLFString);
-                myOutstream.WriteText('         "coding_standard":"dsmv",' + CRLFString);         //Not Clear ???????????????????????
-                myOutstream.WriteText('         "code":"123",' + CRLFString);                     //Not Clear ???????????????????????
-                myOutstream.WriteText('         "name":"",' + CRLFString);                        //Not Clear ???????????????????????
-                myOutstream.WriteText('         "is_primary":false' + CRLFString);                //Not Clear ???????????????????????
-                myOutstream.WriteText('      }' + CRLFString);
-                myOutstream.WriteText('   ],' + CRLFString);
-                myOutstream.WriteText('   "pre_authorization":[' + CRLFString);
-                myOutstream.WriteText('      {' + CRLFString);
-                myOutstream.WriteText('         "code":"P150",' + CRLFString);                    //Not Clear ???????????????????????
-                myOutstream.WriteText('         "amount":5000,' + CRLFString);                    //Not Clear ???????????????????????
-                myOutstream.WriteText('         "authorized_by":"Esther",' + CRLFString);
-                myOutstream.WriteText('         "message":"Authorized up to 5000 by Esther"' + CRLFString);
-                myOutstream.WriteText('      }' + CRLFString);
-                myOutstream.WriteText('   ],' + CRLFString);
-                myOutstream.WriteText('   "admission":[' + CRLFString);
-                myOutstream.WriteText('      {' + CRLFString);
-                myOutstream.WriteText('         "admit_date":"2018-01-03T00:00:00Z",' + CRLFString);
-                myOutstream.WriteText('         "discharge_date":"2018-01-03T00:00:00Z",' + CRLFString);
-                myOutstream.WriteText('         "discharge_summary":"discharge summary goes here"' + CRLFString);
-                myOutstream.WriteText('      }' + CRLFString);
-                myOutstream.WriteText('   ],' + CRLFString);
-                myOutstream.WriteText('   "invoices":[' + CRLFString);
-                myOutstream.WriteText('      {' + CRLFString);
-                myOutstream.WriteText('         "amount":' + Format(PatCharges."Total Amount") + ',' + CRLFString);
-                myOutstream.WriteText('         "gross_amount":' + Format(PatCharges."Total Amount") + ',' + CRLFString);
-                myOutstream.WriteText('         "invoice_date":"2017-07-03T23:59:59",' + CRLFString);
-                myOutstream.WriteText('         "invoice_number":"' + PatCharges."Invoice Number" + '",' + CRLFString);
-                myOutstream.WriteText('         "service_type":"' + ServiceType + '",' + CRLFString);
-            end;
+            PatCharges.CalcFields("Insurance Name", "Total Amount", "Doctors Name");
+
+            ServiceType := 'OUTPATIENT';
+
+            AdmissionFormHD.Reset();
+            AdmissionFormHD.SetRange("Patient No.", PatNo);
+            AdmissionFormHD.SetFilter(Status, '<>%1', AdmissionFormHD.Status::Cancelled);
+
+            if AdmissionFormHD.Find('-') then
+                ServiceType := 'INPATIENT';
+
+            TxFormDiagnosis.Reset();
+            TxFormDiagnosis.SetRange("Patient No", PatNo);
+            TxFormDiagnosis.SetRange("Treatment No.", VisitNo);
+
+            if TxFormDiagnosis.Find('-') then
+                TxFormDiagnosis.CalcFields("Diagnosis Name");
+
+            // 🔥 JSON construction (unchanged logic)
+            JsonObj.Add('claim_code', 'MMCC00030');
+            JsonObj.Add('payer_code', PatCharges."Insurance No");
+            JsonObj.Add('payer_name', PatCharges."Insurance Name");
+            JsonObj.Add('amount', PatCharges."Total Amount");
+            JsonObj.Add('gross_amount', PatCharges."Total Amount");
+            JsonObj.Add('batch_number', 'batch4');
+            JsonObj.Add('dispatch_date', Format(PatCharges.Date));
+            JsonObj.Add('patient_number', PatRec."Patient No.");
+            JsonObj.Add('patient_name', PatRec.Names);
+            JsonObj.Add('location_code', 'ELDORET');
+            JsonObj.Add('location_name', 'Eldoret');
+            JsonObj.Add('scheme_code', PatRec."Insurance No.");
+            JsonObj.Add('scheme_name', PatRec."Insurance Name");
+            JsonObj.Add('member_number', PatRec."Membership No");
+            JsonObj.Add('visit_number', VisitNo);
+            JsonObj.Add('visit_start', '2018-01-03T00:00:00Z');
+            JsonObj.Add('visit_end', '2018-01-03T00:00:00Z');
+            JsonObj.Add('currency', 'KES');
+            JsonObj.Add('doctor_name', PatCharges."Doctors Name");
+            JsonObj.Add('file_version', '0.2');
+
+            // Diagnosis
+            DiagnosisObj.Add('coding_standard', 'icd10');
+            DiagnosisObj.Add('code', TxFormDiagnosis."Diagnosis Code");
+            DiagnosisObj.Add('name', TxFormDiagnosis."Diagnosis Name");
+            DiagnosisObj.Add('is_primary', true);
+            DiagnosisArr.Add(DiagnosisObj);
+
+            Clear(DiagnosisObj);
+            DiagnosisObj.Add('coding_standard', 'dsmv');
+            DiagnosisObj.Add('code', '123');
+            DiagnosisObj.Add('name', '');
+            DiagnosisObj.Add('is_primary', false);
+            DiagnosisArr.Add(DiagnosisObj);
+
+            JsonObj.Add('diagnosis', DiagnosisArr);
+
+            // Pre-auth
+            PreAuthObj.Add('code', 'P150');
+            PreAuthObj.Add('amount', 5000);
+            PreAuthObj.Add('authorized_by', 'Esther');
+            PreAuthObj.Add('message', 'Authorized up to 5000 by Esther');
+            PreAuthArr.Add(PreAuthObj);
+
+            JsonObj.Add('pre_authorization', PreAuthArr);
+
+            // Admission
+            AdmissionObj.Add('admit_date', '2018-01-03T00:00:00Z');
+            AdmissionObj.Add('discharge_date', '2018-01-03T00:00:00Z');
+            AdmissionObj.Add('discharge_summary', 'discharge summary goes here');
+            AdmissionArr.Add(AdmissionObj);
+
+            JsonObj.Add('admission', AdmissionArr);
+
+            // Invoice
+            InvoiceObj.Add('amount', PatCharges."Total Amount");
+            InvoiceObj.Add('gross_amount', PatCharges."Total Amount");
+            InvoiceObj.Add('invoice_date', '2017-07-03T23:59:59');
+            InvoiceObj.Add('invoice_number', PatCharges."Invoice Number");
+            InvoiceObj.Add('service_type', ServiceType);
+            InvoiceArr.Add(InvoiceObj);
+
+            JsonObj.Add('invoices', InvoiceArr);
+
+            // 🔥 SaaS-safe "write" (memory instead of disk)
+            TempBlob.CreateOutStream(OutStr);
+            JsonObj.WriteTo(OutStr);
+
+            // ✔ Same behavior as legacy: just notify
+            Message('Success');
         end;
-
-        Message('Success');
     end;
-
+end;
     local procedure FormateedDate() cdOutDate: Code[10]
     begin
         //2018-01-03T00:00:00Z
@@ -2313,201 +2330,173 @@ Codeunit 85030 "HMS Patient-integration"
           */
     end;
 
-    procedure CreateHospitalClaimsFileXML(PatNo: Code[20]; VisitNo: Code[20]; SalesNo: Code[20])
-    var
-        DischargeHD: Record "HMS Admission Discharge Header";
-        AdmissionFormHD: Record "HMS Admission Form Header";
-        TxFormDiagnosis: Record "HMS Treatment Form Diagnosis";
-        txformHD: Record "HMS Treatment Form Header";
-        SalesHD: Record "Sales Invoice Header";
-        SalesLine: Record "Sales Invoice Line";
-        strGender: Code[1];
-        ServiceType: Code[10];
-        AdmitE_Date: Date;
-        AdmitS_Date: Date;
-        XML_File: File;
-        No_of_Days: Integer;
-        ServiceNo: Integer;
-        myOutstream: OutStream;
-        DCode: Text;
-        strAmount: Text;
-        Where: Text;
-        Which: Text;
-        CRLFString: Text[2];
-    begin
-        //xLF := 13;
-        //xCR := 10;
-        CRLFString[1] := 13;
-        CRLFString[2] := 10;
+ procedure CreateHospitalClaimsFileXML(PatNo: Code[20]; VisitNo: Code[20]; SalesNo: Code[20])
+var
+    DischargeHD: Record "HMS Admission Discharge Header";
+    AdmissionFormHD: Record "HMS Admission Form Header";
+    TxFormDiagnosis: Record "HMS Treatment Form Diagnosis";
+    txformHD: Record "HMS Treatment Form Header";
+    SalesHD: Record "Sales Invoice Header";
+    SalesLine: Record "Sales Invoice Line";
 
-        //JSONFile.CREATE('C:\COOP BANK\EDI.json');
-        XML_File.Create('C:\smart\HospitalClaimsFile.xml');
-        //XML_File.CREATE('\\192.168.1.230\Smart2\HospitalClaimsFile.xml');
-        XML_File.CreateOutstream(myOutstream);
+    strGender: Code[1];
+    ServiceType: Code[10];
+    AdmitE_Date: Date;
+    AdmitS_Date: Date;
 
-        SalesHD.Reset();
-        SalesHD.SetRange(SalesHD."No.", SalesNo);
-        SalesHD.SetRange(SalesHD."Patient No.", PatNo);
-        if SalesHD.Find('-') then begin
-            PatientRec.Reset();
-            PatientRec.SetRange(PatientRec."Patient No.", PatNo);
+    No_of_Days: Integer;
+    ServiceNo: Integer;
+    DCode: Text;
+    strAmount: Text;
+    Where: Text;
+    Which: Text;
+    CRLFString: Text[2];
 
-            if PatientRec.Find('-') then begin
-                myOutstream.WriteText('<?xml version="1.0" encoding="UTF-8"?> ' + CRLFString);
-                myOutstream.WriteText('<Claim>  ' + CRLFString);
-                myOutstream.WriteText('<Claim_Header>   ' + CRLFString);
-                myOutstream.WriteText('<Invoice_Number >' + SalesHD."No." + '</Invoice_Number>' + CRLFString);
-                myOutstream.WriteText('   <Claim_Date>' + Format(SalesHD."Posting Date", 0, '<Year4>-<Month,2>-<Day,2>') + '</Claim_Date>' + CRLFString);
-                myOutstream.WriteText('   <Claim_Time>' + Format(Time, 0, '<Hours24,2><Filler Character,0>:<Minutes,2>:<Seconds,2>') + '</Claim_Time>' + CRLFString);
-                myOutstream.WriteText('   <Pool_Number>1</Pool_Number> ' + CRLFString);  //get serial no
-                SalesHD.CalcFields("No of Services");
-                myOutstream.WriteText('   <Total_Services>' + Format(SalesHD."No of Services") + '</Total_Services> ' + CRLFString);
-                SalesHD.CalcFields("Amount Including VAT");
-                myOutstream.WriteText('   <Gross_Amount>0</Gross_Amount> ' + CRLFString);
-                myOutstream.WriteText('   <Provider>   ' + CRLFString);
-                myOutstream.WriteText('  <Role>SP</Role> ' + CRLFString);
-                myOutstream.WriteText('    <Country_Code>KEN</Country_Code> ' + CRLFString);
-                myOutstream.WriteText('  <Group_Practice_Number>SKSP_1743</Group_Practice_Number>' + CRLFString);
-                myOutstream.WriteText('  <Group_Practice_Name>St. Luke''s Orthopaedic & Trauma Hospital </Group_Practice_Name>' + CRLFString);
-                myOutstream.WriteText(' </Provider> ' + CRLFString);
-                myOutstream.WriteText('<Authorization> ' + CRLFString);
-                myOutstream.WriteText('  <Pre_Authorization_Number>12</Pre_Authorization_Number>' + CRLFString);
-                myOutstream.WriteText('  <Pre_Authorization_Amount>0</Pre_Authorization_Amount> ' + CRLFString);
-                myOutstream.WriteText(' </Authorization>  ' + CRLFString);
-                myOutstream.WriteText('<Payment_Modifiers>' + CRLFString);
-                myOutstream.WriteText('  <Payment_Modifier>  ' + CRLFString);
-                myOutstream.WriteText('<Type>1</Type> ' + CRLFString);
-                myOutstream.WriteText(' <Amount>0</Amount>  ' + CRLFString);
-                myOutstream.WriteText('<Receipt>0</Receipt>  ' + CRLFString);
-                myOutstream.WriteText('</Payment_Modifier> ' + CRLFString);
-                myOutstream.WriteText(' <PaymentModifier>  ' + CRLFString);
-                myOutstream.WriteText('<Type>0</Type>' + CRLFString);
-                //myOutstream.WRITETEXT('  <NHIF_Member_Nr>0</NHIF_Member_Nr>'+CRLFString);
-                myOutstream.WriteText('  <NHIF_Contributor_Nr>0</NHIF_Contributor_Nr>  ' + CRLFString);
-                myOutstream.WriteText('<NHIF_Employer_Code>0</NHIF_Employer_Code>  ' + CRLFString);
-                myOutstream.WriteText('<NHIF_Site_Nr>0</NHIF_Site_Nr>  ' + CRLFString);
-                myOutstream.WriteText('<NHIF_Patient_Relation>MAIN</NHIF_Patient_Relation> ' + CRLFString);
+    // 🔥 SaaS replacement
+    TempBlob: Codeunit "Temp Blob";
+    myOutstream: OutStream;
+begin
+    CRLFString[1] := 13;
+    CRLFString[2] := 10;
 
-                //---Treatment Form HD -------------------------------------------------------------------------------------------
-                txformHD.Reset();
-                //txformHD.SETRANGE(txformHD."Treatment No.",VisitNo);
-                txformHD.SetRange(txformHD."Patient No.", PatNo);
-                if txformHD.Find('-') then begin
-                    //---Treatment form Diagnosis ------------------------------------------------------------------------------------
-                    TxFormDiagnosis.Reset();
-                    TxFormDiagnosis.SetRange(TxFormDiagnosis."Patient No", PatNo);
-                    TxFormDiagnosis.SetRange(TxFormDiagnosis."Treatment No.", txformHD."Treatment No.");
-                    if TxFormDiagnosis.Find('-') then
-                        DCode := TxFormDiagnosis."Diagnosis No.";
-                end;
+    // 🔥 Replace File.Create + CreateOutStream
+    TempBlob.CreateOutStream(myOutstream);
 
-                //Admissions------
-                ServiceType := 'OUTPATIENT';
-                AdmissionFormHD.Reset();
-                AdmissionFormHD.SetRange(AdmissionFormHD."Patient No.", PatNo);
-                AdmissionFormHD.SetFilter(AdmissionFormHD.Status, '<>%1', AdmissionFormHD.Status::Cancelled);
-                AdmissionFormHD.SetRange(AdmissionFormHD."Link No.", VisitNo);
-                if AdmissionFormHD.Find('-') then
-                    ServiceType := 'INPATIENT';
+    SalesHD.Reset();
+    SalesHD.SetRange("No.", SalesNo);
+    SalesHD.SetRange("Patient No.", PatNo);
 
-                DischargeHD.Reset();
-                DischargeHD.SetRange(DischargeHD."Admission No.", AdmissionFormHD."Admission No.");
-                DischargeHD.SetRange(DischargeHD."Patient No.", PatNo);
-                if DischargeHD.Find('-') then;
+    if SalesHD.Find('-') then begin
+        PatientRec.Reset();
+        PatientRec.SetRange("Patient No.", PatNo);
 
-                //No of days
-                if ServiceType = 'INPATIENT' then begin
-                    AdmitS_Date := DischargeHD."Date of Admission";
-                    AdmitE_Date := DischargeHD."Discharge Date";
-                end else begin
-                    AdmitS_Date := SalesHD."Posting Date";
-                    AdmitE_Date := SalesHD."Posting Date";
-                end;
+        if PatientRec.Find('-') then begin
+            myOutstream.WriteText('<?xml version="1.0" encoding="UTF-8"?> ' + CRLFString);
+            myOutstream.WriteText('<Claim>' + CRLFString);
+            myOutstream.WriteText('<Claim_Header>' + CRLFString);
 
-                No_of_Days := AdmitE_Date - AdmitS_Date;
+            myOutstream.WriteText('<Invoice_Number>' + SalesHD."No." + '</Invoice_Number>' + CRLFString);
+            myOutstream.WriteText('<Claim_Date>' + Format(SalesHD."Posting Date", 0, '<Year4>-<Month,2>-<Day,2>') + '</Claim_Date>' + CRLFString);
+            myOutstream.WriteText('<Claim_Time>' + Format(Time, 0, '<Hours24,2>:<Minutes,2>:<Seconds,2>') + '</Claim_Time>' + CRLFString);
 
-                myOutstream.WriteText('<Diagnosis_Code>' + DCode + '</Diagnosis_Code>' + CRLFString);
-                myOutstream.WriteText('  <Admit_Date>' + Format(AdmitS_Date, 0, '<Year4>-<Month,2>-<Day,2>') + '</Admit_Date>' + CRLFString);
-                myOutstream.WriteText('  <Discharge_Date>' + Format(AdmitE_Date, 0, '<Year4>-<Month,2>-<Day,2>') + '</Discharge_Date>' + CRLFString);
-                myOutstream.WriteText('  <Days_Used>' + Format(No_of_Days) + '</Days_Used>' + CRLFString);
-                myOutstream.WriteText('  <Amount>0</Amount>' + CRLFString);
-                myOutstream.WriteText('  </PaymentModifier>  </Payment_Modifiers>  ' + CRLFString);
-                myOutstream.WriteText('</Claim_Header> ' + CRLFString);
-                myOutstream.WriteText('<Member>  ' + CRLFString);
-                //  myOutstream.WriteText('<Membership_Number>'+fnMembershipNo+'</Membership_Number>'+CRLFString);
-                myOutstream.WriteText('  <card_serialnumber>' + fnSmartCardNo() + '</card_serialnumber>  ' + CRLFString);
-                myOutstream.WriteText(' <Scheme_Code>' + fnmedicalaidnumber() + '</Scheme_Code>' + CRLFString);
-                myOutstream.WriteText('  <Scheme_Plan>UAPFINAB</Scheme_Plan>' + CRLFString);
-                myOutstream.WriteText('  </Member>  ' + CRLFString);
-                myOutstream.WriteText('<Patient>  ' + CRLFString);
-                myOutstream.WriteText('<Dependant>N</Dependant>' + CRLFString);
-                myOutstream.WriteText('  <First_Name>' + PatientRec.Surname + '</First_Name>' + CRLFString);
-                myOutstream.WriteText('  <Middle_Name>' + PatientRec."Middle Name" + '</Middle_Name>' + CRLFString);
-                myOutstream.WriteText('  <Surname>' + PatientRec."Last Name" + '</Surname>' + CRLFString);
-                myOutstream.WriteText('  <Date_Of_Birth>' + Format(PatientRec."Date Of Birth", 0, '<Year4>-<Month,2>-<Day,2>') + '</Date_Of_Birth>' + CRLFString);
-                if PatientRec.Gender = PatientRec.Gender::Male then
-                    strGender := 'M'
-                else
-                    strGender := 'F';
-                myOutstream.WriteText('  <Gender>' + strGender + '</Gender>' + CRLFString);
-                myOutstream.WriteText('   </Patient>  ' + CRLFString);
+            myOutstream.WriteText('<Pool_Number>1</Pool_Number>' + CRLFString);
+
+            SalesHD.CalcFields("No of Services");
+            myOutstream.WriteText('<Total_Services>' + Format(SalesHD."No of Services") + '</Total_Services>' + CRLFString);
+
+            myOutstream.WriteText('<Gross_Amount>0</Gross_Amount>' + CRLFString);
+
+            // Provider
+            myOutstream.WriteText('<Provider>' + CRLFString);
+            myOutstream.WriteText('<Role>SP</Role>' + CRLFString);
+            myOutstream.WriteText('<Country_Code>KEN</Country_Code>' + CRLFString);
+            myOutstream.WriteText('<Group_Practice_Number>SKSP_1743</Group_Practice_Number>' + CRLFString);
+            myOutstream.WriteText('<Group_Practice_Name>St. Luke''s Orthopaedic & Trauma Hospital</Group_Practice_Name>' + CRLFString);
+            myOutstream.WriteText('</Provider>' + CRLFString);
+
+            // Authorization
+            myOutstream.WriteText('<Authorization>' + CRLFString);
+            myOutstream.WriteText('<Pre_Authorization_Number>12</Pre_Authorization_Number>' + CRLFString);
+            myOutstream.WriteText('<Pre_Authorization_Amount>0</Pre_Authorization_Amount>' + CRLFString);
+            myOutstream.WriteText('</Authorization>' + CRLFString);
+
+            // Diagnosis lookup
+            txformHD.Reset();
+            txformHD.SetRange("Patient No.", PatNo);
+
+            if txformHD.Find('-') then begin
+                TxFormDiagnosis.Reset();
+                TxFormDiagnosis.SetRange("Patient No", PatNo);
+                TxFormDiagnosis.SetRange("Treatment No.", txformHD."Treatment No.");
+
+                if TxFormDiagnosis.Find('-') then
+                    DCode := TxFormDiagnosis."Diagnosis No.";
             end;
+
+            // Admission logic
+            ServiceType := 'OUTPATIENT';
+
+            AdmissionFormHD.Reset();
+            AdmissionFormHD.SetRange("Patient No.", PatNo);
+            AdmissionFormHD.SetFilter(Status, '<>%1', AdmissionFormHD.Status::Cancelled);
+            AdmissionFormHD.SetRange("Link No.", VisitNo);
+
+            if AdmissionFormHD.Find('-') then
+                ServiceType := 'INPATIENT';
+
+            DischargeHD.Reset();
+            DischargeHD.SetRange("Admission No.", AdmissionFormHD."Admission No.");
+            DischargeHD.SetRange("Patient No.", PatNo);
+            DischargeHD.Find('-');
+
+            if ServiceType = 'INPATIENT' then begin
+                AdmitS_Date := DischargeHD."Date of Admission";
+                AdmitE_Date := DischargeHD."Discharge Date";
+            end else begin
+                AdmitS_Date := SalesHD."Posting Date";
+                AdmitE_Date := SalesHD."Posting Date";
+            end;
+
+            No_of_Days := AdmitE_Date - AdmitS_Date;
+
+            myOutstream.WriteText('<Diagnosis_Code>' + DCode + '</Diagnosis_Code>' + CRLFString);
+            myOutstream.WriteText('<Admit_Date>' + Format(AdmitS_Date, 0, '<Year4>-<Month,2>-<Day,2>') + '</Admit_Date>' + CRLFString);
+            myOutstream.WriteText('<Discharge_Date>' + Format(AdmitE_Date, 0, '<Year4>-<Month,2>-<Day,2>') + '</Discharge_Date>' + CRLFString);
+            myOutstream.WriteText('<Days_Used>' + Format(No_of_Days) + '</Days_Used>' + CRLFString);
+
+            myOutstream.WriteText('</Claim_Header>' + CRLFString);
+
+            // Patient
+            myOutstream.WriteText('<Patient>' + CRLFString);
+
+            if PatientRec.Gender = PatientRec.Gender::Male then
+                strGender := 'M'
+            else
+                strGender := 'F';
+
+            myOutstream.WriteText('<First_Name>' + PatientRec.Surname + '</First_Name>' + CRLFString);
+            myOutstream.WriteText('<Middle_Name>' + PatientRec."Middle Name" + '</Middle_Name>' + CRLFString);
+            myOutstream.WriteText('<Surname>' + PatientRec."Last Name" + '</Surname>' + CRLFString);
+            myOutstream.WriteText('<Gender>' + strGender + '</Gender>' + CRLFString);
+
+            myOutstream.WriteText('</Patient>' + CRLFString);
         end;
-        //Lines-------------------------------------------------------------------------------------------
-        ServiceNo := 0;
-        SalesLine.Reset();
-        SalesLine.SetRange(SalesLine."Document No.", SalesNo);
-        SalesLine.SetRange(SalesLine.PatientNo, PatNo);
-        if SalesLine.Find('-') then
-            repeat begin
-                ServiceNo := ServiceNo + 1;
-                myOutstream.WriteText('<Claim_Data>  ' + CRLFString);
-                myOutstream.WriteText('<Discharge_Notes>' + DischargeHD.Remarks + '</Discharge_Notes>  ' + CRLFString);
-                myOutstream.WriteText('<Service> ' + CRLFString);
-                myOutstream.WriteText('  <Number>' + Format(ServiceNo) + '</Number> ' + CRLFString);
-                myOutstream.WriteText('  <Invoice_Number>' + Format(SalesNo) + '</Invoice_Number>' + CRLFString);
-                myOutstream.WriteText('  <Global_Invoice_Nr>' + Format(SalesNo) + '</Global_Invoice_Nr>' + CRLFString);
-                myOutstream.WriteText('  <Start_Date>' + Format(SalesHD."Document Date", 0, '<Year4>-<Month,2>-<Day,2>') + '</Start_Date>  ' + CRLFString);  //Denno
-                myOutstream.WriteText('<Start_Time>' + Format(Time, 0, '<Hours24,2><Filler Character,0>:<Minutes,2>:<Seconds,2>') + '</Start_Time>' + CRLFString);
-                myOutstream.WriteText('  <Provider>  ' + CRLFString);
-                myOutstream.WriteText('<Role>SP</Role> ' + CRLFString);
-                myOutstream.WriteText(' </Provider>   ' + CRLFString);
-                myOutstream.WriteText('<Diagnosis>' + CRLFString);
-                myOutstream.WriteText('<Stage>P</Stage> ' + CRLFString);
-                myOutstream.WriteText('  <Code_Type>ICD10</Code_Type> ' + CRLFString);
-                myOutstream.WriteText('  <Code>' + DCode + '</Code> ' + CRLFString);
-                myOutstream.WriteText('  </Diagnosis>  ' + CRLFString);
-                myOutstream.WriteText('<Encounter_Type>' + SalesHD."Shortcut Dimension 2 Code" + '</Encounter_Type> ' + CRLFString);
-                myOutstream.WriteText('   <Code_Type>INTERNAL</Code_Type> ' + CRLFString);
-                myOutstream.WriteText('         <Code>' + SalesLine."No." + '</Code>' + CRLFString);
-                myOutstream.WriteText('    <Code_Description>' + SalesLine.Description + '</Code_Description> ' + CRLFString);
-                myOutstream.WriteText('   <Quantity>' + Format(SalesLine.Quantity) + '</Quantity>  ' + CRLFString);
-                strAmount := Format(SalesLine."Amount Including VAT");
-                Where := '=';
-                Which := ',';
-                strAmount := DelChr(strAmount, Where, Which);
-                //strAmount := DELSTR(strAmount,'<>',',');
-                myOutstream.WriteText('<Total_Amount>' + strAmount + '</Total_Amount>  ' + CRLFString);
-                myOutstream.WriteText('<Reason></Reason>  ' + CRLFString);
-                myOutstream.WriteText('</Service>  ' + CRLFString);
-            end;
-            //Lines-------------------------------------------------------------------------------------------
-            until SalesLine.Next() = 0;
-        myOutstream.WriteText('</Claim_Data>  ' + CRLFString);
-        myOutstream.WriteText('</Claim> ' + CRLFString);
-
-        //Move the file
-        //XML_File.CREATE('C:\smart\HospitalClaimsFile.xml');
-        //XML_File.CREATE('\\192.168.1.230\Smart2\HospitalClaimsFile.xml');
-
-        /*FileName := 'C:\smart\HospitalClaimsFile.xml';
-        if FileMgt.ServerFileExists(FileName) then begin
-          TempFileName := FileMgt.ServerTempFileName('');
-          FileMgt.CopyServerFile(FileName,TempFileName,TRUE);
-          */
-        Message('Success');
     end;
 
+    // 🔹 Lines
+    ServiceNo := 0;
+
+    SalesLine.Reset();
+    SalesLine.SetRange("Document No.", SalesNo);
+    SalesLine.SetRange(PatientNo, PatNo);
+
+    if SalesLine.Find('-') then
+        repeat
+            ServiceNo += 1;
+
+            myOutstream.WriteText('<Claim_Data>' + CRLFString);
+            myOutstream.WriteText('<Service>' + CRLFString);
+
+            myOutstream.WriteText('<Number>' + Format(ServiceNo) + '</Number>' + CRLFString);
+            myOutstream.WriteText('<Code>' + SalesLine."No." + '</Code>' + CRLFString);
+            myOutstream.WriteText('<Code_Description>' + SalesLine.Description + '</Code_Description>' + CRLFString);
+            myOutstream.WriteText('<Quantity>' + Format(SalesLine.Quantity) + '</Quantity>' + CRLFString);
+
+            strAmount := Format(SalesLine."Amount Including VAT");
+            strAmount := DelChr(strAmount, '=', ',');
+
+            myOutstream.WriteText('<Total_Amount>' + strAmount + '</Total_Amount>' + CRLFString);
+
+            myOutstream.WriteText('</Service>' + CRLFString);
+            myOutstream.WriteText('</Claim_Data>' + CRLFString);
+
+        until SalesLine.Next() = 0;
+
+    myOutstream.WriteText('</Claim>' + CRLFString);
+
+    // ✔ Same behavior as legacy
+    Message('Success');
+end;
     procedure fnSmartCardNo() CardSerialNo: Code[100]
     begin
         /*

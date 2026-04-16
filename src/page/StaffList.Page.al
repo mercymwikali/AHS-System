@@ -84,9 +84,9 @@ Page 85032 "Staff List"
                 {
                     ToolTip = 'Specifies the value of the ID No field.';
                 }
-                field(CustomerType; Rec."Customer Type")
+                field(CustomerType; Rec."Customer Type1")
                 {
-                    ToolTip = 'Specifies the value of the Customer Type field.';
+                    ToolTip = 'Specifies the value of the Customer Type1 field.';
                 }
                 field(BirthCert; Rec."Birth Cert")
                 {

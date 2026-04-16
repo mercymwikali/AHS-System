@@ -1163,7 +1163,7 @@ Report 85030 "Order 2"
         trigger OnOpenPage()
         begin
             // ArchiveDocument := PurchSetup."Archive Quotes and Orders";
-          //  LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
+            //  LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
 
             LogInteractionEnable := LogInteraction;
         end;
@@ -1231,9 +1231,9 @@ Report 85030 "Order 2"
         VATAmount: Decimal;
         VATBaseAmount: Decimal;
         VATDiscountAmount: Decimal;
-        Bytes: dotnet Array;
-        Convert: dotnet Convert;
-        MemoryStream: dotnet MemoryStream;
+        Convert: Codeunit "Base64 Convert";
+        TempBlob: Codeunit "Temp Blob";
+
         IStream: InStream;
         NoOfCopies: Integer;
         NoOfLoops: Integer;
@@ -1336,16 +1336,28 @@ Report 85030 "Order 2"
     local procedure GetSignature(userid: Code[50]) BaseImage: Text
     var
         userset: Record "User Setup";
-    begin
 
+        InStr: InStream;
+        OutStr: OutStream;
+    begin
         userset.Reset();
         userset.SetRange("User ID", userid);
-        if userset.Find('-') then
-            userset.CalcFields(userset.Signature);
-        userset.Signature.CreateInstream(IStream);
-        MemoryStream := MemoryStream.MemoryStream();
-        CopyStream(MemoryStream, IStream);
-        Bytes := MemoryStream.GetBuffer();
-        BaseImage := Convert.ToBase64String(Bytes);
+
+        if userset.Find('-') then begin
+            userset.CalcFields(Signature);
+
+            if userset.Signature.HasValue() then begin
+                // Read from BLOB
+                userset.Signature.CreateInStream(InStr);
+
+                // Write into TempBlob (modern replacement for MemoryStream)
+                TempBlob.CreateOutStream(OutStr, TEXTENCODING::UTF8);
+                CopyStream(OutStr, InStr);
+
+                // Convert to Base64 directly from stream
+                BaseImage := Convert.ToBase64(InStr);
+            end;
+        end;
     end;
+
 }

@@ -301,19 +301,19 @@ Page 85388 "HMS Patients Card"
                     end;
                 end;
             }
-            action(SmartLink)
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'SmartLink Balance Verification';
-                Image = Balance;
-                ToolTip = 'Executes the SmartLink Balance Verification action.';
+            // action(SmartLink)
+            // {
+            //     ApplicationArea = Basic, Suite;
+            //     Caption = 'SmartLink Balance Verification';
+            //     Image = Balance;
+            //     ToolTip = 'Executes the SmartLink Balance Verification action.';
 
-                trigger OnAction()
-                begin
-                    DSLInt.GetSmartData(Rec."Patient No.");
-                    //Message(Format(hmsIntegration.PatientBalance()));
-                end;
-            }
+            //     trigger OnAction()
+            //     begin
+            //         DSLInt.GetSmartData(Rec."Patient No.");
+            //         //Message(Format(hmsIntegration.PatientBalance()));
+            //     end;
+            // }
             action("Send Bill Balance Via SMS")
             {
                 ApplicationArea = Basic, Suite;
@@ -386,7 +386,7 @@ Page 85388 "HMS Patients Card"
         "Relative No.Enable": Boolean;
         Apponitment: Record "HMS Appointment Form Header";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         myNoSeries: Code[20];
         DaysBtwnTodayAndLastVisit: Integer;
         TreatmentHeader: Record "HMS Treatment Form Header";

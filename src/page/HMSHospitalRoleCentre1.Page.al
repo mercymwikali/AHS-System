@@ -1737,4 +1737,10 @@ Page 85347 "HMS Hospital Role Centre1"
         HMSSetup: Record "HMS Setup";
         Dialysismode: Boolean;
 }
-
+profile "HMS Hospital Role Center"
+{
+    ProfileDescription = 'Hospital Role Center';
+    Caption = 'New Hospital  Role Center';
+    RoleCenter = "HMS Hospital Role Centre1";
+}
+ 

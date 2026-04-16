@@ -89,7 +89,7 @@ Table 85529 prMassPCAHD
         if "Change Advice Serial No." = '' then begin
             HrSetup.Get();
 
-            NoSeriesMgt.InitSeries(HrSetup."Pay-change No.", xRec."No. Series", 0D, "Change Advice Serial No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HrSetup."Pay-change No.");
         end;
         "User ID" := UserId;
 
@@ -110,7 +110,7 @@ Table 85529 prMassPCAHD
         HrSetup: Record "HR Setup";
         objPayrollPeriod: Record "prPayroll Periods";
         objTransCodes: Record "PR Transaction Codes";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure fnCheckEmployeeStatus()
     begin

@@ -538,7 +538,7 @@ Table 85015 "Staff Advance Surrender Header"
             GenLedgerSetup.Get();
 
             GenLedgerSetup.TestField(GenLedgerSetup."Staff Advance Surrender No");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Staff Advance Surrender No", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Staff Advance Surrender No");
         end;
 
         "Account Type" := "account type"::Customer;
@@ -568,6 +568,6 @@ Table 85015 "Staff Advance Surrender Header"
         PayHeader: Record "Staff Advance Header";
         PayLine: Record "Staff Advance Lines";
         ImpSurrLine: Record "Staff Advanc Surrender Details";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         LineNo: Integer;
 }

@@ -134,19 +134,19 @@ Table 85102 "FLTFuel Payments Batch Lines"
             if "Requisition No" = '' then begin
                 FltMgtSetup.Get();
                 FltMgtSetup.TestField(FltMgtSetup."Fuel Register");
-                NoSeriesMgt.InitSeries(FltMgtSetup."Fuel Register", xRec."No. Series", 0D, "Requisition No", "No. Series");
+                NoSeriesMgt.GetNextNo(FltMgtSetup."Fuel Register");
             end;
         end else
             if Type = Type::Invoice then
                 if "Requisition No" = '' then begin
                     FltMgtSetup.Get();
                     FltMgtSetup.TestField(FltMgtSetup."Maintenance Request");
-                    NoSeriesMgt.InitSeries(FltMgtSetup."Maintenance Request", xRec."No. Series", 0D, "Requisition No", "No. Series");
+                    NoSeriesMgt.GetNextNo(FltMgtSetup."Maintenance Request");
                 end;
     end;
 
     var
         FltMgtSetup: Record "FLT-Fleet Mgt Setup";
         Vendor: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

@@ -8,7 +8,7 @@ Table 85129 "Receipts Disbursment"
         }
         field(50001; "Student No"; Code[20])
         {
-            TableRelation = Customer."No." where("Customer Type" = const(Student));
+            TableRelation = Customer."No." where("Customer Type1" = const(Student));
 
             trigger OnValidate()
             begin

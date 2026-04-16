@@ -659,7 +659,7 @@ Table 85036 "Purchase Quote Header"
         if "No." = '' then begin
             PurchSetup.Get();
             PurchSetup.TestField(PurchSetup."Quotation Request No");
-            NoSeriesMgt.InitSeries(PurchSetup."Quotation Request No", xRec."No. Series", Today, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(PurchSetup."Quotation Request No");
         end;
     end;
 
@@ -673,5 +673,5 @@ Table 85036 "Purchase Quote Header"
 
     var
         PurchSetup: Record "Cash Office Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

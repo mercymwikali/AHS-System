@@ -361,9 +361,9 @@ Report 85035 "Purchase Order1."
         ShowInternalInfo: Boolean;
         terms: Code[30];
         ApprovalDate: array[10] of DateTime;
-        Bytes: dotnet Array;
-        Convert: dotnet Convert;
-        MemoryStream: dotnet MemoryStream;
+        Convert: Codeunit "Base64 Convert";
+        TempBlob: Codeunit "Temp Blob";
+
         IStream: InStream;
         NoOfCopies: Integer;
         sn: Integer;
@@ -417,16 +417,29 @@ Report 85035 "Purchase Order1."
     local procedure GetSignature(userid: Code[50]) BaseImage: Text
     var
         userset: Record "User Setup";
+       
+        InStr: InStream;
+        OutStr: OutStream;
     begin
-
         userset.Reset();
         userset.SetRange("User ID", userid);
-        if userset.Find('-') then
-            userset.CalcFields(userset.Signature);
-        userset.Signature.CreateInstream(IStream);
-        MemoryStream := MemoryStream.MemoryStream();
-        CopyStream(MemoryStream, IStream);
-        Bytes := MemoryStream.GetBuffer();
-        BaseImage := Convert.ToBase64String(Bytes);
+
+        if userset.Find('-') then begin
+            userset.CalcFields(Signature);
+
+            if userset.Signature.HasValue() then begin
+                // Read from BLOB
+                userset.Signature.CreateInStream(InStr);
+
+                // Write into TempBlob (modern replacement for MemoryStream)
+                TempBlob.CreateOutStream(OutStr, TEXTENCODING::UTF8);
+                CopyStream(OutStr, InStr);
+
+                // Convert to Base64 directly from stream
+                BaseImage := Convert.ToBase64(InStr);
+            end;
+        end;
     end;
+
 }
+

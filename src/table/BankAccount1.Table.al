@@ -391,7 +391,7 @@ Table 85046 "Bank Account1"
         field(50054; "Check Report ID"; Integer)
         {
             Caption = 'Check Report ID';
-            TableRelation = Object.ID where(Type = const(Report));
+            TableRelation = AllObjWithCaption."Object ID" where("Object Type" = const(Report));
         }
         field(50055; "Check Report Name"; Text[250])
         {

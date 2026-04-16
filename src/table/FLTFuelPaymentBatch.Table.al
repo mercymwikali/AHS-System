@@ -81,12 +81,12 @@ Table 85096 "FLT-Fuel Payment Batch"
             fleetmgt.Get();
             fleetmgt.TestField("Fuel Payment Batch No");
 
-            NoSeriesMgt.InitSeries(fleetmgt."Fuel Payment Batch No", xRec."No. Series", 0D, "Batch No", "No. Series")
+            NoSeriesMgt.GetNextNo(fleetmgt."Fuel Payment Batch No")
         end;
     end;
 
     var
         fleetmgt: Record "FLT-Fleet Mgt Setup";
         Vendor: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

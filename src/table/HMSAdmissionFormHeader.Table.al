@@ -407,7 +407,7 @@ Table 85173 "HMS Admission Form Header"
     var
         HmsPatient: Record "HMS Patient";
         HmsSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         HMSAdmissionFormHeader: Record "HMS Admission Form Header";
     begin
         if "Admission No." = '' then begin

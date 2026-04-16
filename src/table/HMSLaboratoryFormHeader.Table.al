@@ -288,11 +288,11 @@ Table 85311 "HMS Laboratory Form Header"
         if "Laboratory No." = '' then begin
             HMSSetup.Get();
             HMSSetup.TestField("Lab Test Request Nos");
-            NoSeriesMgt.InitSeries(HMSSetup."Lab Test Request Nos", xRec."No. Series", 0D, "Laboratory No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HMSSetup."Lab Test Request Nos");
         end;
     end;
 
     var
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

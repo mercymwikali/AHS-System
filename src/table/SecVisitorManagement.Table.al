@@ -196,7 +196,7 @@ Table 85042 "Sec-Visitor Management"
         if No = '' then begin
             GenSetu.Get();
             GenSetu.TestField(GenSetu."Visitors Nos");
-            NoSeriesMgt.InitSeries(GenSetu."Visitors Nos", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenSetu."Visitors Nos");
         end;
 
         Status := Status::Arrived;
@@ -208,7 +208,7 @@ Table 85042 "Sec-Visitor Management"
         HMSPatient: Record "HMS Patient";
         Emp: Record "HR-Employee";
         GenSetu: Record "Security Setups";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure fullName() name: Text[250]
     begin

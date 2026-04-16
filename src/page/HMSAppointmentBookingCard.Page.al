@@ -398,7 +398,7 @@ Page 85280 "HMS Appointment Booking Card"
         HmsSetup: Record "HMS Setup";
         Sms: Record "SMS Sender";
         SMSS: Record "SMS Sender";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         TherapyMode: Boolean;
         Inpatient: Boolean;
         NonDialysis: Boolean;

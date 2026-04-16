@@ -560,7 +560,7 @@ page 85329 "HMS Corporate pending Invoice"
         HMS: Codeunit "HMS Patient-integration";
         HMSSetup: Record "HMS Setup";
         NewNo: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         AdmissionHeader: Record "HMS Admission Form Header";
         PatientCU: Codeunit "HMS Patient-integration";
         HmsAPP: Record "HMS Appointment Form Header";
@@ -574,7 +574,7 @@ page 85329 "HMS Corporate pending Invoice"
         PatientCharges: Record "HMS Patient Charges";
         PharmLine: Record "HMS Pharmacy Line";
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         LineNo: Integer;
         NewNo: Code[20];
     begin

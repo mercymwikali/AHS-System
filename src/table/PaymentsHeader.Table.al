@@ -700,11 +700,11 @@ Table 85123 "Payments Header"
             GenLedgerSetup.Get();
             if "Payment Type" = "payment type"::Normal then begin
                 GenLedgerSetup.TestField(GenLedgerSetup."Normal Payments No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Normal Payments No", xRec."No. Series", 0D, "No.", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Normal Payments No");
             end
             else begin
                 GenLedgerSetup.TestField(GenLedgerSetup."Petty Cash Payments No");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Petty Cash Payments No", xRec."No. Series", 0D, "No.", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Petty Cash Payments No");
             end;
         end;
         UserTemplate.Reset();
@@ -744,8 +744,8 @@ Table 85123 "Payments Header"
         GenLedgerSetup.GET();
         GenLedgerSetup.TESTFIELD(GenLedgerSetup."Normal Payments No");
 
-        IF NoSeriesMgt.SelectSeries(GenLedgerSetup."Normal Payments No", PV."No. Series", PV."No. Series") THEN BEGIN
-            NoSeriesMgt.SetSeries(PV."No.");
+        IF NoSeriesMgt.LookupRelatedNoSeries(GenLedgerSetup."Normal Payments No", PV."No. Series", PV."No. Series") THEN BEGIN
+            NoSeriesMgt.GetNextNo(PV."No.");
             Rec := PV;
             EXIT(TRUE);
         END;
@@ -770,7 +770,7 @@ Table 85123 "Payments Header"
         ClaimLines: Record "Staff Claim Lines";
         Claim: Record "Staff Claims Header";
         Vend: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UserMgt: Codeunit "User Setup Management BR";
         Text001: label 'Your identification is set up to process from %1 %2 only.';
         Text002: label 'There is an Account number on the  payment lines the same as Paying Bank Account you are trying to select.';

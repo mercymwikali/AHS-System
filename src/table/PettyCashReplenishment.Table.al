@@ -170,7 +170,7 @@ table 85459 "Petty Cash Replenishment"
     var
         PettyCashReplenishment: Record "Petty Cash Replenishment";
         cashofficesetup: Record "Cash Office Setup";
-        noseries: Codeunit NoSeriesManagement;
+        noseries: Codeunit "No. Series";
     begin
         if "Replenishement No" = '' then begin
             cashofficesetup.Get();

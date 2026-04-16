@@ -194,7 +194,7 @@ Table 85256 "HMS Theatre Form Header"
         if "No." = '' then begin
             HMSSetup.Get();
             HMSSetup.TestField("Observation Nos");
-            NoSeriesMgt.InitSeries(HMSSetup."Observation Nos", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HMSSetup."Observation Nos");
         end;
 
         "Surgery Code" := UserId;
@@ -206,5 +206,5 @@ Table 85256 "HMS Theatre Form Header"
         HMSSetup: Record "HMS Setup";
         Doc: Record "HMS Setup Doctor";
         TheatrePersonnel: Record "HMS Theatre Personnel";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

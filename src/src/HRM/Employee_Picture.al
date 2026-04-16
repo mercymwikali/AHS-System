@@ -48,11 +48,14 @@ page 85608 "HR-Employee Picture"
                 trigger OnAction()
                 var
                     FileManagement: Codeunit "File Management";
-                    ClientFileName: Text;
+                    TempBlob: Codeunit "Temp Blob";
+                    InStream: InStream;
+                    OutStream: OutStream;
                     FileName: Text;
-
+                    ClientFileName: Text;
                 begin
                     Rec.TestField("No.");
+
                     if Rec."First Name" = '' then
                         Error(MustSpecifyNameErr);
 
@@ -60,16 +63,26 @@ page 85608 "HR-Employee Picture"
                         if not Confirm(OverrideImageQst) then
                             exit;
 
-                    FileName := FileManagement.UploadFile(SelectPictureTxt, ClientFileName);
-                    if FileName = '' then
+                    // 🔥 SaaS-safe file upload (replaces UploadFile)
+                    FileManagement.BLOBImportWithFilter(
+                 TempBlob,
+                 SelectPictureTxt,
+                 ClientFileName,
+                 'Image files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png',
+                 '*.jpg;*.jpeg;*.png'
+             );
+                    if ClientFileName = '' then
                         exit;
 
+                    // 🔥 Clear existing image
                     Clear(Rec.Image);
-                    Image.ImportFile(FileName, ClientFileName);
+
+                    // 🔥 Convert uploaded blob → InStream → assign to media
+                    TempBlob.CreateInStream(InStream);
+                    Rec.Image.ImportStream(InStream, ClientFileName);
+
                     if not Rec.Modify(true) then
                         Rec.Insert(true);
-
-                    if FileManagement.DeleteServerFile(FileName) then;
                 end;
             }
             action(ExportFile)
@@ -82,18 +95,31 @@ page 85608 "HR-Employee Picture"
                 trigger OnAction()
                 var
                     DummyPictureEntity: Record "Picture Entity";
-                    FileManagement: Codeunit "File Management";
-                    ExportPath: Text;
-                    ToFile: Text;
+                    TempBlob: Codeunit "Temp Blob";
+                    OutStr: OutStream;
+                    InStr: InStream;
+                    FileName: Text;
                 begin
                     Rec.TestField("No.");
                     Rec.TestField("First Name");
 
-                    ToFile := DummyPictureEntity.GetDefaultMediaDescription(Rec);
-                    ExportPath := TemporaryPath + Rec."No." + Format(Image.MediaId);
-                    Image.ExportFile(ExportPath);
+                    // 🔥 Generate file name (same logic as GetDefaultMediaDescription)
+                    FileName := DummyPictureEntity.GetDefaultMediaDescription(Rec);
 
-                    FileManagement.ExportImage(ExportPath, ToFile);
+                    // 🔥 Convert media → stream (SaaS safe replacement for ExportFile)
+                    TempBlob.CreateOutStream(OutStr);
+                    Image.ExportStream(OutStr);
+
+                    TempBlob.CreateInStream(InStr);
+
+                    // 🔥 Download to user (replaces ExportImage + TemporaryPath)
+                    DownloadFromStream(
+                        InStr,
+                        '',
+                        '',
+                        '',
+                        FileName
+                    );
                 end;
             }
             action(DeletePicture)

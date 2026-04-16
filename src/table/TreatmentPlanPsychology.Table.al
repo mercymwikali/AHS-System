@@ -67,7 +67,7 @@ table 85339 "Treatment Plan(Psychology)"
     }
     var
         HMSSetup: Record "HMS Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     trigger OnInsert()
 

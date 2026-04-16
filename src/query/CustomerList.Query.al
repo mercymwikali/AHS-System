@@ -70,7 +70,7 @@ Query 85137 "Customer List"
             column(Study_Mode; "Study Mode")
             {
             }
-            column(Customer_Type; "Customer Type")
+            column(Customer_Type; "Customer Type1")
             {
             }
             column(Customer_Posting_Group; "Customer Posting Group")
@@ -85,8 +85,8 @@ Query 85137 "Customer List"
             column(Credit_Amount; "Credit Amount")
             {
             }
-            column(Catering_Blocked;"Catering Blocked")
-            {                
+            column(Catering_Blocked; "Catering Blocked")
+            {
             }
         }
     }

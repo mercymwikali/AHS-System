@@ -125,7 +125,7 @@ Table 85418 "HR Induction Schedule"
         if "Induction Code" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Induction Nos");
-            NoSeriesMgt.InitSeries(HRSetup."Induction Nos", xRec."No series", 0D, "Induction Code", xRec."No series");
+            NoSeriesMgt.GetNextNo(HRSetup."Induction Nos");
         end;
 
         "Table ID" := Database::"HR-Employee";
@@ -164,7 +164,7 @@ Table 85418 "HR Induction Schedule"
         Induction: Record "HR Induction Schedule";
         HRSetup: Record "HR Setup";
         UserSetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         RLen: DateFormula;
         Rdate: Date;
 }

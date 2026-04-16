@@ -175,7 +175,7 @@ Table 85068 "A-Vehicle Movement"
         IF "No." = '' THEN BEGIN
           OPSetUp.GET(0);
           OPSetUp.TESTFIELD(OPSetUp."Dispatch Nos");
-          NoSeriesMgt.InitSeries(OPSetUp."Dispatch Nos",xRec."No. Series",0D,"No.","No. Series");
+          NoSeriesMgt.GetNextNo(OPSetUp."Dispatch Nos",xRec."No. Series",0D,"No.","No. Series");
         END;
         */
     end;

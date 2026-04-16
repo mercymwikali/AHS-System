@@ -58,6 +58,6 @@ Page 85475 "HMS Treatment Form Radiology"
         HMSSetup: Record "HMS Setup";
         TreatmentHeader: Record "HMS Treatment Form Header";
         TreatmentLine: Record "HMS Treatment Form Radiology";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
 }

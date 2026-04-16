@@ -27,8 +27,8 @@ TableExtension 85005 "Purchase Line Ext" extends "Purchase Line"
                     IF Item.GET("No.") THEN BEGIN
                         if BudgetControl.get() then
                             if BudgetControl.Mandatory = true then
-                                item.TestField("Item G/L Budget Account");
-                        "G/L Account" := Item."Item G/L Budget Account";
+                                item.TestField("Item G/L Budget Account1");
+                        "G/L Account" := Item."Item G/L Budget Account1";
                         /*
                           invPostSetup.RESET;
                           invPostSetup.SETRANGE(invPostSetup."Invt. Posting Group Code", Item."Inventory Posting Group");

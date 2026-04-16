@@ -630,7 +630,7 @@ table 85177 "HMS Appointment Form Header"
         if "Appointment No." = '' then begin
             HMSSetup.Get();
             HMSSetup.TestField("Appointment Nos");
-            NoSeriesMgt.InitSeries(HMSSetup."Appointment Nos", xRec."No. Series", 0D, "Appointment No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HMSSetup."Appointment Nos");
         end;
 
         if "Patient Type" = "Patient Type"::Corporate then "Settlement Type" := "Settlement Type"::Insurance;
@@ -655,7 +655,7 @@ table 85177 "HMS Appointment Form Header"
         HMSSetup: Record "HMS Setup";
         PatInsurance: Record "HMS Patient Insuarance";
         hmsPatInt: Codeunit "HMS Patient-integration";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure GetPatientNo(var PatientNo: Code[20]; var StudentNo: Code[20]; var EmployeeNo: Code[20]; var RelativeNo: Integer)
     var

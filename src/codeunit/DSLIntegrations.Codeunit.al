@@ -35,41 +35,6 @@ codeunit 85045 "DSL Integrations"
         ret := TRUE;
     end;
 
-    procedure GetSmartData(PatientNo: Code[20])
-    var
-        RESTWSManagement: Codeunit "REST WS Management";
-        ReturnValue: Boolean;
-        Window: Dialog;
-        encoding: DotNet Encoding;
-        HttpResponseMessage: DotNet HttpResponseMessage;
-        httpUtility: DotNet PTLHttpUtility;
-        stringContent: DotNet StringContent;
-        data: Text;
-    begin
-
-        Window.OPEN('Getting Details...');
-        HMSSetup.Get();
-
-        data += 'patient=' + httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
-
-        stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
-
-        ReturnValue := RESTWSManagement.CallRESTWebService('http://192.168.88.62:881/smart/balance.php',
-                                                           '',
-                                                           'POST',
-                                                           stringContent,
-                                                           HttpResponseMessage);
-        Window.CLOSE();
-        //IF NOT ReturnValue THEN
-        //    EXIT;
-
-        //result := HttpResponseMessage.Content.ReadAsStringAsync.Result;
-        //data := '';
-        //MESSAGE(result);
-        SmartBenefits.reset();
-        SmartBenefits.SETRANGE("Patient No", PatientNo);
-        PAGE.RUN(70135224, SmartBenefits);
-    end;
 
     procedure UpdateInvoices(patientid: Code[20]; invoiceid: Code[20])
     begin
@@ -84,28 +49,30 @@ codeunit 85045 "DSL Integrations"
             UNTIL SmartInvoices.NEXT() = 0;
     end;
 
-    procedure PostInvoice(PatientNo: Code[20]; InvoiceNo: Code[20])
-    var
-        RESTWSManagement: Codeunit "REST WS Management";
-        ReturnValue: Boolean;
-        encoding: DotNet Encoding;
-        HttpResponseMessage: DotNet HttpResponseMessage;
-        httpUtility: DotNet HttpUtility;
-        stringContent: DotNet StringContent;
-        data: Text;
-    begin
-        data += httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
-        data += 'invoiceno=' + httpUtility.UrlEncode(InvoiceNo, encoding.GetEncoding('ISO-8859-1'));
-        HMSSetup.Get();
+    // procedure PostInvoice(PatientNo: Code[20]; InvoiceNo: Code[20])
+    // var
+    //     RESTWSManagement: Codeunit "REST WS Management";
+    //     ReturnValue: Boolean;
+    //     encoding: DotNet Encoding;
+    //     HttpResponseMessage: DotNet HttpResponseMessage;
+    //     httpUtility: DotNet HttpUtility;
+    //     stringContent: DotNet StringContent;
+    //     data: Text;
+    // begin
+    //     data += httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
+    //     data += 'invoiceno=' + httpUtility.UrlEncode(InvoiceNo, encoding.GetEncoding('ISO-8859-1'));
+    //     HMSSetup.Get();
 
-        stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
+    //     stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
 
-        ReturnValue := RESTWSManagement.CallRESTWebService('http://192.168.88.62:881/smart/',
-                                                           'invoice.php',
-                                                           'POST',
-                                                           stringContent,
-                                                           HttpResponseMessage);
+    //     ReturnValue := RESTWSManagement.CallRESTWebService('http://192.168.88.62:881/smart/',
+    //                                                        'invoice.php',
+    //                                                        'POST',
+    //                                                        stringContent,
+    //                                                        HttpResponseMessage);
 
-        Message(data);
-    end;
+    //     Message(data);
+    // end;
+
+
 }

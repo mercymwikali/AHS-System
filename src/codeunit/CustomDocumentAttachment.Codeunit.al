@@ -1,6 +1,6 @@
 codeunit 85004 "Custom Document Attachment"
 {
-    [EventSubscriber(ObjectType::Page, Page::"Document Attachment Factbox", 'OnBeforeDrillDown', '', false, false)]
+    
     local procedure SpecifyCustomRecordOnBeforeDrilldown(DocumentAttachment: Record "Document Attachment"; var RecRef: RecordRef)
     var
         applicantRegister: Record "Applicant Register";

@@ -514,5 +514,5 @@ Table 85107 "InterBank Transfers"
         DimVal: Record "Dimension Value";
         ICPartner: Record "IC Partner";
         RespCenter: Record "Responsibility Center BR";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

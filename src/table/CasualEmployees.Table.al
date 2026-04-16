@@ -262,12 +262,12 @@ Table 85476 "Casual Employees"
             if Type = Type::Casual then begin
                 GenLedgerSetup.Get();
                 GenLedgerSetup.TestField(GenLedgerSetup."Casual Nos");
-                NoSeriesMgt.InitSeries(GenLedgerSetup."Casual Nos", xRec."No. Series", 0D, "Casual No", "No. Series");
+                NoSeriesMgt.GetNextNo(GenLedgerSetup."Casual Nos");
             end else
                 if Type = Type::"Part-Timer" then begin
                     GenLedgerSetup.Get();
                     GenLedgerSetup.TestField(GenLedgerSetup."Parttimers Nos");
-                    NoSeriesMgt.InitSeries(GenLedgerSetup."Parttimers Nos", xRec."No. Series", 0D, "Casual No", "No. Series");
+                    NoSeriesMgt.GetNextNo(GenLedgerSetup."Parttimers Nos");
                 end;
         end;
     end;
@@ -280,7 +280,7 @@ Table 85476 "Casual Employees"
         Employee: Record "HR-Employee";
         HREmployeeC: Record "HR-Employee";
         prBankStructure: Record "Pr Bank Branches";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         age: Integer;
         Choice: Integer;
 }

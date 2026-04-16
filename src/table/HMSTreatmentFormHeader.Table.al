@@ -338,7 +338,7 @@ table 85265 "HMS Treatment Form Header"
         if "Treatment No." = '' then begin
             HMSSetup.Get();
             HMSSetup.TestField("Visit Nos");
-            NoSeriesMgt.InitSeries(HMSSetup."Visit Nos", xRec."No. Series", 0D, "Treatment No.", "No. Series");
+            NoSeriesMgt.GetNextNo(HMSSetup."Visit Nos");
             Status := Status::New;
         end;
     end;
@@ -346,5 +346,5 @@ table 85265 "HMS Treatment Form Header"
     var
         HMSSetup: Record "HMS Setup";
         Doc: Record "HMS Setup Doctor";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

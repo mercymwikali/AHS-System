@@ -139,7 +139,7 @@ Page 85290 "HMS Active Patient InPatients"
                 trigger OnAction()
                 var
                     HMSAPP: Record "HMS Appointment Form Header";
-                    NoSeriesMgt: Codeunit NoSeriesManagement;
+                    NoSeriesMgt: Codeunit "No. Series";
                     NewNo: code[20];
                 begin
                     if Patients.Get(Rec."Patient No.") then begin
@@ -184,7 +184,7 @@ Page 85290 "HMS Active Patient InPatients"
                 var
                     PharmHeader: Record "HMS Pharmacy Header";
                     HMSSetup: Record "HMS Setup";
-                    NoSeriesMgt: Codeunit NoSeriesManagement;
+                    NoSeriesMgt: Codeunit "No. Series";
                     NewNo: code[20];
                 begin
 

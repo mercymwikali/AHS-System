@@ -1244,3 +1244,11 @@ Page 85346 "HMS Billing Role Centre"
         }
     }
 }
+
+profile "HMS Billing Role Center"
+{
+    ProfileDescription = 'Billing Role Center';
+    Caption = 'New Billing Role Center';
+    RoleCenter = "HMS Billing Role Centre";
+}
+ 

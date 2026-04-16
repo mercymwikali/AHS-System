@@ -467,12 +467,12 @@ Page 85486 "HMS Walkin Patient Card"
             HMSSetup.Get();
             if Rec."Walk-in" = false then begin
                 HMSSetup.TestField("Patient Nos");
-                NoSeriesMgt.InitSeries(HMSSetup."Patient Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
             end
             else
                 if Rec."Walk-in" = true then begin
                     HMSSetup.TestField("In Patient No");
-                    NoSeriesMgt.InitSeries(HMSSetup."In Patient No", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                    NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                 end;
         end;
         Rec."Date Registered" := Today;
@@ -489,12 +489,12 @@ Page 85486 "HMS Walkin Patient Card"
             HMSSetup.Get();
             if Rec."Walk-in" = false then begin
                 HMSSetup.TestField("Patient Nos");
-                NoSeriesMgt.InitSeries(HMSSetup."Patient Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
             end
             else
                 if Rec."Walk-in" = true then begin
                     HMSSetup.TestField("Walkin Nos");
-                    NoSeriesMgt.InitSeries(HMSSetup."Walkin Nos", xRec."No. Series", 0D, Rec."Patient No.", Rec."No. Series");
+                    NoSeriesMgt.GetNextNo(HMSSetup."Walkin Nos");
                 end;
         end;
         Rec."Date Registered" := Today;
@@ -512,7 +512,7 @@ Page 85486 "HMS Walkin Patient Card"
         RadiologyHeader: Record "HMS Radiology Form Header";
         HMSSetup: Record "HMS Setup";
         HRDates: Codeunit "HR Dates";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         [InDataSet]
         "Employee No.Enable": Boolean;
         [InDataSet]

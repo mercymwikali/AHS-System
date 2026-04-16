@@ -289,7 +289,7 @@ Table 85493 "HR Jobs"
     trigger OnInsert()
     var
         HumanResSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
     begin
         UserID := UserID;
         "Date Created" := Today;
@@ -297,7 +297,7 @@ Table 85493 "HR Jobs"
         if "Job ID" = '' then begin
             HumanResSetup.Get();
             HumanResSetup.TestField("Job ID");
-            NoSeriesMgt.InitSeries(HumanResSetup."Job ID", xRec."No. Series", 0D, "Job ID", "No. Series");
+            NoSeriesMgt.GetNextNo(HumanResSetup."Job ID");
         end;
     end;
 
@@ -312,15 +312,15 @@ Table 85493 "HR Jobs"
     procedure AssistEdit(JD: Record "HR Jobs"): Boolean
     var
         GenLedgerSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
     begin
         JD := Rec;
 
         GenLedgerSetup.GET();
         GenLedgerSetup.TESTFIELD(GenLedgerSetup."Job ID");
 
-        IF NoSeriesMgt.SelectSeries(GenLedgerSetup."Job ID", JD."No. Series", JD."No. Series") THEN BEGIN
-            NoSeriesMgt.SetSeries(JD."Job ID");
+        IF NoSeriesMgt.LookupRelatedNoSeries(GenLedgerSetup."Job ID", JD."No. Series", JD."No. Series") THEN BEGIN
+            NoSeriesMgt.GetNextNo(JD."Job ID");
             Rec := JD;
             EXIT(TRUE);
         END;

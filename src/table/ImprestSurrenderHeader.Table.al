@@ -536,7 +536,7 @@ Table 85022 "Imprest Surrender Header"
             GenLedgerSetup.Get();
 
             GenLedgerSetup.TestField(GenLedgerSetup."Imprest Surrender No");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Imprest Surrender No", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Imprest Surrender No");
         end;
 
         "Account Type" := "account type"::Customer;
@@ -564,5 +564,5 @@ Table 85022 "Imprest Surrender Header"
         PaymentsH: Record "Payments Header";
         RecPayTypes: Record "Receipts and Payment Types";
         UserSetup: Record "User Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

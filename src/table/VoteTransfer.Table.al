@@ -104,11 +104,11 @@ Table 85145 "Vote Transfer"
         if No = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Vote Transfer");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Vote Transfer", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Vote Transfer");
         end;
     end;
 
     var
         GenLedgerSetup: Record "Cash Office Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

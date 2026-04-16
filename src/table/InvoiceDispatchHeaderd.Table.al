@@ -86,7 +86,7 @@ Table 85308 "Invoice Dispatch Headerd"
     begin
         if No = '' then
             SalesSetup.Get();
-        NoSeriesMgt.InitSeries(SalesSetup."Invoice Dispatch Nos", xRec."No. Series", 0D, No, "No. Series");
+        NoSeriesMgt.GetNextNo(SalesSetup."Invoice Dispatch Nos");
         if UserRec.get("User ID") then
             "Branch Code" := UserRec."Branch Code";
     end;
@@ -94,5 +94,5 @@ Table 85308 "Invoice Dispatch Headerd"
     var
         SalesSetup: Record "Cash Office Setup";
         Cust: Record Customer;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

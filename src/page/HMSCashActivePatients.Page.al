@@ -587,7 +587,7 @@ page 85289 "HMS Cash Active Patients"
         HMS: Codeunit "HMS Patient-integration";
         HMSSetup: Record "HMS Setup";
         NewNo: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         AdmissionHeader: Record "HMS Admission Form Header";
         PatientCU: Codeunit "HMS Patient-integration";
         HmsAPP: Record "HMS Appointment Form Header";
@@ -599,7 +599,7 @@ page 85289 "HMS Cash Active Patients"
         Patients: Record "HMS Patient";
         SalesSetup: Record "Sales & Receivables Setup";
         PatientCharges: Record "HMS Patient Charges";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         LineNo: Integer;
         NewNo: Code[20];
     begin

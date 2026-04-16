@@ -4,7 +4,7 @@ pageextension 85015 "Item Card Ext" extends "Item Card"
     {
         addafter("Common Item No.")
         {
-            field("Item G/L Budget Account"; Rec."Item G/L Budget Account")
+            field("Item G/L Budget Account1"; Rec."Item G/L Budget Account1")
             {
                 ApplicationArea = Basic, Suite;
                 ToolTip = 'Specifies the number of the production BOM that the item represents.';
@@ -37,7 +37,7 @@ pageextension 85015 "Item Card Ext" extends "Item Card"
         }
         addafter(Description)
         {
-            field("Generic Name Code";Rec."Generic Name Code")
+            field("Generic Name Code"; Rec."Generic Name Code")
             {
                 ApplicationArea = Basic, Suite;
                 ToolTip = 'Specifies the value of the Generic Name field.';
@@ -47,7 +47,7 @@ pageextension 85015 "Item Card Ext" extends "Item Card"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Generic Name field.', Comment = '%';
             }
-            
+
         }
     }
     actions

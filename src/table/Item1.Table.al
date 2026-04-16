@@ -1427,7 +1427,7 @@ Table 85057 Item1
             Editable = false;
             FieldClass = FlowField;
         }
-        field(50169; "Item G/L Budget Account"; Code[20])
+        field(50169; "Item G/L Budget Account1"; Code[20])
         {
             TableRelation = "G/L Account"."No.";
         }

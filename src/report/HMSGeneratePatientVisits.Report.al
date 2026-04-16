@@ -138,7 +138,7 @@ Report 85084 "HMS Generate Patient Visits"
         PatVisits: Record "HMS Patient Visit Nos";
         PatVisits2: Record "HMS Patient Visit Nos";
         HMSSetup: Record "HMS Setup";
-        Noseries: Codeunit NoSeriesManagement;
+        Noseries: Codeunit "No. Series";
         NewNo: code[20];
     begin
         HMSSetup.get();

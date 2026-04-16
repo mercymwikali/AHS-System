@@ -357,7 +357,7 @@ Report 85083 "HMS Generate Patient Invoice"
 
                 //send data to smartlink
 
-                InsertSmartInvoices("Patient No.", "Visit No");
+            //    InsertSmartInvoices("Patient No.", "Visit No");
 
                 // IF HMSPatRec.GET("HMS Patient Charges"."Patient No.") THEN BEGIN
                 // HMSPatRec.Activated:=FALSE;
@@ -423,95 +423,96 @@ Report 85083 "HMS Generate Patient Invoice"
         Ward_: Text;
         TransDec: Text[100];
 
-    local procedure InsertSmartInvoices(PatientNo: Code[20]; InvoiceNo: Code[20])
-    var
-        HMSPatCharges: Record "HMS Patient Charges";
-        HmsSetup: Record "HMS Setup";
-        SmartInvoices: Record "Smart Invoices";
-        RESTWSManagement: Codeunit "REST WS Management";
-        ReturnValue: Boolean;
-        encoding: DotNet Encoding;
-        HttpResponseMessage: DotNet HttpResponseMessage;
-        httpUtility: DotNet HttpUtility;
-        stringContent: DotNet StringContent;
-        data: Text;
-    begin
-        SmartInvoices.RESET();
-        SmartInvoices.SETRANGE(SmartInvoices."Document No", InvoiceNo);
-        SmartInvoices.SETRANGE(SmartInvoices."Patient No", PatientNo);
-        SmartInvoices.SETRANGE(SmartInvoices.Posted, FALSE);
-        IF SmartInvoices.FIND('-') THEN
-            SmartInvoices.DELETEALL();
-        HMSPatCharges.RESET();
-        HMSPatCharges.SETRANGE(HMSPatCharges."Patient No.", PatientNo);
-        HMSPatCharges.SETRANGE(HMSPatCharges."Invoice Number", InvoiceNo);
-        IF HMSPatCharges.FIND('-') THEN
-            REPEAT
-                SmartInvoices.INIT();
-                SmartInvoices.EntryNo := HMSPatCharges."Line No";
-                SmartInvoices."Document No" := InvoiceNo;
-                SmartInvoices."Patient No" := PatientNo;
-                SmartInvoices."Invoice Date" := HMSPatCharges.Date;
-                SmartInvoices."Invoice Time" := TIME;
-                IF HMSPatCharges.Quantity > 0 THEN
-                    SmartInvoices.Quantity := HMSPatCharges.Quantity
-                ELSE
-                    SmartInvoices.Quantity := 1;
-                SmartInvoices."Encounter Type" := HMSPatCharges."Transaction Type";
-                SmartInvoices.Code := HMSPatCharges.Code;
-                SmartInvoices."Code Description" := HMSPatCharges.Description;
-                SmartInvoices."Line Amount" := HMSPatCharges.Amount;
-                SmartInvoices.INSERT(TRUE);
-            UNTIL HMSPatCharges.NEXT() = 0;
-        data += 'patient=' + httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
-        data += 'invoiceno=' + httpUtility.UrlEncode(InvoiceNo, encoding.GetEncoding('ISO-8859-1'));
+    // local procedure InsertSmartInvoices(PatientNo: Code[20]; InvoiceNo: Code[20])
+    // var
+    //     HMSPatCharges: Record "HMS Patient Charges";
+    //     HmsSetup: Record "HMS Setup";
+    //     SmartInvoices: Record "Smart Invoices";
+    //     RESTWSManagement: Codeunit "REST WS Management";
+    //     ReturnValue: Boolean;
+    //     encoding: DotNet Encoding;
+    //     HttpResponseMessage: DotNet HttpResponseMessage;
+    //     httpUtility: DotNet HttpUtility;
+    //     stringContent: DotNet StringContent;
+    //     data: Text;
+    // begin
+    //     SmartInvoices.RESET();
+    //     SmartInvoices.SETRANGE(SmartInvoices."Document No", InvoiceNo);
+    //     SmartInvoices.SETRANGE(SmartInvoices."Patient No", PatientNo);
+    //     SmartInvoices.SETRANGE(SmartInvoices.Posted, FALSE);
+    //     IF SmartInvoices.FIND('-') THEN
+    //         SmartInvoices.DELETEALL();
+    //     HMSPatCharges.RESET();
+    //     HMSPatCharges.SETRANGE(HMSPatCharges."Patient No.", PatientNo);
+    //     HMSPatCharges.SETRANGE(HMSPatCharges."Invoice Number", InvoiceNo);
+    //     IF HMSPatCharges.FIND('-') THEN
+    //         REPEAT
+    //             SmartInvoices.INIT();
+    //             SmartInvoices.EntryNo := HMSPatCharges."Line No";
+    //             SmartInvoices."Document No" := InvoiceNo;
+    //             SmartInvoices."Patient No" := PatientNo;
+    //             SmartInvoices."Invoice Date" := HMSPatCharges.Date;
+    //             SmartInvoices."Invoice Time" := TIME;
+    //             IF HMSPatCharges.Quantity > 0 THEN
+    //                 SmartInvoices.Quantity := HMSPatCharges.Quantity
+    //             ELSE
+    //                 SmartInvoices.Quantity := 1;
+    //             SmartInvoices."Encounter Type" := HMSPatCharges."Transaction Type";
+    //             SmartInvoices.Code := HMSPatCharges.Code;
+    //             SmartInvoices."Code Description" := HMSPatCharges.Description;
+    //             SmartInvoices."Line Amount" := HMSPatCharges.Amount;
+    //             SmartInvoices.INSERT(TRUE);
+    //         UNTIL HMSPatCharges.NEXT() = 0;
+    //     data += 'patient=' + httpUtility.UrlEncode(PatientNo, encoding.GetEncoding('ISO-8859-1'));
+    //     data += 'invoiceno=' + httpUtility.UrlEncode(InvoiceNo, encoding.GetEncoding('ISO-8859-1'));
 
-        stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
-        HmsSetup.Get();
+    //     stringContent := stringContent.StringContent(data, encoding.UTF8, 'application/x-www-form-urlencoded');
+    //     HmsSetup.Get();
 
-        ReturnValue := RESTWSManagement.CallRESTWebService(HmsSetup."Smartlink Base URL",
-                                                           '/invoice.php',
-                                                           'POST',
-                                                           stringContent,
-                                                           HttpResponseMessage);
-        /* HMSPatCharges.RESET;
-          HMSPatCharges.SETRANGE(HMSPatCharges."Patient No.", PatientNo);
-          HMSPatCharges.SETRANGE(HMSPatCharges."Posted Invoice No.", InvoiceNo);
-          IF HMSPatCharges.FIND('-') THEN
-            SmartInvoices.RESET;
-            SmartInvoices.SETRANGE(SmartInvoices."Document No", PatientNo);
-            SmartInvoices.SETRANGE(SmartInvoices."Patient No", InvoiceNo);
-            SmartInvoices.SETRANGE(SmartInvoices.Posted, FALSE);
-            IF SmartInvoices.FIND('-') THEN SmartInvoices.DELETEALL;
-            REPEAT
-          //Insert into Smart Invoices table
-            SmartInvoices.INIT;
-            SmartInvoices.EntryNo:=LineNo;
-            SmartInvoices."Document No":= InvoiceNo;
-            SmartInvoices."Patient No":=PatientNo;
-            SmartInvoices."Invoice Date":=HMSPatCharges.Date;
-            SmartInvoices."Invoice Time":=TIME;
-             IF HMSPatCharges.Quantity>0 THEN
-              SmartInvoices.Quantity:=HMSPatCharges.Quantity
-              ELSE
-              SmartInvoices.Quantity:=1;
-            SmartInvoices."Encounter Type":=HMSPatCharges."Transaction Type";
-            SmartInvoices.Code:=HMSPatCharges.Code;
-            SmartInvoices."Code Description":=HMSPatCharges.Description;
-            SmartInvoices."Line Amount":=HMSPatCharges.Amount;
-            SmartInvoices.INSERT(TRUE);
-            LineNo:=LineNo+1;
-            UNTIL HMSPatCharges.NEXT=0;
-        data += 'patient='  + httpUtility.UrlEncode(PatientNo,encoding.GetEncoding('ISO-8859-1'));
-        data += 'invoiceno='  + httpUtility.UrlEncode(InvoiceNo,encoding.GetEncoding('ISO-8859-1'));
+    //     ReturnValue := RESTWSManagement.CallRESTWebService(HmsSetup."Smartlink Base URL",
+    //                                                        '/invoice.php',
+    //                                                        'POST',
+    //                                                        stringContent,
+    //                                                        HttpResponseMessage);
+    //     /* HMSPatCharges.RESET;
+    //       HMSPatCharges.SETRANGE(HMSPatCharges."Patient No.", PatientNo);
+    //       HMSPatCharges.SETRANGE(HMSPatCharges."Posted Invoice No.", InvoiceNo);
+    //       IF HMSPatCharges.FIND('-') THEN
+    //         SmartInvoices.RESET;
+    //         SmartInvoices.SETRANGE(SmartInvoices."Document No", PatientNo);
+    //         SmartInvoices.SETRANGE(SmartInvoices."Patient No", InvoiceNo);
+    //         SmartInvoices.SETRANGE(SmartInvoices.Posted, FALSE);
+    //         IF SmartInvoices.FIND('-') THEN SmartInvoices.DELETEALL;
+    //         REPEAT
+    //       //Insert into Smart Invoices table
+    //         SmartInvoices.INIT;
+    //         SmartInvoices.EntryNo:=LineNo;
+    //         SmartInvoices."Document No":= InvoiceNo;
+    //         SmartInvoices."Patient No":=PatientNo;
+    //         SmartInvoices."Invoice Date":=HMSPatCharges.Date;
+    //         SmartInvoices."Invoice Time":=TIME;
+    //          IF HMSPatCharges.Quantity>0 THEN
+    //           SmartInvoices.Quantity:=HMSPatCharges.Quantity
+    //           ELSE
+    //           SmartInvoices.Quantity:=1;
+    //         SmartInvoices."Encounter Type":=HMSPatCharges."Transaction Type";
+    //         SmartInvoices.Code:=HMSPatCharges.Code;
+    //         SmartInvoices."Code Description":=HMSPatCharges.Description;
+    //         SmartInvoices."Line Amount":=HMSPatCharges.Amount;
+    //         SmartInvoices.INSERT(TRUE);
+    //         LineNo:=LineNo+1;
+    //         UNTIL HMSPatCharges.NEXT=0;
+    //     data += 'patient='  + httpUtility.UrlEncode(PatientNo,encoding.GetEncoding('ISO-8859-1'));
+    //     data += 'invoiceno='  + httpUtility.UrlEncode(InvoiceNo,encoding.GetEncoding('ISO-8859-1'));
 
-        stringContent := stringContent.StringContent(data,encoding.UTF8,'application/x-www-form-urlencoded');
+    //     stringContent := stringContent.StringContent(data,encoding.UTF8,'application/x-www-form-urlencoded');
 
-        ReturnValue := RESTWSManagement.CallRESTWebService('http://localhost/',
-                                                           '/invoice.php',
-                                                           'POST',
-                                                           stringContent,
-                                                           HttpResponseMessage);
-                                                           */
-    end;
+    //     ReturnValue := RESTWSManagement.CallRESTWebService('http://localhost/',
+    //                                                        '/invoice.php',
+    //                                                        'POST',
+    //                                                        stringContent,
+    //                                                        HttpResponseMessage);
+    //                                                        */
+    // end;
+
 }

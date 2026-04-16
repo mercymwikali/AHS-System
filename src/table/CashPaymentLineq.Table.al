@@ -54,7 +54,7 @@ Table 85083 "Cash Payment Line q"
                     //Banks
                     if RecPayTypes."Account Type" = RecPayTypes."account type"::"Bank Account" then
                         "Account No." := RecPayTypes."Bank Account";
-                        //    VALIDATE("Account No.");
+                    //    VALIDATE("Account No.");
                 end;
             end;
         }
@@ -527,7 +527,7 @@ Table 85083 "Cash Payment Line q"
         if No = '' then begin
             GenLedgerSetup.Get();
             GenLedgerSetup.TestField(GenLedgerSetup."Normal Payments No");
-            NoSeriesMgt.InitSeries(GenLedgerSetup."Normal Payments No", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenLedgerSetup."Normal Payments No");
         end;
         CHead.Reset();
         CHead.SetRange(CHead."No.", No);
@@ -548,5 +548,5 @@ Table 85083 "Cash Payment Line q"
         HeaderC: Record "Payments Header";
         RecPayTypes: Record "Receipts and Payment Types";
         Vend: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

@@ -127,7 +127,7 @@ Table 85285 "HR Job Applicants - Appt. Line"
         IF  "Aptitude Test Description" = '' THEN BEGIN
           HRSetup.GET;
           HRSetup.TESTFIELD(HRSetup."Job Application Nos");
-          NoSeriesMgt.InitSeries(HRSetup."Job Application Nos",xRec."No. Series",0D,"Aptitude Test Description","No. Series");
+          NoSeriesMgt.GetNextNo(HRSetup."Job Application Nos",xRec."No. Series",0D,"Aptitude Test Description","No. Series");
         END;
 
         "Date Applied":=TODAY;

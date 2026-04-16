@@ -1066,13 +1066,13 @@ Table 85062 Vendor1
         field(50116; "Vendor Bank Account"; Code[20])
         {
         }
-        field(50117; "Vendor Bank Branch Code"; Code[20])
+        field(50117; "Vendor Bank Branch Code1"; Code[20])
         {
         }
         field(50118; Test1; Text[30])
         {
         }
-        field(50119; "Vendor Type"; Option)
+        field(50119; "Vendor Type1"; Option)
         {
             OptionCaption = ' ,Implementing Partner,Goods,Services,Contract,Goods & Services';
             OptionMembers = " ","Implementing Partner",Goods,Services,Contract,"Goods & Services";
@@ -1169,7 +1169,7 @@ Table 85062 Vendor1
         key(Key13; Contact)
         {
         }
-        key(Key14; "Vendor Type")
+        key(Key14; "Vendor Type1")
         {
         }
     }
@@ -1254,7 +1254,7 @@ Table 85062 Vendor1
         if "No." = '' then begin
             PurchSetup.Get();
             PurchSetup.TestField("Vendor Nos.");
-            NoSeriesMgt.InitSeries(PurchSetup."Vendor Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            NoSeriesMgt.GetNextNo(PurchSetup."Vendor Nos.");
         end;
         if "Invoice Disc. Code" = '' then
             "Invoice Disc. Code" := "No.";
@@ -1286,7 +1286,7 @@ Table 85062 Vendor1
            ("Home Page" <> xRec."Home Page")
         then
             Modify();
-            // UpdateContFromVend.OnModify(Rec);
+        // UpdateContFromVend.OnModify(Rec);
     end;
 
     trigger OnRename()
@@ -1305,7 +1305,7 @@ Table 85062 Vendor1
         VendBankAcc: Record "Vendor Bank Account";
         VendLedEntry: Record "Vendor Ledger Entry";
         DimMgt: Codeunit DimensionManagement;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         Text000: label 'You cannot delete %1 %2 because there is at least one outstanding Purchase %3 for this vendor.';
         Text002: label 'You have set %1 to %2. Do you want to update the %3 price list accordingly?';
         Text004: label 'Contact %1 %2 is not related to vendor %3 %4.';

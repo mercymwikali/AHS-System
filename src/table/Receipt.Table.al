@@ -19,7 +19,7 @@ table 85573 Receipt
                 if "Receipt No." = '' then begin
                     GenSetup.Get();
                     GenSetup.TestField(GenSetup."Receipt Nos.");
-                    NoSeriesMgt.InitSeries(GenSetup."Receipt Nos.", xRec."No. Series", 0D, "Receipt No.", "No. Series");
+                    NoSeriesMgt.GetNextNo(GenSetup."Receipt Nos.");
                 end;
             end;
         }
@@ -206,5 +206,5 @@ table 85573 Receipt
 
     var
         GenSetup: Record "General Set-Up";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

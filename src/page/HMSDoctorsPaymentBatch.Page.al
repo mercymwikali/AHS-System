@@ -80,7 +80,7 @@ page 85337 "HMS Doctors Payment Batch"
         Doc: Record "HMS Setup Doctor";
         PVLine: Record "Payment Line";
         PVHeader: Record "Payments Header";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         Ln: Integer;
     begin

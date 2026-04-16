@@ -115,12 +115,12 @@ Table 85425 "HR Medical Schemes"
         if "Scheme No" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Medical Scheme Nos");
-            NoSeriesMgt.InitSeries(HRSetup."Medical Scheme Nos", xRec."No. Series", 0D, "Scheme No", "No. Series");
+            NoSeriesMgt.GetNextNo(HRSetup."Medical Scheme Nos");
         end;
     end;
 
     var
         HRSetup: Record "HR Setup";
         Insurer: Record Vendor;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

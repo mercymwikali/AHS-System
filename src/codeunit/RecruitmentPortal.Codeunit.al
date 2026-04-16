@@ -15,7 +15,7 @@ Codeunit 85039 RecruitmentPortal
         HRJobApplications: Record Applicants;
         HREmployeeRequisitions: Record "HR Employee Requisitions";
         objHRJobApplicants: Record "HR Job Applicants";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
     procedure HRJobApplicantCreate("User Name": Text)
     begin

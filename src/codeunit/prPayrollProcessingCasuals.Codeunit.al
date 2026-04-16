@@ -1915,24 +1915,5 @@ Codeunit 85041 "prPayrollProcessing-Casuals"
         end;
     end; */
 
-    procedure GetProfilePictureStudent(StudentNo: Text) BaseImage: Text
-    var
-        Bytes: dotnet Array;
-        Convert: dotnet Convert;
-        MemoryStream: dotnet MemoryStream;
-        IStream: InStream;
-    begin
-        Customer.Reset();
-        Customer.SetRange(Customer."No.", StudentNo);
-
-        if Customer.Find('-') then
-            if Customer.Image.Hasvalue then begin
-                Customer.CalcFields(Image);
-                //Customer.Picture.CreateInstream(IStream);
-                MemoryStream := MemoryStream.MemoryStream();
-                CopyStream(MemoryStream, IStream);
-                Bytes := MemoryStream.GetBuffer();
-                BaseImage := Convert.ToBase64String(Bytes);
-            end;
-    end;
+   
 }

@@ -360,7 +360,7 @@ codeunit 85000 "PTL Factory"
     local procedure GetNextPharmacyNo(): Code[20]
     var
         TbHMSSetup: record "HMS Setup";
-        CuNoSeries: Codeunit NoSeriesManagement;
+        CuNoSeries: Codeunit "No. Series";
         NewNo: Code[20];
     begin
 

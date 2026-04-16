@@ -200,7 +200,7 @@ Table 85405 "HR Disciplinary Cases"
         if "Case Number" = '' then begin
             HRSetup.Get();
             HRSetup.TestField(HRSetup."Disciplinary Cases Nos.");
-            NoSeriesMgt.InitSeries(HRSetup."Disciplinary Cases Nos.", xRec."No. Series", 0D, "Case Number", "No. Series");
+            NoSeriesMgt.GetNextNo(HRSetup."Disciplinary Cases Nos.");
         end;
 
         "User ID" := UserId;
@@ -217,5 +217,5 @@ Table 85405 "HR Disciplinary Cases"
     var
         Emp: Record "HR-Employee";
         HRSetup: Record "HR Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 }

@@ -225,7 +225,7 @@ Page 85332 "HMS Discharge Header"
                 trigger OnAction()
                 var
                     HMSAPP: Record "HMS Appointment Form Header";
-                    NoSeriesMgt: Codeunit NoSeriesManagement;
+                    NoSeriesMgt: Codeunit "No. Series";
                     NewNo: code[20];
                 begin
                     if Patients.Get(Rec."Patient No.") then begin
@@ -500,7 +500,7 @@ Page 85332 "HMS Discharge Header"
         SalesSetup: Record "Sales & Receivables Setup";
         SaleH: Record "Sales Header";
         SLine: Record "Sales Line";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         NewNo: Code[20];
         LineNo: Integer;
     begin

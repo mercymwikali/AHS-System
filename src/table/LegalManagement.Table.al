@@ -341,7 +341,7 @@ Table 85108 "Legal Management"
         if No = '' then begin
             GenSetu.Get();
             GenSetu.TestField(GenSetu."Legal Nos");
-            NoSeriesMgt.InitSeries(GenSetu."Legal Nos", xRec."No. Series", 0D, No, "No. Series");
+            NoSeriesMgt.GetNextNo(GenSetu."Legal Nos");
         end;
 
         Status := Status::Open;
@@ -356,7 +356,7 @@ Table 85108 "Legal Management"
         Emp: Record "HR-Employee";
         RespCenter: Record "Responsibility Center BR";
         GenSetu: Record "Security Setups";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UserMgt: Codeunit "User Setup Management BR";
         Text001: label 'Your identification is set up to process from %1 %2 only.';
 }

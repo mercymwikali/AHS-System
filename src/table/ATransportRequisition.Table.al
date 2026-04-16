@@ -167,7 +167,7 @@ table 85066 "A-Transport Requisition"
         IF "No." = '' THEN BEGIN
           OPSetUp.GET(0);
           OPSetUp.TESTFIELD(OPSetUp.Description);
-          NoSeriesMgt.InitSeries(OPSetUp.Description,xRec."No. Series",0D,"No.","No. Series");
+          NoSeriesMgt.GetNextNo(OPSetUp.Description,xRec."No. Series",0D,"No.","No. Series");
         END;
         */
     end;
