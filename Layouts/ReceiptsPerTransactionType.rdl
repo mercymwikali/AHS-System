@@ -1547,15 +1547,6 @@ End Function
         <Field Name="PayMode_ReceiptLineq">
           <DataField>PayMode_ReceiptLineq</DataField>
         </Field>
-        <Field Name="PayMode">
-          <DataField>PayMode</DataField>
-        </Field>
-        <Field Name="LineAmount">
-          <DataField>LineAmount</DataField>
-        </Field>
-        <Field Name="LineAmountFormat">
-          <DataField>LineAmountFormat</DataField>
-        </Field>
         <Field Name="BankCode_ReceiptLineq">
           <DataField>BankCode_ReceiptLineq</DataField>
         </Field>

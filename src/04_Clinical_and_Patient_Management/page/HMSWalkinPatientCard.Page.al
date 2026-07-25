@@ -101,6 +101,8 @@ Page 85486 "HMS Walkin Patient Card"
                 var
                     HMSAppBk: Record "HMS Patient Appointmnt Bookng";
                     NewNo: Text;
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+            RecRef: RecordRef;
                 begin
                     if confirm('Do you want to book an appointment for ' + Rec."Search Name") then begin
                         IF (Rec."Global Dimension 1 Code" = '') THEN
@@ -119,7 +121,8 @@ Page 85486 "HMS Walkin Patient Card"
                         HMSAppBk."Booked By" := UserId;
                         HMSAppBk."Booked Date" := Today;
                         HMSAppBk."Booked Time" := Time;
-                        HMSAppBk.Insert();
+                        RecRef.SetTable(HMSAppBk);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                         HMSAppBk.Reset();
                         HMSAppBk.SetRange("Appointment Booking No", NewNo);
                         if HMSAppBk.Find('-') then
@@ -135,6 +138,9 @@ Page 85486 "HMS Walkin Patient Card"
                 ToolTip = 'Executes the Create Pharmacy Visit action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     Rec.TestField(Surname);
 
@@ -153,14 +159,16 @@ Page 85486 "HMS Walkin Patient Card"
                     Pharmacy."Patient Type" := Rec."Patient Type";
                     Pharmacy."Cash Sale" := true;
                     Pharmacy."Request Area" := Pharmacy."request area"::Walkin;
-                    Pharmacy.Insert();
+                    RecRef.SetTable(Pharmacy);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
 
                     Patient.Reset();
                     Patient.SetRange(Patient."Patient No.", Rec."Patient No.");
                     if Patient.Find('-') then begin
                         Patient.Activated := true;
                         Patient."Active Visit No" := myNoSeries;
-                        Patient.Modify();
+                        RecRef.SetTable(Patient);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
 
                     Page.Run(Page::"HMS Pharmacy Header", Pharmacy);
@@ -176,6 +184,9 @@ Page 85486 "HMS Walkin Patient Card"
                 ToolTip = 'Executes the Dispatch To Observation Room action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if Confirm('Dispatch selected Appointment to Observation?', false) = false then
                         exit;
@@ -193,7 +204,8 @@ Page 85486 "HMS Walkin Patient Card"
                         //ObservHeader."Request Area"::Doctor;
                         ObservHeader."Link Type" := 'Observation';
                         //ObservHeader."Link No.":=;
-                        ObservHeader.Insert();
+                        RecRef.SetTable(ObservHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                         /*
                      ObservHeader.RESET;
                      ObservHeader.SETRANGE(ObservHeader."Link No.",TreatmentHeader."Appointment No.");
@@ -222,7 +234,8 @@ Page 85486 "HMS Walkin Patient Card"
                     if Patient.Find('-') then begin
                         Patient.Activated := true;
                         Patient."Active Visit No" := NewNo;
-                        Patient.Modify();
+                        RecRef.SetTable(Patient);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                 end;
             }
@@ -236,6 +249,9 @@ Page 85486 "HMS Walkin Patient Card"
                 ToolTip = 'Executes the Dispatch To Physio action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if Confirm('Dispatch selected Appointment to Physiotheraphy?', false) = false then
                         exit;
@@ -250,7 +266,8 @@ Page 85486 "HMS Walkin Patient Card"
                     PhysioHeader."Patient No." := Rec."Patient No.";
                     PhysioHeader."Link Type" := 'Observation';
                     //PhysioHeader."Link No.":=TreatmentHeader."Appointment No.";
-                    PhysioHeader.Insert();
+                    RecRef.SetTable(PhysioHeader);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
                     /*
                     IF "Settlement Type"="Settlement Type"::Insurance THEN BEGIN
                       TESTFIELD("Insurance Member No");
@@ -310,6 +327,9 @@ Page 85486 "HMS Walkin Patient Card"
                 ToolTip = 'Executes the Dispatch To Lab action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     /*DocLabRequestLines.RESET;
                     //DocLabRequestLines.SETRANGE(DocLabRequestLines."Laboratory No.","Appointment No.");
@@ -333,7 +353,8 @@ Page 85486 "HMS Walkin Patient Card"
                         LabHeader."Request Area" := LabHeader."request area"::Doctor;
                         LabHeader."Link Type" := 'Appointment';
                         //LabHeader."Link No.":=TreatmentHeader."Appointment No.";
-                        LabHeader.Insert();
+                        RecRef.SetTable(LabHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
 
                         //"Dispatch To":="Dispatch To";
                         //"Dispatch Date":=TODAY;
@@ -347,7 +368,8 @@ Page 85486 "HMS Walkin Patient Card"
                     if Patient.Find('-') then begin
                         Patient.Activated := true;
                         Patient."Active Visit No" := NewNo;
-                        Patient.Modify();
+                        RecRef.SetTable(Patient);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                 end;
             }
@@ -361,6 +383,9 @@ Page 85486 "HMS Walkin Patient Card"
                 ToolTip = 'Executes the Dispatch To Radiology action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if Confirm('Send Radiology Request?', false) = false then
                         exit;
@@ -378,7 +403,8 @@ Page 85486 "HMS Walkin Patient Card"
                     //RadiologyHeader."Link No.":=TreatmentHeader."Treatment No.";
 
                     RadiologyHeader."Link Type" := 'Doctor';
-                    RadiologyHeader.Insert();
+                    RecRef.SetTable(RadiologyHeader);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
                     /*-------------------
                         {Insert the lines}
                         TreatmentLine.RESET;
@@ -403,7 +429,8 @@ Page 85486 "HMS Walkin Patient Card"
                     if Patient.Find('-') then begin
                         Patient.Activated := true;
                         Patient."Active Visit No" := NewNo;
-                        Patient.Modify();
+                        RecRef.SetTable(Patient);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                 end;
             }
@@ -413,6 +440,9 @@ Page 85486 "HMS Walkin Patient Card"
                 ToolTip = 'Executes the Create Appointment action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     myNoSeries := '';
 
@@ -425,7 +455,8 @@ Page 85486 "HMS Walkin Patient Card"
                     if objPAtient.Find('-') then begin
                         Rec.Activated := true;
                         Rec."Active Visit No" := myNoSeries;
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
 
                         Apponitment.Init();
                         Apponitment."Appointment No." := myNoSeries;
@@ -441,7 +472,8 @@ Page 85486 "HMS Walkin Patient Card"
                         Apponitment.visitType := ItsNew;
                         Apponitment."Age in Years" := objPAtient."Age in Years";
                         Apponitment.Gender := objPAtient.Gender;
-                        Apponitment.Insert();
+                        RecRef.SetTable(Apponitment);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
 
                     Page.Run(Page::"HMS Appointment Form Header", Apponitment);
@@ -502,6 +534,8 @@ Page 85486 "HMS Walkin Patient Card"
     end;
 
     var
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+        RecRef: RecordRef;
         Apponitment: Record "HMS Appointment Form Header";
         LabHeader: Record "HMS Laboratory Form Header";
         ObservHeader: Record "HMS Observation Form Header";
@@ -559,3 +593,4 @@ Page 85486 "HMS Walkin Patient Card"
             lastVisitDay := Today - appointments."Appointment Date";
     end;
 }
+

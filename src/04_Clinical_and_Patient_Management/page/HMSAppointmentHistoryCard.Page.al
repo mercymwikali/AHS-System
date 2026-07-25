@@ -221,6 +221,8 @@ page 85316 "HMS Appointment History Card"
                     AppRec: Record "HMS Appointment Form Header";
                     PatRec: Record "HMS Patient";
                     CurrAppNo: Code[20];
+                    HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                        RecRef: RecordRef;
                 begin
                     if confirm('Do you really want to re-open the visit?', false) then begin
                         patrec.get(Rec."Patient No.");
@@ -230,7 +232,8 @@ page 85316 "HMS Appointment History Card"
                         Rec."Re-Opened" := true;
                         Rec."Re-Opened Date" := today;
                         Rec."Re-Opened UserID" := UserId;
-                        Rec.modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                         if AppRec.get(CurrAppNo) then
                             page.Run(Page::"HMS Appointment Form Header", AppRec);
                     end;
@@ -246,6 +249,9 @@ page 85316 "HMS Appointment History Card"
                 ApplicationArea = Basic, Suite;
                 ToolTip = 'Executes the Dispatch To Triage action.';
                 trigger OnAction()
+                var
+                    HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                        RecRef: RecordRef;
                 begin
 
                     if ((Today - Rec."Appointment Date") > 2) then
@@ -315,7 +321,8 @@ page 85316 "HMS Appointment History Card"
                                 HMSPatientsCharges."Visit No" := PatRec."Active Visit No";
                             end;
 
-                            HMSPatientsCharges.Insert();
+                            RecRef.SetTable(HMSPatientsCharges);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
                         if Rec."Settlement Type" = Rec."Settlement Type"::Insurance then begin
                             Rec.TestField("Insurance Member No");
@@ -336,7 +343,8 @@ page 85316 "HMS Appointment History Card"
                             ObservHeader."Link No." := Rec."Appointment No.";
                             ObservHeader.Doctor := Rec.Doctor;
                             ObservHeader."Treatment No" := TreatmentNo;
-                            ObservHeader.Insert();
+                            RecRef.SetTable(ObservHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
 
                             docHeader.Init();
                             docHeader."Treatment No." := TreatmentNo;
@@ -350,7 +358,8 @@ page 85316 "HMS Appointment History Card"
 
                             docHeader."Link Type" := 'Outpatient';
 
-                            docHeader.Insert();
+                            RecRef.SetTable(docHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                             //*************** for review cash to create and no need to send to cashier
                         end else
                             if Rec."Settlement Type" = Rec."Settlement Type"::Cash then begin
@@ -372,7 +381,8 @@ page 85316 "HMS Appointment History Card"
                                         ObservHeader."Link Type" := 'Observation';
                                         ObservHeader.Doctor := Rec.Doctor;
                                         ObservHeader."Link No." := Rec."Appointment No.";
-                                        ObservHeader.Insert();
+                                        RecRef.SetTable(ObservHeader);
+                                        HMSEncounterMgmt.InsertRecord(RecRef);
                                     end;
                                     if docHeader.Get(TreatmentNo) then
                                         Message('Patient already at triage')
@@ -389,7 +399,8 @@ page 85316 "HMS Appointment History Card"
 
                                         docHeader."Link Type" := 'Outpatient';
 
-                                        docHeader.Insert();
+                                        RecRef.SetTable(docHeader);
+                                        HMSEncounterMgmt.InsertRecord(RecRef);
                                     end
                                 end;
                             end;
@@ -409,7 +420,8 @@ page 85316 "HMS Appointment History Card"
                             //ObservHeader."Request Area"::Doctor;
                             ObservHeader."Link Type" := 'Observation';
                             ObservHeader."Link No." := Rec."Appointment No.";
-                            ObservHeader.Insert();
+                            RecRef.SetTable(ObservHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
                         //--------------------------
                         Rec."Dispatch To" := Rec."Dispatch To";
@@ -420,7 +432,8 @@ page 85316 "HMS Appointment History Card"
                         Rec."Triage Time In" := CurrentDateTime;
                         Rec."Waiting At" := Rec."Waiting At";
                         Rec."Link No" := NewNo;
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                         if Rec."Settlement Type" = Rec."Settlement Type"::Cash then
                             CreateReceipt(Rec."Patient No.", Patient."Active Visit No")
                         else
@@ -480,7 +493,8 @@ page 85316 "HMS Appointment History Card"
                         //ObservHeader."Request Area"::Doctor;
                         ObservHeader."Link Type" := 'Observation';
                         ObservHeader."Link No." := Rec."Appointment No.";
-                        ObservHeader.Insert();
+                        RecRef.SetTable(ObservHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
 
 
                         AppType.Reset();
@@ -534,7 +548,8 @@ page 85316 "HMS Appointment History Card"
                                 HMSPatientsCharges."Visit No" := PatRec."Active Visit No";
                             end;
 
-                            HMSPatientsCharges.Insert();
+                            RecRef.SetTable(HMSPatientsCharges);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
 
                         //*************** for review cash to create and no need to send to cashier
@@ -554,7 +569,8 @@ page 85316 "HMS Appointment History Card"
                                 //ObservHeader."Request Area"::Doctor;
                                 ObservHeader."Link Type" := 'Observation';
                                 ObservHeader."Link No." := Rec."Appointment No.";
-                                ObservHeader.Insert();
+                                RecRef.SetTable(ObservHeader);
+                                HMSEncounterMgmt.InsertRecord(RecRef);
                             end;
                         end;
                         //***************
@@ -573,7 +589,8 @@ page 85316 "HMS Appointment History Card"
                             //ObservHeader."Request Area"::Doctor;
                             ObservHeader."Link Type" := 'Observation';
                             ObservHeader."Link No." := Rec."Appointment No.";
-                            ObservHeader.Insert();
+                            RecRef.SetTable(ObservHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
                         //--------------------------
                         Rec."Dispatch To" := Rec."Dispatch To";
@@ -584,7 +601,8 @@ page 85316 "HMS Appointment History Card"
                         Rec."Triage Time In" := CurrentDateTime;
                         Rec."Waiting At" := Rec."Waiting At";
                         Rec."Link No" := NewNo;
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
 
                         docHeader.Init();
                         docHeader."Treatment No." := TreatmentNo;
@@ -598,7 +616,8 @@ page 85316 "HMS Appointment History Card"
 
                         docHeader."Link Type" := 'Outpatient';
 
-                        docHeader.Insert();
+                        RecRef.SetTable(docHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                         Message('Selected Appointment has been dispatched to the Observation Room.');
                     end;
                     Message(Format(Today) + Format(Rec.Time));
@@ -653,7 +672,8 @@ page 85316 "HMS Appointment History Card"
                             //ObservHeader."Request Area"::Doctor;
                             ObservHeader."Link Type" := 'Observation';
                             ObservHeader."Link No." := Rec."Appointment No.";
-                            ObservHeader.Insert();
+                            RecRef.SetTable(ObservHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
 
                             docHeader.Init();
                             docHeader."Treatment No." := TreatmentNo;
@@ -667,7 +687,8 @@ page 85316 "HMS Appointment History Card"
 
                             docHeader."Link Type" := 'Outpatient';
 
-                            docHeader.Insert();
+                            RecRef.SetTable(docHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
 
                         end;
 
@@ -721,7 +742,8 @@ page 85316 "HMS Appointment History Card"
                                 HMSPatientsCharges."Visit No" := PatRec."Active Visit No";
                             end;
 
-                            HMSPatientsCharges.Insert();
+                            RecRef.SetTable(HMSPatientsCharges);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
 
                         //*************** for review cash to create and no need to send to cashier
@@ -741,7 +763,8 @@ page 85316 "HMS Appointment History Card"
                                 //ObservHeader."Request Area"::Doctor;
                                 ObservHeader."Link Type" := 'Observation';
                                 ObservHeader."Link No." := Rec."Appointment No.";
-                                ObservHeader.Insert();
+                                RecRef.SetTable(ObservHeader);
+                                HMSEncounterMgmt.InsertRecord(RecRef);
                             end;
                         end;
                         //***************
@@ -760,7 +783,8 @@ page 85316 "HMS Appointment History Card"
                             //ObservHeader."Request Area"::Doctor;
                             ObservHeader."Link Type" := 'Observation';
                             ObservHeader."Link No." := Rec."Appointment No.";
-                            ObservHeader.Insert();
+                            RecRef.SetTable(ObservHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
                         //--------------------------
                         Rec."Dispatch To" := Rec."Dispatch To";
@@ -771,7 +795,8 @@ page 85316 "HMS Appointment History Card"
                         Rec."Waiting At" := Rec."Waiting At";
                         Rec.Status := Rec.Status::Dispatched;
                         Rec."Link No" := NewNo;
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
 
 
 
@@ -821,7 +846,8 @@ page 85316 "HMS Appointment History Card"
                         // docHeader."Special Clinics" := "Special Clinics"::MCH; TODO Implement new Dispatch action
                         docHeader."Link Type" := 'Outpatient';
 
-                        docHeader.Insert();
+                        RecRef.SetTable(docHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
                     if AppType.Get(Rec."Appointment Type") then begin
                         DoctorsRec.Reset();
@@ -880,7 +906,8 @@ page 85316 "HMS Appointment History Card"
                     Rec."Triage Time In" := CurrentDateTime;
                     Rec."Waiting At" := Rec."Waiting At";
                     Rec."Link No" := NewNo;
-                    Rec.Modify();
+                    RecRef.SetTable(Rec);
+                    HMSEncounterMgmt.ModifyRecord(RecRef);
                     Message('Selected Appointment has been dispatched to the MCH.')
                 end;
             }
@@ -926,7 +953,8 @@ page 85316 "HMS Appointment History Card"
                         // docHeader."Special Clinics" := "Special Clinics"::"Day Case"; TODO Implement new Dispatch action
                         docHeader."Link Type" := 'Outpatient';
 
-                        docHeader.Insert();
+                        RecRef.SetTable(docHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
                     /*     if AppType.Get("Appointment Type") then begin
                             DoctorsRec.Reset;
@@ -985,7 +1013,8 @@ page 85316 "HMS Appointment History Card"
                     Rec."Triage Time In" := CurrentDateTime;
                     Rec."Waiting At" := Rec."Waiting At";
                     Rec."Link No" := NewNo;
-                    Rec.Modify();
+                    RecRef.SetTable(Rec);
+                    HMSEncounterMgmt.ModifyRecord(RecRef);
                     Message('Selected Appointment has been dispatched to the Day Case')
                 end;
             }
@@ -1032,7 +1061,8 @@ page 85316 "HMS Appointment History Card"
                     //:=LabHeader."Request Area"::Doctor;
                     docHeader."Link Type" := 'InPatient';
                     //      docHeader."Link No.":=TreatmentHeader."Appointment No.";
-                    docHeader.Insert();
+                    RecRef.SetTable(docHeader);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
                     //END;
 
                     if AppType.Get(Rec."Appointment Type") then begin
@@ -1076,7 +1106,8 @@ page 85316 "HMS Appointment History Card"
                     Rec."Waiting At" := Rec."Waiting At";
                     Rec.Status := Rec.Status::Dispatched;
                     Rec."Link No" := NewNo;
-                    Rec.Modify();
+                    RecRef.SetTable(Rec);
+                    HMSEncounterMgmt.ModifyRecord(RecRef);
                     //--------------------------------------------------------------------------
 
 
@@ -1099,7 +1130,8 @@ page 85316 "HMS Appointment History Card"
                         AdmissionHeader."Admission Reason" := 'Direct Admission';
                         AdmissionHeader."Link Type" := 'Direct Admission';
                         AdmissionHeader."Link No." := docHeader."Treatment No.";
-                        AdmissionHeader.Insert();
+                        RecRef.SetTable(AdmissionHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
 
                     //  PatientCU.AssignCurrentAdmNo("Patient No.", NewNo);
@@ -1149,7 +1181,8 @@ page 85316 "HMS Appointment History Card"
 
                         docHeader."Link Type" := 'Outpatient';
 
-                        docHeader.Insert();
+                        RecRef.SetTable(docHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
                     if AppType.Get(Rec."Appointment Type") then begin
                         DoctorsRec.Reset();
@@ -1180,7 +1213,8 @@ page 85316 "HMS Appointment History Card"
                             HMSPatientsCharges."Admission No" := PatRec."Adm No.";
                             HMSPatientsCharges."Visit No" := PatRec."Active Visit No";
                         end;
-                        HMSPatientsCharges.Insert();
+                        RecRef.SetTable(HMSPatientsCharges);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
 
 
@@ -1192,7 +1226,8 @@ page 85316 "HMS Appointment History Card"
                     Rec."Triage Time In" := CurrentDateTime;
                     Rec."Waiting At" := Rec."Waiting At";
                     Rec."Link No" := NewNo;
-                    Rec.Modify();
+                    RecRef.SetTable(Rec);
+                    HMSEncounterMgmt.ModifyRecord(RecRef);
                     Message('Selected Appointment has been dispatched to the Doctor.')
                 end;
             }
@@ -1231,7 +1266,8 @@ page 85316 "HMS Appointment History Card"
                     PhysioHeader."Patient No." := TreatmentHeader."Patient No.";
                     PhysioHeader."Link Type" := 'Observation';
                     PhysioHeader."Link No." := TreatmentHeader."Appointment No.";
-                    PhysioHeader.Insert();
+                    RecRef.SetTable(PhysioHeader);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
 
                     HMSSetup.testfield("Physio Fee Code");
                     HMSPatientsCharges.Init();
@@ -1264,7 +1300,8 @@ page 85316 "HMS Appointment History Card"
                         HMSPatientsCharges."Visit No" := PatRec."Active Visit No";
                     end;
 
-                    HMSPatientsCharges.Insert();
+                    RecRef.SetTable(HMSPatientsCharges);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
                     //END;
                     //"Dispatch To":="Dispatch To";
                     Rec."Dispatch Date" := Today;
@@ -1273,7 +1310,8 @@ page 85316 "HMS Appointment History Card"
                     Rec."Triage Time In" := CurrentDateTime;
                     Rec."Waiting At" := Rec."Waiting At";
                     Rec."Link No" := NewNo;
-                    Rec.Modify();
+                    RecRef.SetTable(Rec);
+                    HMSEncounterMgmt.ModifyRecord(RecRef);
                     Message('Selected Appointment has been dispatched to the Physiotheraphy Room.')
                 end;
             }
@@ -1329,10 +1367,14 @@ page 85316 "HMS Appointment History Card"
                         labheader2.Reset();
                         labheader2.SetRange(labheader2."Link No.", TreatmentHeader."Appointment No.");
                         if labheader2.Find('-') then begin
-                            if Confirm('Record already exist,Confirm Continue?') then LabHeader.Insert();
+                            if Confirm('Record already exist,Confirm Continue?') then begin
+                    RecRef.SetTable(LabHeader);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
+                end;
                         end
                         else begin
-                            LabHeader.Insert();
+                            RecRef.SetTable(LabHeader);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
                         DocLabRequestLines.Reset();
                         DocLabRequestLines.SetRange(DocLabRequestLines."Laboratory No.", Rec."Appointment No.");
@@ -1347,7 +1389,8 @@ page 85316 "HMS Appointment History Card"
                                 LabTestLines."Measuring Unit Code" := DocLabRequestLines."Measuring Unit Code";
                                 LabTestLines."Laboratory Test Name" := DocLabRequestLines."Laboratory Test Name";
                                 LabTestLines."Specimen Name" := DocLabRequestLines."Specimen Name";
-                                LabTestLines.Insert();
+                                RecRef.SetTable(LabTestLines);
+                                HMSEncounterMgmt.InsertRecord(RecRef);
 
                             until DocLabRequestLines.Next() = 0;
                         end;
@@ -1358,7 +1401,8 @@ page 85316 "HMS Appointment History Card"
                         Rec.Status := Rec.Status::Dispatched;
                         Rec."Lab Time In" := CurrentDateTime;
                         Rec."Waiting At" := Rec."Waiting At";
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                     //END;
 
@@ -1410,7 +1454,8 @@ page 85316 "HMS Appointment History Card"
                         PharmHeader."Relative No." := TreatmentHeader."Relative No.";
                         PharmHeader."Link Type" := 'Appointment';
                         PharmHeader."Link No." := TreatmentHeader."Appointment No.";
-                        PharmHeader.Insert();
+                        RecRef.SetTable(PharmHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
 
                         //"Dispatch To":="Dispatch To";
                         Rec."Dispatch Date" := Today;
@@ -1418,7 +1463,8 @@ page 85316 "HMS Appointment History Card"
                         Rec."Pharmacy Time In" := CurrentDateTime;
                         Rec."Waiting At" := Rec."Waiting At";
                         Rec.Status := Rec.Status::Dispatched;
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                         if Confirm('The Prescription has been sent to pharmacy,Do you want to open the issue form?', true) then
                             page.Run(70135118, PharmHeader);
                         //Message('The Prescription has been sent to the Pharmacy for Issuance');
@@ -1458,7 +1504,8 @@ page 85316 "HMS Appointment History Card"
                     RadiologyHeader."Link No." := NewNo;
 
                     RadiologyHeader."Link Type" := 'Doctor';
-                    RadiologyHeader.Insert();
+                    RecRef.SetTable(RadiologyHeader);
+                    HMSEncounterMgmt.InsertRecord(RecRef);
 
                     //END;
 
@@ -1469,7 +1516,8 @@ page 85316 "HMS Appointment History Card"
                     Rec."Imaging Time In" := CurrentDateTime;
                     Rec."Waiting At" := Rec."Waiting At";
                     Rec."Link No" := NewNo;
-                    Rec.Modify();
+                    RecRef.SetTable(Rec);
+                    HMSEncounterMgmt.ModifyRecord(RecRef);
                     //  REPORT.RUN(70135008,TRUE,TRUE,TreatmentHeader);
                     Message('Radiology Test Request Forwarded');
                 end;
@@ -1481,6 +1529,10 @@ page 85316 "HMS Appointment History Card"
 
         }
     }
+
+    var
+        RecRef: RecordRef;
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
 
     trigger OnAfterGetRecord()
     begin
@@ -1500,10 +1552,12 @@ page 85316 "HMS Appointment History Card"
 
     procedure CreateReceipt(PatientNo: code[20]; VisitNo: code[20])
     var
+        RecRef: RecordRef;
         CashOfficeSetup: Record "Cash Office Setup";
         RecHeader: Record "Receipts Header";
         UserSetup: Record "User Setup";
         ReceiptNo: code[20];
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
     begin
         if Usersetup.get(Database.UserId) then;
 
@@ -1517,7 +1571,8 @@ page 85316 "HMS Appointment History Card"
         RecHeader."Global Dimension 1 Code" := userSetup."Branch Code";
         RecHeader."Patient No." := PatientNo;
         RecHeader."Patient Appointment No" := VisitNo;
-        RecHeader.insert();
+        RecRef.SetTable(RecHeader);
+        HMSEncounterMgmt.InsertRecord(RecRef);
         if RecHeader.get(ReceiptNo) then begin
             RecHeader.validate("Patient Appointment No");
             page.run(70135338, RecHeader);
@@ -1674,4 +1729,6 @@ page 85316 "HMS Appointment History Card"
         GetAppointmentStats(Rec."Patient No.");
     end;
 }
+
+
 

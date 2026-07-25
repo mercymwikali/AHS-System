@@ -125,6 +125,9 @@ page 85291 "HMS Active Patient OutPatients"
                 Promoted = true;
                 ApplicationArea = Basic, Suite;
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     Patients.Reset;
                     Patients.SetRange(Inpatient, false);
@@ -136,7 +139,8 @@ page 85291 "HMS Active Patient OutPatients"
                             if Today > Patients."Last Appointment Date" then begin
                                 if Patients."Bill Balance" < 1 then begin
                                     Patients.Activated := false;
-                                    Patients.Modify;
+                                    RecRef.SetTable(Patients);
+                                    HMSEncounterMgmt.ModifyRecord(RecRef);
                                 end;
                             end;
                             HMSPatientCharges.SetRange(HMSPatientCharges."Visit No", Patients."Active Visit No");
@@ -145,7 +149,8 @@ page 85291 "HMS Active Patient OutPatients"
                             if HMSPatientCharges."Posted Invoice No." <> '' then begin
 
                                 Patients.Activated := false;
-                                Patients.Modify;
+                                RecRef.SetTable(Patients);
+                                HMSEncounterMgmt.ModifyRecord(RecRef);
                             end;
                         until Patients.Next = 0;
                     end;
@@ -204,6 +209,8 @@ page 85291 "HMS Active Patient OutPatients"
                     HMSTherapyFormHeader: Record "HMS Therapy Form Header";
                     HMSDoc: Record "HMS Treatment Form Header";
                     HMS: Codeunit "HMS Patient-integration";
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+            RecRef: RecordRef;
                 begin
                     if
                     HmsAPP.Get(Rec."Active Visit No") then begin
@@ -258,7 +265,8 @@ page 85291 "HMS Active Patient OutPatients"
                         HmsAPP."Insurance No" := Patients."Insurance No.";
                         HmsAPP."Insurance Member No" := Patients."Membership No";
                         HmsAPP.Gender := Patients.Gender;
-                        HmsAPP.Insert;
+                        RecRef.SetTable(HmsAPP);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
 
                     HmsAPP.Reset;
@@ -316,7 +324,8 @@ page 85291 "HMS Active Patient OutPatients"
                                         HMSPatientCharges1.Date := LastBillDate;
                                         HMSPatientCharges1."Billing Type" := HMSPatientCharges."Billing Type";
                                         HMSPatientCharges1.Quantity := 1;
-                                        HMSPatientCharges1.Insert;
+                                        RecRef.SetTable(HMSPatientCharges1);
+                                        HMSEncounterMgmt.InsertRecord(RecRef);
                                     end;
                                 end;
                             end;
@@ -343,7 +352,8 @@ page 85291 "HMS Active Patient OutPatients"
                                         HMSPatientCharges1.Amount := HMSPatientCharges.Amount * HMSPatientCharges1.Quantity;
                                         HMSPatientCharges1.Date := LastBillDate;
                                         HMSPatientCharges1."Billing Type" := HMSPatientCharges."Billing Type";
-                                        HMSPatientCharges1.Insert;
+                                        RecRef.SetTable(HMSPatientCharges1);
+                                        HMSEncounterMgmt.InsertRecord(RecRef);
                                     end;
                                 end;
                             end;
@@ -497,7 +507,8 @@ page 85291 "HMS Active Patient OutPatients"
                             Cust.Name := HMSPat.Surname + ' ' + HMSPat."Middle Name" + ' ' + HMSPat."Last Name";
                             Cust."Customer Posting Group" := 'CASH DEBTO';
                             Cust."Gen. Bus. Posting Group" := 'LOCAL';
-                            Cust.Insert;
+                            RecRef.SetTable(Cust);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                         end;
 
                         objPatientCharges.Reset;
@@ -514,7 +525,8 @@ page 85291 "HMS Active Patient OutPatients"
                         end;
                         HMSPat."Patient Type" := HMSPat."patient type"::Corporate;
                         HMSPat."Debtor Account" := HMSPat."Patient No.";
-                        HMSPat.Modify;
+                        RecRef.SetTable(HMSPat);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                         Message('Debtor Account created successfuly');
                         //end;
                     end;//else
@@ -626,7 +638,8 @@ page 85291 "HMS Active Patient OutPatients"
                         AdmissionHeader."Admission Reason" := 'Direct Admission';
                         AdmissionHeader."Link Type" := 'Direct Admission';
                         AdmissionHeader."Link No." := "Active Visit No";
-                        AdmissionHeader.Insert();
+                        RecRef.SetTable(AdmissionHeader);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
 
                     PatientCU.AssignCurrentAdmNo("Patient No.", NewNo);
@@ -661,6 +674,8 @@ page 85291 "HMS Active Patient OutPatients"
     }
     trigger OnOpenPage()
     var
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+        RecRef: RecordRef;
         UserRec: Record "User Setup";
     begin
         if UserRec.get(Database.UserId) then begin
@@ -678,6 +693,8 @@ page 85291 "HMS Active Patient OutPatients"
         HMSSetup: Record "HMS Setup";
         PatientCharges: Record "HMS Patient Charges";
         Patients: Record "HMS Patient";
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+        RecRef: RecordRef;
         HMS: Codeunit "GLBudget-Open";
         NoSeriesMgt: Codeunit "No. Series";
         PatientCU: Codeunit "HMS Patient-integration";
@@ -715,7 +732,8 @@ page 85291 "HMS Active Patient OutPatients"
             SaleH."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
             SaleH."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
             SaleH."Patient No." := "Patient No.";
-            SaleH.Insert;
+            RecRef.SetTable(SaleH);
+            HMSEncounterMgmt.InsertRecord(RecRef);
 
             if SaleH.Get(SaleH."Document Type"::Invoice, NewNo) then begin
 
@@ -725,7 +743,10 @@ page 85291 "HMS Active Patient OutPatients"
 
                 SLine.Reset;
                 SLine.SetRange("Document No.", SaleH."No.");
-                if SLine.Find('-') then SLine.DeleteAll;
+                if SLine.Find('-') then begin
+                    RecRef.SetTable(SLine);
+                    HMSEncounterMgmt.DeleteAllRecords(RecRef);
+                end;
 
                 if SLine.FindLast() then LineNo := SLine."Line No." + 1;
 
@@ -771,12 +792,14 @@ page 85291 "HMS Active Patient OutPatients"
                             IF ( PatientCharges."Transaction Type"<>'CO-PAY') AND (SLine.Amount<0) THEN
                             SLine.Amount:=0;
                             */
-                            SLine.Insert;
+                            RecRef.SetTable(SLine);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
                             LineNo := LineNo + 1;
 
                             PatientCharges."Invoice Number" := SaleH."No.";
                             PatientCharges.Posted := true;
-                            PatientCharges.Modify;
+                            RecRef.SetTable(PatientCharges);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                         end;
                     until PatientCharges.Next = 0;
                 end;
@@ -796,14 +819,18 @@ page 85291 "HMS Active Patient OutPatients"
                         SaleH."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
                         SaleH."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
                         SaleH."Patient No." := "Patient No.";
-                        SaleH.Insert;
+                        RecRef.SetTable(SaleH);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                         if SaleH.Get(SaleH."Document Type"::Invoice, NewNo) then begin
                             SaleH.Validate("Sell-to Customer No.");
                             SaleH.Validate("Shortcut Dimension 1 Code");
                             SaleH.Validate("Shortcut Dimension 2 Code");
                             SLine.Reset;
                             SLine.SetRange("Document No.", SaleH."No.");
-                            if SLine.Find('-') then SLine.DeleteAll;
+                            if SLine.Find('-') then begin
+                                RecRef.SetTable(SLine);
+                                HMSEncounterMgmt.DeleteAllRecords(RecRef);
+                            end;
                         end;
                         if SLine.FindLast() then LineNo := SLine."Line No." + 1;
                         PatientCharges.Reset;
@@ -844,12 +871,14 @@ page 85291 "HMS Active Patient OutPatients"
                                     SLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
 
                                     if SLine.Amount > 0 then
-                                        SLine.Insert;
+                                        RecRef.SetTable(SLine);
+                                        HMSEncounterMgmt.InsertRecord(RecRef);
                                     LineNo := LineNo + 1;
 
                                     PatientCharges."Invoice Number" := NewNo;
                                     PatientCharges.Posted := true;
-                                    PatientCharges.Modify;
+                                    RecRef.SetTable(PatientCharges);
+                                    HMSEncounterMgmt.ModifyRecord(RecRef);
                                 end;
                             until PatientCharges.Next = 0;
                         end;
@@ -862,4 +891,5 @@ page 85291 "HMS Active Patient OutPatients"
 
     end;
 }
+
 

@@ -116,6 +116,9 @@ Page 85413 "HMS Posted Discharge header"
                 ToolTip = 'Executes the &Discharge action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if Confirm('Discharge Patient?', false) = false then
                         exit;
@@ -132,18 +135,21 @@ Page 85413 "HMS Posted Discharge header"
                         Patient."Discharge Date" := Today;
                         Patient.Inpatient := false;
                         Patient."Discharged Type" := Rec."Discharge Type";
-                        Patient.Modify();
+                        RecRef.SetTable(Patient);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
 
                     Admission.Reset();
                     if Admission.Get(Rec."Admission No.") then begin
                         Admission.Status := Admission.Status::Discharged;
-                        Admission.Modify();
+                        RecRef.SetTable(Admission);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                         Rec."Discharge Date" := Today;
                         Rec."Discharge Time" := DT2Time(System.CurrentDateTime);
                         Rec.Status := Rec.Status::Completed;
 
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                 end;
             }
@@ -158,18 +164,23 @@ Page 85413 "HMS Posted Discharge header"
                 var
                     AdmH: Record "HMS Admission Form Header";
                     PatRec: Record "HMS Patient";
+                    HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                        RecRef: RecordRef;
                 begin
                     if Confirm('Do you really want to cancel discharge?', false) then begin
                         if patrec.get(Rec."Patient No.") then begin
                             PatRec.Activated := true;
                             PatRec.Inpatient := true;
-                            PatRec.modify();
+                            RecRef.SetTable(PatRec);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                         end;
                         if AdmH.get(Rec."Admission No.") then begin
                             AdmH.Status := AdmH.Status::Admitted;
-                            AdmH.modify();
+                            RecRef.SetTable(AdmH);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                         end;
-                        Rec.Delete();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.DeleteRecord(RecRef);
                     end;
                 end;
             }
@@ -185,6 +196,8 @@ Page 85413 "HMS Posted Discharge header"
                 var
                     HMSAPP: Record "HMS Appointment Form Header";
                     NoSeriesMgt: Codeunit "No. Series";
+                    HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                        RecRef: RecordRef;
                     NewNo: code[20];
                 begin
                     if Patients.Get(Rec."Patient No.") then begin
@@ -206,7 +219,8 @@ Page 85413 "HMS Posted Discharge header"
                         HmsAPP."Insurance No" := Patients."Insurance No.";
                         HmsAPP."Insurance Member No" := Patients."Membership No";
                         HmsAPP.Gender := Patients.Gender;
-                        HmsAPP.Insert();
+                        RecRef.SetTable(HmsAPP);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                     end;
 
                     HmsAPP.Reset();
@@ -295,6 +309,9 @@ Page 85413 "HMS Posted Discharge header"
                 visible = false;
                 ToolTip = 'Executes the Create Debtor Account action.';
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if HMSPat.Get(Rec."Patient No.") then
                         if HMSPat."Patient Type" = HMSPat."patient type"::Cash then begin
@@ -303,7 +320,8 @@ Page 85413 "HMS Posted Discharge header"
                             Cust.Name := HMSPat.Surname + ' ' + HMSPat."Middle Name" + ' ' + HMSPat."Last Name";
                             Cust."Customer Posting Group" := 'CASH DEBTO';
                             Cust."Gen. Bus. Posting Group" := 'LOCAL';
-                            Cust.Insert();
+                            RecRef.SetTable(Cust);
+                            HMSEncounterMgmt.InsertRecord(RecRef);
 
                             objPatientCharges.Reset();
                             objPatientCharges.SetRange(objPatientCharges."Patient No.", Rec."Patient No.");
@@ -314,11 +332,13 @@ Page 85413 "HMS Posted Discharge header"
                                     objPatientCharges."Insurance No" := HMSPat."Patient No.";
                                     objPatientCharges."Insurance Amount" := objPatientCharges.Amount;
                                     objPatientCharges."Own Debtor" := true;
-                                    objPatientCharges.Modify();
+                                    RecRef.SetTable(objPatientCharges);
+                                    HMSEncounterMgmt.ModifyRecord(RecRef);
                                 until objPatientCharges.Next() = 0;
                             HMSPat."Patient Type" := HMSPat."patient type"::Corporate;
                             HMSPat."Insurance No." := HMSPat."Patient No.";
-                            HMSPat.Modify();
+                            RecRef.SetTable(HMSPat);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                             Message('Debtor Account created successfuly');
                         end;
                 end;
@@ -332,6 +352,9 @@ Page 85413 "HMS Posted Discharge header"
                 ToolTip = 'Executes the Post Discharge action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if Confirm('Do you really want to discharge the selected patient?', false) then begin
                         if HMSPat.Get(Rec."Patient No.") then begin
@@ -357,19 +380,22 @@ Page 85413 "HMS Posted Discharge header"
                             HMSPat."Discharge Date" := Today;
                             HMSPat."Discharged Type" := Rec."Discharge Type";
                             HMSPat.Activated := false;
-                            HMSPat.Modify();
+                            RecRef.SetTable(HMSPat);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                         end;
                         HMSBeds.Reset();
                         HMSBeds.SetRange(HMSBeds."Bed No", Rec."Bed No.");
                         if HMSBeds.Find('-') then begin
                             HMSBeds.Occupied := false;
-                            HMSBeds.Modify();
+                            RecRef.SetTable(HMSBeds);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                         end;
                         Admission.Reset();
                         Admission.SetRange(Admission."Admission No.", Rec."Admission No.");
                         if Admission.Find('-') then begin
                             Admission.Status := Admission.Status::Discharged;
-                            Admission.Modify();
+                            RecRef.SetTable(Admission);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                         end;
 
                         Rec.Status := Rec.Status::Completed;
@@ -379,7 +405,8 @@ Page 85413 "HMS Posted Discharge header"
                         HMSSetup.Get();
                         SecurityCode := NoSeriesManagement.GetNextNo(HMSSetup."Security Nos", Today, true);
                         Rec."Security Code" := SecurityCode;
-                        Rec.Modify();
+                        RecRef.SetTable(Rec);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                     HMSAdmissionDischargeHeader.Reset();
                     HMSAdmissionDischargeHeader.SetRange(HMSAdmissionDischargeHeader."Admission No.", Rec."Admission No.");
@@ -398,6 +425,9 @@ Page 85413 "HMS Posted Discharge header"
                 ToolTip = 'Executes the Release Bed action.';
 
                 trigger OnAction()
+        var
+            HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+                RecRef: RecordRef;
                 begin
                     if Confirm('Do you really want to Release the selected Bed?', false) then begin
                         HMSBeds.Reset();
@@ -405,10 +435,12 @@ Page 85413 "HMS Posted Discharge header"
                         HMSBeds.SetRange("Ward No", Rec."Ward No.");
                         if HMSBeds.Find('-') then begin
                             HMSBeds.Occupied := false;
-                            HMSBeds.Modify();
+                            RecRef.SetTable(HMSBeds);
+                            HMSEncounterMgmt.ModifyRecord(RecRef);
                             if Patient.Get(Rec."Patient No.") then begin
                                 Patient.Activated := false;
-                                Patient.Modify();
+                                RecRef.SetTable(Patient);
+                                HMSEncounterMgmt.ModifyRecord(RecRef);
                             end;
                         end;
                     end;
@@ -445,6 +477,8 @@ Page 85413 "HMS Posted Discharge header"
     }
 
     var
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+        RecRef: RecordRef;
         Cust: Record Customer;
         HMSAdmissionDischargeHeader: Record "HMS Admission Discharge Header";
         Lines: Record "HMS Admission Discharge Line";
@@ -495,6 +529,8 @@ Page 85413 "HMS Posted Discharge header"
         SaleH: Record "Sales Header";
         SLine: Record "Sales Line";
         NoSeriesMgt: Codeunit "No. Series";
+        HMSEncounterMgmt: Codeunit "HMS Encounter Management";
+            RecRef: RecordRef;
         NewNo: Code[20];
         LineNo: Integer;
     begin
@@ -512,7 +548,8 @@ Page 85413 "HMS Posted Discharge header"
         SaleH."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
         SaleH."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
         SaleH."Patient No." := Rec."Patient No.";
-        SaleH.Insert();
+        RecRef.SetTable(SaleH);
+        HMSEncounterMgmt.InsertRecord(RecRef);
 
         if SaleH.Get(SaleH."document type"::Invoice, NewNo) then begin
 
@@ -523,7 +560,8 @@ Page 85413 "HMS Posted Discharge header"
             SLine.Reset();
             SLine.SetRange("Document No.", SaleH."No.");
             if SLine.Find('-') then
-                SLine.DeleteAll();
+                RecRef.SetTable(SLine);
+                HMSEncounterMgmt.DeleteAllRecords(RecRef);
 
             if SLine.FindLast() then
                 LineNo := SLine."Line No." + 1;
@@ -564,12 +602,14 @@ Page 85413 "HMS Posted Discharge header"
                         SLine."Charge Code" := PatientCharges.Code;
                         SLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
                         SLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                        SLine.Insert();
+                        RecRef.SetTable(SLine);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                         LineNo := LineNo + 1;
 
                         PatientCharges."Invoice Number" := SaleH."No.";
                         PatientCharges.Posted := true;
-                        PatientCharges.Modify();
+                        RecRef.SetTable(PatientCharges);
+                        HMSEncounterMgmt.ModifyRecord(RecRef);
                     end;
                 until PatientCharges.Next() = 0;
             // Generate Other Insurance Invoices
@@ -587,7 +627,8 @@ Page 85413 "HMS Posted Discharge header"
                         SaleH."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
                         SaleH."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
                         SaleH."Patient No." := Rec."Patient No.";
-                        SaleH.Insert();
+                        RecRef.SetTable(SaleH);
+                        HMSEncounterMgmt.InsertRecord(RecRef);
                         if SaleH.Get(SaleH."document type"::Invoice, NewNo) then begin
                             SaleH.Validate("Sell-to Customer No.");
                             SaleH.Validate("Shortcut Dimension 1 Code");
@@ -595,7 +636,8 @@ Page 85413 "HMS Posted Discharge header"
                             SLine.Reset();
                             SLine.SetRange("Document No.", SaleH."No.");
                             if SLine.Find('-') then
-                                SLine.DeleteAll();
+                                RecRef.SetTable(SLine);
+                                HMSEncounterMgmt.DeleteAllRecords(RecRef);
                         end;
                         if SLine.FindLast() then
                             LineNo := SLine."Line No." + 1;
@@ -631,12 +673,14 @@ Page 85413 "HMS Posted Discharge header"
                                     SLine."Charge Code" := PatientCharges.Code;
                                     SLine."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
                                     SLine."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                                    SLine.Insert();
+                                    RecRef.SetTable(SLine);
+                                    HMSEncounterMgmt.InsertRecord(RecRef);
                                     LineNo := LineNo + 1;
 
                                     PatientCharges."Invoice Number" := NewNo;
                                     PatientCharges.Posted := true;
-                                    PatientCharges.Modify();
+                                    RecRef.SetTable(PatientCharges);
+                                    HMSEncounterMgmt.ModifyRecord(RecRef);
                                 end;
                             until PatientCharges.Next() = 0;
                     end;
@@ -646,3 +690,5 @@ Page 85413 "HMS Posted Discharge header"
         end;
     end;
 }
+
+
