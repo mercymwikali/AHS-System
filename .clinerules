@@ -1,0 +1,68 @@
+# AGENT INSTRUCTION: EQUITY AFYA AL SCHEMA & LOGIC REFACTORING (WITH FIELD-LEVEL AUDIT)
+
+## PROJECT SCOPE & GOAL
+Refactor the Microsoft Dynamics 365 Business Central AL codebase to transition from a legacy 620-object footprint (587 custom tables) to a lean, multi-site Equity Afya architecture (~20-25 core custom tables + AL Table Extensions). Preserve 100% of existing business logic, key field validations, formulas, and data relationships across active Codeunits and Table definitions during the rebuild.
+
+---
+
+## CRITICAL DIRECTIVE: FIELD-LEVEL AUDIT & PRESERVATION RULES
+
+Before modifying, refactoring, or deprecating ANY custom table file:
+
+1. **Field & Data Lineage Audit (DO NOT LOSE CUSTOM FIELDS):**
+   - Inspect every field in the legacy table: Field ID, Name, Data Type, OptionString/Enum, `TableRelation`, and `CalcFormula` (FlowFields/FlowFilters).
+   - If a custom field holds business value (e.g., Patient ID, NHIF/SHIF No., Insurance Claim Limit, Doctor Specialty, CHP Ward Code, Project Grant No.), **preserve the field by mapping it directly into the corresponding Table Extension or Remodeled Table**.
+   - Retain all `OnValidate()` code triggers, custom functions, and field validations present in table fields.
+
+2. **Project & M&E Logic Preservation:**
+   - Preserve project reporting hierarchies (County -> Sub-County -> Ward -> Facility -> Health Unit).
+   - Maintain the Logframe structure (Objectives -> Outcomes -> Outputs -> Indicators -> Targets).
+   - Ensure `Field Work Plan` and `Activity Report` logic ties directly into Business Central `Job Task Lines` (`Table 167`) and `Job Ledger Entries` without losing custom budget/cost calculation fields.
+
+3. **Codeunit Business Logic Preservation:**
+   - DO NOT rewrite active Codeunits (e.g., 85001 Patient Billing, 85002 Patient Management, 85031 HMS Processes, 85040 Mpesa Integration).
+   - Keep existing function signatures intact. Update internal `Record` variables and parameters inside Codeunits to point to the newly mapped fields in the Table Extensions or consolidated tables.
+
+---
+
+## ARCHITECTURAL MAPPING DIRECTIVES
+
+### 1. MASTER DATA CONSOLIDATION
+- **Practitioners & Staff:** Refactor legacy staff/practitioner tables into `Resource` (`Table 156`).
+  - Create `ResourceExt.TableExt.al`.
+  - Preserve fields for: License Numbers, Specialty Enums (`Doctor, Pharmacist, Lab Tech, Nurse, CHP, Equipment, Room`), County/Sub-County assignments.
+- **Patients & Insurers:** Refactor into `Customer` (`Table 18`).
+  - Create `CustomerExt.TableExt.al`.
+  - Preserve fields for: Patient National ID, NHIF/SHIF Membership Number, Next of Kin Details, Insurance Policy Limits.
+- **Multi-Site Architecture:**
+  - Utilize `Global Dimension 1` for Branch/Clinic Code (e.g., "EA-NAIROBI-CBD") and `Global Dimension 2` for Specialty (e.g., "DENTAL", "OPTICS").
+
+### 2. CLINICAL ENCOUNTER ENGINE
+- Replace individual clinic form tables with the universal **Header/Line Pattern**:
+  - `Clinical Encounter Header` (Visit No., Patient No., Clinic Dimension, Triage Vitals: BP, Pulse, Weight, Temp).
+  - `Clinical Encounter Line` (Services billed, Lab test requests, Prescriptions, Procedures).
+- **Dynamic Clinical Notes Engine:** Implement `Clinical Notes` linked to `Encounter No.` with `Note Type Code` (`ANC_TRIAGE`, `DENTAL_CHART`, `GENERAL_NOTES`) to preserve specialized medical documentation.
+
+---
+
+## PHASED EXECUTION INSTRUCTIONS FOR THE AGENT
+
+### Phase 1: Field & Logic Dependency Mapping
+- Scan all `.al` files in `src/`.
+- Produce a **Field Mapping & Dependency Document** listing:
+  1. Legacy Custom Table Name & ID.
+  2. All custom fields inside that table with their data types and validations.
+  3. Destination target (Standard Table Extension or Consolidated Custom Table).
+  4. Active Codeunits referencing those specific fields.
+- **STOP and wait for user approval before moving to Phase 2.**
+
+### Phase 2: Core Table Extensions & Remodeled Schema Creation
+- Generate AL files under `src/01_Core_Setup/`, `src/02_Master_Extensions/`, and `src/03_Clinical_Encounter_Engine/`.
+- Include all preserved fields, table relations, and field validation triggers.
+
+### Phase 3: Codeunit Variable Re-binding
+- Refactor Codeunits (85001, 85002, 85031, 85032, 85040) to reference the new fields in the updated tables.
+
+### Phase 4: Verification & Safe Cleanup
+- Verify that no orphan field references or broken `TableRelation` properties exist in the workspace.
+- Safely archive or deprecate legacy custom table files.
