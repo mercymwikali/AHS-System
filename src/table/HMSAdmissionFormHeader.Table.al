@@ -221,8 +221,9 @@ Table 85173 "HMS Admission Form Header"
         }
         field(50046; "Appointment No."; Code[20])
         {
-            DataClassification = ToBeClassified;
-        }
+            CalcFormula = lookup("HMS Appointment Form Header"."Appointment No." where("Patient No." = field("Patient No.")));
+            FieldClass = FlowField;
+            }
         field(50047; "Dr Name"; Text[30])
         {
             CalcFormula = lookup("HMS Setup Doctor"."Doctors Name" where("Doctor ID" = field(Doctor)));
@@ -422,7 +423,7 @@ Table 85173 "HMS Admission Form Header"
             if HMSAdmissionFormHeader.FindFirst() then
                 if not isTranscription then
                     Error('Patient Already has an active Admission %1', HMSAdmissionFormHeader."Admission No.");
-                    
+
             // Should only update patient if admitted
 
             // HmsPatient.Reset();

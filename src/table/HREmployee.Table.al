@@ -1445,25 +1445,23 @@ Table 85388 "HR-Employee"
     {
     }
 
-    trigger OnInsert()
-    begin
-        if "No." = '' then begin
-            HumanResSetup.Get();
-            HumanResSetup.TestField("Employee Nos.");
-            NoSeriesMgt.GetNextNo(HumanResSetup."Employee Nos.");
-        end;
-
-        if "No." <> xRec."No." then begin
-            HumanResSetup.Get();
-            HumanResSetup.TestField("Employee Nos.");
-            NoSeriesMgt.TestManual(HumanResSetup."Employee Nos.");
-            "No. Series" := '';
-        end;
-
-        //CurrentPayDetails;
-        fnTrackChanges('NEW EMPLOYEE', Format(xRec."No."), Format("No."));
+  trigger OnInsert()
+begin
+    if "No." = '' then begin
+        HumanResSetup.Get();
+        HumanResSetup.TestField("Employee Nos.");
+        "No." := NoSeriesMgt.GetNextNo(HumanResSetup."Employee Nos.");
     end;
 
+    if "No." <> xRec."No." then begin
+        HumanResSetup.Get();
+        HumanResSetup.TestField("Employee Nos.");
+        NoSeriesMgt.TestManual(HumanResSetup."Employee Nos.");
+        "No. Series" := '';
+    end;
+
+    fnTrackChanges('NEW EMPLOYEE', Format(xRec."No."), Format("No."));
+end;
     trigger OnModify()
     begin
         //fnCheckIDNumber();

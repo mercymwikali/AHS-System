@@ -181,7 +181,7 @@ codeunit 85027 "Post Receipt"
             ReceiptHeader.TestField("Bank Code");
             ReceiptHeader.TestField("Pay Mode");
         end;
-        ReceiptHeader.TestField("Global Dimension 1 Code");
+      //  ReceiptHeader.TestField("Global Dimension 1 Code"); --Mercy
         //TestField("Shortcut Dimension 2 Code");
         ReceiptHeader.TestField("Received From");
         if ReceiptHeader."Patient No." <> '' then ReceiptHeader.TestField("Patient Appointment No");
@@ -281,10 +281,10 @@ codeunit 85027 "Post Receipt"
                     GenJnlLine.Amount := ReceiptSplit.Amount;
                     //GenJnlLine.VALIDATE(GenJnlLine.Amount);
 
-                    GenJnlLine."Shortcut Dimension 1 Code" := ReceiptHeader."Global Dimension 1 Code";
-                    GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
+                    // GenJnlLine."Shortcut Dimension 1 Code" := ReceiptHeader."Global Dimension 1 Code";
+                    // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
 
-                    GenJnlLine."Shortcut Dimension 2 Code" := ReceiptHeader."Shortcut Dimension 2 Code";
+                    // GenJnlLine."Shortcut Dimension 2 Code" := ReceiptHeader."Shortcut Dimension 2 Code";-Mercy
                     // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
                     //GenJnlLine.ValidateShortcutDimCode(3,"Shortcut Dimension 3 Code");
                     //GenJnlLine.ValidateShortcutDimCode(4,"Shortcut Dimension 4 Code");
@@ -320,9 +320,9 @@ codeunit 85027 "Post Receipt"
                 GenJnlLine.Amount := (tAmount);
                 //GenJnlLine.VALIDATE(GenJnlLine.Amount);
 
-                GenJnlLine."Shortcut Dimension 1 Code" := ReceiptHeader."Global Dimension 1 Code";
-                GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
-                GenJnlLine."Shortcut Dimension 2 Code" := ReceiptHeader."Shortcut Dimension 2 Code";
+                // GenJnlLine."Shortcut Dimension 1 Code" := ReceiptHeader."Global Dimension 1 Code";
+                // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
+                // GenJnlLine."Shortcut Dimension 2 Code" := ReceiptHeader."Shortcut Dimension 2 Code";-Mercy
                 // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
                 //GenJnlLine.ValidateShortcutDimCode(3,"Shortcut Dimension 3 Code");
                 //GenJnlLine.ValidateShortcutDimCode(4,"Shortcut Dimension 4 Code");
@@ -345,7 +345,7 @@ codeunit 85027 "Post Receipt"
 
                 if ReceiptLine.Amount < 0 then Error('Amount cannot be less than zero.');
 
-                ReceiptLine.TestField(ReceiptLine."Global Dimension 1 Code");
+               // ReceiptLine.TestField(ReceiptLine."Global Dimension 1 Code");-Mercy
 
                 // ReceiptLine.TestField(ReceiptLine."Shortcut Dimension 2 Code");
 
@@ -400,10 +400,10 @@ codeunit 85027 "Post Receipt"
                     GenJnlLine.Validate(GenJnlLine."Bal. Account No.");
                     GenJnlLine.Description := CopyStr(ReceiptLine."Account Name" + ':' + Format(ReceiptLine."Pay Mode") +
                       ' Invoices:' + StrInvoices, 1, 50);
-                    GenJnlLine."Shortcut Dimension 1 Code" := ReceiptHeader."Global Dimension 1 Code";
-                    GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
-                    GenJnlLine."Shortcut Dimension 2 Code" := ReceiptHeader."Shortcut Dimension 2 Code";
-                    GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
+                    // GenJnlLine."Shortcut Dimension 1 Code" := ReceiptHeader."Global Dimension 1 Code";
+                    // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
+                    // GenJnlLine."Shortcut Dimension 2 Code" := ReceiptHeader."Shortcut Dimension 2 Code";
+                    // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code"); --Mercy
                     // GenJnlLine.ValidateShortcutDimCode(3,"Shortcut Dimension 3 Code");
                     // GenJnlLine.ValidateShortcutDimCode(4,"Shortcut Dimension 4 Code");
                     if ReceiptHeader."Patient No." <> '' then begin
@@ -451,10 +451,10 @@ codeunit 85027 "Post Receipt"
                             //  GenJnlLine.VALIDATE(GenJnlLine."Bal. Account No.");
                             GenJnlLine.Description := CopyStr(ReceiptLine."Account Name" + ':' + Format(ReceiptLine."Pay Mode")
                             + ' Invoices:' + StrInvoices, 1, 50);
-                            GenJnlLine."Shortcut Dimension 1 Code" := ReceiptLine."Global Dimension 1 Code";
-                            GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
-                            GenJnlLine."Shortcut Dimension 2 Code" := ReceiptLine."Shortcut Dimension 2 Code";
-                            GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");
+                            // GenJnlLine."Shortcut Dimension 1 Code" := ReceiptLine."Global Dimension 1 Code";
+                            // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 1 Code");
+                            // GenJnlLine."Shortcut Dimension 2 Code" := ReceiptLine."Shortcut Dimension 2 Code";
+                            // GenJnlLine.Validate(GenJnlLine."Shortcut Dimension 2 Code");--Mercy
                             // GenJnlLine.ValidateShortcutDimCode(3,"Shortcut Dimension 3 Code");
                             //GenJnlLine.ValidateShortcutDimCode(4,"Shortcut Dimension 4 Code");
                             if ReceiptHeader."Patient No." <> '' then begin
@@ -837,8 +837,8 @@ codeunit 85027 "Post Receipt"
                     HmsPatCharges.Validate("Transaction Type");
                     HmsPatCharges.Date := Today;
                     HmsPatCharges."Line No" := ReceiptLine."Line No.";
-                    HmsPatCharges."Shortcut Dimension 1 Code" := RHeader."Global Dimension 1 Code";
-                    HmsPatCharges."Shortcut Dimension 2 Code" := RHeader."Shortcut Dimension 2 Code";
+                    // HmsPatCharges."Shortcut Dimension 1 Code" := RHeader."Global Dimension 1 Code";-Mercy
+                    // HmsPatCharges."Shortcut Dimension 2 Code" := RHeader."Shortcut Dimension 2 Code";
                     HmsPatCharges.Code := RHeader."No.";
                     HmsPatCharges.Description := ReceiptLine.Type + ' Rcpt ' + ReceiptLine."Transaction Name";
                     HmsPatCharges.Amount := ReceiptLine.Amount * -1;

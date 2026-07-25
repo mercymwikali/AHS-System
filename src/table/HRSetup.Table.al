@@ -365,6 +365,7 @@ Table 85497 "HR Setup"
         {
             
         }
+        
     }
 
     keys

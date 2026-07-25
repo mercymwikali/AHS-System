@@ -138,6 +138,15 @@ Query 85217 "Treatment History"
                 column(Telephone_No_1; "Telephone No. 1")
                 {
                 }
+                column(ActiveVisitNo; "Active Visit No")
+                {
+                }
+                column(Activated; Activated)
+                {
+                }
+                column(ActiveAppointmentdate; "Active Appointment date")
+                {
+                }
                 dataitem(HMS_Setup_Doctor; "HMS Setup Doctor")
                 {
                     DataItemLink = "Doctor ID" = HMS_Treatment_Form_Header."Doctor ID";

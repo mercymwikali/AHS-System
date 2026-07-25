@@ -84,6 +84,10 @@ Query 85132 Appointments
             column(Insurance_Member_No; "Insurance Member No")
             {
             }
+            column(SystemId; SystemId)
+            {
+            }
+            
             dataitem(HMS_Patient; "HMS Patient")
             {
                 DataItemLink = "Patient No." = HMS_Appointment_Form_Header."Patient No.";

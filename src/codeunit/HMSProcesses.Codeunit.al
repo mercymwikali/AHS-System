@@ -671,7 +671,7 @@ codeunit 85031 "HMS Processes"
             PharmHeader."Relative No." := TreatmentHeader."Relative No.";
             PharmHeader."Doctor ID" := TreatmentHeader."Doctor ID";
             PharmHeader."Global Dimension 1 Code" := HMSPatient."Global Dimension 1 Code"; //REFACTOR: Change this to be 1. Setup Based, or Come from API.
-            PharmHeader.Validate("Global Dimension 1 Code");
+         //   PharmHeader.Validate("Global Dimension 1 Code");
             PharmHeader."Transaction Type" := 'PHARMACY';
             PharmHeader."Link Type" := 'Doctor';
             PharmHeader."Link No." := Recc."Treatment No.";
@@ -685,11 +685,11 @@ codeunit 85031 "HMS Processes"
                     PharmLine.Init();
                     PharmLine."Pharmacy No." := NewNo;
                     PharmLine."No." := TreatmentLine."Drug No.";
-                    PharmLine.Validate("No.");
+                  //  PharmLine.Validate("No.");
                     PharmLine.Quantity := TreatmentLine.Quantity;
-                    PharmLine.Validate(PharmLine.Quantity);
+               //     PharmLine.Validate(PharmLine.Quantity);
                     PharmLine."Measuring Unit" := TreatmentLine."Unit Of Measure";
-                    PharmLine.Validate(PharmLine.Quantity);
+                  //  PharmLine.Validate(PharmLine.Quantity);
                     PharmLine.Dosage := TreatmentLine.Dosage;
                     PharmLine.Frequency := TreatmentLine.Frequency;
                     PharmLine.Location := PharmHeader."Issuing Location";
@@ -991,7 +991,6 @@ codeunit 85031 "HMS Processes"
         // Insert Admission Fee
         HMSSetup.TestField("Admission Fee");
         HMSSetup.TestField("Nursing Fee Code");
-        HMSSetup.TestField("MSE Fee Code");
         Charges.get(HMSSetup."Admission Fee");
 
         // Admission Fee
@@ -1024,36 +1023,6 @@ codeunit 85031 "HMS Processes"
         HMSPatientCharges.InPatient := true;
         HMSPatientCharges.Insert();
 
-        // MSE Fee
-        Charges.Reset();
-        Charges.Get(HMSSetup."MSE Fee Code");
-        HMSPatientCharges.Init();
-        HMSPatientCharges."Patient No." := VerifiedAdmission."Patient No.";
-        HMSPatientCharges."Transaction Type" := Charges."Transaction Type";
-        HMSPatientCharges.Validate("Transaction Type");
-        HMSPatientCharges."Link No" := VerifiedAdmission."Admission No.";
-        HMSPatientCharges."Treatment No." := VerifiedAdmission."Admission No.";
-        HMSPatientCharges."Appointment No." := VerifiedAdmission."Appointment No.";
-        HMSPatientCharges."Shortcut Dimension 1 Code" := Patient."Global Dimension 1 Code";
-        HMSPatientCharges.Code := HMSSetup."MSE Fee Code";
-        HMSPatientCharges.validate(Code);
-        HMSPatientCharges.Amount := Charges.Amount;
-        HMSPatientCharges.Validate(Amount);
-        HMSPatientCharges.Date := VerifiedAdmission."Admission Date";
-        HMSPatientCharges."Shortcut Dimension 2 Code" := Charges."Shortcut Dimension 2 Code";
-        HMSPatientCharges."Shortcut Dimension 3 Code" := 'IP';// TODO : Refactor to setup based
-        if Patient."Patient Type" = Patient."Patient Type"::Cash then
-            HMSPatientCharges."Shortcut Dimension 4 Code" := 'Cash';
-        if Patient."Patient Type" = Patient."Patient Type"::Corporate then
-            HMSPatientCharges."Shortcut Dimension 4 Code" := 'Corporate';
-        HMSPatientCharges."Bill Section" := HMSPatientCharges."Bill Section"::Admissions;
-        HMSPatientCharges."User ID" := Format(UserId);
-        HMSPatientCharges."Creation Date" := Today;
-        HMSPatientCharges."Creation Time" := DT2TIME(System.CurrentDateTime);
-        HMSPatientCharges."Admission No" := VerifiedAdmission."Admission No.";
-        HMSPatientCharges."Visit No" := Patient."Active Visit No";
-        HMSPatientCharges.InPatient := true;
-        HMSPatientCharges.Insert();
 
         // TODO:Insert Nursing      
         Charges.Reset();
@@ -1104,9 +1073,7 @@ codeunit 85031 "HMS Processes"
         VerifiedAdmission.Status := VerifiedAdmission.Status::Admitted;
         VerifiedAdmission.MODIFY();
 
-        // generate MSE Form
-        PatientManagement.GenerateBriefMSEForm(VerifiedAdmission."Admission No.");
-        PatientManagement.FnGeneratePatientNotesForm(VerifiedAdmission."Admission No.", true);
+  
 
         if GuiAllowed then
             MESSAGE('Patient Admitted');

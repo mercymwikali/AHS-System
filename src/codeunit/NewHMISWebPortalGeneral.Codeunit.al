@@ -4054,6 +4054,8 @@ end;
                 returnValue := '{"status":"failed","msg":"Something went wrong. Please try again."}'
         end;
     end;
+    
+    
     //
     // procedure FnLaboratoryResultsReport(jString: Text) returnValue: Text
     // var
@@ -4493,6 +4495,7 @@ end;
                 end;
         end;
     end;
+    
     //
     procedure FnDirectDispatchToPharmacy(jString: Text) returnValue: Text
     var
@@ -5699,6 +5702,7 @@ end;
         end else
             Error('Sales invoice no %1 not found', documentNo);
     end;
+    
     //
     //
     procedure FnSHIFRebatesCalculation(jString: Text) returnValue: Text

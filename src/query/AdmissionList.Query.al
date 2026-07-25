@@ -144,13 +144,38 @@ Query 85127 "Admission List"
             column(Resident_Doctor;"Resident Doctor")
             {                
             }
-
+            column(SystemId; SystemId)
+            {
+            }
+            column(SettlementType; "Settlement Type")
+            {
+            }
+            column(Scheme; Scheme)
+            {
+            }
+            column(AdmissionType; "Admission Type")
+            {
+            }
+            column(AppointmentNo; "Appointment No.")
+            {
+            }
+            
             dataitem(HMS_Patient; "HMS Patient")
             {
                 DataItemLink = "Patient No." = HMS_Admission_Form_Header."Patient No.";
                 column(Search_Name; "Search Name")
                 {
                 }
+                column(Activated; Activated)
+                {
+                }
+                // column(ActiveVisitNo; "Active Visit No")
+                // {
+                // }
+                // column(BillBalance; "Bill Balance")
+                // {
+                // }
+                
                 dataitem(HMS_Setup_Doctor; "HMS Setup Doctor")
                 {
                     DataItemLink = "Doctor ID" = HMS_Admission_Form_Header.Doctor;

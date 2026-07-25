@@ -12,6 +12,12 @@ Table 85209 "HMS Patient"
 
             trigger OnValidate()
             begin
+                 if "Patient No." <> xRec."Patient No." then begin
+                    HMSSetup.Get();
+                    NoSeriesMgt.TestManual(HMSSetup."Patient Nos");
+                    "No. Series" := '';
+                end;
+
 
             end;
         }
@@ -1113,35 +1119,52 @@ Table 85209 "HMS Patient"
         }
     }
 
-    trigger OnDelete()
-    begin
-        Error('You are no allowed to Delete');
-    end;
+    // trigger OnDelete()
+    // begin
+    //     Error('You are no allowed to Delete');
+    // end;
 
     trigger OnInsert()
     var
         UserRec: Record "User Setup";
         hmsPatients: Record "HMS Patient";
     begin
-        HMSSetup.GET();
+        HMSSetup.Get();
+
         if "ID Number" <> '' then begin
+
+            // 🔍 Prevent duplicate ID (non-dependants only)
             hmsPatients.Reset();
-            hmsPatients.SetRange(hmsPatients."ID Number", "ID Number");
+            hmsPatients.SetRange("ID Number", "ID Number");
             if hmsPatients.FindFirst() then begin
-                if Dependant = false then
-                    Error('That ID already Exists for Patient No: %1', hmsPatients."Patient No.");
+                if not Dependant then
+                    Error('That ID already exists for Patient No: %1', hmsPatients."Patient No.");
             end;
 
+            // ✅ Patient No. auto-numbering
             if "Patient No." = '' then begin
-                NoSeriesMgt.TestManual(HMSSetup."Patient Nos");
+                HMSSetup.TestField("Patient Nos");
+
                 "Patient No." := NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
+
+                // 👇 IMPORTANT: persist the series used (you were missing this)
+                "Patient No." := HMSSetup."Patient Nos";
             end;
-            // HMSSetup.TestField();
-            "File No" := NoSeriesMgt.GetNextNo(HMSSetup."File No");
+
+            // ✅ File No. auto-numbering
+            if "File No" = '' then begin
+                HMSSetup.TestField("File No");
+
+                "File No" := NoSeriesMgt.GetNextNo(HMSSetup."File No");
+            end;
+
+            // 📅 Metadata
             "Date Registered" := Today;
+
             if "User ID" = '' then
-                "User ID" := Format(UserId);
-            if ("Global Dimension 1 Code" = '') and (UserRec.get("User ID")) then
+                "User ID" := UserId;
+
+            if ("Global Dimension 1 Code" = '') and UserRec.Get("User ID") then
                 "Global Dimension 1 Code" := UserRec."Branch Code";
         end;
     end;

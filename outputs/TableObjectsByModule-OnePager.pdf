@@ -1,0 +1,117 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2972 >>
+stream
+BT
+/F1 16 Tf
+72 750 Td
+(Hospital System - Table Objects by Module) Tj
+0 -22 Td
+/F1 8 Tf
+(Business Central AL project one-page summary) Tj
+0 -22 Td
+/F1 8 Tf
+() Tj
+0 -22 Td
+/F1 8 Tf
+(Total objects: 620    Tables: 587    Table extensions: 33) Tj
+0 -22 Td
+/F1 8 Tf
+() Tj
+0 -22 Td
+/F1 8 Tf
+(Module                         Count   Representative table objects) Tj
+0 -22 Td
+/F1 8 Tf
+(HMS / Clinical                   155   HMS Patient; HMS Treatment Form Header; HMS Pharmacy Header; HMS Laboratory Form Header) Tj
+0 -22 Td
+/F1 8 Tf
+(Human Resources                  122   HR-Employee; HR Leave Application; HR Job Applications; HR Setup; Applicants) Tj
+0 -22 Td
+/F1 8 Tf
+(Finance / Funds                   85   Payments Header; Receipts Header; Imprest Header; Staff Claims Header; Bank Payments) Tj
+0 -22 Td
+/F1 8 Tf
+(Payroll                           65   prSalary Card; prEmployee Transactions; prPayroll Periods; prPAYE; prNHIF; PR NSSF) Tj
+0 -22 Td
+/F1 8 Tf
+(General / Setup                   49   General Set-Up; Approval Setup; Application Setup; County Wards; Smart Invoices) Tj
+0 -22 Td
+/F1 8 Tf
+(Other / Uncategorized             66   Clinical Report Recepients; Invoice Dispatch Headerd; Appraisal Criteria) Tj
+0 -22 Td
+/F1 8 Tf
+(Fleet                             23   FLT-Vehicle Header; FLT-Transport Requisition; FLT-Daily Work Ticket Header) Tj
+0 -22 Td
+/F1 8 Tf
+(Procurement / Stores              11   Purchase Quote Header; Purchase Quote Line; Bid Analysis; Store Requistion Header) Tj
+0 -22 Td
+/F1 8 Tf
+(Audit                              9   Audits; Auditors; Audit Checklists; Audit Findings Actions; Audit Meetings) Tj
+0 -22 Td
+/F1 8 Tf
+(Performance Contracting            8   PC MasterPlan Header; PC Strategic Objectives; PC Strategic Activities; PC Targets) Tj
+0 -22 Td
+/F1 8 Tf
+(Academic / Student                 7   Academic Classification; Academic Qualification; General Exam Setups; Grades) Tj
+0 -22 Td
+/F1 8 Tf
+(Portal Auth                        6   Portal User; Portal Roles; Portal Sessions; Portal Role Permissions) Tj
+0 -22 Td
+/F1 8 Tf
+(SMS                                5   SMS Setup; SMS Sender; SMS Templates Table; SMS Broadcast; SMS Receipients) Tj
+0 -22 Td
+/F1 8 Tf
+(Risk                               5   Risks; Risk Controls; Risk Incidences; Risk Mitigations; Residual Risks) Tj
+0 -22 Td
+/F1 8 Tf
+(Security                           2   Security Setups; Sec-Visitor Management) Tj
+0 -22 Td
+/F1 8 Tf
+(Legal                              1   Legal Management) Tj
+0 -22 Td
+/F1 8 Tf
+(QMS                                1   QMS Archive) Tj
+0 -22 Td
+/F1 8 Tf
+() Tj
+0 -22 Td
+/F1 8 Tf
+(Notable table extensions: Customer Ext; Vendor Ext; Bank Account Ext; Item_ext; G/L Account Ext;) Tj
+0 -22 Td
+/F1 8 Tf
+(Sales Header Ext; Purchase Header Ext; Employee Ext; User Setup Ext.) Tj
+0 -22 Td
+/F1 8 Tf
+() Tj
+0 -22 Td
+/F1 8 Tf
+(Grouping inferred from AL object names/prefixes under src/**/*.al, especially src/table and src/tableextension.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+3335
+%%EOF

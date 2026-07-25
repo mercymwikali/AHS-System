@@ -1,0 +1,116 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2341 >>
+stream
+BT
+/F1 15 Tf
+36 558 Td
+(Hospital System - Codeunits by Module) Tj
+0 -11 Td
+/F1 7.2 Tf
+(Business Central AL project native PDF inventory) Tj
+0 -7 Td
+0 -11 Td
+/F1 7.2 Tf
+(Active codeunits found: 43. Note: QMSWebportal.Codeunit.al contains a commented-out codeunit and is excluded.) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(HMS / Clinical \(10\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85001 Patient Billing; 85002 Patient Management; 85013 GenPatientForm; 85014 NewHMISPortal; 85015 New HMIS WebPortal General;) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85016 Transcription Actions; 85030 HMS Patient-integration; 85031 HMS Processes; 85032 Close Active Visits; 85033 HMS Pharmacy Processes) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(Finance / Funds \(10\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85005 Gen. Jnl.-Post B; 85008 Journal Post Successful; 85017 Posting Check FP; 85018 Receipt Apply; 85023 Budgetary Control;) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85024 ShortcutDimensionMgt; 85025 Gen. Jnl.-Post Bill; 85027 Post Receipt; 85040 Mpesa Integration; 85047 Tax Calculation2) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(Portal / Integrations \(5\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85011 Portal Roles; 85012 APIResponseBuilder; 85019 Register Management; 85045 DSL Integrations; 85046 REST WS Management) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(Human Resources \(5\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85009 HR Dates; 85010 Leave Management; 85035 HR CheckList; 85036 HR Post Leave Journal Ent.; 85039 RecruitmentPortal) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(Payroll \(4\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85037 Post Salary Increments; 85038 Progress View Manager; 85041 prPayrollProcessing-Casuals; 85042 prPayrollProcessing) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(Approvals / Workflow \(3\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85003 Custom Approvals Codeunit; 85022 Approval Management Ext; 85028 WorkFlow Resp Handling Ext.) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(General / System \(3\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85000 PTL Factory; 85026 Page Management Ext; 85048 User Setup Management BR) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(SMS \(2\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85020 SMS Integration Management; 85021 SMSRenderCodeunit) Tj
+0 -7 Td
+0 -15 Td
+/F1 8.5 Tf
+(Document Management \(1\)) Tj
+0 -11 Td
+/F1 7.2 Tf
+(  85004 Custom Document Attachment) Tj
+0 -7 Td
+0 -11 Td
+/F1 7.2 Tf
+(Grouping inferred from active AL declarations: ^codeunit <id> <name>, scanned under src/**/*.al.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2704
+%%EOF

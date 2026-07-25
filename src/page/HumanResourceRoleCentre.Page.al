@@ -791,3 +791,11 @@ page 85691 "Human Resource Role Centre"
         }
     }
 }
+
+profile "Human Resource Role Center"
+{
+    ProfileDescription = 'HR Role Center';
+    Caption = 'HR Role Center';
+    RoleCenter = "Human Resource Role Centre";
+}
+ 

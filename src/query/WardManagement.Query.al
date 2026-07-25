@@ -58,7 +58,33 @@ Query 85222 "Ward Management"
                     column(Branch_Code; "Branch Code")
                     {
                     }
+                    dataitem(HMS_Rooms_Setup; "HMS Ward Rooms")
+                    {
+                        DataItemLink = "Room No." = HMS_Ward_Setup."Ward Code";
+
+
+                        
+                        column(NoofBeds; "No of Beds")
+                        {
+                        }
+                        column(RoomName; "Room Name")
+                        {
+                        }
+                        column(RoomNo; "Room No.")
+                        {
+                        }
+                        column(SystemId; SystemId)
+                        {
+                        }
+                        column(WardNo; "Ward No")
+                        {
+                        }
+
+                    }
+
                 }
+
+
             }
         }
     }

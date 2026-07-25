@@ -85,8 +85,26 @@ query 85028 "Triage List"
             column(UrgencyStatus; "Urgency Status")
             {
             }
-            column(Names;Names)
-            {        
+           
+             
+            dataitem(HMS_Patient; "HMS Patient")
+            {
+                DataItemLink = "Patient No." = HMSObservationFormHeader."Patient No.";
+                column(Surname; Surname)
+                {
+                }
+                column(Middle_Name; "Middle Name")
+                {
+                }
+                column(Last_Name; "Last Name")
+                {
+                }
+                column(Search_Name; "Search Name")
+                {
+                }
+                column(Names; Names)
+                {
+                }
             }
         }
     }

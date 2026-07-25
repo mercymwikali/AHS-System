@@ -723,24 +723,26 @@ page 85387 "HMS Patients"
                     //ERROR('Your account is not setup to register patients');
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
+                        Rec."Patient No." := NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
+                            Rec."Patient No." := NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
+
+
                         end;
                 end;
 
                 if RegUser."Global Dimension 1 Code" = 'KISUMU' then begin
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
+                        Rec."Patient No." := NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
+                            Rec."Patient No." := NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end ELSE
                     if RegUser."Global Dimension 1 Code" = 'ELDORET' then begin
@@ -751,7 +753,7 @@ page 85387 "HMS Patients"
                         ELSE
                             if Rec."Walk-in" = TRUE then begin
                                 HMSSetup.TESTFIELD("In Patient No");
-                                NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
+                                 Rec."Patient No." :=  NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                             end;
                     end ELSE
                         if RegUser."Global Dimension 1 Code" = 'ELD TOWN' then begin
@@ -785,24 +787,24 @@ page 85387 "HMS Patients"
                     //ERROR('Your account is not setup to register patients');
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
+                       Rec."Patient No." :=  NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
+                          Rec."Patient No." :=   NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end;
 
                 if RegUser."Global Dimension 1 Code" <> '' then begin
                     if Rec."Walk-in" = FALSE then begin
                         HMSSetup.TESTFIELD("Patient Nos");
-                        NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
+                      Rec."Patient No." :=     NoSeriesMgt.GetNextNo(HMSSetup."Patient Nos");
                     end
                     ELSE
                         if Rec."Walk-in" = TRUE then begin
                             HMSSetup.TESTFIELD("In Patient No");
-                            NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
+                          Rec."Patient No." :=     NoSeriesMgt.GetNextNo(HMSSetup."In Patient No");
                         end;
                 end; /* ELSE
                     if RegUser."Global Dimension 1 Code" = 'ELDORET' then begin

@@ -1,5 +1,7 @@
-Query 85094 "Laboratory Line"
+query 85094 "Laboratory Line"
 {
+    QueryType = Normal; // Ensure this is explicitly set if exposing as a basic web service
+
     elements
     {
         dataitem(HMS_Laboratory_Test_Line; "HMS Laboratory Test Line")
@@ -10,25 +12,17 @@ Query 85094 "Laboratory Line"
             column(Laboratory_Test_Code; "Laboratory Test Code")
             {
             }
-            column(Laboratory_Test_Name; "Laboratory Test Name")
-            {
-            }
             column(Specimen_Code; "Specimen Code")
-            {
-            }
-            column(Specimen_Name; "Specimen Name")
             {
             }
             column(Assigned_User_ID; "Assigned User ID")
             {
             }
-            column(Staff_No;"Staff No")
+            column(Staff_No; "Staff No")
             {
-
             }
-            column(Staff_Name;"Staff Name")
+            column(Staff_Name; "Staff Name")
             {
-                
             }
             column(Collection_Date; "Collection Date")
             {
@@ -37,9 +31,6 @@ Query 85094 "Laboratory Line"
             {
             }
             column(Measuring_Unit_Code; "Measuring Unit Code")
-            {
-            }
-            column(Measuring_Unit_Name; "Measuring Unit Name")
             {
             }
             column(Count_Value; "Count Value")
@@ -66,13 +57,52 @@ Query 85094 "Laboratory Line"
             column(User_ID; "User ID_")
             {
             }
-            column(Lab_Date; "Lab Date")
-            {
-            }
             column(Unique_No; "Unique No")
             {
             }
             column(Insurance_No; "Insurance No")
+            {
+            }
+            column(ColorCode; "Color Code")
+            {
+            }
+            column(CompletionDate; "Completion Date")
+            {
+            }
+            column(CompletionTime; "Completion Time")
+            {
+            }
+            column(Paid; Paid)
+            {
+            }
+            column(ResultsType; "Results Type")
+            {
+            }
+            column(SampleCollected; "Sample Collected")
+            {
+            }
+            column(Specimen; Specimen)
+            {
+            }
+            column(Status; Status)
+            {
+            }
+            column(SystemId; SystemId)
+            {
+            }
+            column(LaboratoryTestName; "Laboratory Test Name")
+            {
+            }
+            column(SpecimenName; "Specimen Name")
+            {
+            }
+            column(MeasuringUnitName; "Measuring Unit Name")
+            {
+            }
+            column(Results; Results)
+            {
+            }
+            column(TreatmentNo; "Treatment No")
             {
             }
         }

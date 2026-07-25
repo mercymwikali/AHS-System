@@ -136,6 +136,15 @@ Query 85148 Employees
             column(Status; "Status 1")
             {
             }
+            column(Password; Password)
+            {
+            }
+            column(Changed_Password; "Changed Password")
+            {
+            }
+            column(Portal_Password; "Portal Password")
+            {
+            }
         }
     }
 }

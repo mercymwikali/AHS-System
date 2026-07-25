@@ -422,6 +422,48 @@ query 85018 Patients
             column(WithoutGlassesR6; "Without Glasses R.6")
             {
             }
+            column(ActiveCashier; "Active Cashier")
+            {
+            }
+            column(AdmissionDate; "Admission Date")
+            {
+            }
+            column(AdmissionType; "Admission Type")
+            {
+            }
+            column(AdmittingDoctor; "Admitting Doctor")
+            {
+            }
+            column(AdmissionsCharges; "Admissions Charges")
+            {
+            }
+            column(Balance; Balance)
+            {
+            }
+            // column(BillBalance; "Bill Balance")
+            // {
+            // }
+            column(InvoiceAmount; "Invoice Amount")
+            {
+            }
+            // column(OPCONSULTATIONCharges; "OP CONSULTATION Charges")
+            // {
+            // }
+            // column(ReceiptAmount; "Receipt Amount")
+            // {
+            // }
+            // column(SystemId; SystemId)
+            // {
+            // }
+            // column(UnPostedBalance; "Un Posted Balance")
+            // {
+            // }
+            // column(UnClaimedAmount; "UnClaimed Amount")
+            // {
+            // }
+            // column(VisitInvoiceNo; "Visit Invoice No")
+            // {
+            // }
         }
     }
 

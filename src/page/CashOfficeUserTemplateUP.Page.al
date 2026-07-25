@@ -1,9 +1,10 @@
 Page 85106 "Cash Office User Template UP"
 {
-    DataCaptionFields = UserID;
+ //   DataCaptionFields = UserID;
     PageType = List;
     SourceTable = "Cash Office User Template";
-    ApplicationArea = Basic, Suite;
+    ApplicationArea = All;
+    UsageCategory = Administration;
 
     layout
     {
