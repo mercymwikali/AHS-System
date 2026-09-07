@@ -40,15 +40,15 @@ codeunit 85014 NewHMISPortal
             Error('Unable to reset user password. Kindly try again. Contact the administrator if this error persists.');
 
         // // Create email message body
-        // mailMessage :=
-        //     '<br> Dear ' + TbEmployee."First Name" + ' ' + TbEmployee."Middle Name" +
-        //     ', your request for password reset was received successfully. Kindly use the One Time Password below to access your employee self service account ' +
-        //     '<br><strong>' + RandomValue + '</strong>' +
-        //     '<br><br><strong>[This is an automated message - Kindly do not reply]</strong>';
+        mailMessage :=
+            '<br> Dear ' + TbEmployee."First Name" + ' ' + TbEmployee."Middle Name" +
+            ', your request for password reset was received successfully. Kindly use the One Time Password below to access your employee self service account ' +
+            '<br><strong>' + RandomValue + '</strong>' +
+            '<br><br><strong>[This is an automated message - Kindly do not reply]</strong>';
 
-        // // Try sending email
-        // if not FnSendEmail('Staff Portal Reset Password Code', TbEmployee."Company E-Mail", mailMessage, '') then
-        //     Error('An error occurred when sending the email. Kindly ask the administrator to check out email configurations.');
+        // Try sending email
+        if not FnSendEmail('Staff Portal Reset Password Code', TbEmployee."Company E-Mail", mailMessage, '') then
+            Error('An error occurred when sending the email. Kindly ask the administrator to check out email configurations.');
 
         // Compose return JSON
         JsObject.Add('Error', 'FALSE');

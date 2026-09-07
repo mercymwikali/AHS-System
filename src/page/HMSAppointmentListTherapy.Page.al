@@ -3,7 +3,7 @@ Page 85319 "HMS Appointment List-Therapy"
     CardPageID = "HMS Appointment Form Header";
     PageType = List;
     SourceTable = "HMS Appointment Form Header";
-    SourceTableView = where(Status = filter(Status::new), isTherapy = filter(true));
+   // SourceTableView = where(Status = filter(Status::new), isTherapy = filter(true));
     ApplicationArea = Basic, Suite;
 
     layout

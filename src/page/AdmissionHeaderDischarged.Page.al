@@ -92,7 +92,7 @@ page 85276 "Admission Header Discharged"
                 {
                     ToolTip = 'Specifies the value of the Coding Reason field';
                 }
-                field(SystemId; SystemId)
+                field(SystemId; Rec.SystemId)
                 {
                     Editable = false;
                     Visible = false;

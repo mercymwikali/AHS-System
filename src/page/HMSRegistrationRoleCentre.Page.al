@@ -648,14 +648,14 @@ Page 85430 "HMS Registration Role Centre"
                         RunObject = Report "HMS Customer Credit Sales";
                         ToolTip = 'Executes the Customer Credit Sales action.';
                     }
-                    action("Receipt Summary2")
-                    {
-                        ApplicationArea = all;
-                        Caption = 'Flash Revenue';
-                        Image = "Report";
-                        RunObject = Report "Flash Revenue";
-                        ToolTip = 'Executes the Flash Revenue action.';
-                    }
+                    // action("Receipt Summary2")
+                    // {
+                    //     ApplicationArea = all;
+                    //     Caption = 'Flash Revenue';
+                    //     Image = "Report";
+                    //     RunObject = Report "Flash Revenue";
+                    //     ToolTip = 'Executes the Flash Revenue action.';
+                    // }
                     action("HMS Charges Prices")
                     {
                         ApplicationArea = Basic, Suite;
@@ -1129,15 +1129,15 @@ Page 85430 "HMS Registration Role Centre"
                     RunObject = Page "HMS Cash Active Patients";
                     ToolTip = 'Executes the Cash Patients Pending Receipts action.';
                 }
-                action("HMS Corporate pending Invoice")
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Corporate Pending Invoicing';
-                    Image = Insurance;
-                    Promoted = true;
-                    RunObject = Page "HMS Corporate pending Invoice";
-                    ToolTip = 'Executes the Corporate Pending Invoicing action.';
-                }
+                // action("HMS Corporate pending Invoice")
+                // {
+                //     ApplicationArea = Basic, Suite;
+                //     Caption = 'Corporate Pending Invoicing';
+                //     Image = Insurance;
+                //     Promoted = true;
+                //     RunObject = Page "HMS Corporate pending Invoice";
+                //     ToolTip = 'Executes the Corporate Pending Invoicing action.';
+                // }
                 action(Receipts)
                 {
                     ApplicationArea = Basic, Suite;

@@ -1,3 +1,5 @@
+
+using System.Security.User;
 page 85318 "HMS Appointment Lists"
 {
     CardPageID = "HMS Appointment Form Header";
@@ -11,63 +13,63 @@ page 85318 "HMS Appointment Lists"
         {
             repeater(Group)
             {
-                field("Appointment No."; "Appointment No.")
+                field("Appointment No."; Rec."Appointment No.")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Appointment Date"; "Appointment Date")
+                field("Appointment Date"; Rec."Appointment Date")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient Type"; "Patient Type")
+                field("Patient Type"; Rec."Patient Type")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient No."; "Patient No.")
+                field("Patient No."; Rec."Patient No.")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field(SearchNames; SearchNames)
+                field(SearchNames; Rec.SearchNames)
                 {
                     Editable = false;
                 }
-                field(Branch; Branch)
+                field(Branch; Rec.Branch)
                 {
                     Editable = false;
                 }
-                field("Appointment Time"; "Appointment Time")
+                field("Appointment Time"; Rec."Appointment Time")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Appointment Type"; "Appointment Type")
+                field("Appointment Type"; Rec."Appointment Type")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field(Status; Status)
+                field(Status; Rec.Status)
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ReAppointment No."; "ReAppointment No.")
+                field("ReAppointment No."; Rec."ReAppointment No.")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ReAppointment Date"; "ReAppointment Date")
+                field("ReAppointment Date"; Rec."ReAppointment Date")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ReAppointment Time"; "ReAppointment Time")
+                field("ReAppointment Time"; Rec."ReAppointment Time")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ReAppointment Type Code"; "ReAppointment Type Code")
+                field("ReAppointment Type Code"; Rec."ReAppointment Type Code")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ReAppointment Doctor ID"; "ReAppointment Doctor ID")
+                field("ReAppointment Doctor ID"; Rec."ReAppointment Doctor ID")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Treatment Status"; "Treatment Status")
+                field("Treatment Status"; Rec."Treatment Status")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -89,10 +91,10 @@ page 85318 "HMS Appointment Lists"
                     trigger OnAction()
                     begin
                         IF CONFIRM('Dispatch selected Appoiintment to Observation?', FALSE) = FALSE THEN BEGIN EXIT END;
-                        "Dispatch To" := "Dispatch To";
-                        "Dispatch Date" := TODAY;
-                        "Dispatch Time" := TIME;
-                        MODIFY;
+                        Rec."Dispatch To" := Rec."Dispatch To";
+                        Rec."Dispatch Date" := TODAY;
+                        Rec."Dispatch Time" := TIME;
+                       Rec. MODIFY;
                         MESSAGE('Selected Appointment has been dispatched to the Observation Room.')
                     end;
                 }
@@ -103,10 +105,10 @@ page 85318 "HMS Appointment Lists"
                     trigger OnAction()
                     begin
                         IF CONFIRM('Dispatch selected Appoiintment to Doctor?', FALSE) = FALSE THEN BEGIN EXIT END;
-                        "Dispatch To" := "Dispatch To";
-                        "Dispatch Date" := TODAY;
-                        "Dispatch Time" := TIME;
-                        MODIFY;
+                       Rec."Dispatch To" := Rec."Dispatch To";
+                        Rec."Dispatch Date" := TODAY;
+                        Rec."Dispatch Time" := TIME;
+                       Rec. MODIFY;
                         MESSAGE('Selected Appointment has been dispatched to the Doctor.')
                     end;
                 }
@@ -122,14 +124,14 @@ page 85318 "HMS Appointment Lists"
     begin
         if UserRec.get(Database.UserId) then begin
             if userrec."Branch Code" <> '' then
-                setfilter(Branch, UserRec."Branch Code");
+               Rec.setfilter(Branch, UserRec."Branch Code");
         end;
     end;
 
     trigger OnAfterGetRecord()
     begin
         objPAtient.RESET;
-        objPAtient.SETRANGE(objPAtient."Patient No.", "Patient No.");
+        objPAtient.SETRANGE(objPAtient."Patient No.", Rec."Patient No.");
         IF objPAtient.FIND('-') THEN BEGIN
             strNames := objPAtient.Surname + ' ' + objPAtient."Middle Name" + ' ' + objPAtient."Last Name";
         END;
@@ -163,7 +165,7 @@ page 85318 "HMS Appointment Lists"
 
     procedure CheckPatientType()
     begin
-        IF "Patient Type" = "Patient Type"::Corporate THEN BEGIN
+        IF Rec."Patient Type" = Rec."Patient Type"::Corporate THEN BEGIN
             "Student No.Enable" := FALSE;
             "Employee No.Enable" := FALSE;
             "Relative No.Enable" := FALSE;
@@ -250,12 +252,12 @@ page 85318 "HMS Appointment Lists"
     begin
         xRec := Rec;
         CheckPatientType();
-        GetAppointmentTypeName(AppointmentTypeName, "Appointment Type");
+        GetAppointmentTypeName(AppointmentTypeName, xRec."Appointment Type");
         //GetDoctorName(Doctor,DoctorName);
-        GetPatientNo("Patient No.", "Student No.", "Employee No.", "Relative No.");
+        GetPatientNo(xRec."Patient No.", xRec."Student No.", xRec."Employee No.", xRec."Relative No.");
         //GetPatientName("Patient No.",PatientName);
-        GetPatientAge("Patient No.", Age);
-        GetAppointmentStats("Patient No.");
+        GetPatientAge(xRec."Patient No.", Age);
+        GetAppointmentStats(xRec."Patient No.");
     end;
 }
 

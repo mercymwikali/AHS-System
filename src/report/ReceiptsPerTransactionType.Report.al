@@ -1,7 +1,7 @@
 Report 85039 "Receipts Per Transaction Type"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './Layouts/ReceiptsPerTransactionType.rdl';
+   // RDLCLayout = './Layouts/ReceiptsPerTransactionType.rdl';
 
     dataset
     {

@@ -17,97 +17,97 @@ page 85289 "HMS Cash Active Patients"
         {
             repeater(Group)
             {
-                field("Active Appointment date"; "Current Appointment date")
+                field("Active Appointment date"; Rec."Current Appointment date")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Date Registered"; "Date Registered")
+                field("Date Registered"; Rec."Date Registered")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field(Branch; "Global Dimension 1 Code")
+                field(Branch; Rec."Global Dimension 1 Code")
                 {
                     Caption = 'Branch';
                     ApplicationArea = Basic, Suite;
                 }
-                field("Current Special Clinics"; "Current Special Clinics")
+                field("Current Special Clinics"; Rec."Current Special Clinics")
                 {
                     Caption = 'Special Clinics';
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient Type"; "Patient Type")
+                field("Patient Type"; Rec."Patient Type")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient No."; "Patient No.")
+                field("Patient No."; Rec."Patient No.")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Search Name"; "Search Name")
+                field("Search Name"; Rec."Search Name")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ID Number"; "ID Number")
+                field("ID Number"; Rec."ID Number")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Insurance Name"; "Insurance Name")
+                field("Insurance Name"; Rec."Insurance Name")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Membership No"; "Membership No")
+                field("Membership No"; Rec."Membership No")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Receipt Amount"; "Receipt Amount")
+                field("Receipt Amount"; Rec."Receipt Amount")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Bill Balance"; "Bill Balance")
+                field("Bill Balance"; Rec."Bill Balance")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Invoice Amount"; "Invoice Amount")
+                field("Invoice Amount"; Rec."Invoice Amount")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field(Gender; Gender)
+                field(Gender; Rec.Gender)
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Date Of Birth"; "Date Of Birth")
+                field("Date Of Birth"; Rec."Date Of Birth")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Insurance No."; "Insurance No.")
+                field("Insurance No."; Rec."Insurance No.")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Correspondence Address 1"; "Correspondence Address 1")
+                field("Correspondence Address 1"; Rec."Correspondence Address 1")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Correspondence Address 2"; "Correspondence Address 2")
+                field("Correspondence Address 2"; Rec."Correspondence Address 2")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Correspondence Address 3"; "Correspondence Address 3")
+                field("Correspondence Address 3"; Rec."Correspondence Address 3")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Telephone No. 1"; "Telephone No. 1")
+                field("Telephone No. 1"; Rec."Telephone No. 1")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Telephone No. 2"; "Telephone No. 2")
+                field("Telephone No. 2"; Rec."Telephone No. 2")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field(Email; Email)
+                field(Email; Rec.Email)
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient Current Location"; "Patient Current Location")
+                field("Patient Current Location"; Rec."Patient Current Location")
                 {
                     ApplicationArea = Basic, Suite;
                 }
@@ -161,7 +161,7 @@ page 85289 "HMS Cash Active Patients"
                 PromotedIsBig = true;
                 trigger OnAction()
                 begin
-                    HMS.CreateReceipt("Patient No.", "Active Visit No");
+                    HMS.CreateReceipt(Rec."Patient No.", Rec."Active Visit No");
                 end;
             }
             action(Charges)
@@ -202,14 +202,14 @@ page 85289 "HMS Cash Active Patients"
                 ApplicationArea = Basic, Suite;
                 trigger OnAction()
                 begin
-                    if Patients.Get("Patient No.") then begin
+                    if Patients.Get(Rec."Patient No.") then begin
                         NewNo := NoSeriesMgt.GetNextNo('APSP', 0D, true);
                         HmsAPP.Init;
                         HmsAPP."Appointment No." := NewNo;
                         HmsAPP."Appointment Date" := Today;
                         HmsAPP."Appointment Time" := Time;
                         HmsAPP."Appointment Type" := 'SPLIT INVOICE';
-                        HmsAPP."Patient No." := "Patient No.";
+                        HmsAPP."Patient No." := Rec."Patient No.";
                         HmsAPP.Doctor := '';
                         HmsAPP.Validate("Patient No.");
                         HmsAPP."Settlement Type" := HmsAPP."Settlement Type"::Insurance;
@@ -251,7 +251,7 @@ page 85289 "HMS Cash Active Patients"
                 trigger OnAction()
                 begin
                     HMSPatientCharges.Reset;
-                    HMSPatientCharges.SetRange(HMSPatientCharges."Patient No.", "Patient No.");
+                    HMSPatientCharges.SetRange(HMSPatientCharges."Patient No.", Rec."Patient No.");
                     HMSPatientCharges.SetRange(HMSPatientCharges."Billing Type", HMSPatientCharges."Billing Type"::Reccuring);
                     HMSPatientCharges.SetCurrentKey(HMSPatientCharges."Patient No.", HMSPatientCharges."Billing Type", HMSPatientCharges."Reccuring Type", HMSPatientCharges.Date, HMSPatientCharges."Creation Time");
                     HMSPatientCharges.Ascending := false;
@@ -267,7 +267,7 @@ page 85289 "HMS Cash Active Patients"
                                         LastBillDate := LastBillDate + 1;
                                         HMSPatientCharges1.Init;
                                         HMSPatientCharges1."Line No" := Ln;
-                                        HMSPatientCharges1."Patient No." := "Patient No.";
+                                        HMSPatientCharges1."Patient No." := Rec."Patient No.";
                                         HMSPatientCharges1."Link No" := HMSPatientCharges."Link No";
                                         HMSPatientCharges1."Treatment No." := HMSPatientCharges."Treatment No.";
                                         HMSPatientCharges1."Shortcut Dimension 1 Code" := HMSPatientCharges."Shortcut Dimension 1 Code";
@@ -291,7 +291,7 @@ page 85289 "HMS Cash Active Patients"
                                         HMSPatientCharges1.Init;
                                         HMSPatientCharges1."Line No" := Ln;
                                         HMSPatientCharges1.Quantity := 1;
-                                        HMSPatientCharges1."Patient No." := "Patient No.";
+                                        HMSPatientCharges1."Patient No." := Rec."Patient No.";
                                         HMSPatientCharges1."Link No" := HMSPatientCharges."Link No";
                                         HMSPatientCharges1."Treatment No." := HMSPatientCharges."Treatment No.";
                                         HMSPatientCharges1."Shortcut Dimension 1 Code" := HMSPatientCharges."Shortcut Dimension 1 Code";
@@ -324,7 +324,7 @@ page 85289 "HMS Cash Active Patients"
                 trigger OnAction()
                 begin
                     Patients.Reset;
-                    Patients.SetFilter(Patients."Patient No.", "Patient No.");
+                    Patients.SetFilter(Patients."Patient No.", Rec."Patient No.");
                     if Patients.Find('-') then
                         REPORT.Run(Report::"HMS NHIF Rebates Calculations", true, true, Patients);
                 end;
@@ -336,7 +336,7 @@ page 85289 "HMS Cash Active Patients"
                 trigger OnAction()
                 begin
                     Patients.Reset;
-                    Patients.SetFilter(Patients."Patient No.", "Patient No.");
+                    Patients.SetFilter(Patients."Patient No.", Rec."Patient No.");
                     if Patients.Find('-') then
                         REPORT.Run(70134702, true, true, Patients);
                 end;
@@ -348,7 +348,7 @@ page 85289 "HMS Cash Active Patients"
                 trigger OnAction()
                 begin
                     Patients.Reset;
-                    Patients.SetFilter(Patients."Patient No.", "Patient No.");
+                    Patients.SetFilter(Patients."Patient No.", Rec."Patient No.");
                     if Patients.Find('-') then
                         REPORT.Run(70134703, true, true, Patients);
                 end;
@@ -378,8 +378,8 @@ page 85289 "HMS Cash Active Patients"
                      END;
                    */
                     //ERROR("Patient No."+' - '+"Active Visit No");
-                    TestField("Active Visit No");
-                    TestField("Insurance No.");
+                    Rec.TestField(Rec."Active Visit No");
+                    Rec.TestField(Rec."Insurance No.");
                     /*
                     HMSPatientCharges.RESET;
                     HMSPatientCharges.SETRANGE(HMSPatientCharges."Patient No.","Patient No.");
@@ -395,22 +395,22 @@ page 85289 "HMS Cash Active Patients"
                     */
 
                     HMSPatientCharges.Reset;
-                    HMSPatientCharges.SetFilter(HMSPatientCharges."Patient No.", "Patient No.");
-                    HMSPatientCharges.SetFilter(HMSPatientCharges."Visit No", "Active Visit No");
+                    HMSPatientCharges.SetFilter(HMSPatientCharges."Patient No.", Rec."Patient No.");
+                    HMSPatientCharges.SetFilter(HMSPatientCharges."Visit No", Rec."Active Visit No");
                     //HMSPatientCharges.SETRANGE(HMSPatientCharges.Posted, FALSE);
                     if HMSPatientCharges.Find('-') then
                         REPORT.Run(51932, true, true, HMSPatientCharges);
                     //HMS.GenerateInvoice("Patient No.");
                     HMSPatientCharges.Reset;
-                    HMSPatientCharges.SetRange(HMSPatientCharges."Patient No.", "Patient No.");
+                    HMSPatientCharges.SetRange(HMSPatientCharges."Patient No.", Rec."Patient No.");
                     //HMSPatientCharges.SETRANGE(HMSPatientCharges."Visit No","Active Visit No");
                     HMSPatientCharges.SetRange(HMSPatientCharges."Invoice Number", '');
                     if HMSPatientCharges.Find('-') then begin
-                        Activated := true;
-                        Modify;
+                        Rec.Activated := true;
+                       Rec.Modify;
                     end else begin
-                        Activated := false;
-                        Modify;
+                        Rec.Activated := false;
+                        Rec.Modify;
                     end;
 
                 end;
@@ -439,7 +439,7 @@ page 85289 "HMS Cash Active Patients"
                     //TESTFIELD("Settlement Type");
                     //TESTFIELD("Patient Type");
 
-                    if Inpatient = true then Error('the patient is in the wards currently no need to re-admit');
+                    if Rec.Inpatient = true then Error('the patient is in the wards currently no need to re-admit');
 
 
                     if Confirm('Send the admission request?', false) = false then begin exit end;
@@ -526,16 +526,16 @@ page 85289 "HMS Cash Active Patients"
                         AdmissionHeader."Admission Date" := Today;
                         AdmissionHeader."Admission Time" := Time;
                         AdmissionHeader."Admission Area" := AdmissionHeader."Admission Area"::Referral;
-                        AdmissionHeader."Patient No." := "Patient No.";
+                        AdmissionHeader."Patient No." := Rec."Patient No.";
                         //AdmissionHeader.Doctor:= Doctor;
                         AdmissionHeader.Remarks := 'Out Patient to Inpatient';
                         AdmissionHeader."Admission Reason" := 'Direct Admission';
                         AdmissionHeader."Link Type" := 'Direct Admission';
-                        AdmissionHeader."Link No." := "Active Visit No";
+                        AdmissionHeader."Link No." := Rec."Active Visit No";
                         AdmissionHeader.Insert();
                     end;
 
-                    PatientCU.AssignCurrentAdmNo("Patient No.", NewNo);
+                    PatientCU.AssignCurrentAdmNo(Rec."Patient No.", NewNo);
 
                     PAGE.Run(70135175, AdmissionHeader);
 
@@ -556,8 +556,8 @@ page 85289 "HMS Cash Active Patients"
                 trigger OnAction()
                 begin
                     HMSPatientCharges.Reset;
-                    HMSPatientCharges.SetFilter(HMSPatientCharges."Patient No.", "Patient No.");
-                    HMSPatientCharges.SetFilter(HMSPatientCharges."Visit No", "Active Visit No");
+                    HMSPatientCharges.SetFilter(HMSPatientCharges."Patient No.", Rec."Patient No.");
+                    HMSPatientCharges.SetFilter(HMSPatientCharges."Visit No", Rec."Active Visit No");
                     if HMSPatientCharges.Find('-') then
                         REPORT.Run(70135521, true, true, HMSPatientCharges);
                 end;
@@ -572,7 +572,7 @@ page 85289 "HMS Cash Active Patients"
     begin
         if UserRec.get(Database.UserId) then
             if UserRec."Branch Code" <> '' then
-                setfilter("Global Dimension 1 Code", UserRec."Branch Code");
+                Rec.setfilter(Rec."Global Dimension 1 Code", UserRec."Branch Code");
     end;
 
     var
@@ -605,8 +605,8 @@ page 85289 "HMS Cash Active Patients"
     begin
 
         // Generate Default insurance invoice
-        if "Patient Type" = "Patient Type"::Corporate then begin
-            Patients.Get("Patient No.");
+        if Rec."Patient Type" = Rec."Patient Type"::Corporate then begin
+            Patients.Get(Rec."Patient No.");
             Patients.TestField(Patients."Insurance No.");
             SalesSetup.Get;
             NewNo := NoSeriesMgt.GetNextNo(SalesSetup."Invoice Nos.", 0D, true);
@@ -617,7 +617,7 @@ page 85289 "HMS Cash Active Patients"
             SaleH."Sell-to Customer No." := Patients."Insurance No.";
             SaleH."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
             SaleH."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-            SaleH."Patient No." := "Patient No.";
+            SaleH."Patient No." :=Rec."Patient No.";
             SaleH.Insert;
 
             if SaleH.Get(SaleH."Document Type"::Invoice, NewNo) then begin
@@ -633,7 +633,7 @@ page 85289 "HMS Cash Active Patients"
                 if SLine.FindLast() then LineNo := SLine."Line No." + 1;
 
                 PatientCharges.Reset;
-                PatientCharges.SetRange(PatientCharges."Patient No.", "Patient No.");
+                PatientCharges.SetRange(PatientCharges."Patient No.", Rec."Patient No.");
                 PatientCharges.SetRange(PatientCharges."Insurance No", Patients."Insurance No.");
                 PatientCharges.SetRange(PatientCharges.Posted, false);
                 if PatientCharges.Find('-') then begin
@@ -686,7 +686,7 @@ page 85289 "HMS Cash Active Patients"
             end;
             // Generate Other Insurance Invoices
             HMSPatIns.Reset;
-            HMSPatIns.SetRange(HMSPatIns."Patient No", "Patient No.");
+            HMSPatIns.SetRange(HMSPatIns."Patient No", Rec."Patient No.");
             HMSPatIns.SetFilter(HMSPatIns."Open Invoices", '>%1', 0);
             if HMSPatIns.Find('-') then begin
                 repeat
@@ -698,7 +698,7 @@ page 85289 "HMS Cash Active Patients"
                         SaleH."Sell-to Customer No." := HMSPatIns."Insurance No";
                         SaleH."Shortcut Dimension 1 Code" := PatientCharges."Shortcut Dimension 1 Code";
                         SaleH."Shortcut Dimension 2 Code" := PatientCharges."Shortcut Dimension 2 Code";
-                        SaleH."Patient No." := "Patient No.";
+                        SaleH."Patient No." := Rec."Patient No.";
                         SaleH.Insert;
                         if SaleH.Get(SaleH."Document Type"::Invoice, NewNo) then begin
                             SaleH.Validate("Sell-to Customer No.");
@@ -710,7 +710,7 @@ page 85289 "HMS Cash Active Patients"
                         end;
                         if SLine.FindLast() then LineNo := SLine."Line No." + 1;
                         PatientCharges.Reset;
-                        PatientCharges.SetRange(PatientCharges."Patient No.", "Patient No.");
+                        PatientCharges.SetRange(PatientCharges."Patient No.", Rec."Patient No.");
                         PatientCharges.SetRange(PatientCharges."Insurance No", HMSPatIns."Insurance No");
                         PatientCharges.SetRange(PatientCharges.Posted, false);
                         if PatientCharges.Find('-') then begin

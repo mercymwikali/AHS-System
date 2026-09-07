@@ -84,6 +84,275 @@ Query 85132 Appointments
             column(Insurance_Member_No; "Insurance Member No")
             {
             }
+            column(AdmNo; "Adm No.")
+            {
+            }
+            column(AgeinYears; "Age in Years")
+            {
+            }
+            column(AppTemp; "App Temp")
+            {
+            }
+            column(Appointmentcount; "Appointment count")
+            {
+            }
+            column(BookedBy; "Booked By")
+            {
+            }
+            column(Branch; Branch)
+            {
+            }
+            column(Chargescount; "Charges count")
+            {
+            }
+            column(ConsultationAmount; "Consultation Amount")
+            {
+            }
+            column(DoctorAppointmentcount; "Doctor Appointment count")
+            {
+            }
+            column(DoctorLastAppointmentDate; "Doctor Last Appointment Date")
+            {
+            }
+            column(DoctorName; "Doctor Name")
+            {
+            }
+            column(DoctorTimeIn; "Doctor Time In")
+            {
+            }
+            column(DoctorTimeOut; "Doctor Time Out")
+            {
+            }
+            column(DoctorsName; "Doctors Name")
+            {
+            }
+            column(Emergency; Emergency)
+            {
+            }
+            column(Gender; Gender)
+            {
+            }
+            column(GlobalDimension1; "Global Dimension 1")
+            {
+            }
+            column(ImagingTimeIn; "Imaging Time In")
+            {
+            }
+            column(ImagingTimeOut; "Imaging Time Out")
+            {
+            }
+            column(InsuranceLOUAmount; "Insurance LOU Amount")
+            {
+            }
+            column(InvoiceNo; "Invoice No")
+            {
+            }
+            column(InvoicePosted; "Invoice Posted")
+            {
+            }
+            column(InvoicePostedBy; "Invoice Posted By")
+            {
+            }
+            column(InvoicePostedOn; "Invoice Posted On")
+            {
+            }
+            column(Invoicecount; "Invoice count")
+            {
+            }
+            column(InvoinceNo; "Invoince No")
+            {
+            }
+            column(LabTimeIn; "Lab Time In")
+            {
+            }
+            column(LabTimeOut; "Lab Time Out")
+            {
+            }
+            column(LaboratoryAmount; "Laboratory Amount")
+            {
+            }
+            column(LinkNo; "Link No")
+            {
+            }
+            column(MVCNo; "MVC No.")
+            {
+            }
+            column(Minor; Minor)
+            {
+            }
+            column(NHIFProcedureCode; "NHIF Procedure Code")
+            {
+            }
+           
+           
+            column(ObservationAmount; "Observation Amount")
+            {
+            }
+            column(PatientCategory; "Patient Category")
+            {
+            }
+            column(PatientNames; "Patient Names")
+            {
+            }
+            column(PatientTypeLk; "Patient Type Lk")
+            {
+            }
+            column(PendingInvoice; "Pending Invoice")
+            {
+            }
+            column(PharmacyAmount; "Pharmacy Amount")
+            {
+            }
+            column(PharmacyTimeIn; "Pharmacy Time In")
+            {
+            }
+            column(PharmacyTimeOut; "Pharmacy Time Out")
+            {
+            }
+            column(Pharmacycount; "Pharmacy count")
+            {
+            }
+            column(PhoneNo; "Phone No")
+            {
+            }
+            column(Physio; Physio)
+            {
+            }
+            column(PhysioAmount; "Physio Amount")
+            {
+            }
+            column(PostedInvoiceNo; "Posted Invoice No")
+            {
+            }
+            column(ReOpened; "Re-Opened")
+            {
+            }
+            column(ReOpenedDate; "Re-Opened Date")
+            {
+            }
+            column(ReOpenedUserID; "Re-Opened UserID")
+            {
+            }
+            column(SearchNames; SearchNames)
+            {
+            }
+            column(SmarkLinkBalance; "SmarkLink Balance")
+            {
+            }
+            column(SpecialClinics; "Special Clinics")
+            {
+            }
+            column(StudentNo; "Student No.")
+            {
+            }
+            column(SystemCreatedAt; SystemCreatedAt)
+            {
+            }
+            column(SystemCreatedBy; SystemCreatedBy)
+            {
+            }
+            column(SystemId; SystemId)
+            {
+            }
+            column(SystemModifiedAt; SystemModifiedAt)
+            {
+            }
+            column(SystemModifiedBy; SystemModifiedBy)
+            {
+            }
+            column(TelephoneNo; "Telephone No.")
+            {
+            }
+            column(TherapyTimeIn; "Therapy Time In")
+            {
+            }
+            column("Time"; "Time")
+            {
+            }
+            column(TotalBilled; "Total Billed")
+            {
+            }
+            column(TotalReceipts; "Total Receipts")
+            {
+            }
+            column(TranscribedBy; "Transcribed By")
+            {
+            }
+            column(TranscribedDate; "Transcribed Date")
+            {
+            }
+            column(TreatmentNo; "Treatment No")
+            {
+            }
+            column(TriageTimeIn; "Triage Time In")
+            {
+            }
+            column(TriageTimeout; "Triage Time out")
+            {
+            }
+            
+            column(WaitingAt; "Waiting At")
+            {
+            }
+            column(imported; imported)
+            {
+            }
+            column(isTherapy; isTherapy)
+            {
+            }
+            column(isTranscription; isTranscription)
+            {
+            }
+            column(OTPRecordedDate; "OTP Recorded Date")
+            {
+            }
+            column(SHAAuthorizationCode; "SHA Authorization Code")
+            {
+            }
+            column(SHAAuthorizationStatus; "SHA Authorization Status")
+            {
+            }
+            column(SHAClaimStatus; "SHA Claim Status")
+            {
+            }
+            column(SHAAuthorizationGUID; "SHA Authorization GUID")
+            {
+            }
+            column(NoSeries; "No. Series")
+            {
+            }
+            column(SHAAuthorizationID; "SHA Authorization ID")
+            {
+            }
+            column(SHAInvoiceID; "SHA Invoice ID")
+            {
+            }
+            column(SHAInvoiceNumber; "SHA Invoice Number")
+            {
+            }
+            column(SHASchemeCode; "SHA Scheme Code")
+            {
+            }
+            column(SHASchemeName; "SHA Scheme Name")
+            {
+            }
+            column(SHAServiceType; "SHA Service Type")
+            {
+            }
+            column(SHAVisitID; "SHA Visit ID")
+            {
+            }
+            column(SHAVisitNumber; "SHA Visit Number")
+            {
+            }
+           
+            column(SHAVisitStart; "SHA Visit Start")
+            {
+            }
+            column(SHAPatientCRID; "SHA Patient CR ID")
+            {
+            }
+            
             dataitem(HMS_Patient; "HMS Patient")
             {
                 DataItemLink = "Patient No." = HMS_Appointment_Form_Header."Patient No.";

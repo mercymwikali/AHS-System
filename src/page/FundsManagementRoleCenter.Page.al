@@ -383,14 +383,14 @@ page 85157 "Funds Management Role Center"
                         RunObject = Report "HMS Customer Credit Sales";
                         ToolTip = 'Executes the Customer Credit Sales action.';
                     }
-                    action("Receipt Summary2")
-                    {
-                        ApplicationArea = all;
-                        Caption = 'Flash Revenue';
-                        Image = "Report";
-                        RunObject = Report "Flash Revenue";
-                        ToolTip = 'Executes the Flash Revenue action.';
-                    }
+                    // action("Receipt Summary2")
+                    // {
+                    //     ApplicationArea = all;
+                    //     Caption = 'Flash Revenue';
+                    //     Image = "Report";
+                    //     RunObject = Report "Flash Revenue";
+                    //     ToolTip = 'Executes the Flash Revenue action.';
+                    // }
                 }
                 group(SummaryReports)
                 {

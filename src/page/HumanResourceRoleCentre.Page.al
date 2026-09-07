@@ -1,6 +1,6 @@
 page 85691 "Human Resource Role Centre"
 {
-    Caption = 'Role Center';
+    Caption = 'Human Resource Role Centre';
     PageType = RoleCenter;
 
     layout
@@ -790,4 +790,11 @@ page 85691 "Human Resource Role Centre"
             }
         }
     }
+}
+
+profile "Human Resource Role Centre"
+{
+    ProfileDescription = 'Human Resource Role Centre';
+    Caption = 'New Human Resource Role Centre';
+    RoleCenter = "Human Resource Role Centre";
 }

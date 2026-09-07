@@ -17,45 +17,45 @@ page 85291 "HMS Active Patient OutPatients"
         {
             repeater(Group)
             {
-                field("Active Appointment date"; "Current Appointment date")
+                field("Active Appointment date"; Rec."Current Appointment date")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Date Registered"; "Date Registered")
+                field("Date Registered"; Rec."Date Registered")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field(Branch; "Global Dimension 1 Code")
+                field(Branch; Rec."Global Dimension 1 Code")
                 {
                     Caption = 'Branch';
                     ApplicationArea = Basic, Suite;
                 }
-                field("Current Special Clinics"; "Current Special Clinics")
+                field("Current Special Clinics"; Rec."Current Special Clinics")
                 {
                     Caption = 'Special Clinics';
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient Type"; "Patient Type")
+                field("Patient Type"; Rec."Patient Type")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Patient No."; "Patient No.")
+                field("Patient No."; Rec."Patient No.")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Search Name"; "Search Name")
+                field("Search Name"; Rec."Search Name")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("ID Number"; "ID Number")
+                field("ID Number"; Rec."ID Number")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Insurance Name"; "Insurance Name")
+                field("Insurance Name"; Rec."Insurance Name")
                 {
                     ApplicationArea = Basic, Suite;
                 }
-                field("Membership No"; "Membership No")
+                field("Membership No"; Rec."Membership No")
                 {
                     ApplicationArea = Basic, Suite;
                 }

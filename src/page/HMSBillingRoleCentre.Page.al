@@ -86,13 +86,13 @@ Page 85346 "HMS Billing Role Centre"
                 RunObject = Page "HMS Active Patient OutPatients";
                 ToolTip = 'Executes the Active OutPatients action.';
             }
-            action("HMS Corporate pending Invoice")
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Corporate Pending Invoicing';
-                RunObject = Page "HMS Corporate pending Invoice";
-                ToolTip = 'Executes the Corporate Pending Invoicing action.';
-            }
+            // action("HMS Corporate pending Invoice")
+            // {
+            //     ApplicationArea = Basic, Suite;
+            //     Caption = 'Corporate Pending Invoicing';
+            //     RunObject = Page "HMS Corporate pending Invoice";
+            //     ToolTip = 'Executes the Corporate Pending Invoicing action.';
+            // }
 
             action("Discharge Request")
             {

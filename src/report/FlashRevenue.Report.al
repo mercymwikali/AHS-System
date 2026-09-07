@@ -1,7 +1,7 @@
 Report 85038 "Flash Revenue"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './Layouts/ReceiptsPerTransactionType.rdl';
+   // RDLCLayout = './Layouts/ReceiptsPerTransactionType.rdl';
 
     dataset
     {
