@@ -1,6 +1,12 @@
 Query 85132 Appointments
 {
+            QueryType =API;
+            APIPublisher = 'AHS';
+            APIGroup = 'HMS';
+EntityName = 'HMSAppointmentFormHeader';
+EntitySetName = 'Appointments';
     OrderBy = descending(Appointment_Date);
+
 
     elements
     {
@@ -182,9 +188,7 @@ Query 85132 Appointments
             }
             column(NHIFProcedureCode; "NHIF Procedure Code")
             {
-            }
-           
-           
+            }       
             column(ObservationAmount; "Observation Amount")
             {
             }
@@ -242,24 +246,12 @@ Query 85132 Appointments
             column(SpecialClinics; "Special Clinics")
             {
             }
-            column(StudentNo; "Student No.")
-            {
-            }
-            column(SystemCreatedAt; SystemCreatedAt)
-            {
-            }
-            column(SystemCreatedBy; SystemCreatedBy)
-            {
-            }
+           
+           
             column(SystemId; SystemId)
             {
             }
-            column(SystemModifiedAt; SystemModifiedAt)
-            {
-            }
-            column(SystemModifiedBy; SystemModifiedBy)
-            {
-            }
+           
             column(TelephoneNo; "Telephone No.")
             {
             }
@@ -269,12 +261,7 @@ Query 85132 Appointments
             column("Time"; "Time")
             {
             }
-            column(TotalBilled; "Total Billed")
-            {
-            }
-            column(TotalReceipts; "Total Receipts")
-            {
-            }
+            
             column(TranscribedBy; "Transcribed By")
             {
             }
@@ -294,9 +281,7 @@ Query 85132 Appointments
             column(WaitingAt; "Waiting At")
             {
             }
-            column(imported; imported)
-            {
-            }
+            
             column(isTherapy; isTherapy)
             {
             }
@@ -353,25 +338,25 @@ Query 85132 Appointments
             {
             }
             
-            dataitem(HMS_Patient; "HMS Patient")
-            {
-                DataItemLink = "Patient No." = HMS_Appointment_Form_Header."Patient No.";
-                column(Surname; Surname)
-                {
-                }
-                column(Middle_Name; "Middle Name")
-                {
-                }
-                column(Last_Name; "Last Name")
-                {
-                }
-                column(Search_Name; "Search Name")
-                {
-                }
-                column(Names; Names)
-                {
-                }
-            }
+            // dataitem(HMS_Patient; "HMS Patient")
+            // {
+            //     DataItemLink = "Patient No." = HMS_Appointment_Form_Header."Patient No.";
+            //     column(Surname; Surname)
+            //     {
+            //     }
+            //     column(Middle_Name; "Middle Name")
+            //     {
+            //     }
+            //     column(Last_Name; "Last Name")
+            //     {
+            //     }
+            //     column(Search_Name; "Search Name")
+            //     {
+            //     }
+            //     column(Names; Names)
+            //     {
+            //     }
+            // }
         }
     }
 }

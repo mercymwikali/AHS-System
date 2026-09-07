@@ -78,6 +78,50 @@ Query 85131 Appointment
             column(Insurance_Name; "Insurance Name")
             {
             }
+             column(SHAAuthorizationCode; "SHA Authorization Code")
+            {
+            }
+            column(SHAAuthorizationStatus; "SHA Authorization Status")
+            {
+            }
+            column(SHAClaimStatus; "SHA Claim Status")
+            {
+            }
+            column(SHAAuthorizationID; "SHA Authorization ID")
+            {
+            }
+            column(SHAInvoiceID; "SHA Invoice ID")
+            {
+            }
+            column(SHAInvoiceNumber; "SHA Invoice Number")
+            {
+            }
+            column(SHASchemeCode; "SHA Scheme Code")
+            {
+            }
+            column(SHASchemeName; "SHA Scheme Name")
+            {
+            }
+            column(SHAServiceType; "SHA Service Type")
+            {
+            }
+            column(SHAVisitID; "SHA Visit ID")
+            {
+            }
+            column(SHAVisitNumber; "SHA Visit Number")
+            {
+            }
+           
+            column(SHAVisitStart; "SHA Visit Start")
+            {
+            }
+            column(SHAPatientCRID; "SHA Patient CR ID")
+            {
+            }
+            column(SHAClaimNo; "SHA Claim No.")
+            {
+            }
+            
             dataitem(HMS_Patient; "HMS Patient")
             {
                 DataItemLink = "Patient No." = HMS_Appointment_Form_Header."Patient No.";

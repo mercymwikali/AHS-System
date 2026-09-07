@@ -89,6 +89,23 @@ tableextension 85033 HMSAppointmentFormHeaderExt extends "HMS Appointment Form H
             Caption = 'SHA Scheme Name';
             DataClassification = ToBeClassified;
         }
-       
+       field(85017; "SHA Claim No."; Code[20])
+{
+    Caption = 'SHA Claim No.';
+    DataClassification = ToBeClassified;
+    TableRelation = "SHA Claim Header"."Claim No.";
+}
+
+field(85018; "SHA Claim ID"; Text[100])
+{
+    Caption = 'SHA Claim ID';
+    DataClassification = ToBeClassified;
+}
+
+field(50119; "SHA Claim GUID"; Text[100])
+{
+    Caption = 'SHA Claim GUID';
+    DataClassification = ToBeClassified;
+}
     }
 }
